@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pageIndicator="http://schemas.android.com/apk/res/me.linkcube.app"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <android.support.v4.view.ViewPager
+            android:id="@id/mode_bg_vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <android.support.v4.view.ViewPager
+                android:id="@id/mode_vp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <me.linkcube.app.widget.CirclePageIndicator
+                android:id="@id/vp_indicator"
+                style="@style/CirclePagerIndicator"
+                pageIndicator:fillColor="@color/pink"
+                pageIndicator:pageColor="@android:color/transparent"
+                pageIndicator:radius="5dp"
+                pageIndicator:strokeColor="@color/light_grey" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <me.linkcube.app.ui.main.single.SingleStatusBarView
+        android:id="@id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/StatusBarMargin"
+        android:layout_marginRight="@dimen/StatusBarMargin"
+        android:layout_marginTop="@dimen/StatusBarMargin"
+        pageIndicator:fillColor="@color/pink"
+        pageIndicator:pageColor="@color/light_grey"
+        pageIndicator:radius="5dp" />
+
+</RelativeLayout>

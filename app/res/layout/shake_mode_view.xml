@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ModeViewBlock" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ModeBlockHeight"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/mode_view_bg" >
+
+        <Button
+            android:id="@id/shake_mode_btn"
+            style="@style/ModeViewBlock.Button"
+            android:background="@drawable/shake_mode_0" />
+
+        <TextView
+            style="@style/ModeViewBlock.TextView"
+            android:layout_below="@id/shake_mode_btn"
+            android:text="@string/shake_mode" />
+    </RelativeLayout>
+
+</RelativeLayout>

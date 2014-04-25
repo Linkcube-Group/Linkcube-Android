@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 登录 -->
+    <item name="login_account_et" type="id"/>
+    <item name="login_password_et" type="id"/>
+    <item name="login_confirm_password_et" type="id"/>
+    <item name="login_forget_btn" type="id"/>
+    <item name="login_btn" type="id"/>
+    <item name="security_code_et" type="id"/>
+    <item name="register_btn" type="id"/>
+    <item name="avatar_btn" type="id"/>
+
+    <!-- 主页面 -->
+    <item name="setting_btn" type="id"/>
+    <item name="connect_indicator_btn" type="id"/>
+    <item name="reset_btn" type="id"/>
+    <item name="single_tab" type="id"/>
+    <item name="multi_tab" type="id"/>
+    <item name="fragment_content" type="id"/>
+    <item name="status_bar" type="id"/>
+    <item name="tab_indicator" type="id"/>
+
+    <!-- 主页面 - 单人模式 -->
+    <item name="mode_vp" type="id"/>
+    <item name="mode_bg_vp" type="id"/>
+    <item name="shake_mode_btn" type="id"/>
+    <item name="voice_mode_btn" type="id"/>
+    <item name="sex_position_mode_btn" type="id"/>
+    <item name="vp_indicator" type="id"/>
+    <item name="mode_tip_iv" type="id"/>
+
+    <!-- 主页面 - 多人模式 -->
+    <item name="chat_vp" type="id"/>
+    <item name="self_status_bar" type="id"/>
+    <item name="target_status_bar" type="id"/>
+    <item name="connect_iv" type="id"/>
+    <item name="user_avatar_btn" type="id"/>
+    <item name="target_avatar_btn" type="id"/>
+    <item name="friend_avatar_iv" type="id"/>
+    <item name="friend_name_tv" type="id"/>
+    <item name="add_friend_cell" type="id"/>
+    <item name="friends_added_cell" type="id"/>
+    <item name="new_friend_tip_iv" type="id"/>
+    <item name="chat_lv" type="id"/>
+    <item name="friend_lv" type="id"/>
+
+    <!-- 状态栏 -->
+    <item name="switch_toy_cb" type="id"/>
+    <item name="connect_blue_tooth_btn" type="id"/>
+    <item name="user_name_tv" type="id"/>
+    <item name="target_name_tv" type="id"/>
+
+    <!-- 蓝牙设置 -->
+    <item name="bluetooth_tb" type="id"/>
+    <item name="device_lv" type="id"/>
+    <item name="discover_devices_btn" type="id"/>
+    <item name="enter_mall_btn" type="id"/>
+    <item name="device_state_tv" type="id"/>
+    <item name="device_name_tv" type="id"/>
+    <item name="tip_tv" type="id"/>
+
+    <!-- 设置页面 -->
+    <item name="personal_info_tv" type="id"/>
+    <item name="purchase_toy_tv" type="id"/>
+    <item name="help_tv" type="id"/>
+    <item name="feedback_tv" type="id"/>
+    <item name="login_or_register_btn" type="id"/>
+    <item name="about_us_tv" type="id"/>
+
+    <!-- 菜单 -->
+    <item name="menu_register" type="id"/>
+
+</resources>

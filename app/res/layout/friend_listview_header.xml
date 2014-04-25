@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/listview_cell_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@id/add_friend_cell"
+        style="@style/ListView.Cell" >
+
+        <ImageView
+            style="@style/ListView.Cell.Image"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp"
+            android:src="@drawable/ic_add" />
+
+        <TextView
+            style="@style/ListView.Cell.TextView"
+            android:text="@string/add_friend"
+            android:textColor="@color/pink" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/listview_divider" />
+
+    <LinearLayout
+        android:id="@id/friends_added_cell"
+        style="@style/ListView.Cell" >
+
+        <ImageView
+            android:id="@+id/imageView"
+            style="@style/ListView.Cell.Image"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp"
+            android:src="@drawable/ic_new_tip" />
+
+        <TextView
+            style="@style/ListView.Cell.TextView"
+            android:text="@string/new_friend_tip"
+            android:textColor="@color/pink" />
+
+        <ImageView
+            android:id="@id/new_friend_tip_iv"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/pink_dot"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="@dimen/ListCellMargin"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/right_arrow" />
+    </LinearLayout>
+
+</LinearLayout>

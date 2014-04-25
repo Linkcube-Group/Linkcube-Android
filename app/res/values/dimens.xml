@@ -1,0 +1,42 @@
+<resources>
+
+    <!-- MainPageBlock -->
+    <dimen name="BlockPadding">20dp</dimen>
+    <!-- TextView -->
+    <dimen name="TextSize.Default">16.0dip</dimen>
+    <dimen name="TextSize.Small">14.0dip</dimen>
+    <dimen name="TextSize.Large">18.0dip</dimen>
+    <dimen name="TextSize.Title">20.0dip</dimen>
+    <!-- EditText -->
+    <dimen name="EditTextHeight">44.0dip</dimen>
+    <!-- Status Bar -->
+    <dimen name="MultiStatusBarHeight">142dip</dimen>
+    <dimen name="StatusBarHeight">56.0dip</dimen>
+    <dimen name="StatusBarAvatarSize">48.0dip</dimen>
+    <dimen name="StatusBarTextSize">12dip</dimen>
+    <dimen name="StatusBarBtnSize">36dp</dimen>
+    <dimen name="StatusBarMargin">10dp</dimen>
+    <dimen name="StatusBarConnectSize">44.0dip</dimen>
+    <!-- Tab Indicator -->
+    <dimen name="TabIndicatorIconSize">40dip</dimen>
+    <dimen name="TabIndicatorHeight">56dp</dimen>
+    <!-- Single Player -->
+    <dimen name="ModeBlockPadding">10dp</dimen>
+    <dimen name="ModeBtnSize">100dip</dimen>
+    <dimen name="ModeTextSize">20dip</dimen>
+    <dimen name="ModeBlockHeight">200dip</dimen>
+    <!-- ListView -->
+    <dimen name="ListCellHeight">60.0dip</dimen>
+    <dimen name="ListCellImageSize">48.0dip</dimen>
+    <dimen name="ListCellMargin">10dp</dimen>
+    <dimen name="ListCellPadding">10dp</dimen>
+    <dimen name="ListCellTextSize">20sp</dimen>
+    <!-- Setting -->
+    <dimen name="SettingTextSize">20sp</dimen>
+    <dimen name="SettingMargin">10dp</dimen>
+    <dimen name="SettingPadding">10dp</dimen>
+    <dimen name="SettingSubTextSize">14sp</dimen>
+    <dimen name="SettingItemHeight">60.0dip</dimen>
+    <dimen name="SettingItemTextSize">20sp</dimen>
+
+</resources>

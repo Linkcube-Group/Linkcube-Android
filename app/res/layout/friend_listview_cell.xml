@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ListView.Cell" >
+
+    <ImageView
+        android:id="@id/friend_avatar_iv"
+        style="@style/ListView.Cell.Image"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@id/friend_name_tv"
+        style="@style/ListView.Cell.TextView" />
+
+</LinearLayout>

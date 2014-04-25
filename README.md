@@ -1,2 +1,2 @@
-android-client
+连酷Android客户端
 ==============

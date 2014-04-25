@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPage"
+    android:paddingLeft="@dimen/BlockPadding"
+    android:paddingRight="@dimen/BlockPadding" >
+
+    <RelativeLayout
+        android:id="@+id/user_info_avator_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/user_info_avator_iv"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/user_info_avator_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="头像"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/user_info_nickname_ll"
+        style="@style/Setting.Item" >
+
+        <TextView
+            android:id="@+id/user_info_nickname_title"
+            style="@style/Setting.Item.TextView.Left"
+            android:text="昵称" />
+
+        <TextView
+            android:id="@+id/user_info_nickname_tv"
+            style="@style/Setting.Item.TextView.Right"
+            android:text="哈哈" />
+    </LinearLayout>
+
+    <View style="@style/Setting.Item.Divider" />
+
+    <LinearLayout
+        android:id="@+id/user_info_gender_ll"
+        style="@style/Setting.Item" >
+
+        <TextView
+            android:id="@+id/user_info_gender_title"
+            style="@style/Setting.Item.TextView.Left"
+            android:text="性别" />
+
+        <TextView
+            android:id="@+id/user_info_gender_tv"
+            style="@style/Setting.Item.TextView.Right"
+            android:text="哈哈" />
+    </LinearLayout>
+
+    <View style="@style/Setting.Item.Divider" />
+
+    <LinearLayout
+        android:id="@+id/user_info_birthday_ll"
+        style="@style/Setting.Item" >
+
+        <TextView
+            android:id="@+id/user_info_birthday_title"
+            style="@style/Setting.Item.TextView.Left"
+            android:text="出生年月" />
+
+        <TextView
+            android:id="@+id/user_info_birthday_tv"
+            style="@style/Setting.Item.TextView.Right"
+            android:text="哈哈" />
+    </LinearLayout>
+
+    <View style="@style/Setting.Item.Divider" />
+
+    <LinearLayout
+        android:id="@+id/user_info_person_state_ll"
+        style="@style/Setting.Item" >
+
+        <TextView
+            android:id="@+id/user_info_person_state_title"
+            style="@style/Setting.Item.TextView.Left"
+            android:text="个性签名" />
+
+        <TextView
+            android:id="@+id/user_info_person_state_tv"
+            style="@style/Setting.Item.TextView.Right"
+            android:text="哈哈" />
+    </LinearLayout>
+
+    <View style="@style/Setting.Item.Divider" />
+
+    <LinearLayout
+        android:id="@+id/user_info_linkcubeid_ll"
+        style="@style/Setting.Item"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/user_info_linkcubeid_title"
+            style="@style/Setting.Item.TextView.Left"
+            android:text="连酷ID" />
+
+        <TextView
+            android:id="@+id/user_info_linkcubeid_tv"
+            style="@style/Setting.Item.TextView.Right"
+            android:text="哈哈" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/user_info_email_ll"
+        style="@style/Setting.Item" >
+
+        <TextView
+            android:id="@+id/user_info_email_title"
+            style="@style/Setting.Item.TextView.Left"
+            android:text="注册邮箱" />
+
+        <TextView
+            android:id="@+id/user_info_email_tv"
+            style="@style/Setting.Item.TextView.Right"
+            android:text="哈哈" />
+    </LinearLayout>
+
+    <View style="@style/Setting.Item.Divider" />
+
+    <Button
+        android:id="@+id/update_user_info_btn"
+        style="@style/Button.Pink"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:text="保存个人信息"
+        android:visibility="invisible" />
+
+</LinearLayout>

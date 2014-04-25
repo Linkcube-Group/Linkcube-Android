@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <ImageButton
+        android:id="@id/single_tab"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/TabIndicatorHeight"
+        android:layout_weight="1"
+        android:background="@drawable/tab_indicator_selected"
+        android:contentDescription="@string/single_mode"
+        android:padding="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/tab_indicator_single_selected" />
+
+    <ImageButton
+        android:id="@id/multi_tab"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/TabIndicatorHeight"
+        android:layout_weight="1"
+        android:background="@drawable/tab_indicator_normal"
+        android:contentDescription="@string/multi_mode"
+        android:padding="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/tab_indicator_multi_normal" />
+
+</LinearLayout>

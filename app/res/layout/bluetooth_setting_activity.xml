@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPage"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/SettingItemHeight"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/SettingPadding"
+        android:paddingRight="@dimen/SettingPadding" >
+
+        <TextView
+            style="@style/Setting.Item.TextView"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="@string/bluetooth" />
+
+        <ToggleButton
+            android:id="@id/bluetooth_tb"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:layout_height="wrap_content"
+            android:button="@drawable/toggle"
+            android:gravity="center_vertical"
+            android:textOff=""
+            android:textOn="" />
+    </LinearLayout>
+
+    <View style="@style/Setting.Item.Divider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_grey"
+        android:orientation="horizontal"
+        android:padding="@dimen/SettingPadding" >
+
+        <TextView
+            style="@style/Setting.Item.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="@string/devices_available"
+            android:textSize="@dimen/SettingSubTextSize" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/click_and_connect"
+            android:textColor="@color/text_light_grey"
+            android:layout_weight="1"
+            android:textSize="@dimen/SettingSubTextSize" />
+    </LinearLayout>
+
+    <View style="@style/Setting.Item.Divider" />
+
+    <me.linkcube.app.ui.bluetooth.BluetoothDeviceListView
+        android:id="@id/device_lv"
+        style="@style/ListView"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="@dimen/SettingPadding" />
+
+    <Button
+        android:id="@id/discover_devices_btn"
+        style="@style/Button.Pink"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginBottom="40dp"
+        android:text="@string/search_toy" />
+
+</LinearLayout>

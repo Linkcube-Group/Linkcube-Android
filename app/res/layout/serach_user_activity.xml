@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPage" >
+
+    <me.linkcube.app.widget.CWClearEditText
+        android:id="@+id/search_user_activity_et"
+        style="@style/LineEditText"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:cursorVisible="true"
+        android:ems="10"
+        android:hint="@string/search_user_by_email"
+        android:text="" >
+
+        <requestFocus />
+    </me.linkcube.app.widget.CWClearEditText>
+
+    <ListView
+        android:id="@+id/show_search_user_name_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+</LinearLayout>

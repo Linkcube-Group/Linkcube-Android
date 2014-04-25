@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/actionbar_layout"
+    android:layout_width="match_parent"
+    android:layout_gravity="fill_horizontal"
+    android:layout_height="50.0dp"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:id="@+id/actionbar_back_rl"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true" >
+
+        <TextView
+            android:id="@+id/actionbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/actionbar_back_arrow_iv"
+            android:text="Linkcube"
+            android:textSize="20dp"
+            android:textColor="#ffffff" />
+
+        <ImageView
+            android:id="@+id/actionbar_back_arrow_iv"
+            style="@drawable/actionbar_back_arrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back_arrow_normal" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/actionbar_first_btn"
+        style="@style/Button.Actionbar.Pink"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="first"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/actionbar_second_btn"
+        style="@style/Button.Actionbar.Dark"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/actionbar_first_btn"
+        android:layout_margin="5dp"
+        android:text="second"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+</RelativeLayout>

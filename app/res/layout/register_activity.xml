@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPage"
+    android:gravity="center_horizontal"
+    android:padding="20dp" >
+
+    <me.linkcube.app.widget.CWClearEditText
+        android:id="@+id/login_email_et"
+        style="@style/LineEditText"
+        android:layout_width="match_parent"
+        android:ems="10"
+        android:hint="@string/register_account_hint"
+        android:text="" >
+
+        <requestFocus />
+    </me.linkcube.app.widget.CWClearEditText>
+
+    <me.linkcube.app.widget.CWClearEditText
+        android:id="@id/login_password_et"
+        style="@style/LineEditTextPwd"
+        android:layout_marginTop="10dp"
+        android:hint="@string/register_password_hint" />
+
+    <me.linkcube.app.widget.CWClearEditText
+        android:id="@id/login_confirm_password_et"
+        style="@style/LineEditTextPwd"
+        android:layout_marginTop="10dp"
+        android:hint="@string/register_confirm_password_hint" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/register_protocol_text"
+        android:layout_marginTop="30dp" />
+    
+    <TextView
+        android:id="@+id/register_protocol_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/register_btn"
+        style="@style/Button.Pink"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:text="@string/register" />
+
+</LinearLayout>

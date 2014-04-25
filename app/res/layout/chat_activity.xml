@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPage"
+    android:background="#eeeeee"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/single_chat_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:id="@+id/rl_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:orientation="vertical"
+            android:visibility="gone" >
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_bottom"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#cccccc"
+            android:padding="2dp" >
+
+            <ImageButton
+                android:id="@+id/img_btn_control_toy"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/btn_grey"
+                android:src="@drawable/btn_game" />
+
+            <Button
+                android:id="@+id/btn_send"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="2dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/btn_grey"
+                android:text="发送"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/send_msg_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/btn_send"
+                android:layout_toRightOf="@id/img_btn_control_toy"
+                android:background="#FFFFFF"
+                android:inputType="textMultiLine"
+                android:minHeight="40dp"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <me.linkcube.app.widget.ChatPullDownListView
+            android:id="@+id/chat_list_pulldown_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@id/rl_bottom"
+            android:layout_below="@id/rl_layout" >
+
+            <ListView
+                android:id="@+id/chat_activity_lv"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="10.0dip"
+                android:cacheColorHint="#00000000"
+                android:divider="@null"
+                android:dividerHeight="5dp"
+                android:transcriptMode="normal" />
+        </me.linkcube.app.widget.ChatPullDownListView>
+    </RelativeLayout>
+
+    <me.linkcube.app.ui.chat.ChatPanelView
+        android:id="@+id/chat_panel_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5" >
+    </me.linkcube.app.ui.chat.ChatPanelView>
+
+</LinearLayout>

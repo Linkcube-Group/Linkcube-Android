@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPage"
+    android:layout_width="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/SettingPadding"
+        android:paddingRight="@dimen/SettingPadding" >
+
+        <TextView
+            android:id="@id/personal_info_tv"
+            style="@style/Setting.Item.TextView"
+            android:text="@string/personal_info" />
+
+        <View style="@style/Setting.Item.Divider" />
+
+        <TextView
+            android:id="@id/purchase_toy_tv"
+            style="@style/Setting.Item.TextView"
+            android:text="@string/purchase_toy"
+            android:visibility="gone" />
+
+        <!-- <View style="@style/Setting.Item.Divider" /> -->
+
+        <TextView
+            android:id="@id/help_tv"
+            style="@style/Setting.Item.TextView"
+            android:text="@string/help"
+            android:visibility="gone" />
+
+        <!-- <View style="@style/Setting.Item.Divider" /> -->
+
+        <TextView
+            android:id="@id/feedback_tv"
+            style="@style/Setting.Item.TextView"
+            android:text="@string/feedback" />
+
+        <View style="@style/Setting.Item.Divider" />
+
+        <TextView
+            android:id="@id/about_us_tv"
+            style="@style/Setting.Item.TextView"
+            android:text="@string/about_us" />
+
+        <View style="@style/Setting.Item.Divider" />
+
+        <Button
+            android:id="@id/login_or_register_btn"
+            style="@style/Button.Pink"
+            android:layout_width="match_parent"
+            android:layout_marginTop="30dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@id/enter_mall_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_enter_mall" />
+
+</LinearLayout>

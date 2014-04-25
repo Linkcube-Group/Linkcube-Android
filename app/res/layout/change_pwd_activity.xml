@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPage"
+    android:gravity="center_horizontal"
+    android:padding="20dp" >
+    
+    <me.linkcube.app.widget.CWClearEditText
+        android:id="@+id/old_pwd_et"
+        style="@style/LineEditTextPwd"
+        android:layout_width="match_parent"
+        android:ems="10"
+        android:hint="@string/old_pwd_hint"
+        android:text="" >
+
+        <requestFocus />
+    </me.linkcube.app.widget.CWClearEditText>
+
+    <me.linkcube.app.widget.CWClearEditText
+        android:id="@+id/new_pwd_et"
+        style="@style/LineEditTextPwd"
+        android:layout_marginTop="10dp"
+        android:hint="@string/new_pwd_hint" />
+
+    <me.linkcube.app.widget.CWClearEditText
+        android:id="@+id/confirm_new_pwd_et"
+        style="@style/LineEditTextPwd"
+        android:layout_marginTop="10dp"
+        android:hint="@string/confirm_new_pwd__hint" />
+    
+
+</LinearLayout>

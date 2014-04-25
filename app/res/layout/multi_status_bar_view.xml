@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/MultiStatusBarHeight"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        android:src="@drawable/multi_status_bar_bg" />
+
+    <LinearLayout
+        android:id="@id/self_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/StatusBarHeight"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/status_bar_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/StatusBarMargin"
+        android:paddingRight="@dimen/StatusBarMargin" >
+
+        <ImageButton
+            android:id="@id/user_avatar_btn"
+            android:layout_width="@dimen/StatusBarAvatarSize"
+            android:layout_height="@dimen/StatusBarAvatarSize"
+            android:layout_marginRight="@dimen/StatusBarMargin"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@id/user_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/avatar_hint" />
+
+        <Button
+            android:id="@id/connect_indicator_btn"
+            android:layout_width="@dimen/StatusBarBtnSize"
+            android:layout_height="@dimen/StatusBarBtnSize"
+            android:layout_marginRight="@dimen/StatusBarMargin"
+            android:background="@drawable/btn_connect_indicator_off" />
+
+        <Button
+            android:id="@id/setting_btn"
+            android:layout_width="@dimen/StatusBarBtnSize"
+            android:layout_height="@dimen/StatusBarBtnSize"
+            android:background="@drawable/setting_btn" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@id/target_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/StatusBarHeight"
+        android:layout_below="@id/self_status_bar"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/status_bar_pink_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/StatusBarMargin"
+        android:paddingRight="@dimen/StatusBarMargin" >
+
+        <ImageButton
+            android:id="@id/target_avatar_btn"
+            android:layout_width="@dimen/StatusBarAvatarSize"
+            android:layout_height="@dimen/StatusBarAvatarSize"
+            android:layout_marginRight="@dimen/StatusBarMargin"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@id/target_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@id/connect_iv"
+        android:layout_width="@dimen/StatusBarConnectSize"
+        android:layout_height="@dimen/StatusBarConnectSize"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/connect" />
+
+</RelativeLayout>

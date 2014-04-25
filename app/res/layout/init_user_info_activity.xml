@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPage"
+    android:paddingLeft="@dimen/BlockPadding"
+    android:paddingRight="@dimen/BlockPadding" >
+
+    <RelativeLayout
+        android:id="@+id/init_user_info_avator_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/init_user_info_avator_iv"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/avatar_female_default" />
+
+        <TextView
+            android:id="@+id/init_user_info_avator_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="头像"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/init_user_info_nickname_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" >
+
+        <TextView
+            android:id="@+id/init_user_info_nickname_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0"
+            android:gravity="center_horizontal"
+            android:text="昵        称"
+            android:textSize="18sp" />
+
+        <me.linkcube.app.widget.CWClearEditText
+            android:id="@+id/init_user_info_nickname_et"
+            style="@style/LineEditText"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="2"
+            android:ems="10"
+            android:hint="@string/init_user_info_nickname_hint"
+            android:text="" >
+
+            <requestFocus />
+        </me.linkcube.app.widget.CWClearEditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/init_user_info_gender_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" >
+
+        <TextView
+            android:id="@+id/init_user_info_gender_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0"
+            android:text="性        别"
+            android:textSize="18sp" />
+
+        <RadioGroup
+            android:id="@+id/init_user_info_gender_rg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="35dp"
+            android:layout_weight="2"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/init_user_info_gender_rb_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:button="@drawable/radio_btn_selector"
+                android:checked="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="女"
+                android:textSize="20dp" />
+
+            <RadioButton
+                android:id="@+id/init_user_info_gender_rb_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:button="@drawable/radio_btn_selector" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="男"
+                android:textSize="20dp" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/init_user_info_birthday_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" >
+
+        <TextView
+            android:id="@+id/init_user_info_birthday_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0"
+            android:text="出生年月"
+            android:textSize="18sp" />
+
+        <me.linkcube.app.widget.CWClearEditText
+            android:id="@+id/init_user_info_birthday_et"
+            style="@style/LineEditText"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="2"
+            android:ems="10"
+            android:hint="@string/init_user_info_birthday_hint"
+            android:text="" >
+        </me.linkcube.app.widget.CWClearEditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/init_user_info_person_state_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/init_user_info_person_state_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0"
+            android:text="个性签名"
+            android:textSize="18sp" />
+
+        <me.linkcube.app.widget.CWClearEditText
+            android:id="@+id/init_user_info_person_state_tv"
+            style="@style/LineEditText"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="2"
+            android:ems="10"
+            android:hint="@string/init_user_info_personstate_hint"
+            android:text="" >
+        </me.linkcube.app.widget.CWClearEditText>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/save_init_user_info_btn"
+        style="@style/Button.Pink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="保存个人信息" />
+
+</LinearLayout>

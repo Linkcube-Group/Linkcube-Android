@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="main_bg">#FFFBFBFB</color>
+    <color name="actionbar_bg">#FF3C3C3C</color>
+
+    <!-- TextColor -->
+    <color name="text_white">#FF000000</color>
+    <color name="text_black">#FF000000</color>
+    <color name="text_pink">#FFF22B89</color>
+    <color name="text_light_grey">#DFDFDF</color>
+    <color name="text_grey">#BFBFBF</color>
+    <color name="text_dark_grey">#A4A4A4</color>
+
+    <!-- ListView -->
+    <color name="listview_divider">#BFBFBF</color>
+    <color name="listview_cell_bg">#FFFFFFFF</color>
+    <color name="listview_cell_text">#FF333333</color>
+    <color name="listview_cell_sub_text">#A4A4A4</color>
+
+    <!-- Common -->
+    <color name="grey">#BFBFBF</color>
+    <color name="pink">#FFF22B89</color>
+    <color name="black">#FF000000</color>
+    <color name="light_grey">#DFDFDF</color>
+    <color name="label_text_color">#FF469F04</color>
+
+</resources>

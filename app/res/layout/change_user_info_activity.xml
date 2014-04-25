@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPage"
+    android:paddingLeft="@dimen/BlockPadding"
+    android:paddingRight="@dimen/BlockPadding" >
+    
+    <EditText 
+        android:id="@+id/change_user_info_ev"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        style="@style/LineEditText" />
+
+    <TextView
+        android:id="@+id/change_user_info_show_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_alignRight="@+id/change_user_info_ev"
+        android:layout_below="@+id/change_user_info_ev"
+        android:text="" />
+
+</RelativeLayout>

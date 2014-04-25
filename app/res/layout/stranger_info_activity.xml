@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPage"
+    android:paddingLeft="@dimen/BlockPadding"
+    android:paddingRight="@dimen/BlockPadding" >
+
+    <RelativeLayout
+        android:id="@+id/stranger_info_rl"
+        android:layout_width="match_parent"
+        android:layout_height="180dp" >
+
+        <ImageView
+            android:id="@+id/stranger_info_avatar_iv"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/avatar_male_default" />
+        
+        <TextView
+            android:id="@+id/stranger_nickname_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/stranger_info_avatar_iv"
+            android:layout_toRightOf="@id/stranger_info_avatar_iv"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:text="连酷"
+            android:textSize="22sp" />
+
+        <RelativeLayout
+            android:id="@+id/stranger_name_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/stranger_info_avatar_iv"
+            android:layout_below="@id/stranger_nickname_tv"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp" >
+
+            <ImageView
+                android:id="@+id/stranger_gender_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@id/stranger_nickname_tv"
+                android:background="@drawable/ic_male" />
+
+            <TextView
+                android:id="@+id/stranger_age_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@+id/stranger_gender_iv"
+                android:text="23"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/stranger_info_email_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/stranger_info_avatar_iv"
+            android:layout_below="@id/stranger_info_avatar_iv"
+            android:layout_marginTop="14dp" >
+
+            <TextView
+                android:id="@+id/stranger_linkcube_id_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="注册邮箱：" />
+
+            <TextView
+                android:id="@+id/stranger_email_tv"
+                style="@style/friend_info_contentstyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@id/stranger_linkcube_id_title"
+                android:text="" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/stranger_info_email_rl"
+            android:layout_below="@id/stranger_info_email_rl"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:id="@+id/stranger_person_state_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="个性签名" />
+
+            <TextView
+                android:id="@+id/stranger_person_state_tv"
+                style="@style/friend_info_contentstyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@id/stranger_person_state_title"
+                android:text="一起游戏吧~" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/solve_stranger_request_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/stranger_info_rl"
+        android:visibility="invisible" >
+
+        <Button
+            android:id="@+id/accept_stranger_request_btn"
+            android:layout_width="match_parent"
+            style="@style/Button.Pink"
+            android:text="同意" />
+
+        <Button
+            android:id="@+id/refuse_stranger_request_btn"
+            android:layout_width="match_parent"
+            style="@style/Button.Pink"
+            android:layout_below="@id/accept_stranger_request_btn"
+            android:layout_marginTop="10dp"
+            android:text="拒绝" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/add_stranger_request_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/stranger_info_rl" >
+
+        <Button
+            android:id="@+id/add_stranger_btn"
+            android:layout_width="match_parent"
+            style="@style/Button.Pink"
+            android:text="加为好友" />
+    </RelativeLayout>
+
+</RelativeLayout>

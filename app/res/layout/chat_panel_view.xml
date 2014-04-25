@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pageIndicator="http://schemas.android.com/apk/res/me.linkcube.app"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/multi_game_connect_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
+            android:src="@drawable/waiting_game_logo" />
+        
+        <ImageView
+            android:id="@+id/multi_game_connect_iv"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
+            android:src="@drawable/start_game_circle" />
+
+        <TextView
+            android:id="@+id/multi_game_connect_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/multi_game_connect_iv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="点击发起游戏" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/multi_game_accept_connect_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible" >
+
+        <Button
+            android:id="@+id/accept_connect_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="同意" />
+
+        <Button
+            android:id="@+id/refuse_connect_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/accept_connect_btn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="拒绝" />
+
+        <TextView
+            android:id="@+id/accept_time_second_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/refuse_connect_btn"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:text="等待时间30秒" />
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/popup_gaming_view_vp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#ffffff"
+        android:visibility="invisible" />
+    
+    <me.linkcube.app.widget.CirclePageIndicator
+        android:id="@+id/chat_panel_indicator"
+        style="@style/CirclePagerIndicator"
+        pageIndicator:fillColor="@color/pink"
+        pageIndicator:pageColor="@android:color/transparent"
+        pageIndicator:radius="5dp"
+        pageIndicator:strokeColor="@color/light_grey"
+        android:visibility="invisible" />
+
+</RelativeLayout>

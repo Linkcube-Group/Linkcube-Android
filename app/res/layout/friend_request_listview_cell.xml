@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="2dp" >
+
+        <ImageView
+            android:id="@+id/friend_request_lv_avator_item"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/avatar_male_default" />
+
+        <TextView
+            android:id="@+id/request_add_friend_flag_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:text="请求添加您为好友" />
+
+        <TextView
+            android:id="@+id/friend_request_lv_friendname_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toLeftOf="@id/request_add_friend_flag_tv"
+            android:layout_toRightOf="@id/friend_request_lv_avator_item"
+            android:text="Linkcube"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <View style="@style/Setting.Item.Divider" />
+
+</LinearLayout>

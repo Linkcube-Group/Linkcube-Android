@@ -1,0 +1,236 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Theme.Styled" parent="Theme.Sherlock.Light.DarkActionBar">
+        <item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
+        <item name="android:actionBarStyle">@style/Widget.Styled.ActionBar</item>
+    </style>
+
+    <style name="Widget.Styled.ActionBar" parent="Widget.Sherlock.Light.ActionBar.Solid.Inverse">
+        <item name="background">@drawable/actionbar_bg</item>
+        <item name="android:background">@drawable/actionbar_bg</item>
+    </style>
+
+    <style name="Theme.Styled.ContentOverlay">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@android:color/transparent</item>
+    </style>
+
+    <style name="MainPage">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@color/main_bg</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="EditText">
+        <item name="android:textSize">@dimen/TextSize.Default</item>
+        <item name="android:textColorHint">@color/light_grey</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/edit_text_selector</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/EditTextHeight</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="LineEditText" parent="@style/EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="LineEditTextPwd" parent="@style/LineEditText">
+        <item name="android:password">true</item>
+        <item name="android:inputType">textPassword</item>
+    </style>
+
+    <!-- ViewPagerIndicator -->
+    <style name="CirclePagerIndicator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:padding">2dp</item>
+    </style>
+
+    <!-- Single Mode View -->
+    <style name="ModeViewBlock">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingLeft">@dimen/ModeBlockPadding</item>
+        <item name="android:paddingRight">@dimen/ModeBlockPadding</item>
+    </style>
+
+    <style name="ModeViewBlock.Button">
+        <item name="android:layout_width">@dimen/ModeBtnSize</item>
+        <item name="android:layout_height">@dimen/ModeBtnSize</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+
+    <style name="ModeViewBlock.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColor">@color/pink</item>
+        <item name="android:textSize">@dimen/ModeTextSize</item>
+    </style>
+
+    <!-- Button -->
+
+    <style name="Button">
+        <item name="android:textSize">@dimen/TextSize.Default</item>
+        <item name="android:background">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">40.0dip</item>
+        <item name="android:minHeight">40.0dip</item>
+    </style>
+
+    <style name="Button.Pink" parent="@style/Button">
+        <item name="android:background">@drawable/btn_pink</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    
+    <style name="Button.Dark" parent="@style/Button">
+        <item name="android:background">@drawable/btn_dark</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    
+    <style name="Button.Actionbar.Pink" parent="@style/Button">
+        <item name="android:background">@drawable/btn_pink</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:minHeight">30.0dip</item>
+    </style>
+    
+    <style name="Button.Actionbar.Dark" parent="@style/Button">
+        <item name="android:background">@drawable/btn_dark</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:minHeight">30.0dip</item>
+    </style>
+
+    <style name="Button.Grey" parent="@style/Button"></style>
+
+    <style name="Button.LightGrey" parent="@style/Button"></style>
+
+    <style name="HyperText" parent="@style/Button">
+        <item name="android:textSize">@dimen/TextSize.Small</item>
+        <item name="android:textColor">@color/hyper_text</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@null</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- FriendListView -->
+    <style name="ListView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:dividerHeight">1dp</item>
+        <item name="android:cacheColorHint">@null</item>
+        <item name="android:divider">@color/listview_divider</item>
+    </style>
+
+    <style name="ListView.Cell">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/listview_cell_bg</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="ListView.Cell.Image">
+        <item name="android:layout_width">@dimen/ListCellImageSize</item>
+        <item name="android:layout_height">@dimen/ListCellImageSize</item>
+        <item name="android:src">@drawable/avatar_male_default</item>
+        <item name="android:layout_marginTop">@dimen/ListCellMargin</item>
+        <item name="android:layout_marginBottom">@dimen/ListCellMargin</item>
+        <item name="android:layout_marginLeft">@dimen/ListCellMargin</item>
+        <item name="android:layout_marginRight">@dimen/ListCellMargin</item>
+    </style>
+
+    <style name="ListView.Cell.TextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">@dimen/ListCellHeight</item>
+        <item name="android:layout_marginRight">@dimen/ListCellMargin</item>
+        <item name="android:textColor">@color/listview_cell_text</item>
+        <item name="android:textSize">@dimen/ListCellTextSize</item>
+    </style>
+
+    <!-- Setting -->
+    <style name="Setting"></style>
+
+    <style name="Setting.Item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="Setting.Item.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/SettingItemHeight</item>
+        <item name="android:textSize">@dimen/SettingItemTextSize</item>
+    </style>
+
+    <style name="Setting.Item.Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/listview_divider</item>
+    </style>
+
+    <style name="Setting.Item.TextView.Left" parent="@style/Setting.Item.TextView">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+    </style>
+
+    <style name="Setting.Item.TextView.Right" parent="@style/Setting.Item.TextView">
+        <item name="android:textColor">@color/text_dark_grey</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:gravity">right|center_vertical</item>
+    </style>
+
+    <!-- chat_style -->
+    <style name="chat_text_date_style">
+        <item name="android:padding">2dp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:background">#bfbfbf</item>
+    </style>
+
+    <style name="chat_content_date_style">
+        <item name="android:minHeight">50dp</item>
+        <item name="android:gravity">left|center</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">#bfbfbf</item>
+    </style>
+
+    <style name="chat_text_name_style">
+        <item name="android:textColor">#818181</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="friend_info_contentstyle">
+        <item name="android:textColor">#818181</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="friend_info_title_style">
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+</resources>
