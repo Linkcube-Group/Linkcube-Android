@@ -31,7 +31,7 @@
     <!-- 单人模式 -->
     <string name="shake_mode">摇摇模式</string>
     <string name="voice_mode">音浪模式</string>
-    <string name="sex_position_mode">智能模式</string>
+    <string name="sex_position_mode">经典七式</string>
 
     <!-- 多人模式 -->
     <string name="add_friend">添加情侣</string>
@@ -40,6 +40,7 @@
 
     <!-- 设置 -->
     <string name="setting">设置</string>
+     <string name="connect_toy">连接玩具</string>
     <string name="personal_info">个人信息</string>
     <string name="purchase_toy">购买玩具</string>
     <string name="help">使用说明</string>

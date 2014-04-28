@@ -1,5 +1,8 @@
 package me.linkcube.app.util;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * 正在表达式工具类
  * 
@@ -21,5 +24,38 @@ public class RegexUtils {
 			return false;
 		}
 	}
-
+	/**
+	 * 判断是不是包含中文
+	 * @param str
+	 * @return
+	 */
+	public static boolean isContainChinese(String str) {
+		 
+		Pattern p=Pattern.compile("[\u4e00-\u9fa5]");
+		Matcher m=p.matcher(str);
+		if(m.find())
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	public static String cutUserName(String userName){
+		String cutUserName;
+		if(isContainChinese(userName)){
+			if(userName.length()>8){
+				cutUserName=userName.substring(0, 8);
+				return cutUserName+"...";
+			}else{
+				return userName;
+			}
+		}else{
+			if(userName.length()>12){
+				cutUserName=userName.substring(0, 12);
+				return cutUserName+"...";
+			}else{
+				return userName;
+			}
+		}
+	}
 }

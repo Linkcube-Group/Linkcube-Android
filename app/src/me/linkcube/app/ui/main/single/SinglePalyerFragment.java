@@ -222,7 +222,7 @@ public class SinglePalyerFragment extends BaseFragment implements
 
 	@Override
 	public void showConnectBluetoothTip() {
-		AlertUtils.showToast(mActivity, "设备没有连接，请连接后再常尝试");
+		AlertUtils.showToast(mActivity, "玩具未连接，请点击右上角设置");
 	}
 
 	@Override

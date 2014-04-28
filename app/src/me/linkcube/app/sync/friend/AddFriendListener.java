@@ -71,74 +71,56 @@ public class AddFriendListener {
 						Presence presence = (Presence) packet;
 
 						if (presence.getType().equals(Presence.Type.subscribe)) {// 好友申请
-							String friendJid = presence.getFrom();
-							Timber.d("friendname:" + friendJid);
+							String friendName = presence.getFrom();
+							Timber.d("friendname:" + friendName);
 							Roster roster = ASmackManager.getInstance()
 									.getXMPPConnection().getRoster();
-							if (roster.contains(friendJid)) {// 如果他们已经成为了好友
+							if (roster.contains(friendName)) {// 如果他们已经成为了好友
 								// 服务器已自动处理为both了
-								Timber.d("subscribed:" + friendJid);
+								Timber.d("subscribed:" + friendName);
 								// TODO 插入好友的所有数据
-								
-								PersistableFriend perFriend = new PersistableFriend();
-								List<FriendEntity> friendEntities = new ArrayList<FriendEntity>();
-
+								VCard vCard = new VCard();
 								try {
-									friendEntities = DataManager.getInstance().query(
-											perFriend,
-											USER_JID + "=? and " + FRIEND_JID + "=? ",
-											new String[] { ASmackUtils.getUserJID(),friendJid }, null,
-											null, null);
-								} catch (IOException e1) {
-									e1.printStackTrace();
+									vCard.load(ASmackManager.getInstance()
+											.getXMPPConnection(), friendName);
+								} catch (XMPPException e) {
+									e.printStackTrace();
 								}
-								
-									VCard vCard = new VCard();
-									try {
-										vCard.load(ASmackManager.getInstance()
-												.getXMPPConnection(), friendJid);
-									} catch (XMPPException e) {
-										e.printStackTrace();
-									}
-									FriendEntity friendEntity = new FriendEntity();
-									friendEntity.setUserJid(ASmackUtils
-											.getUserJID());
-									friendEntity.setFriendJid(friendJid);
-									friendEntity.setNickName(vCard.getNickName());
-									friendEntity.setUserAvatar(vCard.getAvatar());
-									friendEntity.setUserGender(vCard
-											.getField(Const.VCard.GENDER));
-									friendEntity.setBirthday(vCard
-											.getField(Const.VCard.BIRTHDAY));
-									friendEntity.setPersonState(vCard
-											.getField(Const.VCard.PERSONSTATE));
-									String userAge = ASmackUtils.getUserAge(vCard
-											.getField(Const.VCard.BIRTHDAY));
-									if (userAge == null) {
-										friendEntity.setUserAge("23");
-									} else {
-										friendEntity.setUserAge(userAge);
-									}
-									friendEntity.setIsFriend("both");
-									if (friendEntities != null && !friendEntities.isEmpty()) {
-										DataManager.getInstance().update(perFriend, friendEntity);
-									}else{
-										DataManager.getInstance().insert(perFriend,
-												friendEntity);
-									}
-									
-									Intent intent = new Intent(
-											"com.linkcube.addfriend");
-									intent.putExtra("addFriendFlag", "both");
-									intent.putExtra("friendName", friendJid);
-									context.sendBroadcast(intent);
-								
+								PersistableFriend perFriend = new PersistableFriend();
+								FriendEntity friendEntity = new FriendEntity();
+								friendEntity.setUserJid(ASmackUtils
+										.getUserJID());
+								friendEntity.setFriendJid(friendName);
+								friendEntity.setNickName(vCard.getNickName());
+								friendEntity.setUserAvatar(vCard.getAvatar());
+								friendEntity.setUserGender(vCard
+										.getField(Const.VCard.GENDER));
+								friendEntity.setBirthday(vCard
+										.getField(Const.VCard.BIRTHDAY));
+								friendEntity.setPersonState(vCard
+										.getField(Const.VCard.PERSONSTATE));
+								String userAge = ASmackUtils.getUserAge(vCard
+										.getField(Const.VCard.BIRTHDAY));
+								if (userAge == null) {
+									friendEntity.setUserAge("23");
+								} else {
+									friendEntity.setUserAge(userAge);
+								}
+								friendEntity.setIsFriend("both");
+								DataManager.getInstance().insert(perFriend,
+										friendEntity);
+
+								Intent intent = new Intent(
+										"com.linkcube.addfriend");
+								intent.putExtra("addFriendFlag", "both");
+								intent.putExtra("friendName", friendName);
+								context.sendBroadcast(intent);
 							} else {// 第一次接收到，相互还不是好友
-								Timber.d("first:" + friendJid);
+								Timber.d("first:" + friendName);
 								Intent intent = new Intent(
 										"com.linkcube.addfriend");
 								intent.putExtra("addFriendFlag", "from");
-								intent.putExtra("friendName", friendJid);
+								intent.putExtra("friendName", friendName);
 								context.sendBroadcast(intent);
 							}
 						} else if (presence.getType().equals(

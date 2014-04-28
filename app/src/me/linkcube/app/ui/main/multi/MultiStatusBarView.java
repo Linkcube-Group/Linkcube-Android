@@ -5,6 +5,7 @@ import me.linkcube.app.core.entity.FriendEntity;
 import me.linkcube.app.core.entity.UserEntity;
 import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.util.FormatUtils;
+import me.linkcube.app.util.RegexUtils;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -105,7 +106,7 @@ public class MultiStatusBarView extends LinearLayout {
 				userAvatarBtn.setImageDrawable(avatar);
 			}
 
-			userNameTv.setText(userEntity.getNickName());
+			userNameTv.setText(RegexUtils.cutUserName(userEntity.getNickName()));
 		}
 
 	}
@@ -132,7 +133,7 @@ public class MultiStatusBarView extends LinearLayout {
 			avatar = FormatUtils.Bytes2Drawable(friendEntity.getUserAvatar());
 			targetAvatarBtn.setImageDrawable(avatar);
 		}
-		targetNameTv.setText(friendEntity.getNickName());
+		targetNameTv.setText(RegexUtils.cutUserName(friendEntity.getNickName()));
 	}
 
 	public void setMultiStatusBarClickListener(

@@ -11,6 +11,13 @@
         android:orientation="vertical"
         android:paddingLeft="@dimen/SettingPadding"
         android:paddingRight="@dimen/SettingPadding" >
+        
+        <TextView
+            android:id="@id/connect_toy_tv"
+            style="@style/Setting.Item.TextView"
+            android:text="@string/connect_toy" />
+
+        <View style="@style/Setting.Item.Divider" />
 
         <TextView
             android:id="@id/personal_info_tv"
@@ -56,10 +63,10 @@
             android:layout_marginTop="30dp" />
     </LinearLayout>
 
-    <Button
+    <!-- <Button
         android:id="@id/enter_mall_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_enter_mall" />
+        android:background="@drawable/btn_enter_mall" /> -->
 
 </LinearLayout>

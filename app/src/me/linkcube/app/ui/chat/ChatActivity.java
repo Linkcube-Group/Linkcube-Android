@@ -190,12 +190,17 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		try {
+			
 		friendName = ASmackUtils.deleteServerAddress(friendEntities.get(0)
 				.getFriendJid());
 		chatPanelView.setFriendName(friendName);
 
 		if (friendEntities.get(0).getIsFriend().equals("none")) {
 			isFriend = false;
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		// 判斷是否正在遊戲中
 		if (UserManager.getInstance().getPlayingTarget() != null) {

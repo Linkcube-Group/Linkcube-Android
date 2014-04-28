@@ -51,20 +51,19 @@
                 android:text="发送"
                 android:textSize="18sp" />
 
-            <EditText
+            <me.linkcube.app.widget.CWClearEditText
                 android:id="@+id/send_msg_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                style="@style/LineEditText"
                 android:layout_toLeftOf="@id/btn_send"
                 android:layout_toRightOf="@id/img_btn_control_toy"
-                android:background="#FFFFFF"
+                android:layout_alignParentTop="true"
+                android:cursorVisible="true"
                 android:inputType="textMultiLine"
-                android:minHeight="40dp"
+                android:text=""
                 android:textColor="#000000"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
         </RelativeLayout>
 
         <me.linkcube.app.widget.ChatPullDownListView

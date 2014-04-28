@@ -12,12 +12,13 @@ import me.linkcube.app.sync.chat.ChatMessageListener;
 import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.ui.BaseActivity;
+import me.linkcube.app.ui.bluetooth.BluetoothSettingActivity;
 import me.linkcube.app.ui.user.LoginActivity;
 import me.linkcube.app.ui.user.UserInfoActivity;
 
 public class SettingActivity extends BaseActivity implements OnClickListener {
 
-	private TextView personalInfoTv, purchaseToyTv, helpTv, feedbackTv,
+	private TextView connectToyTv,personalInfoTv, purchaseToyTv, helpTv, feedbackTv,
 			aboutUsTv;
 
 	private Button loginOrRegisterBtn;
@@ -27,12 +28,14 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.setting_activity);
 		configureActionBar(R.string.setting);
+		connectToyTv=(TextView)findViewById(R.id.connect_toy_tv);
 		personalInfoTv = (TextView) findViewById(R.id.personal_info_tv);
 		purchaseToyTv = (TextView) findViewById(R.id.purchase_toy_tv);
 		helpTv = (TextView) findViewById(R.id.help_tv);
 		feedbackTv = (TextView) findViewById(R.id.feedback_tv);
 		aboutUsTv = (TextView) findViewById(R.id.about_us_tv);
 		loginOrRegisterBtn = (Button) findViewById(R.id.login_or_register_btn);
+		connectToyTv.setOnClickListener(this);
 		personalInfoTv.setOnClickListener(this);
 		purchaseToyTv.setOnClickListener(this);
 		helpTv.setOnClickListener(this);
@@ -61,6 +64,9 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 	public void onClick(View v) {
 
 		switch (v.getId()) {
+		case R.id.connect_toy_tv:
+			startActivity(new Intent(mActivity,BluetoothSettingActivity.class));
+			break;
 		case R.id.personal_info_tv:
 			if (!UserManager.getInstance().isAuthenticated()) {
 				startActivity(new Intent(mActivity, LoginActivity.class));
