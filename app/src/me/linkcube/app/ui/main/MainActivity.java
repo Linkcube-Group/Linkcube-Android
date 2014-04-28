@@ -7,6 +7,7 @@ import com.umeng.analytics.MobclickAgent;
 
 import me.linkcube.app.R;
 import me.linkcube.app.core.Timber;
+import me.linkcube.app.core.bluetooth.ReconnectBluetoothDevice;
 import me.linkcube.app.core.toy.ShakeSensor;
 import me.linkcube.app.core.toy.VoiceSensor;
 import me.linkcube.app.core.update.AppManager;
@@ -81,6 +82,7 @@ public class MainActivity extends BaseFragmentActivity implements
 		MobclickAgent.onEvent(MainActivity.this, "用户进入应用");
 		ReconnectionListener.getInstance().setReconnectionCallBack(
 				reconnectionCallBack);
+		
 	}
 
 	/**

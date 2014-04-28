@@ -15,7 +15,7 @@ public class Const {
 
 		/** 登录密码 */
 		public static final String USER_PWD = "UserPwd";
-		
+
 		/** 原始密码 */
 		public static final String OLD_USER_PWD = "OldUserPwd";
 	}
@@ -45,28 +45,35 @@ public class Const {
 		public static String POSITIONMODECMD = "m:";
 
 		public static String SHAKESPEEDCMD = "s:";
-		
+
 		public static String SHAKESPEEDLEVELCMD = "sl:";
 
 		public static int ACCEPTTIMECMD = 30;
 	}
-	
-	public static class AppUpdate{
-		
+
+	public static class AppUpdate {
+
 		public static String CHECK_VERSION_URL = "http://115.29.175.17/version";
-		
+
 		public static String APK_DOWNLOAD_URL = "http://115.29.175.17/uploads/soft/131226/linkcube.apk";
-		
+
 		public static String APK_NAME = "linkcube.apk";
 	}
-	
-	public static class GameInviteMsg{
-		
+
+	public static class GameInviteMsg {
+
 		public static String GAME_INVITE_TO = "game_invite_to";
-		
+
 		public static String GAME_INVITE_FROM = "game_invite_from";
-		
+
 		public static String GAME_INVITE_BOTH = "game_invite_both";
+	}
+
+	public static class Device {
+
+		public static String DEVICE_NAME = "device_name";
+
+		public static String DEVICE_ADDRESS = "device_address";
 	}
 
 }

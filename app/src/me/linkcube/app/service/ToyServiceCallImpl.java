@@ -8,7 +8,9 @@ import java.util.UUID;
 
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.bluetooth.BluetoothUtils;
+import me.linkcube.app.core.bluetooth.ReconnectBluetoothDevice;
 import me.linkcube.app.service.IToyServiceCall;
+import me.linkcube.app.util.PreferenceUtils;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -17,6 +19,8 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
+import android.widget.Toast;
+import static me.linkcube.app.core.Const.Device.*;
 
 public class ToyServiceCallImpl extends android.os.Binder implements
 		IToyServiceCall {
@@ -140,6 +144,8 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 	@Override
 	public boolean connectToy(String name, String macaddr)
 			throws RemoteException {
+		
+		Timber.d("connectToy:");
 		curDevice = null;
 
 		if (!BluetoothUtils.isBluetoothEnabled()) {
@@ -175,6 +181,8 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 		OutputStream tmpOut = null;
 		try {
 			tmpOut = curSocket.getOutputStream();
+			
+			
 		} catch (IOException e) {
 			Timber.e(e, "Bluetooth outputstream sockets not created");
 			return Toy_Lost;
@@ -184,7 +192,12 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 			tmpOut.write(data);
 		} catch (IOException e) {
 			e.printStackTrace();
+			curDevice=null;
+			curSocket=null;
+			ReconnectBluetoothDevice.getInstance().onReconnectDeviceListener();
 			return Toy_Lost;
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		return Toy_Success;
 	}
@@ -336,6 +349,8 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 //				e.printStackTrace();
 //				return false;
 //			}
+			Timber.i("Toy is Connected");
+			
 			return true;
 		}
 		return false;

@@ -19,7 +19,9 @@ import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.bluetooth.BluetoothDeviceReceiver;
 import me.linkcube.app.core.bluetooth.BluetoothUtils;
 import me.linkcube.app.ui.DialogActivity;
+import me.linkcube.app.util.PreferenceUtils;
 import me.linkcube.app.widget.AlertUtils;
+import static me.linkcube.app.core.Const.Device.*;
 
 public class BluetoothSettingActivity extends DialogActivity implements
 		OnClickListener, OnDeviceItemClickListener, OnBluetoothDeviceListener {
@@ -262,6 +264,9 @@ public class BluetoothSettingActivity extends DialogActivity implements
 			dismissProgressDialog();
 			if (success) {
 				AlertUtils.showToast(mActivity, "连接玩具成功！");
+				//TODO 保存连接上的设备名和状态
+				PreferenceUtils.setString(DEVICE_NAME, mDevice.getName());
+				PreferenceUtils.setString(DEVICE_ADDRESS, mDevice.getAddress());
 				deviceAdapter.notifyDataSetChanged();
 			} else {
 				AlertUtils.showToast(mActivity, "连接玩具失败，请重试！");
