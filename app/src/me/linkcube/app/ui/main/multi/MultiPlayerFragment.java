@@ -26,6 +26,7 @@ import me.linkcube.app.ui.BaseFragment;
 import me.linkcube.app.ui.bluetooth.BluetoothSettingActivity;
 import me.linkcube.app.ui.chat.ChatActivity;
 import me.linkcube.app.ui.friend.FriendAddedActivity;
+import me.linkcube.app.ui.friend.FriendInfoActivity;
 import me.linkcube.app.ui.friend.FriendListActivity;
 import me.linkcube.app.ui.friend.SearchFriendActivity;
 import me.linkcube.app.ui.friend.FriendListActivity.DeleteFriendInChat;
@@ -38,6 +39,7 @@ import me.linkcube.app.util.TimeUtils;
 import me.linkcube.app.widget.AlertUtils;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Entity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
@@ -453,7 +455,16 @@ public class MultiPlayerFragment extends BaseFragment implements
 
 	@Override
 	public void showTargetInfoActivity() {
-		// TODO Auto-generated method stub
+		Intent intent = new Intent(mActivity, FriendInfoActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putString("isFriend", "bothFriend");
+		bundle.putString(
+				"friendname",
+				ASmackUtils.deleteServerAddress(UserManager.getInstance()
+						.getPlayingTarget().getFriendJid()));
+		intent.putExtras(bundle);
+		startActivity(intent);
+
 	}
 
 	@Override

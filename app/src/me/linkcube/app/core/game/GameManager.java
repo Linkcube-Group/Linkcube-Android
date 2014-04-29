@@ -35,19 +35,6 @@ public class GameManager {
 
 	}
 
-	/**
-	 * 判断用户是否在游戏中
-	 * 
-	 * @return
-	 */
-	public boolean isPlaying() {
-		return isPlaying;
-	}
-
-	public FriendEntity getPlayMate() {
-		return playMate;
-	}
-
 	public void addGameInviteMsgs(String from, String body) {
 		/*
 		 * ChatMsgEntity chatMsgEntity=new ChatMsgEntity();

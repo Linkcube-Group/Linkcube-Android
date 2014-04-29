@@ -43,9 +43,8 @@ public class FriendInfoActivity extends DialogActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.friend_info_activity);
 		configureActionBar(R.string.detail_info);
-		
-		initView();
 
+		initView();
 		initData();
 	}
 
@@ -68,33 +67,35 @@ public class FriendInfoActivity extends DialogActivity implements
 		List<FriendEntity> friendEntities = new ArrayList<FriendEntity>();
 		PersistableFriend perFriend = new PersistableFriend();
 		try {
-			friendEntities = DataManager.getInstance().query(perFriend,
+			friendEntities = DataManager.getInstance().query(
+					perFriend,
 					FRIEND_JID + "=? and " + USER_JID + "=? ",
-					new String[] { ASmackUtils.getFriendJid(friendName), ASmackUtils.getUserJID() },
-					null, null, null);
-		FriendEntity friendEntity = new FriendEntity();
-		friendEntity = friendEntities.get(0);
-		friendNicknameTv.setText(friendEntity.getNickName());
-		friendAgeTv.setText(friendEntity.getUserAge());
-		friendPersonStateTv.setText(friendEntity.getPersonState());
-		String friendName=ASmackUtils.deleteServerAddress(friendEntity.getFriendJid());
-		friendEmailIdTv.setText(ASmackUtils.userNameDecode(friendName));
-		if (friendEntity.getUserGender().equals(MALE)) {
-			friendGenderIv.setBackgroundResource(R.drawable.ic_male);
-		} else {
-			friendGenderIv.setBackgroundResource(R.drawable.ic_female);
-		}
-		Drawable friendAvatar = null;
-		if (friendEntity.getUserAvatar() == null) {
-			friendAvatar = getResources().getDrawable(
-					UserManager.getInstance().setUserDefaultAvatar(
-							friendEntity.getUserGender()));
-		} else {
-			friendAvatar = FormatUtils.Bytes2Drawable(friendEntity
-					.getUserAvatar());
-		}
+					new String[] { ASmackUtils.getFriendJid(friendName),
+							ASmackUtils.getUserJID() }, null, null, null);
+			FriendEntity friendEntity = new FriendEntity();
+			friendEntity = friendEntities.get(0);
+			friendNicknameTv.setText(friendEntity.getNickName());
+			friendAgeTv.setText(friendEntity.getUserAge());
+			friendPersonStateTv.setText(friendEntity.getPersonState());
+			String friendName = ASmackUtils.deleteServerAddress(friendEntity
+					.getFriendJid());
+			friendEmailIdTv.setText(ASmackUtils.userNameDecode(friendName));
+			if (friendEntity.getUserGender().equals(MALE)) {
+				friendGenderIv.setBackgroundResource(R.drawable.ic_male);
+			} else {
+				friendGenderIv.setBackgroundResource(R.drawable.ic_female);
+			}
+			Drawable friendAvatar = null;
+			if (friendEntity.getUserAvatar() == null) {
+				friendAvatar = getResources().getDrawable(
+						UserManager.getInstance().setUserDefaultAvatar(
+								friendEntity.getUserGender()));
+			} else {
+				friendAvatar = FormatUtils.Bytes2Drawable(friendEntity
+						.getUserAvatar());
+			}
 
-		friendInfoAvatarIv.setImageDrawable(friendAvatar);
+			friendInfoAvatarIv.setImageDrawable(friendAvatar);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

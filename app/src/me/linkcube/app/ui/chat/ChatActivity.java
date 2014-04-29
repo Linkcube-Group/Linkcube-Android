@@ -255,8 +255,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		ChatMsgEntity chatMsgEntity = GameManager.getInstance()
 				.getGameInviteMsgs(friendName);
 		if (chatMsgEntity != null) {
-
-			SimpleDateFormat simpleFormat = new SimpleDateFormat(
+		SimpleDateFormat simpleFormat = new SimpleDateFormat(
 					"yyyy-MM-dd HH:mm:ss");
 			// TimeUtils.getNowTime()-chatMsgEntity.getDate()
 			Date nowTime = new Date();
