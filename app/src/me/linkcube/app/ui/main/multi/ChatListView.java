@@ -1,12 +1,28 @@
 package me.linkcube.app.ui.main.multi;
 
+import me.linkcube.app.R;
+import me.linkcube.app.widget.ViewUtils;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 public class ChatListView extends ListView {
+
+	private LinearLayout addFriendBtn;
+
+	private LinearLayout newMessagesTv;
+
+	private LinearLayout friendsTv;
+
+	/**
+	 * 新消息提醒指示器
+	 */
+	private ImageView newTipsIv;
 
 	private OnChatListViewClickListener mListener;
 
@@ -21,6 +37,39 @@ public class ChatListView extends ListView {
 	}
 
 	private void init(Context context) {
+		LayoutInflater mInflater = (LayoutInflater) context
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View header = mInflater.inflate(R.layout.friend_listview_header, null);
+		addFriendBtn = (LinearLayout) header.findViewById(R.id.add_friend_cell);
+		newMessagesTv = (LinearLayout) header
+				.findViewById(R.id.new_messages_cell);
+		friendsTv = (LinearLayout) header.findViewById(R.id.friends_cell);
+		newTipsIv = (ImageView) header.findViewById(R.id.new_tips_iv);
+		addHeaderView(header);
+		addFriendBtn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				mListener.showAddFriendActivity();
+			}
+		});
+
+		newMessagesTv.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				mListener.showFriendAddedActivity();
+				setNewFriendTipInVisible(true);
+
+			}
+		});
+		friendsTv.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				mListener.showFriendListActivity();
+			}
+		});
 		setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -39,6 +88,10 @@ public class ChatListView extends ListView {
 		});
 	}
 
+	public void setNewFriendTipInVisible(boolean invisible) {
+		ViewUtils.setInvisible(newTipsIv, invisible);
+	}
+
 	public void setOnChatListViewClickListener(
 			OnChatListViewClickListener listener) {
 		this.mListener = listener;
@@ -46,6 +99,12 @@ public class ChatListView extends ListView {
 
 	public interface OnChatListViewClickListener extends OnItemClickListener,
 			OnItemLongClickListener {
+
+		void showFriendAddedActivity();
+
+		void showAddFriendActivity();
+
+		void showFriendListActivity();
 
 	}
 }

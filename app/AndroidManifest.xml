@@ -18,8 +18,9 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 获取mac地址作为用户的备用唯一标识 -->   
-    
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+   <!-- 获取mac地址作为用户的备用唯一标识 -->
+
     <application
         android:name="me.linkcube.app.LinkcubeApplication"
         android:allowBackup="true"
@@ -102,12 +103,16 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="me.linkcube.app.ui.user.LinkcubeProtocolActivity"
+            android:name="me.linkcube.app.ui.user.UserAgreementActivity"
             android:screenOrientation="portrait" >
         </activity>
         <!-- Friend -->
         <activity
             android:name="me.linkcube.app.ui.friend.FriendAddedActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="me.linkcube.app.ui.friend.FriendListActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -130,7 +135,7 @@
         </activity>
 
         <!-- Receiver -->
-        <receiver android:name="me.linkcube.app.ui.main.multi.FriendListFragment$AddFriendReceiver" >
+        <receiver android:name="me.linkcube.app.ui.friend.FriendListActivity$AddFriendReceiver" >
             <intent-filter>
                 <action android:name="com.linkcube.addfriend" />
                 <action android:name="com.linkcube.updatefriendlist" />
@@ -152,7 +157,7 @@
                 </action>
             </intent-filter>
         </service>
-		<!-- UMENG -->
+        <!-- UMENG -->
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="534e65c656240b8f22003e10" >
@@ -160,9 +165,10 @@
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="official" />
-        
-        <activity android:name="com.umeng.fb.ConversationActivity"
-            android:theme="@style/Theme.Sherlock.NoActionBar"  />
+
+        <activity
+            android:name="com.umeng.fb.ConversationActivity"
+            android:theme="@style/Theme.Sherlock.NoActionBar" />
     </application>
 
 </manifest>

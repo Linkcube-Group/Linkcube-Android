@@ -85,26 +85,11 @@ public class SingleStatusBarView extends LinearLayout {
 			}
 		});
 
-		/*
-		 * resetBtn.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) { mListener.resetToy(); } });
-		 */
-		resetBtn.setOnTouchListener(new View.OnTouchListener() {
+		resetBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()) {
-				case MotionEvent.ACTION_DOWN:
-					resetBtn.setBackgroundResource(R.drawable.btn_reset_click);
-					mListener.resetToy();
-					break;
-				case MotionEvent.ACTION_UP:
-					resetBtn.setBackgroundResource(R.drawable.btn_reset_normal);
-				default:
-					break;
-				}
-				return false;
+			public void onClick(View v) {
+				mListener.resetToy();
 			}
 		});
 
@@ -124,7 +109,8 @@ public class SingleStatusBarView extends LinearLayout {
 				avatar = FormatUtils.Bytes2Drawable(userEntity.getUserAvatar());
 				avatarBtn.setImageDrawable(avatar);
 			}
-			userNameTv.setText(RegexUtils.cutUserName(userEntity.getNickName()));
+			userNameTv
+					.setText(RegexUtils.cutUserName(userEntity.getNickName()));
 		}
 	}
 

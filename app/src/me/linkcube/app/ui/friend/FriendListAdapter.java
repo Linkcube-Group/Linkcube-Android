@@ -1,4 +1,4 @@
-package me.linkcube.app.ui.main.multi;
+package me.linkcube.app.ui.friend;
 
 import java.util.List;
 

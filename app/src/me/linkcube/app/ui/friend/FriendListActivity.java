@@ -1,4 +1,4 @@
-package me.linkcube.app.ui.main.multi;
+package me.linkcube.app.ui.friend;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,11 +11,9 @@ import org.jivesoftware.smack.XMPPException;
 import me.linkcube.app.R;
 import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.sync.core.ASmackManager;
+import me.linkcube.app.ui.BaseActivity;
 import me.linkcube.app.ui.BaseFragment;
-import me.linkcube.app.ui.friend.FriendAddedActivity;
-import me.linkcube.app.ui.friend.FriendInfoActivity;
-import me.linkcube.app.ui.friend.SearchFriendActivity;
-import me.linkcube.app.ui.main.multi.FriendListView.OnFriendListViewClickListener;
+import me.linkcube.app.ui.friend.FriendListView.OnFriendListViewClickListener;
 import me.linkcube.app.widget.AlertUtils;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.entity.FriendEntity;
@@ -41,7 +39,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import static me.linkcube.app.core.persistable.DBConst.TABLE_FRIEND.*;
 
-public class FriendListFragment extends BaseFragment implements
+public class FriendListActivity extends BaseActivity implements
 		OnFriendListViewClickListener {
 
 	private static FriendListView friendlistView;
@@ -49,50 +47,36 @@ public class FriendListFragment extends BaseFragment implements
 	private static BaseAdapter friendsListAdapter;
 
 	private static List<FriendEntity> friendEntities;
-	
+
 	private static DeleteFriendInChat deleteFriendInChat;
-	
-	private static List<Message> addFriendMsgs=new ArrayList<Message>();
+
+	private static List<Message> addFriendMsgs = new ArrayList<Message>();
 
 	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-		UserManager.getInstance().getAllfriends(mActivity);//更新好友信息
-		UserManager.getInstance().setFirstLogin(false);
-	}
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		
-		return inflater.inflate(R.layout.friend_list_fragment, null);
-		
-	}
-
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
-		Timber.d("onViewCreated");
-		friendlistView = (FriendListView) view.findViewById(R.id.friend_lv);
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.friend_list_activity);
+		configureActionBar(R.string.friend_list);
+		friendlistView = (FriendListView) findViewById(R.id.friend_lv);
 		friendlistView.setOnFriendListViewClickListener(this);
-		
+		UserManager.getInstance().getAllfriends(mActivity);// 更新好友信息
+		UserManager.getInstance().setFirstLogin(false);
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		Timber.d("onResume");
 		initData();
-		
 		friendsListAdapter.notifyDataSetChanged();
 	}
 
 	private void initData() {
 		friendEntities = new ArrayList<FriendEntity>();
-		for(int i=0;i<UserManager.getInstance().getDBAllFriends().size();i++){
-			friendEntities.add(UserManager.getInstance().getDBAllFriends().get(i));
+		for (int i = 0; i < UserManager.getInstance().getDBAllFriends().size(); i++) {
+			friendEntities.add(UserManager.getInstance().getDBAllFriends()
+					.get(i));
 		}
-		friendsListAdapter = new FriendListAdapter(getActivity(),friendEntities);
+		friendsListAdapter = new FriendListAdapter(mActivity, friendEntities);
 		friendlistView.setAdapter(friendsListAdapter);
 		for (Message msg : addFriendMsgs) {
 			handler.sendMessage(msg);
@@ -115,9 +99,10 @@ public class FriendListFragment extends BaseFragment implements
 			PersistableFriendRequest perFriendRequest = new PersistableFriendRequest();
 			DataManager.getInstance().insert(perFriendRequest,
 					friendRequestEntity);
-			//改变好友添加小圆点可视
-			friendlistView.setNewFriendTipInVisible(false);
-			
+			// 改变好友添加小圆点可视
+			// friendlistView.setNewFriendTipInVisible(false);
+			// XXX
+
 		}
 	};
 
@@ -126,12 +111,13 @@ public class FriendListFragment extends BaseFragment implements
 			long id) {
 		TextView itemFriendTV = (TextView) view
 				.findViewById(R.id.friend_name_tv);
-		//String itemFriendName = itemFriendTV.getText().toString();
-
-		Intent intent = new Intent(getActivity(), FriendInfoActivity.class);
+		// String itemFriendName = itemFriendTV.getText().toString();
+		Intent intent = new Intent(mActivity, FriendInfoActivity.class);
 		Bundle bundle = new Bundle();
 		bundle.putString("isFriend", "bothFriend");
-		bundle.putString("friendname", ASmackUtils.deleteServerAddress(friendEntities.get(position-1).getFriendJid()));
+		bundle.putString("friendname", ASmackUtils
+				.deleteServerAddress(friendEntities.get(position)
+						.getFriendJid()));
 		intent.putExtras(bundle);
 		startActivity(intent);
 
@@ -145,29 +131,36 @@ public class FriendListFragment extends BaseFragment implements
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				final Handler handler=new Handler(){
+				final Handler handler = new Handler() {
 
 					@Override
 					public void handleMessage(Message msg) {
 						TextView itemFriendTV = (TextView) view
 								.findViewById(R.id.friend_name_tv);
-						String itemFriendNickname = itemFriendTV.getText().toString();
-						
-						List<FriendEntity> friend=new ArrayList<FriendEntity>();
-						PersistableFriend perFriend=new PersistableFriend();
+						String itemFriendNickname = itemFriendTV.getText()
+								.toString();
+
+						List<FriendEntity> friend = new ArrayList<FriendEntity>();
+						PersistableFriend perFriend = new PersistableFriend();
 						try {
-							friend=DataManager.getInstance().query(perFriend, USER_JID+"=? and "+NICK_NAME+"=?", new String[]{ASmackUtils.getUserJID(),itemFriendNickname}, null, null, null);
+							friend = DataManager.getInstance().query(
+									perFriend,
+									USER_JID + "=? and " + NICK_NAME + "=?",
+									new String[] { ASmackUtils.getUserJID(),
+											itemFriendNickname }, null, null,
+									null);
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
-						
-						if(!friend.isEmpty()&&friend!=null){
+
+						if (!friend.isEmpty() && friend != null) {
 							// 服务器删除
 							try {
 								Roster roster = ASmackManager.getInstance()
 										.getXMPPConnection().getRoster();
-								RosterEntry removeRoster = roster.getEntry(friend.get(0).getFriendJid());
-								if(removeRoster!=null){
+								RosterEntry removeRoster = roster
+										.getEntry(friend.get(0).getFriendJid());
+								if (removeRoster != null) {
 									roster.removeEntry(removeRoster);
 								}
 							} catch (XMPPException e) {
@@ -176,51 +169,46 @@ public class FriendListFragment extends BaseFragment implements
 							// 好友表里删除
 							FriendEntity friendEntity = new FriendEntity();
 							friendEntity.setUserJid(ASmackUtils.getUserJID());
-							friendEntity.setFriendJid(friend.get(0).getFriendJid());
-							DataManager.getInstance().delete(perFriend, friendEntity);
+							friendEntity.setFriendJid(friend.get(0)
+									.getFriendJid());
+							DataManager.getInstance().delete(perFriend,
+									friendEntity);
 							// 如果请求列表里有，也删除了
 							FriendRequestEntity friendRequestEntity = new FriendRequestEntity();
-							friendRequestEntity.setUserName(ASmackUtils.getRosterName());
-							friendRequestEntity.setFriendName(ASmackUtils.deleteServerAddress(friend.get(0).getFriendJid()));
+							friendRequestEntity.setUserName(ASmackUtils
+									.getRosterName());
+							friendRequestEntity.setFriendName(ASmackUtils
+									.deleteServerAddress(friend.get(0)
+											.getFriendJid()));
 							PersistableFriendRequest perFriendRequest = new PersistableFriendRequest();
 							DataManager.getInstance().delete(perFriendRequest,
 									friendRequestEntity);
 						}
 						// 列表删除
-						friendEntities.remove(position-1);
-						//聊天列表删除
-						deleteFriendInChat.deleteFriendInChat(ASmackUtils.deleteServerAddress(friend.get(0).getFriendJid()));
+						friendEntities.remove(position - 1);
+						// 聊天列表删除
+						deleteFriendInChat.deleteFriendInChat(ASmackUtils
+								.deleteServerAddress(friend.get(0)
+										.getFriendJid()));
 
 						friendsListAdapter.notifyDataSetChanged();
 					}
-					
+
 				};
-				
-				Thread thread=new Thread(){
+
+				Thread thread = new Thread() {
 
 					@Override
 					public void run() {
 						handler.sendEmptyMessage(0);
 					}
-					
+
 				};
 				thread.start();
-				
+
 			}
 		}, null);
 		return true;
-	}
-
-	@Override
-	public void showFriendsAddedActivity() {
-		Intent intent = new Intent(getActivity(), FriendAddedActivity.class);
-		startActivity(intent);
-	}
-
-	@Override
-	public void showAddFriendActivity() {
-		Intent intent = new Intent(getActivity(), SearchFriendActivity.class);
-		startActivity(intent);
 	}
 
 	public static class AddFriendReceiver extends BroadcastReceiver {
@@ -230,19 +218,19 @@ public class FriendListFragment extends BaseFragment implements
 			String action = intent.getAction();
 			if (action.equals("com.linkcube.addfriend")) {
 				try {
-				
-				Bundle bundle = intent.getExtras();
-				String friendName = bundle.getString("friendName");
-				String addFriendFlag = bundle.getString("addFriendFlag");
-				Timber.d("friendName:" + friendName + "--addFriendFlag:"
-						+ addFriendFlag);
-				Message msg = new Message();
-				msg.setData(bundle);
-				if(friendlistView==null){
-					addFriendMsgs.add(msg);
-				}else{
-					handler.sendMessage(msg);
-				}
+
+					Bundle bundle = intent.getExtras();
+					String friendName = bundle.getString("friendName");
+					String addFriendFlag = bundle.getString("addFriendFlag");
+					Timber.d("friendName:" + friendName + "--addFriendFlag:"
+							+ addFriendFlag);
+					Message msg = new Message();
+					msg.setData(bundle);
+					if (friendlistView == null) {
+						addFriendMsgs.add(msg);
+					} else {
+						handler.sendMessage(msg);
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -250,20 +238,22 @@ public class FriendListFragment extends BaseFragment implements
 			if (action.equals("com.linkcube.updatefriendlist")) {
 				Timber.d("friendsListAdapter.notifyDataSetChanged");
 				friendEntities.clear();
-				for(int i=0;i<UserManager.getInstance().getDBAllFriends().size();i++){
-					friendEntities.add(UserManager.getInstance().getDBAllFriends().get(i));
+				for (int i = 0; i < UserManager.getInstance().getDBAllFriends()
+						.size(); i++) {
+					friendEntities.add(UserManager.getInstance()
+							.getDBAllFriends().get(i));
 				}
 				friendsListAdapter.notifyDataSetChanged();
 			}
 
 		}
 	}
-	
+
 	public static void setDeleteFriendInChat(DeleteFriendInChat deleteFriendChat) {
 		deleteFriendInChat = deleteFriendChat;
 	}
 
-	public interface DeleteFriendInChat{
+	public interface DeleteFriendInChat {
 		public void deleteFriendInChat(String friendNickname);
 	}
 

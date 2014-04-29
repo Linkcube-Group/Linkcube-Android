@@ -10,15 +10,15 @@ import android.widget.TextView;
 import me.linkcube.app.R;
 import me.linkcube.app.ui.BaseActivity;
 
-public class LinkcubeProtocolActivity extends BaseActivity {
+public class UserAgreementActivity extends BaseActivity {
 	
 	private TextView linkcubeProtocolTv;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.linkcube_protocol_activity);
+		setContentView(R.layout.user_agreement_activity);
 		
-		configureActionBar(R.string.linkcube_protocol);
+		configureActionBar(R.string.user_agreement_activity);
 		
 		initView();
 	}
