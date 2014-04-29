@@ -40,8 +40,9 @@
     <item name="friend_avatar_iv" type="id"/>
     <item name="friend_name_tv" type="id"/>
     <item name="add_friend_cell" type="id"/>
-    <item name="friends_added_cell" type="id"/>
-    <item name="new_friend_tip_iv" type="id"/>
+    <item name="friends_cell" type="id"/>
+    <item name="new_messages_cell" type="id"/>
+    <item name="new_tips_iv" type="id"/>
     <item name="chat_lv" type="id"/>
     <item name="friend_lv" type="id"/>
 

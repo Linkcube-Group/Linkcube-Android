@@ -45,7 +45,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.text.format.DateFormat;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -191,14 +190,14 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 			e1.printStackTrace();
 		}
 		try {
-			
-		friendName = ASmackUtils.deleteServerAddress(friendEntities.get(0)
-				.getFriendJid());
-		chatPanelView.setFriendName(friendName);
 
-		if (friendEntities.get(0).getIsFriend().equals("none")) {
-			isFriend = false;
-		}
+			friendName = ASmackUtils.deleteServerAddress(friendEntities.get(0)
+					.getFriendJid());
+			chatPanelView.setFriendName(friendName);
+
+			if (friendEntities.get(0).getIsFriend().equals("none")) {
+				isFriend = false;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

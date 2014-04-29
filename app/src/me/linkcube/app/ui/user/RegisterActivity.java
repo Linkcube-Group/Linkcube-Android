@@ -189,7 +189,7 @@ public class RegisterActivity extends DialogActivity implements OnClickListener 
 			}
 			break;
 		case R.id.register_protocol_tv:
-			startActivity(new Intent(RegisterActivity.this,LinkcubeProtocolActivity.class));
+			startActivity(new Intent(RegisterActivity.this,UserAgreementActivity.class));
 			break;
 		default:
 			break;

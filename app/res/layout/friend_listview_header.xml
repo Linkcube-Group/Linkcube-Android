@@ -27,7 +27,7 @@
         android:background="@color/listview_divider" />
 
     <LinearLayout
-        android:id="@id/friends_added_cell"
+        android:id="@id/new_messages_cell"
         style="@style/ListView.Cell" >
 
         <ImageView
@@ -39,11 +39,11 @@
 
         <TextView
             style="@style/ListView.Cell.TextView"
-            android:text="@string/new_friend_tip"
+            android:text="@string/new_messages"
             android:textColor="@color/pink" />
 
         <ImageView
-            android:id="@id/new_friend_tip_iv"
+            android:id="@id/new_tips_iv"
             android:layout_width="8dp"
             android:layout_height="8dp"
             android:contentDescription="@string/app_name"
@@ -56,6 +56,27 @@
             android:layout_marginRight="@dimen/ListCellMargin"
             android:contentDescription="@string/app_name"
             android:src="@drawable/right_arrow" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/listview_divider" />
+
+    <LinearLayout
+        android:id="@id/friends_cell"
+        style="@style/ListView.Cell" >
+
+        <ImageView
+            style="@style/ListView.Cell.Image"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp"
+            android:src="@drawable/ic_friends" />
+
+        <TextView
+            style="@style/ListView.Cell.TextView"
+            android:text="@string/friends"
+            android:textColor="@color/pink" />
     </LinearLayout>
 
 </LinearLayout>

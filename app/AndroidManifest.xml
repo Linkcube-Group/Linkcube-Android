@@ -103,7 +103,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="me.linkcube.app.ui.user.LinkcubeProtocolActivity"
+            android:name="me.linkcube.app.ui.user.UserAgreementActivity"
             android:screenOrientation="portrait" >
         </activity>
         <!-- Friend -->

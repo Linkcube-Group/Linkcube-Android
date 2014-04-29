@@ -34,13 +34,18 @@
     <string name="sex_position_mode">经典七式</string>
 
     <!-- 多人模式 -->
-    <string name="add_friend">添加情侣</string>
-    <string name="new_friend_tip">新的情侣</string>
+    <string name="add_friend">添加</string>
+    <string name="friends">好友</string>
     <string name="search_user_by_email">邮箱账号</string>
+    <string name="new_messages">消息</string>
+    <string name="friend_list">好友列表</string>
+
+    <!-- 个人好友信息 -->
+    <string name="detail_info">详细资料</string>
 
     <!-- 设置 -->
     <string name="setting">设置</string>
-     <string name="connect_toy">连接玩具</string>
+    <string name="connect_toy">连接玩具</string>
     <string name="personal_info">个人信息</string>
     <string name="purchase_toy">购买玩具</string>
     <string name="help">使用说明</string>
@@ -70,29 +75,27 @@
     <string name="bonded">已绑定</string>
     <string name="unbond">未绑定</string>
 
-    <!-- 个人好友信息 -->
-    <string name="detail_info">详细资料</string>
-    
     <!-- 修改密码 -->
     <string name="old_pwd_hint">请输入原有密码</string>
     <string name="new_pwd_hint">输入新密码</string>
     <string name="confirm_new_pwd__hint">再次输入新密码</string>
-    
-    <!-- 意见反馈-->
+
+    <!-- 意见反馈 -->
     <string name="character_exceed">你输入的字数已经超过了限制！</string>
     <string name="thanks_feed_back">感谢您的反馈意见！</string>
-    
+
     <!-- actionbar -->
     <string name="back">返回</string>
     <string name="user_info">个人信息</string>
     <string name="update_user_info">更新个人信息</string>
-    <string name="linkcube_protocol">软件协议</string>
+    <string name="user_agreement_activity">软件协议</string>
     <string name="new_friend_request">新的情侣</string>
     <string name="search_user">添加情侣</string>
-	<string name="save_user_info">保存</string>
-	<string name="feedback_send">发送</string>
-	<string name="friend_add_clear">清空</string>
-	<string name="search_friend">搜索</string>
-	<string name="change_pwd">修改密码</string>
-	<string name="confirm">确定</string>
+    <string name="save_user_info">保存</string>
+    <string name="feedback_send">发送</string>
+    <string name="friend_add_clear">清空</string>
+    <string name="search_friend">搜索</string>
+    <string name="change_pwd">修改密码</string>
+    <string name="confirm">确定</string>
+
 </resources>
