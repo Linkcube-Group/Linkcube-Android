@@ -63,7 +63,7 @@ public class VoiceModeView extends RelativeLayout{
 				return;
 			}
 			switch (level) {
-			case 0:
+			/*case 0:
 				level++;
 				modeBtn.setBackgroundResource(R.drawable.voice_mode_1);
 				break;
@@ -80,6 +80,15 @@ public class VoiceModeView extends RelativeLayout{
 				modeBtn.setBackgroundResource(R.drawable.voice_mode_4);
 				break;
 			case 4:
+				level = 0;
+				modeBtn.setBackgroundResource(R.drawable.voice_mode_0);
+				break;*/
+			//音乐模式更换成二档位
+			case 0:
+				level=2;
+				modeBtn.setBackgroundResource(R.drawable.voice_mode_4);
+				break;
+			case 2:
 				level = 0;
 				modeBtn.setBackgroundResource(R.drawable.voice_mode_0);
 				break;

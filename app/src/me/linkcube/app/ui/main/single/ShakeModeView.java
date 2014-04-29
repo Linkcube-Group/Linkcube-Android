@@ -2,7 +2,6 @@ package me.linkcube.app.ui.main.single;
 
 import me.linkcube.app.LinkcubeApplication;
 import me.linkcube.app.R;
-import me.linkcube.app.core.Timber;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import android.content.Context;
 import android.content.Intent;
@@ -64,7 +63,7 @@ public class ShakeModeView extends RelativeLayout{
 				return;
 			}
 			switch (level) {
-			case 0:
+			/*case 0:
 				level++;
 				modeBtn.setBackgroundResource(R.drawable.shake_mode_1);
 				break;
@@ -78,6 +77,14 @@ public class ShakeModeView extends RelativeLayout{
 				break;
 			case 3:
 				level++;
+				modeBtn.setBackgroundResource(R.drawable.shake_mode_4);
+				break;
+			case 4:
+				level = 0;
+				modeBtn.setBackgroundResource(R.drawable.shake_mode_0);
+				break;*/
+			case 0:
+				level=4;
 				modeBtn.setBackgroundResource(R.drawable.shake_mode_4);
 				break;
 			case 4:

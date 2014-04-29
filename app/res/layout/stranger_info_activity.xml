@@ -63,7 +63,8 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/stranger_info_avatar_iv"
             android:layout_below="@id/stranger_info_avatar_iv"
-            android:layout_marginTop="14dp" >
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="4dp" >
 
             <TextView
                 android:id="@+id/stranger_linkcube_id_title"
@@ -82,13 +83,17 @@
                 android:layout_toRightOf="@id/stranger_linkcube_id_title"
                 android:text="" />
         </RelativeLayout>
+        
+        <View 
+            android:layout_below="@id/stranger_info_email_rl"
+            style="@style/Setting.Item.Divider" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/stranger_info_email_rl"
             android:layout_below="@id/stranger_info_email_rl"
-            android:layout_marginTop="10dp" >
+            android:layout_marginTop="8dp" >
 
             <TextView
                 android:id="@+id/stranger_person_state_title"

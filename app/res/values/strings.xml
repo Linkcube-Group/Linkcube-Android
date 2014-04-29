@@ -49,12 +49,13 @@
     <string name="logout">退出登录</string>
     <string name="feedback_email_hint">联系Email</string>
     <string name="about_us">关于我们</string>
-    <string name="about_us_desc">Linkcube Technologies 连酷科技，是全球首家智能情趣玩具研发团队。Mars&#038;Venus，不论异地情侣相隔多远，都能通过手机遥控彼此的玩具，远程互动。
-\n\n连酷研发团队由来自英国的物理学家、硅谷的材料科学家、本土的超级创客、御姐产品总监、美女设计师团队构成。\n\n
-邮箱：support@linkcube.me\n
+    <string name="about_us_company_name">连酷科技</string>
+    <string name="about_us_desc">\n
+版本号：1.1\n
 微信：连酷科技\n
 微博：@连酷科技\n
-产品讨论QQ群：346088732</string>
+官方网站：http://www.linkcube.me\n
+</string>
 
     <!-- 蓝牙设置 -->
     <string name="search_toy">搜索玩具</string>
