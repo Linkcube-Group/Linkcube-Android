@@ -159,7 +159,6 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		});
 	}
 
-	@SuppressWarnings("deprecation")
 	private void initData() {
 		mDataArrays = new ArrayList<ChatMsgEntity>();
 		dbDataArrays = new ArrayList<ChatMsgEntity>();

@@ -381,7 +381,7 @@ public class MultiPlayerFragment extends BaseFragment implements
 			long arg3) {
 		TextView itemFriendTV = (TextView) view
 				.findViewById(R.id.item_chat_friend_name);
-		String itemFriendName = chatEntities.get(position).getFriendName();
+		String itemFriendName = chatEntities.get(position - 1).getFriendName();
 		gotoItemFriendName = itemFriendName;
 		Intent intent = new Intent(getActivity(), ChatActivity.class);
 		Bundle bundle = new Bundle();

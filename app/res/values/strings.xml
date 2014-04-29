@@ -73,8 +73,8 @@
     <string name="switching_on_bluetooth">正在打开蓝牙</string>
     <string name="switching_off_bluetooth">正在关闭蓝牙</string>
     <string name="connected">已连接</string>
-    <string name="bonded">已绑定</string>
-    <string name="unbond">未绑定</string>
+    <string name="bonded">已配对未连接</string>
+    <string name="unbond">未配对</string>
 
     <!-- 修改密码 -->
     <string name="old_pwd_hint">请输入原有密码</string>
