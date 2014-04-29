@@ -1,21 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:pageIndicator="http://schemas.android.com/apk/res/me.linkcube.app"
     style="@style/MainPage" >
 
-    <android.support.v4.view.ViewPager
-        android:id="@id/chat_vp"
+    <me.linkcube.app.ui.main.multi.ChatListView
+        android:id="@id/chat_lv"
+        style="@style/ListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/tab_indicator"
         android:layout_below="@id/status_bar" />
-
-    <me.linkcube.app.widget.CirclePageIndicator
-        android:id="@id/vp_indicator"
-        style="@style/CirclePagerIndicator"
-        pageIndicator:fillColor="@color/pink"
-        pageIndicator:pageColor="@android:color/transparent"
-        pageIndicator:radius="5dp"
-        pageIndicator:strokeColor="@color/light_grey" />
 
     <me.linkcube.app.ui.main.multi.MultiStatusBarView
         android:id="@id/status_bar"
