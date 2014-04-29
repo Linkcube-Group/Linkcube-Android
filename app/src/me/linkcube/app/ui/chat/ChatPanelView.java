@@ -188,6 +188,7 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 
 			popUpViewPager.setVisibility(View.VISIBLE);
 			indicator.setVisibility(View.VISIBLE);
+			multiGameAcceptConnectRl.setVisibility(View.INVISIBLE);
 			ChatMsgEntity acceptEntity = UserUtils.sendToFriendMsg(
 					"你接受了对方的游戏邀请~", friendName);
 			onUpdateChatListListener.updateChatList(acceptEntity);
@@ -213,11 +214,11 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 			GameManager.getInstance().delGameInviteMsg(friendName);
 			break;
 		case R.id.multi_speed_mode_iv:// 摇一摇游戏界面，控制档位大小
-			speedLevel++;
-			if (speedLevel == 5)
-				speedLevel = 0;
+			//speedLevel++;
+			//if (speedLevel == 5)
+				//speedLevel = 0;
 			switch (speedLevel) {
-			case 0:
+			/*case 0:
 				multiShakeIv.setBackgroundResource(R.drawable.shake_mode_0);
 				break;
 			case 1:
@@ -231,6 +232,14 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 				break;
 			case 4:
 				multiShakeIv.setBackgroundResource(R.drawable.shake_mode_4);
+				break;*/
+			case 0:
+				speedLevel=2;
+				multiShakeIv.setBackgroundResource(R.drawable.shake_mode_4);
+				break;
+			case 2:
+				speedLevel=0;
+				multiShakeIv.setBackgroundResource(R.drawable.shake_mode_0);
 				break;
 			default:
 				break;

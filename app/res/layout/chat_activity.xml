@@ -54,6 +54,8 @@
             <me.linkcube.app.widget.CWClearEditText
                 android:id="@+id/send_msg_et"
                 style="@style/LineEditText"
+                android:layout_height="36dp"
+                android:layout_centerVertical="true"
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"

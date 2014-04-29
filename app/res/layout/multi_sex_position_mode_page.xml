@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#f0f0e0" >
+    android:orientation="vertical" >
 
     <ImageView
         android:id="@+id/multi_sex_position_mode_iv"

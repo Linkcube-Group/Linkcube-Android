@@ -38,7 +38,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/avatar_hint"
-            android:textColor="#ff3399" />
+            android:textColor="#ff3399"
+            android:textSize="18dp"
+            android:singleLine="true" />
 
         <Button
             android:id="@id/connect_indicator_btn"
@@ -81,7 +83,9 @@
             android:id="@id/target_name_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textSize="18dp"
+            android:singleLine="true" />
     </LinearLayout>
 
     <ImageView

@@ -6,6 +6,7 @@ import me.linkcube.app.R;
 import me.linkcube.app.core.entity.FriendEntity;
 import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.util.FormatUtils;
+import me.linkcube.app.util.RegexUtils;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ public class FriendListAdapter extends BaseAdapter {
 		ImageView friendAvatar = (ImageView) convertView
 				.findViewById(R.id.friend_avatar_iv);
 		try {
-		friendName.setText(friendEntities.get(position).getNickName());
+		friendName.setText(RegexUtils.cutUserName(friendEntities.get(position).getNickName()));
 		Drawable friendAvatarDrawable = null;
 		if (friendEntities.get(position).getUserAvatar() == null) {
 			friendAvatarDrawable = context.getResources().getDrawable(

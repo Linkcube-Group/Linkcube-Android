@@ -13,6 +13,7 @@ import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.ui.BaseActivity;
 import me.linkcube.app.ui.bluetooth.BluetoothSettingActivity;
+import me.linkcube.app.ui.main.MainActivity;
 import me.linkcube.app.ui.user.LoginActivity;
 import me.linkcube.app.ui.user.UserInfoActivity;
 
@@ -102,12 +103,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private void logout() {
-		ASmackManager.getInstance().closeConnection();
-		ASmackUtils.ROSTER_NAME = null;
 		setResult(RESULT_OK);
-		ChatMessageListener.getInstance().setChatManager(null);
-		UserManager.getInstance().setFirstLogin(true);
-		startActivity(new Intent(SettingActivity.this, LoginActivity.class));
 		finish();
 	}
 	/*
