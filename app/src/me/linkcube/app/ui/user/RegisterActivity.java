@@ -173,7 +173,7 @@ public class RegisterActivity extends DialogActivity implements OnClickListener 
 
 							@Override
 							public void responseFailure(int reflag) {
-							
+								Timber.d("reflag:"+reflag);
 								if(reflag==1){
 									Toast.makeText(RegisterActivity.this, "服务器无响应",
 											Toast.LENGTH_SHORT).show();

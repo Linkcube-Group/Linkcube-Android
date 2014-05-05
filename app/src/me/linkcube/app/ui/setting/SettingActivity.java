@@ -23,6 +23,8 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 			aboutUsTv;
 
 	private Button loginOrRegisterBtn;
+	
+	private int LOGOUT__RESULT=3;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +105,11 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private void logout() {
-		setResult(RESULT_OK);
+		ASmackManager.getInstance().closeConnection();
+		ASmackUtils.ROSTER_NAME = null;
+		ChatMessageListener.getInstance().setChatManager(null);
+		UserManager.getInstance().setFirstLogin(true);
+		setResult(LOGOUT__RESULT);
 		finish();
 	}
 	/*

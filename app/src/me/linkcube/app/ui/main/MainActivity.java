@@ -65,6 +65,8 @@ public class MainActivity extends BaseFragmentActivity implements
 	private String apkVersion;
 	private String apkSize;
 	private String apkDescription;
+	
+	private int LOGOUT__RESULT=3;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -214,11 +216,8 @@ public class MainActivity extends BaseFragmentActivity implements
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-		if (resultCode == RESULT_OK) {
-			ASmackManager.getInstance().closeConnection();
-			ASmackUtils.ROSTER_NAME = null;
-			ChatMessageListener.getInstance().setChatManager(null);
-			UserManager.getInstance().setFirstLogin(true);
+		if (resultCode == LOGOUT__RESULT) {
+			
 			tabIndicatorView.setCurrentTab(0);
 		}
 	};

@@ -12,11 +12,13 @@ import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.entity.ChatEntity;
 import me.linkcube.app.core.entity.FriendEntity;
+import me.linkcube.app.core.entity.FriendRequestEntity;
 import me.linkcube.app.core.entity.OffLineMsgEntity;
 import me.linkcube.app.core.game.GameManager;
 import me.linkcube.app.core.persistable.DataManager;
 import me.linkcube.app.core.persistable.PersistableChat;
 import me.linkcube.app.core.persistable.PersistableFriend;
+import me.linkcube.app.core.persistable.PersistableFriendRequest;
 import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.sync.chat.ChatMessageListener;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
@@ -35,15 +37,18 @@ import me.linkcube.app.ui.main.multi.MultiStatusBarView.OnMultiStatusBarClickLis
 import me.linkcube.app.ui.setting.SettingActivity;
 import me.linkcube.app.ui.user.UserInfoActivity;
 import me.linkcube.app.util.FormatUtils;
+import me.linkcube.app.util.RegexUtils;
 import me.linkcube.app.util.TimeUtils;
 import me.linkcube.app.widget.AlertUtils;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.Entity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,7 +66,7 @@ public class MultiPlayerFragment extends BaseFragment implements
 
 	private MultiStatusBarView mStatusBarView;
 
-	private ChatListView chatListView;
+	private static ChatListView chatListView;
 
 	private BaseAdapter chatListAdapter = null;
 
@@ -82,6 +87,8 @@ public class MultiPlayerFragment extends BaseFragment implements
 	private String MALE = "男";
 
 	private List<OffLineMsgEntity> offLineMsgs = new ArrayList<OffLineMsgEntity>();
+	
+	//private static List<Message> addFriendMsgs = new ArrayList<Message>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -231,7 +238,7 @@ public class MultiPlayerFragment extends BaseFragment implements
 					String msgTime = TimeUtils.toNowTime(chatEntity
 							.getMsgTime());
 
-					friendNameTV.setText(friendNickname);
+					friendNameTV.setText(RegexUtils.cutUserName(friendNickname));
 					if (message.length() > 13) {
 						String shortMsg = message.substring(0, 13);
 						friendMsgTV.setText(shortMsg + "...");
@@ -491,5 +498,47 @@ public class MultiPlayerFragment extends BaseFragment implements
 	public void showFriendListActivity() {
 		startActivity(new Intent(mActivity, FriendListActivity.class));
 	}
+	
+	public static class AddFriendReceiver extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			
+				try {
+					Bundle bundle = intent.getExtras();
+					String friendName = bundle.getString("friendName");
+					String addFriendFlag = bundle.getString("addFriendFlag");
+					Timber.d("friendName:" + friendName + "--addFriendFlag:"
+							+ addFriendFlag);
+					Message msg = new Message();
+					msg.setData(bundle);
+					addFriendHandler.sendMessage(msg);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+		}
+	}
+	
+	private static Handler addFriendHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			Bundle bundle = msg.getData();
+			String friendName = bundle.getString("friendName");
+			String addFriendFlag = bundle.getString("addFriendFlag");
+			FriendRequestEntity friendRequestEntity = new FriendRequestEntity();
+			friendRequestEntity.setUserName(ASmackUtils.getRosterName());
+			friendRequestEntity.setFriendName(ASmackUtils
+					.deleteServerAddress(friendName));
+			friendRequestEntity.setSubscription(addFriendFlag);
+			PersistableFriendRequest perFriendRequest = new PersistableFriendRequest();
+			DataManager.getInstance().insert(perFriendRequest,
+					friendRequestEntity);
+			// 改变好友添加小圆点可视
+			chatListView.setNewFriendTipInVisible(false);
+
+		}
+	};
 
 }

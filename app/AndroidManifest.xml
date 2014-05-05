@@ -135,9 +135,15 @@
         </activity>
 
         <!-- Receiver -->
-        <receiver android:name="me.linkcube.app.ui.friend.FriendListActivity$AddFriendReceiver" >
+        <receiver android:name="me.linkcube.app.ui.main.multi.MultiPlayerFragment$AddFriendReceiver" >
             <intent-filter>
                 <action android:name="com.linkcube.addfriend" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="me.linkcube.app.ui.friend.FriendListActivity$UpdateFriendListReceiver" >
+            <intent-filter>
                 <action android:name="com.linkcube.updatefriendlist" />
 
                 <category android:name="android.intent.category.DEFAULT" />
