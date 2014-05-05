@@ -15,9 +15,8 @@
             android:layout_height="70dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="14dp"
-            android:src="@drawable/waiting_game_logo" />
-        
+            android:layout_marginTop="14dp" />
+
         <ImageView
             android:id="@+id/multi_game_connect_iv"
             android:layout_width="70dp"
@@ -48,9 +47,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
             android:text="同意" />
 
         <Button
@@ -59,17 +58,17 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/accept_connect_btn"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
             android:text="拒绝" />
 
         <TextView
             android:id="@+id/accept_time_second_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/refuse_connect_btn"
             android:layout_alignParentBottom="true"
+            android:layout_below="@id/refuse_connect_btn"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="3dp"
             android:text="等待时间30秒" />
@@ -81,14 +80,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="invisible" />
-    
+
     <me.linkcube.app.widget.CirclePageIndicator
         android:id="@+id/chat_panel_indicator"
         style="@style/CirclePagerIndicator"
+        android:visibility="invisible"
         pageIndicator:fillColor="@color/pink"
         pageIndicator:pageColor="@android:color/transparent"
         pageIndicator:radius="5dp"
-        pageIndicator:strokeColor="@color/light_grey"
-        android:visibility="invisible" />
+        pageIndicator:strokeColor="@color/light_grey" />
 
 </RelativeLayout>
