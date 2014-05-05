@@ -1,5 +1,6 @@
 package me.linkcube.app.sync.user;
 
+import me.linkcube.app.core.Timber;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import me.linkcube.app.sync.core.ASmackManager;
 

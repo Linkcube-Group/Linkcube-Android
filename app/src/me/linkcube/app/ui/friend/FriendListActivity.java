@@ -12,7 +12,6 @@ import me.linkcube.app.R;
 import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.ui.BaseActivity;
-import me.linkcube.app.ui.BaseFragment;
 import me.linkcube.app.ui.friend.FriendListView.OnFriendListViewClickListener;
 import me.linkcube.app.widget.AlertUtils;
 import me.linkcube.app.core.Timber;
@@ -22,7 +21,6 @@ import me.linkcube.app.core.persistable.DataManager;
 import me.linkcube.app.core.persistable.PersistableFriend;
 import me.linkcube.app.core.persistable.PersistableFriendRequest;
 import me.linkcube.app.core.user.UserManager;
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -31,9 +29,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
@@ -49,8 +45,6 @@ public class FriendListActivity extends BaseActivity implements
 	private static List<FriendEntity> friendEntities;
 
 	private static DeleteFriendInChat deleteFriendInChat;
-
-	private static List<Message> addFriendMsgs = new ArrayList<Message>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,33 +72,8 @@ public class FriendListActivity extends BaseActivity implements
 		}
 		friendsListAdapter = new FriendListAdapter(mActivity, friendEntities);
 		friendlistView.setAdapter(friendsListAdapter);
-		for (Message msg : addFriendMsgs) {
-			handler.sendMessage(msg);
-		}
-		addFriendMsgs.clear();
+		
 	}
-
-	private static Handler handler = new Handler() {
-
-		@Override
-		public void handleMessage(Message msg) {
-			Bundle bundle = msg.getData();
-			String friendName = bundle.getString("friendName");
-			String addFriendFlag = bundle.getString("addFriendFlag");
-			FriendRequestEntity friendRequestEntity = new FriendRequestEntity();
-			friendRequestEntity.setUserName(ASmackUtils.getRosterName());
-			friendRequestEntity.setFriendName(ASmackUtils
-					.deleteServerAddress(friendName));
-			friendRequestEntity.setSubscription(addFriendFlag);
-			PersistableFriendRequest perFriendRequest = new PersistableFriendRequest();
-			DataManager.getInstance().insert(perFriendRequest,
-					friendRequestEntity);
-			// 改变好友添加小圆点可视
-			// friendlistView.setNewFriendTipInVisible(false);
-			// XXX
-
-		}
-	};
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View view, int position,
@@ -185,7 +154,7 @@ public class FriendListActivity extends BaseActivity implements
 									friendRequestEntity);
 						}
 						// 列表删除
-						friendEntities.remove(position - 1);
+						friendEntities.remove(position);
 						// 聊天列表删除
 						deleteFriendInChat.deleteFriendInChat(ASmackUtils
 								.deleteServerAddress(friend.get(0)
@@ -211,31 +180,11 @@ public class FriendListActivity extends BaseActivity implements
 		return true;
 	}
 
-	public static class AddFriendReceiver extends BroadcastReceiver {
+	public static class UpdateFriendListReceiver extends BroadcastReceiver {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			String action = intent.getAction();
-			if (action.equals("com.linkcube.addfriend")) {
-				try {
 
-					Bundle bundle = intent.getExtras();
-					String friendName = bundle.getString("friendName");
-					String addFriendFlag = bundle.getString("addFriendFlag");
-					Timber.d("friendName:" + friendName + "--addFriendFlag:"
-							+ addFriendFlag);
-					Message msg = new Message();
-					msg.setData(bundle);
-					if (friendlistView == null) {
-						addFriendMsgs.add(msg);
-					} else {
-						handler.sendMessage(msg);
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			if (action.equals("com.linkcube.updatefriendlist")) {
 				Timber.d("friendsListAdapter.notifyDataSetChanged");
 				friendEntities.clear();
 				for (int i = 0; i < UserManager.getInstance().getDBAllFriends()
@@ -244,7 +193,6 @@ public class FriendListActivity extends BaseActivity implements
 							.getDBAllFriends().get(i));
 				}
 				friendsListAdapter.notifyDataSetChanged();
-			}
 
 		}
 	}
