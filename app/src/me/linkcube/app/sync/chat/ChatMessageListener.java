@@ -74,7 +74,9 @@ public class ChatMessageListener {
 						offLineMsgEntity.setFrom(ASmackUtils
 								.deleteServerAddress(message.getFrom()));
 						offLineMsgEntity.setBody(message.getBody());
-						offLineMsgs.add(offLineMsgEntity);
+						if (!message.getBody().startsWith(Const.Game.REQUESTCMD)) {
+							offLineMsgs.add(offLineMsgEntity);
+						} 
 					}
 					isGameMsgOrNormalMsg(message);
 
@@ -158,8 +160,8 @@ public class ChatMessageListener {
 		bundle.putString("cmdData", cmdData);
 		Intent chatMsgIntent = new Intent("com.linkcube.message");// 获取到聊天消息,发送广播
 		chatMsgIntent.putExtras(bundle);
-		Timber.d("broadMsg--from:"+from+"--body:"+body);
-		Timber.d("context:"+context);
+		Timber.d("broadMsg--from:" + from + "--body:" + body);
+		Timber.d("context:" + context);
 		context.sendBroadcast(chatMsgIntent);
 	}
 

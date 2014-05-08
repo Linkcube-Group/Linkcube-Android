@@ -43,8 +43,8 @@ public class RegexUtils {
 	public static String cutUserName(String userName){
 		String cutUserName;
 		if(isContainChinese(userName)){
-			if(userName.length()>8){
-				cutUserName=userName.substring(0, 8);
+			if(userName.length()>6){
+				cutUserName=userName.substring(0, 6);
 				return cutUserName+"...";
 			}else{
 				return userName;
