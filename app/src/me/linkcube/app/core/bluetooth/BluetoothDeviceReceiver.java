@@ -53,10 +53,13 @@ public class BluetoothDeviceReceiver extends BroadcastReceiver {
 				int connectState = device.getBondState();
 				switch (connectState) {
 				case BluetoothDevice.BOND_NONE:
+					mListener.onBluetoothStateBondNone();
 					break;
 				case BluetoothDevice.BOND_BONDING:
+					mListener.onBluetoothStateBonding();
 					break;
 				case BluetoothDevice.BOND_BONDED:
+					mListener.onBluetoothStateBonded();
 					break;
 				}
 			}

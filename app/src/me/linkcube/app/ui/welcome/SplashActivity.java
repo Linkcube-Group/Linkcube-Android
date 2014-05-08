@@ -77,7 +77,7 @@ public class SplashActivity extends DialogActivity {
 			showNetworkDialog();
 			return;
 		} else {
-			showProgressDialog("正在连接网络，请稍等。");
+			showProgressDialog("正在连接网络，请稍等...");
 			if (ASmackManager.getInstance().getXMPPConnection() == null
 					|| !ASmackManager.getInstance().getXMPPConnection()
 							.isConnected()) {
@@ -167,7 +167,7 @@ public class SplashActivity extends DialogActivity {
 	}
 
 	private void autoLogin() {
-		showProgressDialog("自动登录中，请稍等。");
+		showProgressDialog("自动登录中，请稍等...");
 		new UserLogin(ASmackUtils.userNameEncode(PreferenceUtils.getString(
 				Const.Preference.USER_NAME, "")), PreferenceUtils.getString(
 				Const.Preference.USER_PWD, ""), new ASmackRequestCallBack() {

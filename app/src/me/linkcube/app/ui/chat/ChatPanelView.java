@@ -296,7 +296,7 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 
 		@Override
 		public void handleMessage(Message msg) {
-			multiGameConnectTv.setText("请求已发送，请等待。" + acceptSecond + "秒");
+			multiGameConnectTv.setText("请求已发送，请等待..." + acceptSecond + "秒");
 			acceptSecond--;
 			ChatMsgEntity chatMsgEntity=GameManager.getInstance().getGameInviteMsgs(friendName);
 			if(chatMsgEntity!=null){
@@ -417,7 +417,7 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 				R.anim.waiting_game_rotate);
 		LinearInterpolator lfn = new LinearInterpolator();
 		rotateCircleAnim.setInterpolator(lfn);
-		multiGameConnectTv.setText("请求已发送，请等待。" + acceptSecond + "秒");
+		multiGameConnectTv.setText("请求已发送，请等待..." + acceptSecond + "秒");
 		multiGameConnectIv.startAnimation(rotateCircleAnim);
 		if (timer != null) {
 			timer.cancel();

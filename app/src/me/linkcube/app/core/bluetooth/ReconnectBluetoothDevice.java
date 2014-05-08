@@ -49,7 +49,7 @@ public class ReconnectBluetoothDevice {
 								secondCount++;
 								Timber.d("secondCount1:"+secondCount);
 								try {
-									LinkcubeApplication.toyServiceCall.connectToy(
+									LinkcubeApplication.toyServiceCall.connectToy( 
 											PreferenceUtils.getString(DEVICE_NAME,""), PreferenceUtils.getString(DEVICE_ADDRESS,""));
 								} catch (RemoteException e) {
 									e.printStackTrace();

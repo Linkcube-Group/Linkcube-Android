@@ -69,7 +69,7 @@ public class LoginActivity extends DialogActivity implements OnClickListener {
 		switch (v.getId()) {
 
 		case R.id.login_btn:
-			showProgressDialog("正在登陆哦，请稍后");
+			showProgressDialog("正在登陆哦，请稍后...");
 			if (usernameEt.getText().toString().equals("")
 					|| passwordEt.getText().toString().equals("")) {
 				Toast.makeText(LoginActivity.this, "用户名和密码不能为空",

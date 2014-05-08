@@ -40,4 +40,19 @@ public interface OnBluetoothDeviceListener {
 	 */
 	void onBluetoothStateOff();
 
+	/**
+	 * 绑定设备成功
+	 */
+	void onBluetoothStateBonded();
+
+	/**
+	 * 没有绑定设备
+	 */
+	void onBluetoothStateBondNone();
+
+	/**
+	 * 正在绑定
+	 */
+	void onBluetoothStateBonding();
+
 }

@@ -55,12 +55,10 @@
     <string name="feedback_email_hint">联系Email</string>
     <string name="about_us">关于我们</string>
     <string name="about_us_company_name">连酷科技</string>
-    <string name="about_us_desc">\n
-版本号：1.1\n
-微信：连酷科技\n
-微博：@连酷科技\n
-官方网站：http://www.linkcube.me\n
-</string>
+    <string name="version_name">版本号：1.1</string>
+    <string name="linkcube_weixin">微信：连酷科技</string>
+    <string name="linkcube_weibo">微博：@连酷科技</string>
+    <string name="linkcube_website">官方网站：http://www.linkcube.me</string>
 
     <!-- 蓝牙设置 -->
     <string name="search_toy">搜索玩具</string>
@@ -74,6 +72,7 @@
     <string name="switching_off_bluetooth">正在关闭蓝牙</string>
     <string name="connected">已连接</string>
     <string name="bonded">已配对未连接</string>
+    <string name="bonding">正在配对</string>
     <string name="unbond">未配对</string>
 
     <!-- 修改密码 -->

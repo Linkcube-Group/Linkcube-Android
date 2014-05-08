@@ -116,13 +116,11 @@ public class BluetoothSettingActivity extends DialogActivity implements
 
 	private void bondDevice(BluetoothDevice device, int position) {
 		if (BluetoothUtils.bondDevice(device)) {
-			Timber.d("绑定蓝牙设备成功");
-			AlertUtils.showToast(mActivity, "绑定蓝牙设备成功");
+			showProgressDialog("正在绑定玩具...");
 		} else {
-			Timber.d("绑定蓝牙设备失败");
-			AlertUtils.showToast(mActivity, "绑定蓝牙设备失败");
+			Timber.d("绑定拉玩具失败");
+			AlertUtils.showToast(mActivity, "绑定拉玩具失败");
 		}
-		deviceAdapter.notifyDataSetChanged();
 	}
 
 	private OnCheckedChangeListener switchListener = new OnCheckedChangeListener() {
@@ -194,9 +192,7 @@ public class BluetoothSettingActivity extends DialogActivity implements
 	public void onBluetoothDeviceDiscoveryOne(BluetoothDevice device) {
 		deviceLv.showDeviceListView();
 		Timber.d("发现一个设备:" + device.getName());
-		Timber.d("device is size 1 :" + deviceList.size());
 		filterDevices(device);
-		Timber.d("device is size 2 :" + deviceList.size());
 		if (deviceList.size() > 0) {
 			deviceAdapter.notifyDataSetChanged();
 			deviceLv.showDeviceListView();
@@ -240,7 +236,7 @@ public class BluetoothSettingActivity extends DialogActivity implements
 		protected void onPreExecute() {
 			super.onPreExecute();
 			Timber.d("准备连接设备");
-			showProgressDialog("正在连接设备");
+			showProgressDialog("正在连接玩具...");
 		}
 
 		@Override
@@ -264,7 +260,7 @@ public class BluetoothSettingActivity extends DialogActivity implements
 			dismissProgressDialog();
 			if (success) {
 				AlertUtils.showToast(mActivity, "连接玩具成功！");
-				//TODO 保存连接上的设备名和状态
+				// TODO 保存连接上的设备名和状态
 				PreferenceUtils.setString(DEVICE_NAME, mDevice.getName());
 				PreferenceUtils.setString(DEVICE_ADDRESS, mDevice.getAddress());
 				deviceAdapter.notifyDataSetChanged();
@@ -284,6 +280,27 @@ public class BluetoothSettingActivity extends DialogActivity implements
 		}
 		deviceList.add(device);
 		return deviceList;
+	}
+
+	@Override
+	public void onBluetoothStateBonded() {
+		Timber.d("onReceive:bluetooth bond state changed -> " + "BONDED");
+		Timber.d("绑定玩具成功");
+		dismissProgressDialog();
+		AlertUtils.showToast(mActivity, "绑定玩具成功");
+		deviceAdapter.notifyDataSetChanged();
+	}
+
+	@Override
+	public void onBluetoothStateBondNone() {
+		Timber.d("onReceive:bluetooth bond state changed -> " + "BOND_NONE");
+		deviceAdapter.notifyDataSetChanged();
+	}
+
+	@Override
+	public void onBluetoothStateBonding() {
+		Timber.d("onReceive:bluetooth bond state changed -> " + "BONDING");
+		Timber.d("正在绑定玩具");
 	}
 
 }

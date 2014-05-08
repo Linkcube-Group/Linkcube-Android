@@ -33,7 +33,7 @@
     <dimen name="ListCellTextSize">20sp</dimen>
     <!-- Setting -->
     <dimen name="SettingTextSize">20sp</dimen>
-    <dimen name="SettingMargin">10dp</dimen>
+    <dimen name="SettingMargin">5dp</dimen>
     <dimen name="SettingPadding">10dp</dimen>
     <dimen name="SettingSubTextSize">14sp</dimen>
     <dimen name="SettingItemHeight">60.0dip</dimen>

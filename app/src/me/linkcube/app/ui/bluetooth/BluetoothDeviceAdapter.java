@@ -2,8 +2,10 @@ package me.linkcube.app.ui.bluetooth;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
+import android.os.RemoteException;
 import android.view.View;
 import android.view.ViewGroup;
+import me.linkcube.app.LinkcubeApplication;
 import me.linkcube.app.R;
 import me.linkcube.app.ui.BaseListAdapter;
 
@@ -32,13 +34,24 @@ public class BluetoothDeviceAdapter extends BaseListAdapter<BluetoothDevice> {
 		BluetoothDevice device = getItem(position);
 		String name = device.getName();
 		cell.setDeviceName(name);
-		if (device.getBondState() == BluetoothDevice.BOND_BONDED) {
-			cell.setDeviceState(R.string.bonded);
-		} else if (device.getBondState() == BluetoothDevice.BOND_NONE) {
-			cell.setDeviceState(R.string.unbond);
-		} else {
-			cell.setDeviceState(R.string.connected);
+
+		try {
+			if (LinkcubeApplication.toyServiceCall.isToyConnected()) {
+				cell.setDeviceState(R.string.connected);
+			} else {
+				if (device.getBondState() == BluetoothDevice.BOND_BONDED) {
+					cell.setDeviceState(R.string.bonded);
+				} else if (device.getBondState() == BluetoothDevice.BOND_NONE) {
+					cell.setDeviceState(R.string.unbond);
+				} else if (device.getBondState() == BluetoothDevice.BOND_BONDING) {
+					cell.setDeviceState(R.string.bonding);
+				}
+			}
+
+		} catch (RemoteException e) {
+			e.printStackTrace();
 		}
+
 		return cell;
 	}
 
