@@ -8,6 +8,7 @@ import com.umeng.analytics.MobclickAgent;
 import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Timber;
 import static me.linkcube.app.core.Const.Preference.AUTO_LOGIN;
+import me.linkcube.app.core.bluetooth.CheckDeviceConnect;
 import me.linkcube.app.core.persistable.DataManager;
 import me.linkcube.app.core.update.AppManager;
 import me.linkcube.app.core.user.UserManager;
@@ -57,6 +58,8 @@ public class SplashActivity extends DialogActivity {
 
 		MobclickAgent.updateOnlineConfig(mActivity);
 		MobclickAgent.openActivityDurationTrack(false);
+		
+		CheckDeviceConnect.getInstance().onReconnectDeviceListener();
 	}
 
 	@Override

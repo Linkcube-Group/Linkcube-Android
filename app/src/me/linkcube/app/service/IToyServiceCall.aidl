@@ -5,8 +5,6 @@ import java.util.Map;
 
 interface IToyServiceCall {
 	
-	boolean isToyConnected();
-	
 	boolean connectToy(String deviceName, String macAddress);
 	
 	boolean disconnectToy(String deviceName, String macAddress);
@@ -28,5 +26,7 @@ interface IToyServiceCall {
 	boolean setWaveMode(int index, int val);
 	
 	boolean setShakeMode(int index, int val);	
+	
+	boolean checkData();
 }
 

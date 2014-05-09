@@ -7,6 +7,7 @@ import com.umeng.analytics.MobclickAgent;
 
 import me.linkcube.app.R;
 import me.linkcube.app.core.Timber;
+import me.linkcube.app.core.bluetooth.CheckDeviceConnect;
 import me.linkcube.app.core.toy.ShakeSensor;
 import me.linkcube.app.core.toy.VoiceSensor;
 import me.linkcube.app.core.update.AppManager;
@@ -81,12 +82,39 @@ public class MainActivity extends BaseFragmentActivity implements
 		bindToyService();
 
 		checkAppUpdate();
+		
+		CheckDeviceConnect();
 		// 友盟统计
 		MobclickAgent.onEvent(MainActivity.this, "用户进入应用");
 		ReconnectionListener.getInstance().setReconnectionCallBack(
 				reconnectionCallBack);
 
 	}
+
+	private void CheckDeviceConnect() {
+		CheckDeviceConnect.getInstance().setCheckDeviceConnectCallBack(new ASmackRequestCallBack() {
+			
+			@Override
+			public void responseSuccess(Object object) {
+				
+			}
+			
+			@Override
+			public void responseFailure(int reflag) {
+				checkDeviceHandler.sendEmptyMessage(0);
+			}
+		});
+	}
+	
+	private Handler checkDeviceHandler =new Handler(){
+
+		@Override
+		public void handleMessage(Message msg) {
+			((SinglePalyerFragment)singleFragment).resetToy();
+			Toast.makeText(MainActivity.this, "玩具已断开，请重新连接", Toast.LENGTH_SHORT).show();
+		}
+		
+	};
 
 	/**
 	 * 检测更新

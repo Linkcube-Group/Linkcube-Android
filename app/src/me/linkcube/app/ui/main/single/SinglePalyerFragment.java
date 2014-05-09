@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import me.linkcube.app.LinkcubeApplication;
 import me.linkcube.app.R;
 import me.linkcube.app.core.Timber;
+import me.linkcube.app.core.bluetooth.CheckDeviceConnect;
 import me.linkcube.app.core.toy.ShakeSensor;
 import me.linkcube.app.core.toy.VoiceSensor;
 import me.linkcube.app.core.user.UserManager;
@@ -117,9 +118,8 @@ public class SinglePalyerFragment extends BaseFragment implements
 		if (LinkcubeApplication.toyServiceCall != null) {
 			try {
 				statusBarView
-						.setBluetoothState(LinkcubeApplication.toyServiceCall
-								.isToyConnected());
-			} catch (RemoteException e) {
+						.setBluetoothState(CheckDeviceConnect.getInstance().isConnected());
+			} catch (Exception e) {
 				statusBarView.setBluetoothState(false);
 				e.printStackTrace();
 			}

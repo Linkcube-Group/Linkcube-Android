@@ -8,7 +8,7 @@ import java.util.UUID;
 
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.bluetooth.BluetoothUtils;
-import me.linkcube.app.core.bluetooth.ReconnectBluetoothDevice;
+import me.linkcube.app.core.bluetooth.CheckDeviceConnect;
 import me.linkcube.app.service.IToyServiceCall;
 import me.linkcube.app.util.PreferenceUtils;
 import android.annotation.SuppressLint;
@@ -31,7 +31,7 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 
 	private final static int Toy_BadCommand = 2;
 
-	private boolean isConnected = false;
+	//private boolean isConnected = false;
 
 	private BluetoothDevice curDevice = null;
 
@@ -40,6 +40,8 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 	private byte[] engineData = { 0x25, 0x1, 0x1, 0x0, 0x0, 0x0, 0x0, 0x27 };
 
 	private byte[] modeData = { 0x25, 0x1, 0x0, 0x0, 0x1, 0x0, 0x0, 0x27 };
+
+	private byte[] checkData = { 0x35, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x35 };
 
 	private int ShakeThreshHold[] = { 0, 500, 800, 1000, 2000, 4000, 5000, 8000 };
 
@@ -137,14 +139,14 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 			e.printStackTrace();
 			return false;
 		}
-		isConnected = true;
+		CheckDeviceConnect.getInstance().setmIsConnected(true);
 		return true;
 	}
 
 	@Override
 	public boolean connectToy(String name, String macaddr)
 			throws RemoteException {
-		
+
 		Timber.d("connectToy:");
 		curDevice = null;
 
@@ -181,8 +183,7 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 		OutputStream tmpOut = null;
 		try {
 			tmpOut = curSocket.getOutputStream();
-			
-			
+
 		} catch (IOException e) {
 			Timber.e(e, "Bluetooth outputstream sockets not created");
 			return Toy_Lost;
@@ -192,11 +193,10 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 			tmpOut.write(data);
 		} catch (IOException e) {
 			e.printStackTrace();
-			curDevice=null;
-			curSocket=null;
-			ReconnectBluetoothDevice.getInstance().onReconnectDeviceListener();
+			curDevice = null;
+			curSocket = null;
 			return Toy_Lost;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return Toy_Success;
@@ -265,7 +265,7 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 		} catch (IOException e2) {
 			return false;
 		}
-		isConnected = false;
+		CheckDeviceConnect.getInstance().setmIsConnected(false);
 		return true;
 	}
 
@@ -316,23 +316,53 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 		voiceSensi = v;
 	}
 
+//	@SuppressLint("NewApi")
+//	@Override
+//	public boolean isToyConnected() {
+//		if (curDevice == null || curSocket == null) {
+//			return false;
+//		}
+//		// return curSocket.isConnected();
+//
+//		boolean isConnected = false;
+//
+//		if (Build.VERSION.SDK_INT >= 14) {
+//			isConnected = curSocket.isConnected();
+//		} else {
+//			isConnected = ToyServiceCallImpl.this.isConnected;
+//		}
+//
+//		if (isConnected) {
+//			OutputStream tmpOut = null;
+//			try {
+//				tmpOut = curSocket.getOutputStream();
+//			} catch (IOException e) {
+//				Timber.e(e, "temp sockets not created");
+//				return false;
+//			}
+//
+//			try {
+//				tmpOut.write(checkData);
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//				return false;
+//			}
+//
+//			Timber.i("Toy is Connected");
+//
+//			return true;
+//		}
+//		return false;
+//	}
+	
 	@SuppressLint("NewApi")
 	@Override
-	public boolean isToyConnected() {
+	public boolean checkData() {
 		if (curDevice == null || curSocket == null) {
 			return false;
 		}
-		// return curSocket.isConnected();
+		
 
-		boolean isConnected = false;
-
-		if (Build.VERSION.SDK_INT >= 14) {
-			isConnected = curSocket.isConnected();
-		} else {
-			isConnected = ToyServiceCallImpl.this.isConnected;
-		}
-
-		if (isConnected) {
 			OutputStream tmpOut = null;
 			try {
 				tmpOut = curSocket.getOutputStream();
@@ -341,19 +371,16 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 				return false;
 			}
 
-//			byte[] checkData = { 0x25, 0x3, 0x0, 0x0, 0x0, 0x0, 0x0, 0x28 };
-//
-//			try {
-//				tmpOut.write(checkData);
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//				return false;
-//			}
+			try {
+				tmpOut.write(checkData);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+
 			Timber.i("Toy is Connected");
-			
+
 			return true;
-		}
-		return false;
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import me.linkcube.app.LinkcubeApplication;
 import me.linkcube.app.R;
+import me.linkcube.app.core.bluetooth.CheckDeviceConnect;
 import me.linkcube.app.ui.BaseListAdapter;
 
 /**
@@ -35,21 +36,16 @@ public class BluetoothDeviceAdapter extends BaseListAdapter<BluetoothDevice> {
 		String name = device.getName();
 		cell.setDeviceName(name);
 
-		try {
-			if (LinkcubeApplication.toyServiceCall.isToyConnected()) {
-				cell.setDeviceState(R.string.connected);
-			} else {
-				if (device.getBondState() == BluetoothDevice.BOND_BONDED) {
-					cell.setDeviceState(R.string.bonded);
-				} else if (device.getBondState() == BluetoothDevice.BOND_NONE) {
-					cell.setDeviceState(R.string.unbond);
-				} else if (device.getBondState() == BluetoothDevice.BOND_BONDING) {
-					cell.setDeviceState(R.string.bonding);
-				}
+		if (CheckDeviceConnect.getInstance().isConnected()) {
+			cell.setDeviceState(R.string.connected);
+		} else {
+			if (device.getBondState() == BluetoothDevice.BOND_BONDED) {
+				cell.setDeviceState(R.string.bonded);
+			} else if (device.getBondState() == BluetoothDevice.BOND_NONE) {
+				cell.setDeviceState(R.string.unbond);
+			} else if (device.getBondState() == BluetoothDevice.BOND_BONDING) {
+				cell.setDeviceState(R.string.bonding);
 			}
-
-		} catch (RemoteException e) {
-			e.printStackTrace();
 		}
 
 		return cell;
