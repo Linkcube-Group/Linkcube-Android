@@ -50,6 +50,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
+            style="@style/Button.Pink"
             android:text="同意" />
 
         <Button
@@ -61,6 +62,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
+            style="@style/Button.Pink"
             android:text="拒绝" />
 
         <TextView

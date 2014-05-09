@@ -45,9 +45,8 @@ public class BluetoothDeviceListView extends RelativeLayout {
 				true);
 		mTipTv = (TextView) view.findViewById(R.id.tip_tv);
 		mDeviceLv = (ListView) view.findViewById(android.R.id.list);
-		View header = mInflater.inflate(
-				R.layout.bluetooth_device_listview_header, null);
-		mDeviceLv.addHeaderView(header);
+		//View header = mInflater.inflate(R.layout.bluetooth_device_listview_header, null);
+		//mDeviceLv.addHeaderView(header);
 		mDeviceLv.setOnItemClickListener(new OnItemClickListener());
 	}
 

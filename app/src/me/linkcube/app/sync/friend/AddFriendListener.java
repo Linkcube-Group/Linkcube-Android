@@ -75,7 +75,8 @@ public class AddFriendListener {
 							Timber.d("friendname:" + friendName);
 							Roster roster = ASmackManager.getInstance()
 									.getXMPPConnection().getRoster();
-							if (roster.contains(friendName)) {// 如果他们已经成为了好友
+							if (roster.contains(friendName)&&!roster.getEntry(friendName).getType().toString().equals("none")) {// 如果他们已经成为了好友
+								Timber.d("getType:" + roster.getEntry(friendName).getType().toString());
 								// 服务器已自动处理为both了
 								Timber.d("subscribed:" + friendName);
 								// TODO 插入好友的所有数据

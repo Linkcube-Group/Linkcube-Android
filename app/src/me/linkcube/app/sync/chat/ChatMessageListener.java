@@ -74,9 +74,14 @@ public class ChatMessageListener {
 						offLineMsgEntity.setFrom(ASmackUtils
 								.deleteServerAddress(message.getFrom()));
 						offLineMsgEntity.setBody(message.getBody());
-						if (!message.getBody().startsWith(Const.Game.REQUESTCMD)) {
+						if (!message.getBody()
+								.startsWith(Const.Game.REQUESTCMD)
+								&& !message.getBody().startsWith(
+										Const.Game.SHAKESPEEDCMD)
+								&& !message.getBody().startsWith(
+										Const.Game.POSITIONMODECMD)) {
 							offLineMsgs.add(offLineMsgEntity);
-						} 
+						}
 					}
 					isGameMsgOrNormalMsg(message);
 

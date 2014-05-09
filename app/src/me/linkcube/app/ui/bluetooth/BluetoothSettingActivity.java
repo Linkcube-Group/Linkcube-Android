@@ -236,7 +236,7 @@ public class BluetoothSettingActivity extends DialogActivity implements
 		protected void onPreExecute() {
 			super.onPreExecute();
 			Timber.d("准备连接设备");
-			showProgressDialog("正在连接玩具...");
+			showProgressDialog("正在与玩具配对...");
 		}
 
 		@Override
@@ -265,7 +265,7 @@ public class BluetoothSettingActivity extends DialogActivity implements
 				PreferenceUtils.setString(DEVICE_ADDRESS, mDevice.getAddress());
 				deviceAdapter.notifyDataSetChanged();
 			} else {
-				AlertUtils.showToast(mActivity, "连接玩具失败，请重试！");
+				AlertUtils.showToast(mActivity, "连接玩具失败，请确认玩具是否打开！");
 			}
 
 		}
@@ -285,9 +285,9 @@ public class BluetoothSettingActivity extends DialogActivity implements
 	@Override
 	public void onBluetoothStateBonded() {
 		Timber.d("onReceive:bluetooth bond state changed -> " + "BONDED");
-		Timber.d("绑定玩具成功");
+		Timber.d("玩具配对成功");
 		dismissProgressDialog();
-		AlertUtils.showToast(mActivity, "绑定玩具成功");
+		AlertUtils.showToast(mActivity, "玩具配对成功！");
 		deviceAdapter.notifyDataSetChanged();
 	}
 

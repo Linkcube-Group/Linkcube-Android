@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jivesoftware.smack.packet.Presence;
+
 
 import me.linkcube.app.R;
 import me.linkcube.app.core.entity.FriendEntity;
@@ -12,6 +14,7 @@ import me.linkcube.app.core.persistable.DataManager;
 import me.linkcube.app.core.persistable.PersistableFriend;
 import me.linkcube.app.core.persistable.PersistableFriendRequest;
 import me.linkcube.app.core.user.UserManager;
+import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.ui.DialogActivity;
 import android.content.Intent;
@@ -189,7 +192,15 @@ public class FriendAddedActivity extends DialogActivity implements OnClickListen
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.actionbar_first_btn:
+			//TODO 未处理的好友请求就拒绝
+			
 			for (FriendRequestEntity friendRequestEntity : friendRequestEntities) {
+				if(friendRequestEntity.getSubscription().equals("from")){
+					Presence refusePresence = new Presence(Presence.Type.unsubscribe);
+					refusePresence.setTo(ASmackUtils.getFriendJid(friendRequestEntity.getFriendName()));
+					ASmackManager.getInstance().getXMPPConnection()
+							.sendPacket(refusePresence);
+				}
 				PersistableFriendRequest perFriendRequest = new PersistableFriendRequest();
 				DataManager.getInstance().delete(perFriendRequest,
 						friendRequestEntity);

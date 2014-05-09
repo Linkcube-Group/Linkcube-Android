@@ -97,110 +97,7 @@ public class RegisterActivity extends DialogActivity implements OnClickListener 
 						public void responseSuccess(Object object) {
 							UserManager.getInstance().initListener(
 									mActivity);
-							
-							new UserRegister(userName, Password,
-									new ASmackRequestCallBack() {
-										@Override
-										public void responseSuccess(Object object) {
-
-											Toast.makeText(RegisterActivity.this, "注册成功",
-													Toast.LENGTH_SHORT).show();
-											// 注册成功后直接登陆
-											showProgressDialog("正在登陆哦，请稍后...");
-											new UserLogin(
-													ASmackUtils.userNameEncode(usernameEt
-															.getText().toString()),
-													passwordEt.getText().toString(),
-													new ASmackRequestCallBack() {
-
-														@Override
-														public void responseSuccess(
-																Object object) {
-															final VCard vCard = (VCard) object;
-															try {
-																vCard.load(ASmackManager
-																		.getInstance()
-																		.getXMPPConnection());
-															} catch (XMPPException e) {
-																e.printStackTrace();
-															}
-
-															UserManager
-																	.getInstance()
-																	.initListener(mActivity);
-															//UserManager.getInstance().getAllfriends(mActivity);注册的时候没有好友
-
-															Thread thread = new Thread() {
-																@Override
-																public void run() {
-																	try {
-																		sleep(3000);
-																	} catch (InterruptedException e) {
-																		e.printStackTrace();
-																	}
-																	UserManager
-																			.getInstance()
-																			.setUserStateAvailable();
-
-																	Timber.d("userInfo:"
-																			+ vCard.toXML());
-
-																	dismissProgressDialog();
-																	Intent intent = new Intent(
-																			RegisterActivity.this,
-																			InitUserInfoActivity.class);
-																	startActivity(intent);
-																}
-
-															};
-
-															thread.start();
-															Toast.makeText(
-																	RegisterActivity.this,
-																	"登陆成功",
-																	Toast.LENGTH_SHORT)
-																	.show();
-														}
-
-														@Override
-														public void responseFailure(
-																int reflag) {
-															if (reflag == 1) {
-																dismissProgressDialog();
-																Toast.makeText(
-																		RegisterActivity.this,
-																		"已经登录",
-																		Toast.LENGTH_SHORT)
-																		.show();
-															} else if (reflag == -1) {
-																dismissProgressDialog();
-																Toast.makeText(
-																		RegisterActivity.this,
-																		"网络错误请检查",
-																		Toast.LENGTH_SHORT)
-																		.show();
-															}
-
-														}
-													});
-										}
-
-										@Override
-										public void responseFailure(int reflag) {
-											Timber.d("reflag:"+reflag);
-											if(reflag==1){
-												Toast.makeText(RegisterActivity.this, "服务器无响应",
-														Toast.LENGTH_SHORT).show();
-											}else if(reflag==2){
-												Toast.makeText(RegisterActivity.this, "当前邮箱已被使用",
-														Toast.LENGTH_SHORT).show();
-											}else{
-												Toast.makeText(RegisterActivity.this, "网络异常，请重试",
-														Toast.LENGTH_SHORT).show();
-											}
-										}
-									});
-							
+							userRegisterEvent();
 						}
 						
 						@Override
@@ -208,6 +105,8 @@ public class RegisterActivity extends DialogActivity implements OnClickListener 
 							
 						}
 					});
+				}else{
+					userRegisterEvent();
 				}
 				
 			}
@@ -218,6 +117,111 @@ public class RegisterActivity extends DialogActivity implements OnClickListener 
 		default:
 			break;
 		}
+	}
+	
+	public void userRegisterEvent(){
+		new UserRegister(userName, Password,
+				new ASmackRequestCallBack() {
+					@Override
+					public void responseSuccess(Object object) {
+
+						Toast.makeText(RegisterActivity.this, "注册成功",
+								Toast.LENGTH_SHORT).show();
+						// 注册成功后直接登陆
+						//showProgressDialog("正在登陆哦，请稍后...");
+						new UserLogin(
+								ASmackUtils.userNameEncode(usernameEt
+										.getText().toString()),
+								passwordEt.getText().toString(),
+								new ASmackRequestCallBack() {
+
+									@Override
+									public void responseSuccess(
+											Object object) {
+										final VCard vCard = (VCard) object;
+										try {
+											vCard.load(ASmackManager
+													.getInstance()
+													.getXMPPConnection());
+										} catch (XMPPException e) {
+											e.printStackTrace();
+										}
+
+										UserManager
+												.getInstance()
+												.initListener(mActivity);
+										//UserManager.getInstance().getAllfriends(mActivity);注册的时候没有好友
+
+										Thread thread = new Thread() {
+											@Override
+											public void run() {
+												try {
+													sleep(3000);
+												} catch (InterruptedException e) {
+													e.printStackTrace();
+												}
+												UserManager
+														.getInstance()
+														.setUserStateAvailable();
+
+												Timber.d("userInfo:"
+														+ vCard.toXML());
+
+												//dismissProgressDialog();
+												Intent intent = new Intent(
+														RegisterActivity.this,
+														InitUserInfoActivity.class);
+												startActivity(intent);
+											}
+
+										};
+
+										thread.start();
+										Toast.makeText(
+												RegisterActivity.this,
+												"登陆成功",
+												Toast.LENGTH_SHORT)
+												.show();
+									}
+
+									@Override
+									public void responseFailure(
+											int reflag) {
+										if (reflag == 1) {
+											//dismissProgressDialog();
+											Toast.makeText(
+													RegisterActivity.this,
+													"已经登录",
+													Toast.LENGTH_SHORT)
+													.show();
+										} else if (reflag == -1) {
+											//dismissProgressDialog();
+											Toast.makeText(
+													RegisterActivity.this,
+													"网络错误请检查",
+													Toast.LENGTH_SHORT)
+													.show();
+										}
+
+									}
+								});
+					}
+
+					@Override
+					public void responseFailure(int reflag) {
+						Timber.d("reflag:"+reflag);
+						if(reflag==1){
+							Toast.makeText(RegisterActivity.this, "服务器无响应",
+									Toast.LENGTH_SHORT).show();
+						}else if(reflag==2){
+							Toast.makeText(RegisterActivity.this, "当前邮箱已被使用",
+									Toast.LENGTH_SHORT).show();
+						}else{
+							Toast.makeText(RegisterActivity.this, "网络异常，请重试",
+									Toast.LENGTH_SHORT).show();
+						}
+					}
+				});
 	}
 
 }

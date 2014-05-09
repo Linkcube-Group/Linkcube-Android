@@ -38,7 +38,7 @@
     <string name="friends">好友</string>
     <string name="search_user_by_email">邮箱账号</string>
     <string name="new_messages">消息</string>
-    <string name="friend_list">好友列表</string>
+    <string name="friend_list">好友</string>
 
     <!-- 个人好友信息 -->
     <string name="detail_info">详细资料</string>
@@ -89,8 +89,8 @@
     <string name="user_info">个人信息</string>
     <string name="update_user_info">更新个人信息</string>
     <string name="user_agreement_activity">软件协议</string>
-    <string name="new_friend_request">新的情侣</string>
-    <string name="search_user">添加情侣</string>
+    <string name="new_friend_request">消息</string>
+    <string name="search_user">添加</string>
     <string name="save_user_info">保存</string>
     <string name="feedback_send">发送</string>
     <string name="friend_add_clear">清空</string>
