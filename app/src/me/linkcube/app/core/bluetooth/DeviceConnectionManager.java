@@ -12,8 +12,6 @@ public class DeviceConnectionManager {
 
 	private Timer timer;
 
-	private int secondCount = 0;
-
 	private boolean mIsConnected = false;
 
 	private static DeviceConnectionManager instance;
@@ -38,45 +36,39 @@ public class DeviceConnectionManager {
 
 	}
 
-	public void onReconnectDeviceListener() {
-		if (timer == null) {
-			timer = new Timer();
-			timer.schedule(new TimerTask() {
+	public void startCheckConnetionTask() {
+		timer = new Timer();
+		timer.schedule(new TimerTask() {
 
-				@Override
-				public void run() {
+			@Override
+			public void run() {
 
-					try {
-						if (mIsConnected != LinkcubeApplication.toyServiceCall
-								.checkData()) {
-							mIsConnected = LinkcubeApplication.toyServiceCall
-									.checkData();
-							Timber.d("mIsConnected:" + mIsConnected);
-							if (mIsConnected) {
-								callback.stable();
-							} else {
-								callback.interrupted();
-							}
+				try {
+					if (mIsConnected != LinkcubeApplication.toyServiceCall
+							.checkData()) {
+						mIsConnected = LinkcubeApplication.toyServiceCall
+								.checkData();
+						Timber.d("mIsConnected:" + mIsConnected);
+						if (mIsConnected) {
+							callback.stable();
+						} else {
+							callback.interrupted();
+							cancelCheckConnectionTask();
 						}
-					} catch (RemoteException e1) {
-						e1.printStackTrace();
 					}
-
-					/*
-					 * try { if (!LinkcubeApplication.toyServiceCall
-					 * .isToyConnected()) { secondCount++;
-					 * Timber.d("secondCount1:" + secondCount); try {
-					 * LinkcubeApplication.toyServiceCall.connectToy(
-					 * PreferenceUtils.getString(DEVICE_NAME, ""),
-					 * PreferenceUtils.getString( DEVICE_ADDRESS, "")); } catch
-					 * (RemoteException e) { e.printStackTrace(); } if
-					 * (LinkcubeApplication.toyServiceCall .isToyConnected()) {
-					 * timer.cancel(); timer = null; } } } catch
-					 * (RemoteException e) { e.printStackTrace(); }
-					 */
-
+				} catch (RemoteException e1) {
+					callback.interrupted();
+					e1.printStackTrace();
 				}
-			}, 3000, 3000);
+
+			}
+		}, 3000, 3000);
+	}
+
+	public void cancelCheckConnectionTask() {
+		if (timer != null) {
+			timer.cancel();
+			timer = null;
 		}
 	}
 

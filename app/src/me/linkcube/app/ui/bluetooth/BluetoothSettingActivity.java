@@ -18,6 +18,7 @@ import me.linkcube.app.R;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.bluetooth.BluetoothDeviceReceiver;
 import me.linkcube.app.core.bluetooth.BluetoothUtils;
+import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.ui.DialogActivity;
 import me.linkcube.app.util.PreferenceUtils;
 import me.linkcube.app.widget.AlertUtils;
@@ -259,6 +260,7 @@ public class BluetoothSettingActivity extends DialogActivity implements
 			Timber.d("连接设备完毕");
 			dismissProgressDialog();
 			if (success) {
+				DeviceConnectionManager.getInstance().startCheckConnetionTask();
 				AlertUtils.showToast(mActivity, "连接玩具成功！");
 				// TODO 保存连接上的设备名和状态
 				PreferenceUtils.setString(DEVICE_NAME, mDevice.getName());
