@@ -90,6 +90,7 @@ public class MainActivity extends BaseFragmentActivity implements
 		ReconnectionListener.getInstance().setReconnectionCallBack(
 				reconnectionCallBack);
 
+		DeviceConnectionManager.getInstance().onReconnectDeviceListener();
 	}
 
 	private void CheckDeviceConnect() {

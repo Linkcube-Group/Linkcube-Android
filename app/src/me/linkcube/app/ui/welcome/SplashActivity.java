@@ -59,7 +59,6 @@ public class SplashActivity extends DialogActivity {
 		MobclickAgent.updateOnlineConfig(mActivity);
 		MobclickAgent.openActivityDurationTrack(false);
 		
-		DeviceConnectionManager.getInstance().onReconnectDeviceListener();
 	}
 
 	@Override
