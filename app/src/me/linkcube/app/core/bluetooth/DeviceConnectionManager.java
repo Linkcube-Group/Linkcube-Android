@@ -1,18 +1,14 @@
 package me.linkcube.app.core.bluetooth;
 
-import static me.linkcube.app.core.Const.Device.DEVICE_ADDRESS;
-import static me.linkcube.app.core.Const.Device.DEVICE_NAME;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.bluetooth.BluetoothDevice;
 import android.os.RemoteException;
 import me.linkcube.app.LinkcubeApplication;
 import me.linkcube.app.core.Timber;
-import me.linkcube.app.sync.core.ASmackRequestCallBack;
-import me.linkcube.app.util.PreferenceUtils;
 
-public class CheckDeviceConnect {
+public class DeviceConnectionManager {
 
 	private Timer timer;
 
@@ -20,15 +16,17 @@ public class CheckDeviceConnect {
 
 	private boolean mIsConnected = false;
 
-	private static CheckDeviceConnect instance;
+	private static DeviceConnectionManager instance;
 
-	public ASmackRequestCallBack checkDeviceConnectCallBack;
+	public CheckConnectionCallback callback;
 
-	public static CheckDeviceConnect getInstance() {
+	private BluetoothDevice device;
+
+	public static DeviceConnectionManager getInstance() {
 		if (instance == null) {
-			synchronized (CheckDeviceConnect.class) {
+			synchronized (DeviceConnectionManager.class) {
 				if (instance == null) {
-					instance = new CheckDeviceConnect();
+					instance = new DeviceConnectionManager();
 				}
 			}
 		}
@@ -36,7 +34,7 @@ public class CheckDeviceConnect {
 		return instance;
 	}
 
-	private CheckDeviceConnect() {
+	private DeviceConnectionManager() {
 
 	}
 
@@ -55,9 +53,9 @@ public class CheckDeviceConnect {
 									.checkData();
 							Timber.d("mIsConnected:" + mIsConnected);
 							if (mIsConnected) {
-								checkDeviceConnectCallBack.responseSuccess(0);
+								callback.stable();
 							} else {
-								checkDeviceConnectCallBack.responseFailure(-1);
+								callback.interrupted();
 							}
 						}
 					} catch (RemoteException e1) {
@@ -81,18 +79,40 @@ public class CheckDeviceConnect {
 			}, 3000, 3000);
 		}
 	}
-	
-	public void setmIsConnected(boolean mIsConnected) {
+
+	public void setmIsConnected(boolean mIsConnected, BluetoothDevice device) {
 		this.mIsConnected = mIsConnected;
+		this.device = device;
 	}
 
 	public boolean isConnected() {
 		return mIsConnected;
 	}
 
-	public void setCheckDeviceConnectCallBack(
-			ASmackRequestCallBack checkDeviceConnectCallBack) {
-		this.checkDeviceConnectCallBack = checkDeviceConnectCallBack;
+	public BluetoothDevice getDeviceConnected() {
+		return device;
+	}
+
+	public void setCheckConnectionCallBack(CheckConnectionCallback callback) {
+		this.callback = callback;
+	}
+
+	public interface CheckConnectionCallback {
+
+		/**
+		 * 连接状态稳定
+		 */
+		void stable();
+
+		/**
+		 * 主动断开连接
+		 */
+		void disconnect();
+
+		/**
+		 * 被动断开连接
+		 */
+		void interrupted();
 	}
 
 }

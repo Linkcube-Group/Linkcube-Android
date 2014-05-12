@@ -2,7 +2,7 @@ package me.linkcube.app.ui.main.single;
 
 import me.linkcube.app.LinkcubeApplication;
 import me.linkcube.app.R;
-import me.linkcube.app.core.bluetooth.CheckDeviceConnect;
+import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import android.content.Context;
 import android.content.Intent;
@@ -55,7 +55,7 @@ public class ShakeModeView extends RelativeLayout{
 		@Override
 		public void onClick(View v) {
 			try {
-				if (!CheckDeviceConnect.getInstance().isConnected()) {
+				if (!DeviceConnectionManager.getInstance().isConnected()) {
 					mListener.showConnectBluetoothTip();
 					return;
 				}

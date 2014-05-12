@@ -8,7 +8,7 @@ import java.util.UUID;
 
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.bluetooth.BluetoothUtils;
-import me.linkcube.app.core.bluetooth.CheckDeviceConnect;
+import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.service.IToyServiceCall;
 import me.linkcube.app.util.PreferenceUtils;
 import android.annotation.SuppressLint;
@@ -31,7 +31,7 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 
 	private final static int Toy_BadCommand = 2;
 
-	//private boolean isConnected = false;
+	// private boolean isConnected = false;
 
 	private BluetoothDevice curDevice = null;
 
@@ -139,7 +139,7 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 			e.printStackTrace();
 			return false;
 		}
-		CheckDeviceConnect.getInstance().setmIsConnected(true);
+		DeviceConnectionManager.getInstance().setmIsConnected(true, curDevice);
 		return true;
 	}
 
@@ -265,7 +265,7 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 		} catch (IOException e2) {
 			return false;
 		}
-		CheckDeviceConnect.getInstance().setmIsConnected(false);
+		DeviceConnectionManager.getInstance().setmIsConnected(false, curDevice);
 		return true;
 	}
 
@@ -316,71 +316,71 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 		voiceSensi = v;
 	}
 
-//	@SuppressLint("NewApi")
-//	@Override
-//	public boolean isToyConnected() {
-//		if (curDevice == null || curSocket == null) {
-//			return false;
-//		}
-//		// return curSocket.isConnected();
-//
-//		boolean isConnected = false;
-//
-//		if (Build.VERSION.SDK_INT >= 14) {
-//			isConnected = curSocket.isConnected();
-//		} else {
-//			isConnected = ToyServiceCallImpl.this.isConnected;
-//		}
-//
-//		if (isConnected) {
-//			OutputStream tmpOut = null;
-//			try {
-//				tmpOut = curSocket.getOutputStream();
-//			} catch (IOException e) {
-//				Timber.e(e, "temp sockets not created");
-//				return false;
-//			}
-//
-//			try {
-//				tmpOut.write(checkData);
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//				return false;
-//			}
-//
-//			Timber.i("Toy is Connected");
-//
-//			return true;
-//		}
-//		return false;
-//	}
-	
+	// @SuppressLint("NewApi")
+	// @Override
+	// public boolean isToyConnected() {
+	// if (curDevice == null || curSocket == null) {
+	// return false;
+	// }
+	// // return curSocket.isConnected();
+	//
+	// boolean isConnected = false;
+	//
+	// if (Build.VERSION.SDK_INT >= 14) {
+	// isConnected = curSocket.isConnected();
+	// } else {
+	// isConnected = ToyServiceCallImpl.this.isConnected;
+	// }
+	//
+	// if (isConnected) {
+	// OutputStream tmpOut = null;
+	// try {
+	// tmpOut = curSocket.getOutputStream();
+	// } catch (IOException e) {
+	// Timber.e(e, "temp sockets not created");
+	// return false;
+	// }
+	//
+	// try {
+	// tmpOut.write(checkData);
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// return false;
+	// }
+	//
+	// Timber.i("Toy is Connected");
+	//
+	// return true;
+	// }
+	// return false;
+	// }
+
 	@SuppressLint("NewApi")
 	@Override
 	public boolean checkData() {
 		if (curDevice == null || curSocket == null) {
 			return false;
 		}
-		
 
-			OutputStream tmpOut = null;
-			try {
-				tmpOut = curSocket.getOutputStream();
-			} catch (IOException e) {
-				Timber.e(e, "temp sockets not created");
-				return false;
-			}
+		OutputStream tmpOut = null;
+		try {
+			tmpOut = curSocket.getOutputStream();
+		} catch (IOException e) {
+			Timber.e(e, "sockets not created");
+			return false;
+		}
 
-			try {
-				tmpOut.write(checkData);
-			} catch (IOException e) {
-				e.printStackTrace();
-				return false;
-			}
+		try {
+			tmpOut.write(checkData);
+		} catch (IOException e) {
+			e.printStackTrace();
+			Timber.i("Toy is disconnected.");
+			return false;
+		}
 
-			Timber.i("Toy is Connected");
+		Timber.i("Toy is connected.");
 
-			return true;
+		return true;
 	}
 
 	@Override

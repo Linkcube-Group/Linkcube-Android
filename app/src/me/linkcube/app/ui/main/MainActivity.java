@@ -7,7 +7,8 @@ import com.umeng.analytics.MobclickAgent;
 
 import me.linkcube.app.R;
 import me.linkcube.app.core.Timber;
-import me.linkcube.app.core.bluetooth.CheckDeviceConnect;
+import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
+import me.linkcube.app.core.bluetooth.DeviceConnectionManager.CheckConnectionCallback;
 import me.linkcube.app.core.toy.ShakeSensor;
 import me.linkcube.app.core.toy.VoiceSensor;
 import me.linkcube.app.core.update.AppManager;
@@ -66,8 +67,8 @@ public class MainActivity extends BaseFragmentActivity implements
 	private String apkVersion;
 	private String apkSize;
 	private String apkDescription;
-	
-	private int LOGOUT__RESULT=3;
+
+	private int LOGOUT__RESULT = 3;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -82,7 +83,7 @@ public class MainActivity extends BaseFragmentActivity implements
 		bindToyService();
 
 		checkAppUpdate();
-		
+
 		CheckDeviceConnect();
 		// 友盟统计
 		MobclickAgent.onEvent(MainActivity.this, "用户进入应用");
@@ -92,28 +93,39 @@ public class MainActivity extends BaseFragmentActivity implements
 	}
 
 	private void CheckDeviceConnect() {
-		CheckDeviceConnect.getInstance().setCheckDeviceConnectCallBack(new ASmackRequestCallBack() {
-			
-			@Override
-			public void responseSuccess(Object object) {
-				
-			}
-			
-			@Override
-			public void responseFailure(int reflag) {
-				checkDeviceHandler.sendEmptyMessage(0);
-			}
-		});
+		DeviceConnectionManager.getInstance().setCheckConnectionCallBack(
+				new CheckConnectionCallback() {
+
+					@Override
+					public void stable() {
+						// TODO Auto-generated method stub
+
+					}
+
+					@Override
+					public void interrupted() {
+						checkDeviceHandler.sendEmptyMessage(0);
+
+					}
+
+					@Override
+					public void disconnect() {
+						// TODO Auto-generated method stub
+
+					}
+				});
+
 	}
-	
-	private Handler checkDeviceHandler =new Handler(){
+
+	private Handler checkDeviceHandler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
-			((SinglePalyerFragment)singleFragment).resetToy();
-			Toast.makeText(MainActivity.this, "玩具已断开，请重新连接", Toast.LENGTH_SHORT).show();
+			((SinglePalyerFragment) singleFragment).resetToy();
+			Toast.makeText(MainActivity.this, "玩具已断开，请重新连接", Toast.LENGTH_SHORT)
+					.show();
 		}
-		
+
 	};
 
 	/**
@@ -245,7 +257,7 @@ public class MainActivity extends BaseFragmentActivity implements
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		if (resultCode == LOGOUT__RESULT) {
-			
+
 			tabIndicatorView.setCurrentTab(0);
 		}
 	};
