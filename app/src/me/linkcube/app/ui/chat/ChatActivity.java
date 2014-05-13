@@ -18,6 +18,7 @@ import me.linkcube.app.R;
 import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.bluetooth.BluetoothUtils;
+import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.core.entity.ChatEntity;
 import me.linkcube.app.core.entity.ChatMsgEntity;
 import me.linkcube.app.core.entity.FriendEntity;
@@ -344,7 +345,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		if (BluetoothUtils.isBluetoothEnabled()) {
+		if (DeviceConnectionManager.getInstance().isConnected()) {
 			onBlueToothItem = menu.add(0, Menu.FIRST + 1, 1, "连接蓝牙").setIcon(
 					R.drawable.btn_connect_indicator_on);
 		} else {
@@ -372,8 +373,10 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		switch (item.getItemId()) {
 		case Menu.FIRST + 1:
 			if (BluetoothUtils.isBluetoothEnabled()) {
+				Timber.d("btn_connect_indicator_on");
 				item.setIcon(R.drawable.btn_connect_indicator_on);
 			} else {
+				Timber.d("btn_connect_indicator_off");
 				item.setIcon(R.drawable.btn_connect_indicator_off);
 			}
 			startActivity(new Intent(ChatActivity.this,

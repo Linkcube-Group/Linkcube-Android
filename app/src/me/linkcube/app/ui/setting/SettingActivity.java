@@ -11,6 +11,7 @@ import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.sync.chat.ChatMessageListener;
 import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.core.ASmackUtils;
+import me.linkcube.app.sync.friend.AddFriendListener;
 import me.linkcube.app.ui.BaseActivity;
 import me.linkcube.app.ui.bluetooth.BluetoothSettingActivity;
 import me.linkcube.app.ui.user.LoginActivity;
@@ -107,11 +108,12 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 		ASmackManager.getInstance().closeConnection();
 		ASmackUtils.ROSTER_NAME = null;
 		ChatMessageListener.getInstance().setChatManager(null);
+		AddFriendListener.getInstance().setAddFriendStatus(false);
 		UserManager.getInstance().setFirstLogin(true);
 		setResult(LOGOUT__RESULT);
 		finish();
 	}
-	/*
+	/* 
 	 * //退出登录清空用户数据 public interface clearUserData{ public void deleteData(); }
 	 */
 }

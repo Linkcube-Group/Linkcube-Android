@@ -141,7 +141,7 @@
             android:layout_weight="2"
             android:ems="10"
             android:hint="@string/init_user_info_birthday_hint"
-            android:text="" >
+            android:text="1988-1-23" >
         </me.linkcube.app.widget.CWClearEditText>
     </LinearLayout>
 

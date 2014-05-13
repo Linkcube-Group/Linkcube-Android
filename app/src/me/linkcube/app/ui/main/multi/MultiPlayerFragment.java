@@ -536,8 +536,12 @@ public class MultiPlayerFragment extends BaseFragment implements
 			DataManager.getInstance().insert(perFriendRequest,
 					friendRequestEntity);
 			// 改变好友添加小圆点可视
-			chatListView.setNewFriendTipInVisible(false);
-
+			try {
+				chatListView.setNewFriendTipInVisible(false);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 	};
 

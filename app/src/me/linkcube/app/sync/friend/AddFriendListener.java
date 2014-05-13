@@ -40,6 +40,8 @@ import android.util.Log;
 public class AddFriendListener {
 
 	private static AddFriendListener instance = null;
+	
+	private boolean addFriendStatus = false;
 
 	private AddFriendListener() {
 	}
@@ -59,6 +61,7 @@ public class AddFriendListener {
 	public void addFriendListener(final Context context) {
 		PacketFilter filter = new AndFilter(
 				new PacketTypeFilter(Presence.class));
+		if(!addFriendStatus){
 		PacketListener listener = null;
 		if (listener == null) {
 			listener = new PacketListener() {
@@ -179,12 +182,20 @@ public class AddFriendListener {
 			};
 			ASmackManager.getInstance().getXMPPConnection()
 					.addPacketListener(listener, filter);
+			addFriendStatus=true;
 		}
+	}
 
 		Roster roster = ASmackManager.getInstance().getXMPPConnection()
 				.getRoster();
 		roster.addRosterListener(rosterListener);
 	}
+
+	public void setAddFriendStatus(boolean addFriendStatus) {
+		this.addFriendStatus = addFriendStatus;
+	}
+
+
 
 	private RosterListener rosterListener = new RosterListener() {
 
