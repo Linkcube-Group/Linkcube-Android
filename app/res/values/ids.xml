@@ -60,6 +60,7 @@
     <item name="device_state_tv" type="id"/>
     <item name="device_name_tv" type="id"/>
     <item name="tip_tv" type="id"/>
+    <item name="bluetooth_help_btn" type="id"/>
 
     <!-- 设置页面 -->
     <item name="connect_toy_tv" type="id"/>

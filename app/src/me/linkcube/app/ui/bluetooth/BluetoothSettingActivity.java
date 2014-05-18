@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -29,7 +30,7 @@ public class BluetoothSettingActivity extends DialogActivity implements
 
 	private ToggleButton bluetoothTb;
 
-	private Button discoverDevicesBtn, enterMallBtn;
+	private Button discoverDevicesBtn, enterMallBtn,bluetoothHelpBtn;
 
 	private BluetoothDeviceListView deviceLv;
 
@@ -90,6 +91,8 @@ public class BluetoothSettingActivity extends DialogActivity implements
 		if (BluetoothUtils.isBluetoothEnabled()) {
 			showBondedDevices();
 		}
+		bluetoothHelpBtn = (Button) findViewById(R.id.bluetooth_help_btn);
+		bluetoothHelpBtn.setOnClickListener(this);
 	}
 
 	private void showBondedDevices() {
@@ -149,6 +152,9 @@ public class BluetoothSettingActivity extends DialogActivity implements
 				AlertUtils.showToast(mActivity, "请打开蓝牙");
 			}
 			break;
+		case R.id.bluetooth_help_btn:
+			startActivity(new Intent(BluetoothSettingActivity.this,BluetoothHelpActivity.class));
+		
 		default:
 			break;
 		}

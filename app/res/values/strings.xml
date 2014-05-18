@@ -65,6 +65,7 @@
     <string name="searching">正在搜索...</string>
     <string name="enter_mall">点击进入连酷玩具商城</string>
     <string name="bluetooth">蓝牙</string>
+    <string name="bluetooth_help">蓝牙帮助</string>
     <string name="devices_available">可连接玩具</string>
     <string name="click_and_connect">点击列表即可连接</string>
     <string name="switch_on_bluetooth_to_search_toy">要搜索连酷玩具，请打开蓝牙功能</string>

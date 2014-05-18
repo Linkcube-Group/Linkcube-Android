@@ -50,6 +50,10 @@
             android:name="me.linkcube.app.ui.bluetooth.BluetoothSettingActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="me.linkcube.app.ui.bluetooth.BluetoothHelpActivity"
+            android:screenOrientation="portrait" >
+        </activity>
         <!-- Chat -->
         <activity
             android:name="me.linkcube.app.ui.chat.ChatActivity"

@@ -19,9 +19,9 @@
         <ToggleButton
             android:id="@id/bluetooth_tb"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#ffffff"
-            android:layout_height="wrap_content"
             android:button="@drawable/toggle"
             android:gravity="center_vertical"
             android:textOff=""
@@ -48,9 +48,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/click_and_connect"
             android:layout_weight="1"
             android:gravity="right"
+            android:text="@string/click_and_connect"
             android:textSize="@dimen/SettingSubTextSize" />
     </LinearLayout>
 
@@ -63,15 +63,34 @@
         android:layout_weight="1"
         android:padding="@dimen/SettingPadding" />
 
-    <Button
-        android:id="@id/discover_devices_btn"
-        style="@style/Button.Pink"
-        android:layout_marginTop="10dp"
-        android:drawableLeft="@drawable/ic_search"
-        android:drawablePadding="10dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:layout_marginBottom="40dp"
-        android:text="@string/search_toy" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@id/discover_devices_btn"
+            style="@style/Button.Pink"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_search"
+            android:drawablePadding="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_centerInParent="true"
+            android:text="@string/search_toy" />
+        
+        <Button
+            android:id="@id/bluetooth_help_btn"
+            style="@style/Button.Pink"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/discover_devices_btn"
+            android:text="sos" />
+        
+        
+    </RelativeLayout>
 
 </LinearLayout>
