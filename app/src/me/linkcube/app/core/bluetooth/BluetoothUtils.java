@@ -85,6 +85,7 @@ public class BluetoothUtils {
 
 	public static boolean bondDevice(BluetoothDevice dev) {
 		Method createBondMethod;
+		Timber.d("createBondMethod--bondDevice");
 		try {
 			createBondMethod = dev.getClass().getMethod("createBond");
 			try {

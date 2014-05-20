@@ -46,6 +46,7 @@ public class BluetoothSettingActivity extends DialogActivity implements
 		setContentView(R.layout.bluetooth_setting_activity);
 		configureActionBar(R.string.bluetooth);
 		deviceDiscoveryReceiver = new BluetoothDeviceReceiver(this);
+		deviceList = BluetoothUtils.getBondedDevices();
 		initViews();
 	}
 
@@ -56,7 +57,6 @@ public class BluetoothSettingActivity extends DialogActivity implements
 		bluetoothTb.setOnCheckedChangeListener(switchListener);
 		BluetoothUtils
 				.regiserDeviceReceiver(mActivity, deviceDiscoveryReceiver);
-		deviceList = BluetoothUtils.getBondedDevices();
 		deviceAdapter = new BluetoothDeviceAdapter(mActivity);
 		deviceAdapter.setList(deviceList);
 		deviceLv.setAdapter(deviceAdapter);
@@ -243,7 +243,7 @@ public class BluetoothSettingActivity extends DialogActivity implements
 		protected void onPreExecute() {
 			super.onPreExecute();
 			Timber.d("准备连接设备");
-			showProgressDialog("正在与玩具配对...");
+			showProgressDialog("正在与玩具连接...");
 		}
 
 		@Override
