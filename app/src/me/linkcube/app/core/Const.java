@@ -55,8 +55,6 @@ public class Const {
 
 		public static String CHECK_VERSION_URL = "http://115.29.175.17/version";
 
-		public static String APK_DOWNLOAD_URL = "http://115.29.175.17/uploads/soft/131226/linkcube.apk";
-
 		public static String APK_NAME = "linkcube.apk";
 	}
 

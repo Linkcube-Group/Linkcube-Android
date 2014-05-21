@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
@@ -21,12 +20,13 @@ import me.linkcube.app.core.Const;
 public class DownloadNewApkHttpGet {
 
 	private AppUpdateCallback appUpdateCallback;
-	
-	public DownloadNewApkHttpGet(){
-		
+
+	public DownloadNewApkHttpGet() {
+
 	}
 
-	public void downloadNewApkFile(final Context context) {
+	public void downloadNewApkFile(final Context context,
+			final String downloadURL) {
 		Thread thread = new Thread() {
 
 			@Override
@@ -37,7 +37,7 @@ public class DownloadNewApkHttpGet {
 				if (!file.exists()) {
 					file.mkdir();
 				}
-				HttpGet httpGet = new HttpGet(Const.AppUpdate.APK_DOWNLOAD_URL);
+				HttpGet httpGet = new HttpGet(downloadURL);
 
 				try {
 					HttpResponse httpResponse = new DefaultHttpClient()
@@ -45,24 +45,26 @@ public class DownloadNewApkHttpGet {
 					if (httpResponse.getStatusLine().getStatusCode() == 200) {
 						InputStream iStream = httpResponse.getEntity()
 								.getContent();
-						int fileLength=(int) httpResponse.getEntity().getContentLength();
+						int fileLength = (int) httpResponse.getEntity()
+								.getContentLength();
 						appUpdateCallback.beforeApkDOwnload(fileLength);
 						// 开始下载apk
 						FileOutputStream fos = new FileOutputStream(
 								downloadPath + "/" + Const.AppUpdate.APK_NAME);
 						byte[] buffer = new byte[20480];
-						int count = 0,downLoadFileSize=0;
+						int count = 0, downLoadFileSize = 0;
 						while ((count = iStream.read(buffer)) != -1) {
 							fos.write(buffer, 0, count);
-							downLoadFileSize+=count;
+							downLoadFileSize += count;
 							appUpdateCallback.inApkDownload(downLoadFileSize);
 						}
 						fos.close();
 						iStream.close();
 						appUpdateCallback.afterApkDownload(0);
 						// 安装apk
-						installApk(context, downloadPath + "/" + Const.AppUpdate.APK_NAME);
-					}else{
+						installApk(context, downloadPath + "/"
+								+ Const.AppUpdate.APK_NAME);
+					} else {
 						appUpdateCallback.FailureApkDownload(-1);
 					}
 				} catch (ClientProtocolException e) {
@@ -98,10 +100,13 @@ public class DownloadNewApkHttpGet {
 		this.appUpdateCallback = appUpdateCallback;
 	}
 
-	public interface AppUpdateCallback{
+	public interface AppUpdateCallback {
 		public void beforeApkDOwnload(int fileLength);
+
 		public void inApkDownload(int downLoadFileSize);
+
 		public void afterApkDownload(int reFlag);
+
 		public void FailureApkDownload(int reFlag);
 	}
 

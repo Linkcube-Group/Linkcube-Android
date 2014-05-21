@@ -67,6 +67,7 @@ public class MainActivity extends BaseFragmentActivity implements
 	private String apkVersion;
 	private String apkSize;
 	private String apkDescription;
+	private String apkDownloadURL;
 
 	private int LOGOUT__RESULT = 3;
 
@@ -144,11 +145,13 @@ public class MainActivity extends BaseFragmentActivity implements
 							jsonString = jsonString.substring(1);
 						}
 						try {
+							//XXX 常量字符串 和 在MainActivity的检测机制可能需要修改
 							JSONObject jsonObject = new JSONObject(jsonString)
 									.getJSONObject("updateInfo");
 							apkVersion = jsonObject.getString("version");
 							boolean force = jsonObject.getBoolean("force");
 							apkSize = jsonObject.getString("size");
+							apkDownloadURL = jsonObject.getString("downloadURL");
 							apkDescription = jsonObject
 									.getString("description");
 							Timber.d("version:" + apkVersion + "--force:"
@@ -307,7 +310,7 @@ public class MainActivity extends BaseFragmentActivity implements
 												Toast.LENGTH_SHORT).show();
 									}
 								});
-						downloadNewApkHttpGet.downloadNewApkFile(mActivity);
+						downloadNewApkHttpGet.downloadNewApkFile(mActivity,apkDownloadURL);
 						UpdateManager.getInstance().setUpdate(false);
 					}
 				}, new OnClickListener() {
@@ -362,7 +365,7 @@ public class MainActivity extends BaseFragmentActivity implements
 									}
 								});
 
-						downloadNewApkHttpGet.downloadNewApkFile(mActivity);
+						downloadNewApkHttpGet.downloadNewApkFile(mActivity,apkDownloadURL);
 						UpdateManager.getInstance().setUpdate(false);
 					}
 				}, new OnClickListener() {

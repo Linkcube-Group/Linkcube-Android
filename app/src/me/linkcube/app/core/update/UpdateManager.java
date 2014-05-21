@@ -28,32 +28,27 @@ public class UpdateManager {
 		// 获取packagemanager的实例
 		PackageManager packageManager = context.getPackageManager();
 		// getPackageName()是你当前类的包名，0代表是获取版本信息
-		PackageInfo packInfo = packageManager.getPackageInfo(context.getPackageName(),
-				0);
+		PackageInfo packInfo = packageManager.getPackageInfo(
+				context.getPackageName(), 0);
 		String version = packInfo.versionName;
 		return version;
 	}
-	
-	public void checkNeedUpdate(Context context,String newVersionName){
-		double oldVersion=0;
-		double newVersion=0;
+
+	public void checkNeedUpdate(Context context, String newVersionName) {
+
+		int isNeedUpdate = 0;
 		try {
-			newVersion=Double.parseDouble(newVersionName);
-			oldVersion=Double.parseDouble(getVersionName(context));
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Timber.d(newVersionName + "---" + getVersionName(context));
+			isNeedUpdate = newVersionName.compareTo(getVersionName(context));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Timber.d(newVersion+"---"+oldVersion);
-		if(newVersion>oldVersion){
+		if (isNeedUpdate > 0) {
 			setUpdate(true);
-		}else{
+		} else {
 			setUpdate(false);
 		}
-		
+
 	}
 
 	public boolean isForcedUpdate() {
