@@ -19,7 +19,7 @@ public class GetMessageReceiver extends BroadcastReceiver {
 		msg.setData(bundle);
 		String from = msg.getData().getString("from");
 		String body = msg.getData().getString("body");
-		Timber.d("GetMessageReceiver"+from + "---" + body);
+		//Timber.d("GetMessageReceiver"+from + "---" + body);
 		if (body != null) {
 			getMsgCallBack.responseSuccess(msg);
 		} else {

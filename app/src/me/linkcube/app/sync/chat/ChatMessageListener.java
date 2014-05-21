@@ -63,7 +63,7 @@ public class ChatMessageListener {
 			chat.addMessageListener(new MessageListener() {
 				@Override
 				public void processMessage(Chat arg0, Message message) {
-					Timber.d("listener--from:" + message.getFrom() + "--body:"
+					System.out.println("listener--from:" + message.getFrom() + "--body:"
 							+ message.getBody());
 					if (offLineMsgFlag) {
 						Map<String, String> singleMsgMap = new HashMap<String, String>();
@@ -102,7 +102,7 @@ public class ChatMessageListener {
 		if (body != null) {
 			if (body.startsWith(Const.Game.POSITIONMODECMD)) {// 多人模式七种姿势
 				String[] cmdData = body.split(":");
-				Timber.d("cmddata:" + Integer.parseInt(cmdData[1]));
+				System.out.println("cmddata:" + Integer.parseInt(cmdData[1]));
 				try {
 					LinkcubeApplication.toyServiceCall
 							.cacheSexPositionMode(Integer.parseInt(cmdData[1]));
@@ -165,7 +165,7 @@ public class ChatMessageListener {
 		bundle.putString("cmdData", cmdData);
 		Intent chatMsgIntent = new Intent("com.linkcube.message");// 获取到聊天消息,发送广播
 		chatMsgIntent.putExtras(bundle);
-		Timber.d("broadMsg--from:" + from + "--body:" + body);
+		System.out.println("broadMsg--from:" + from + "--body:" + body);
 		Timber.d("context:" + context);
 		context.sendBroadcast(chatMsgIntent);
 	}

@@ -475,7 +475,7 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 					String from = message.getData().getString("from");
 					String body = message.getData().getString("body");
 					String cmdData = message.getData().getString("cmdData");
-					Timber.d("from:" + from + "body:" + body + "cmdData:"
+					System.out.println("from:" + from + "--body:" + body + "cmdData:"
 							+ cmdData);
 					Message gameMsg = new Message();
 					if (from.equals(friendName)) {

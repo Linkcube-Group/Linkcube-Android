@@ -342,6 +342,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 
 	@Override
 	public void updateChatList(ChatMsgEntity entity) {
+		System.out.println("entity.getText():"+entity.getText());
 		mDataArrays.add(entity);
 		mAdapter.notifyDataSetChanged();
 		singleChatLv.setSelection(singleChatLv.getCount() - 1);

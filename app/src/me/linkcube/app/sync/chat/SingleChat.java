@@ -37,8 +37,6 @@ public class SingleChat {
 	 */
 	public void sendMsg(String friendName, final String sendMsg) {
 		friendName=ASmackUtils.getFriendJid(friendName);
-		//Timber.d("---sendMsg:" + sendMsg);
-		RegexUtils.sqliteEscape(sendMsg);
 		if (newchat == null) {
 			newchat = chatManager.createChat(friendName, new MessageListener() {
 				@Override
@@ -47,15 +45,14 @@ public class SingleChat {
 				}
 			});
 			try {
-				//Timber.d("friendName:" + friendName + "---sendMsg:" + sendMsg);
 				newchat.sendMessage(sendMsg);
 			} catch (XMPPException e) {
 				e.printStackTrace();
 			}
 		} else {
 			try {
-				//Timber.d("friendName:" + friendName + "---sendMsg:" + sendMsg);
 				newchat.sendMessage(sendMsg);
+				System.out.println("sendMsg:"+sendMsg);
 			} catch (XMPPException e) {
 				e.printStackTrace();
 			}

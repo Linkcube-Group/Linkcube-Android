@@ -319,7 +319,7 @@ public class MultiPlayerFragment extends BaseFragment implements
 							GameManager.getInstance().addGameInviteMsgs(from,
 									GAME_INVITE_FROM);
 						}
-						Timber.d("chatListFragment--handlerMsg:" + from + "---"
+						System.out.println("chatListFragment--handlerMsg:" + from + "---"
 								+ body);
 						saveMsg(from, body);
 						Timber.d("chatListAdapter:" + chatListAdapter);

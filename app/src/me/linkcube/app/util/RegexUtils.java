@@ -59,16 +59,4 @@ public class RegexUtils {
 		}
 	}
 	
-	public static String sqliteEscape(String keyWord){  
-	    //keyWord = keyWord.replaceAll("/", "//");  
-	    //keyWord = keyWord.replaceAll("'", "''");  
-	    //keyWord = keyWord.replaceAll("[", "/[");  
-	    //keyWord = keyWord.replaceAll("]", "/]");  
-	    keyWord = keyWord.replaceAll("%", "/%");  
-	    //keyWord = keyWord.replaceAll("&","/&");  
-	   // keyWord = keyWord.replaceAll("_", "/_");  
-	   // keyWord = keyWord.replaceAll("(", "/(");  
-	   // keyWord = keyWord.replaceAll(")", "/)");  
-	    return keyWord;  
-	} 
 }

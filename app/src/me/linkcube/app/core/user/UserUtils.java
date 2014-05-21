@@ -26,7 +26,7 @@ public class UserUtils {
 		entity.setName(nickName);
 		entity.setMsgType(from);
 		entity.setText(body);
-		Timber.i("messageresult:" + body);
+		System.out.println("messageresult:" + body);
 		return entity;
 	}
 
