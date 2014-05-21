@@ -95,6 +95,9 @@ public class SearchFriendActivity extends DialogActivity implements
 						//Timber.d("getIsFriend:"+friendEntity.getIsFriend());
 						isFriend = true;
 						break;
+					}else{
+						Timber.d("isFriend = false;");
+						isFriend = false;
 					}
 				}
 				if (isFriend == true) {

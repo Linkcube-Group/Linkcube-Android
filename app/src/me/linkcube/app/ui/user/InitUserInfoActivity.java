@@ -24,6 +24,8 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import me.linkcube.app.R;
 import me.linkcube.app.core.Const;
@@ -62,6 +64,10 @@ public class InitUserInfoActivity extends BaseActivity implements
 		initView();
 
 		initData();
+		
+		RelativeLayout actionbarBackRl = (RelativeLayout) actionbarView
+				.findViewById(R.id.actionbar_back_rl);
+		actionbarBackRl.setVisibility(View.INVISIBLE);
 	}
 
 	private void initView() {
@@ -109,7 +115,7 @@ public class InitUserInfoActivity extends BaseActivity implements
 				}
 				vCard.setField(Const.VCard.GENDER, userGender);
 				if (initUserPersonStateEt.getText().toString() == null) {
-					vCard.setField(Const.VCard.BIRTHDAY, "1990-01-01");
+					vCard.setField(Const.VCard.BIRTHDAY, "1988-01-23");
 				} else {
 					vCard.setField(Const.VCard.BIRTHDAY, initUserBirthdayEt
 							.getText().toString());

@@ -1,5 +1,6 @@
 package me.linkcube.app.sync.friend;
 
+import me.linkcube.app.core.Timber;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import me.linkcube.app.sync.core.ASmackManager;
 
@@ -55,6 +56,7 @@ public class GetFriendVCard {
 			return null;//没有连接上
 		VCard vCard=new VCard();
 		try {
+			Timber.d("friendName:"+friendName);
 			vCard.load( ASmackManager.getInstance().getXMPPConnection(), friendName);
 		} catch (XMPPException e) {
 			e.printStackTrace();

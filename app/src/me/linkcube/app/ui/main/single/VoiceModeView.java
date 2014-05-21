@@ -54,6 +54,7 @@ public class VoiceModeView extends RelativeLayout{
 
 		@Override
 		public void onClick(View v) {
+			DeviceConnectionManager.getInstance().setSexPositionMode(false);
 			try {
 				if (!DeviceConnectionManager.getInstance().isConnected()) {
 					mListener.showConnectBluetoothTip();

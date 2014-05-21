@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import me.linkcube.app.LinkcubeApplication;
 import me.linkcube.app.R;
+import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.core.toy.ShakeSensor;
@@ -22,6 +23,7 @@ import me.linkcube.app.ui.main.SensorProvider;
 import me.linkcube.app.ui.setting.SettingActivity;
 import me.linkcube.app.ui.user.LoginActivity;
 import me.linkcube.app.ui.user.UserInfoActivity;
+import me.linkcube.app.util.PreferenceUtils;
 import me.linkcube.app.widget.AlertUtils;
 import me.linkcube.app.widget.CirclePageIndicator;
 import static me.linkcube.app.core.toy.ToyConst.*;
@@ -111,6 +113,12 @@ public class SinglePalyerFragment extends BaseFragment implements
 				&& UserManager.getInstance().getUserInfo() != null) {
 			Timber.i("nickname:"
 					+ UserManager.getInstance().getUserInfo().getNickName());
+			if(UserManager.getInstance().getUserInfo().getNickName()==null){
+				PreferenceUtils.removeData(Const.Preference.USER_NAME);
+				PreferenceUtils.removeData(Const.Preference.USER_PWD);
+				PreferenceUtils.setBoolean(Const.Preference.AUTO_LOGIN,
+						false);
+			}
 			statusBarView.setUserInfo(UserManager.getInstance().getUserInfo());
 		} else {
 			statusBarView.setUserInfo(null);

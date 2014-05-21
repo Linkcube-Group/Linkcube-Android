@@ -20,6 +20,8 @@ public class DeviceConnectionManager {
 
 	private BluetoothDevice device;
 
+	public boolean isSexPositionMode;
+
 	public static DeviceConnectionManager getInstance() {
 		if (instance == null) {
 			synchronized (DeviceConnectionManager.class) {
@@ -43,22 +45,24 @@ public class DeviceConnectionManager {
 			@Override
 			public void run() {
 
-				try {
-					if (mIsConnected != LinkcubeApplication.toyServiceCall
-							.checkData()) {
-						mIsConnected = LinkcubeApplication.toyServiceCall
-								.checkData();
-						Timber.d("mIsConnected:" + mIsConnected);
-						if (mIsConnected) {
-							callback.stable();
-						} else {
-							callback.interrupted();
-							cancelCheckConnectionTask();
+				if (!isSexPositionMode) {
+
+					try {
+						if (mIsConnected != LinkcubeApplication.toyServiceCall
+								.checkData()) {
+							mIsConnected = LinkcubeApplication.toyServiceCall
+									.checkData();
+							Timber.d("mIsConnected:" + mIsConnected);
+							if (mIsConnected) {
+								callback.stable();
+							} else {
+								stopTimerTask();
+							}
 						}
+					} catch (RemoteException e1) {
+						callback.interrupted();
+						e1.printStackTrace();
 					}
-				} catch (RemoteException e1) {
-					callback.interrupted();
-					e1.printStackTrace();
 				}
 
 			}
@@ -71,6 +75,11 @@ public class DeviceConnectionManager {
 			timer = null;
 		}
 	}
+	
+	public void stopTimerTask(){
+		callback.interrupted();
+		cancelCheckConnectionTask();
+	}
 
 	public void setmIsConnected(boolean mIsConnected, BluetoothDevice device) {
 		this.mIsConnected = mIsConnected;
@@ -79,6 +88,14 @@ public class DeviceConnectionManager {
 
 	public boolean isConnected() {
 		return mIsConnected;
+	}
+
+	public boolean isSexPositionMode() {
+		return isSexPositionMode;
+	}
+
+	public void setSexPositionMode(boolean isSexPositionMode) {
+		this.isSexPositionMode = isSexPositionMode;
 	}
 
 	public BluetoothDevice getDeviceConnected() {

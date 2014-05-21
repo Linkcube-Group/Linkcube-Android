@@ -188,10 +188,21 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 			Timber.e(e, "Bluetooth outputstream sockets not created");
 			return Toy_Lost;
 		}
+		catch (Exception e) {
+			Timber.e(e, "Bluetooth outputstream sockets not created");
+			return Toy_Lost;
+		}
+		
 
 		try {
 			tmpOut.write(data);
 		} catch (IOException e) {
+			Timber.d("device disconnect on sexpostionmode");
+			if(DeviceConnectionManager.getInstance().isSexPositionMode){
+				DeviceConnectionManager.getInstance().setSexPositionMode(false);
+				DeviceConnectionManager.getInstance().setmIsConnected(false, curDevice);
+				DeviceConnectionManager.getInstance().stopTimerTask();
+			}
 			e.printStackTrace();
 			curDevice = null;
 			curSocket = null;

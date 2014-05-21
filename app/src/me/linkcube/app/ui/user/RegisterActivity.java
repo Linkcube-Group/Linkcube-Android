@@ -125,8 +125,7 @@ public class RegisterActivity extends DialogActivity implements OnClickListener 
 					@Override
 					public void responseSuccess(Object object) {
 
-						Toast.makeText(RegisterActivity.this, "注册成功",
-								Toast.LENGTH_SHORT).show();
+						//Toast.makeText(RegisterActivity.this, "注册成功",Toast.LENGTH_SHORT).show();
 						// 注册成功后直接登陆
 						//showProgressDialog("正在登陆哦，请稍后...");
 						new UserLogin(
@@ -179,7 +178,7 @@ public class RegisterActivity extends DialogActivity implements OnClickListener 
 										thread.start();
 										Toast.makeText(
 												RegisterActivity.this,
-												"登陆成功",
+												"注册成功",
 												Toast.LENGTH_SHORT)
 												.show();
 									}

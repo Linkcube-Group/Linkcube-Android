@@ -61,6 +61,8 @@ public class SexPositionModeView extends RelativeLayout {
 
 		@Override
 		public void onClick(View v) {
+			
+			DeviceConnectionManager.getInstance().setSexPositionMode(true);
 
 			try {
 				if (!DeviceConnectionManager.getInstance().isConnected()) {
