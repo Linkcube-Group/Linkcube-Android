@@ -3,6 +3,7 @@ package me.linkcube.app.sync.chat;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.sync.core.ASmackManager;
+import me.linkcube.app.util.RegexUtils;
 
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.ChatManager;
@@ -36,6 +37,8 @@ public class SingleChat {
 	 */
 	public void sendMsg(String friendName, final String sendMsg) {
 		friendName=ASmackUtils.getFriendJid(friendName);
+		//Timber.d("---sendMsg:" + sendMsg);
+		RegexUtils.sqliteEscape(sendMsg);
 		if (newchat == null) {
 			newchat = chatManager.createChat(friendName, new MessageListener() {
 				@Override
@@ -44,14 +47,14 @@ public class SingleChat {
 				}
 			});
 			try {
-				Timber.d("friendName:" + friendName + "---sendMsg:" + sendMsg);
+				//Timber.d("friendName:" + friendName + "---sendMsg:" + sendMsg);
 				newchat.sendMessage(sendMsg);
 			} catch (XMPPException e) {
 				e.printStackTrace();
 			}
 		} else {
 			try {
-				Timber.d("friendName:" + friendName + "---sendMsg:" + sendMsg);
+				//Timber.d("friendName:" + friendName + "---sendMsg:" + sendMsg);
 				newchat.sendMessage(sendMsg);
 			} catch (XMPPException e) {
 				e.printStackTrace();

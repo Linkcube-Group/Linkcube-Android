@@ -228,9 +228,9 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		}
 		for (ChatEntity chat : chats) {
 			try {
-				Timber.d("JID:" + chat.getUserName() + "--friendName:"
-						+ friendName + "--message:" + chat.getMessage()
-						+ "--msgTime:" + TimeUtils.toNowTime(chat.getMsgTime()));
+				// Timber.d("JID:" + chat.getUserName() + "--friendName:"+
+				// friendName + "--msgTime:"+
+				// TimeUtils.toNowTime(chat.getMsgTime()));
 				ChatMsgEntity entity = new ChatMsgEntity();
 				entity.setDate(TimeUtils.toNowTime(chat.getMsgTime()));
 				if (chat.getMsgFlag().equals("get")) {

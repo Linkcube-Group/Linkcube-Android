@@ -252,7 +252,7 @@ public class MultiPlayerFragment extends BaseFragment implements
 					} else {
 						friendMsgTV.setText(message);
 					}
-					Timber.d("message:" + message);
+					//("message:" + message);
 
 					msgTimeTV.setText(msgTime);
 
