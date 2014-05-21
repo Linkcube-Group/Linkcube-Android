@@ -72,6 +72,4 @@ public class UpdateManager {
 		this.isUpdate = isUpdate;
 	}
 
-	
-
 }

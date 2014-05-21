@@ -88,7 +88,8 @@
             android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/discover_devices_btn"
-            android:text="sos" />
+            android:text="sos"
+            android:visibility="invisible" />
         
         
     </RelativeLayout>

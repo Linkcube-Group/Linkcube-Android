@@ -44,6 +44,7 @@ public class SingleChat {
 				}
 			});
 			try {
+				Timber.d("friendName:" + friendName + "---sendMsg:" + sendMsg);
 				newchat.sendMessage(sendMsg);
 			} catch (XMPPException e) {
 				e.printStackTrace();

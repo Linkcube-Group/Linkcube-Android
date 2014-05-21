@@ -68,7 +68,7 @@ public class ASmackManager {
 
 			SmackConfiguration.setPacketReplyTimeout(15000);// 设置延迟，防止登录他网openfire办事器呈现登录延时
 			ConnectionConfiguration config = new ConnectionConfiguration(
-					"server1.linkcube.me", 5222);// 10.210.12.47
+					"server1.linkcube.me", 5222);// 10.210.12.47 112.124.22.252  server1.linkcube.me
 													// "server1.linkcube.me"
 													// 配置ip地址和端口：settings.GetServerAddress(),
 													// settings.GetServerPort()

@@ -88,6 +88,8 @@ public class MultiPlayerFragment extends BaseFragment implements
 
 	private List<OffLineMsgEntity> offLineMsgs = new ArrayList<OffLineMsgEntity>();
 	
+	private static boolean NewFriendTipInVisible=true;
+	
 	//private static List<Message> addFriendMsgs = new ArrayList<Message>();
 
 	@Override
@@ -104,6 +106,11 @@ public class MultiPlayerFragment extends BaseFragment implements
 		chatListView = (ChatListView) view.findViewById(R.id.chat_lv);
 		chatListView.setOnChatListViewClickListener(this);
 		mStatusBarView.setMultiStatusBarClickListener(this);
+		
+		if(!NewFriendTipInVisible){
+			chatListView.setNewFriendTipInVisible(false);
+			NewFriendTipInVisible=true;
+		}
 	}
 
 	@Override
@@ -406,7 +413,7 @@ public class MultiPlayerFragment extends BaseFragment implements
 	@Override
 	public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
 			final int position, long arg3) {
-		final String friendName = chatEntities.get(position).getFriendName();
+		final String friendName = chatEntities.get(position-1).getFriendName();
 		AlertUtils.showAlert(mActivity, "是否删除与对方的聊天纪录", null,
 				new OnClickListener() {
 
@@ -421,7 +428,7 @@ public class MultiPlayerFragment extends BaseFragment implements
 							msgMap.remove(friendName);
 						}
 						// 从聊天展示列表中删除对方
-						chatEntities.remove(position);
+						chatEntities.remove(position-1);
 						chatListAdapter.notifyDataSetChanged();
 					}
 				}, null);
@@ -537,6 +544,7 @@ public class MultiPlayerFragment extends BaseFragment implements
 					friendRequestEntity);
 			// 改变好友添加小圆点可视
 			try {
+				setNewFriendTipInVisible(false);
 				chatListView.setNewFriendTipInVisible(false);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -544,5 +552,15 @@ public class MultiPlayerFragment extends BaseFragment implements
 			
 		}
 	};
+
+	public boolean isNewFriendTipInVisible() {
+		return NewFriendTipInVisible;
+	}
+
+	public static void setNewFriendTipInVisible(boolean newFriendTipInVisible) {
+		NewFriendTipInVisible = newFriendTipInVisible;
+	}
+	
+	
 
 }

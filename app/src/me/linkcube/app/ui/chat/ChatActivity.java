@@ -227,21 +227,25 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 			e.printStackTrace();
 		}
 		for (ChatEntity chat : chats) {
-			Timber.d("JID:" + chat.getUserName() + "--friendName:" + friendName
-					+ "--message:" + chat.getMessage() + "--msgTime:"
-					+ TimeUtils.toNowTime(chat.getMsgTime()));
-			ChatMsgEntity entity = new ChatMsgEntity();
-			entity.setDate(TimeUtils.toNowTime(chat.getMsgTime()));
-			if (chat.getMsgFlag().equals("get")) {
-				entity.setName(chat.getFriendNickname());
-				entity.setMsgType(true);
-			} else if (chat.getMsgFlag().equals("send")) {
-				entity.setName(UserManager.getInstance().getUserInfo()
-						.getNickName());
-				entity.setMsgType(false);
+			try {
+				Timber.d("JID:" + chat.getUserName() + "--friendName:"
+						+ friendName + "--message:" + chat.getMessage()
+						+ "--msgTime:" + TimeUtils.toNowTime(chat.getMsgTime()));
+				ChatMsgEntity entity = new ChatMsgEntity();
+				entity.setDate(TimeUtils.toNowTime(chat.getMsgTime()));
+				if (chat.getMsgFlag().equals("get")) {
+					entity.setName(chat.getFriendNickname());
+					entity.setMsgType(true);
+				} else if (chat.getMsgFlag().equals("send")) {
+					entity.setName(UserManager.getInstance().getUserInfo()
+							.getNickName());
+					entity.setMsgType(false);
+				}
+				entity.setText(chat.getMessage());
+				dbDataArrays.add(entity);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			entity.setText(chat.getMessage());
-			dbDataArrays.add(entity);
 		}
 		dataCount = dbDataArrays.size();
 		if (dbDataArrays.size() != 0) {
@@ -256,7 +260,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		ChatMsgEntity chatMsgEntity = GameManager.getInstance()
 				.getGameInviteMsgs(friendName);
 		if (chatMsgEntity != null) {
-		SimpleDateFormat simpleFormat = new SimpleDateFormat(
+			SimpleDateFormat simpleFormat = new SimpleDateFormat(
 					"yyyy-MM-dd HH:mm:ss");
 			// TimeUtils.getNowTime()-chatMsgEntity.getDate()
 			Date nowTime = new Date();

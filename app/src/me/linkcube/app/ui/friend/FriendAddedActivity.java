@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.jivesoftware.smack.packet.Presence;
 
-
 import me.linkcube.app.R;
 import me.linkcube.app.core.entity.FriendEntity;
 import me.linkcube.app.core.entity.FriendRequestEntity;
@@ -32,10 +31,11 @@ import android.widget.TextView;
 import static me.linkcube.app.core.persistable.DBConst.TABLE_FRIEND_REQUEST.*;
 import static me.linkcube.app.core.persistable.DBConst.TABLE_FRIEND.*;
 
-public class FriendAddedActivity extends DialogActivity implements OnClickListener{
+public class FriendAddedActivity extends DialogActivity implements
+		OnClickListener {
 
 	private Button actionbarFirstBtn;
-	
+
 	private ListView friendRequestLv;
 	private BaseAdapter friendRequestLvAdapter;
 	private List<FriendRequestEntity> friendRequestEntities;
@@ -62,8 +62,9 @@ public class FriendAddedActivity extends DialogActivity implements OnClickListen
 
 	private void initView() {
 		friendRequestLv = (ListView) findViewById(R.id.friend_request_lv);
-		
-		actionbarFirstBtn=(Button)actionbarView.findViewById(R.id.actionbar_first_btn);
+
+		actionbarFirstBtn = (Button) actionbarView
+				.findViewById(R.id.actionbar_first_btn);
 		actionbarFirstBtn.setVisibility(View.VISIBLE);
 		actionbarFirstBtn.setText(R.string.friend_add_clear);
 		actionbarFirstBtn.setOnClickListener(this);
@@ -136,25 +137,28 @@ public class FriendAddedActivity extends DialogActivity implements OnClickListen
 				try {
 					friendEntities = DataManager.getInstance().query(
 							perFriend,
-							FRIEND_JID + "=? and " + USER_JID + "=? and "+ IS_FRIEND + "=? ",
+							FRIEND_JID + "=? and " + USER_JID + "=? and "
+									+ IS_FRIEND + "=? ",
 							new String[] {
-									ASmackUtils.getFriendJid(ASmackUtils.userNameEncode(friendName)),
+									ASmackUtils.getFriendJid(ASmackUtils
+											.userNameEncode(friendName)),
 									UserManager.getInstance().getUserInfo()
-											.getJID(),"both" }, null, null, null);
+											.getJID(), "both" }, null, null,
+							null);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 				if (friendEntities != null && !friendEntities.isEmpty()) {
-					bundle.putString("friendname", friendEntities.get(0)
-							.getNickName());
+					bundle.putString("friendname",
+							ASmackUtils.userNameEncode(friendName));
 					bundle.putString("isFriend", "bothFriend");
 					intent = new Intent(FriendAddedActivity.this,
 							FriendInfoActivity.class);
 					intent.putExtras(bundle);
 					startActivity(intent);
 				} else {
-					bundle.putString("friendname", ASmackUtils
-							.userNameEncode(friendNameTv.getText().toString()));
+					bundle.putString("friendname",
+							ASmackUtils.userNameEncode(friendName));
 					bundle.putString("isFriend", "fromFriend");
 					intent = new Intent(FriendAddedActivity.this,
 							StrangerInfoActivity.class);
@@ -166,38 +170,30 @@ public class FriendAddedActivity extends DialogActivity implements OnClickListen
 		});
 	}
 
-	/*@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuItem addItem = menu.add(0, Menu.FIRST + 1, 1, "清空");
-		addItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case Menu.FIRST + 1:
-			
-			break;
-		case android.R.id.home:
-			finish();
-			break;
-		default:
-			break;
-		}
-		return false;
-	}*/
+	/*
+	 * @Override public boolean onCreateOptionsMenu(Menu menu) { MenuItem
+	 * addItem = menu.add(0, Menu.FIRST + 1, 1, "清空");
+	 * addItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM); return true; }
+	 * 
+	 * @Override public boolean onOptionsItemSelected(MenuItem item) { switch
+	 * (item.getItemId()) { case Menu.FIRST + 1:
+	 * 
+	 * break; case android.R.id.home: finish(); break; default: break; } return
+	 * false; }
+	 */
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.actionbar_first_btn:
-			//TODO 未处理的好友请求就拒绝
-			
+			// TODO 未处理的好友请求就拒绝
+
 			for (FriendRequestEntity friendRequestEntity : friendRequestEntities) {
-				if(friendRequestEntity.getSubscription().equals("from")){
-					Presence refusePresence = new Presence(Presence.Type.unsubscribe);
-					refusePresence.setTo(ASmackUtils.getFriendJid(friendRequestEntity.getFriendName()));
+				if (friendRequestEntity.getSubscription().equals("from")) {
+					Presence refusePresence = new Presence(
+							Presence.Type.unsubscribe);
+					refusePresence.setTo(ASmackUtils
+							.getFriendJid(friendRequestEntity.getFriendName()));
 					ASmackManager.getInstance().getXMPPConnection()
 							.sendPacket(refusePresence);
 				}
