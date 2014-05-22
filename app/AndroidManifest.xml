@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.linkcube.app"
-    android:versionCode="1"
-    android:versionName="1.0.521" >
+    android:versionCode="2"
+    android:versionName="2.0.0521" >
 
     <uses-sdk
-        android:minSdkVersion="10"
+        android:minSdkVersion="8"
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -174,7 +174,7 @@
         </meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="official" />
+            android:value="xiaomi" />
 
         <activity
             android:name="com.umeng.fb.ConversationActivity"
