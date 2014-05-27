@@ -1,43 +1,87 @@
 package me.linkcube.app.ui.setting;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import me.linkcube.app.R;
+import me.linkcube.app.core.Const;
+import me.linkcube.app.core.Timber;
+import me.linkcube.app.core.update.DownloadNewApkHttpGet;
+import me.linkcube.app.core.update.UpdateManager;
+import me.linkcube.app.core.update.DownloadNewApkHttpGet.AppUpdateCallback;
 import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.sync.chat.ChatMessageListener;
 import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.sync.friend.AddFriendListener;
-import me.linkcube.app.ui.BaseActivity;
+import me.linkcube.app.ui.DialogActivity;
 import me.linkcube.app.ui.bluetooth.BluetoothSettingActivity;
 import me.linkcube.app.ui.user.LoginActivity;
 import me.linkcube.app.ui.user.UserInfoActivity;
+import me.linkcube.app.util.PreferenceUtils;
+import me.linkcube.app.widget.AlertUtils;
 
-public class SettingActivity extends BaseActivity implements OnClickListener {
+public class SettingActivity extends DialogActivity implements OnClickListener {
 
 	private TextView connectToyTv, personalInfoTv, purchaseToyTv, helpTv,
-			feedbackTv, aboutUsTv;
+			feedbackTv, aboutUsTv, checkUpdateTv;
 
 	private Button loginOrRegisterBtn;
+
+	private ImageView newVertionTipIv;
+
+	private int LOGOUT__RESULT = 3;
+
+	private int flieMaxSize = 0;
+
+	private int addUpdateFlag = -1;
 	
-	private int LOGOUT__RESULT=3;
+	private Intent msgIntent;
+	private static PendingIntent msgPendingIntent;
+	
+	private int msgNotificationID = 1100;
+	private Notification msgNotification;
+	private NotificationManager msgNotificationManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.setting_activity);
 		configureActionBar(R.string.setting);
+
+		initView();
+
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		updateLoginOrRegisterBtn(UserManager.getInstance().isAuthenticated());
+	}
+
+	private void initView() {
 		connectToyTv = (TextView) findViewById(R.id.connect_toy_tv);
 		personalInfoTv = (TextView) findViewById(R.id.personal_info_tv);
 		purchaseToyTv = (TextView) findViewById(R.id.purchase_toy_tv);
 		helpTv = (TextView) findViewById(R.id.help_tv);
 		feedbackTv = (TextView) findViewById(R.id.feedback_tv);
 		aboutUsTv = (TextView) findViewById(R.id.about_us_tv);
+		checkUpdateTv = (TextView) findViewById(R.id.checkupdate_tv);
 		loginOrRegisterBtn = (Button) findViewById(R.id.login_or_register_btn);
+		newVertionTipIv = (ImageView) findViewById(R.id.new_version_tip_iv);
 		connectToyTv.setOnClickListener(this);
 		personalInfoTv.setOnClickListener(this);
 		purchaseToyTv.setOnClickListener(this);
@@ -45,12 +89,14 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 		feedbackTv.setOnClickListener(this);
 		aboutUsTv.setOnClickListener(this);
 		loginOrRegisterBtn.setOnClickListener(this);
-	}
+		checkUpdateTv.setOnClickListener(this);
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		updateLoginOrRegisterBtn(UserManager.getInstance().isAuthenticated());
+		addUpdateFlag = PreferenceUtils.getInt(Const.AppUpdate.APK_UPDATE_FLAG,
+				0);
+		Timber.d("addUpdateFlag:" + addUpdateFlag);
+		if (addUpdateFlag == 2) {
+			newVertionTipIv.setVisibility(View.VISIBLE);
+		}
 	}
 
 	private void updateLoginOrRegisterBtn(boolean isAuthenticated) {
@@ -98,6 +144,11 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 						LoginActivity.class));
 			}
 			break;
+		case R.id.checkupdate_tv:
+			if (addUpdateFlag == 2) {
+				showUpdateDialog();
+			}
+			break;
 		default:
 			break;
 		}
@@ -113,7 +164,105 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 		setResult(LOGOUT__RESULT);
 		finish();
 	}
-	/* 
+
+	/*
 	 * //退出登录清空用户数据 public interface clearUserData{ public void deleteData(); }
 	 */
+	/**
+	 * 更新Dialog
+	 */
+	private void showUpdateDialog() {
+		AlertUtils.showAlert(
+				this,
+				Html.fromHtml(
+						"版本号："
+								+ PreferenceUtils.getString(
+										Const.AppUpdate.APK_VERSION, null)
+								+ "<br>大小："
+								+ PreferenceUtils.getString(
+										Const.AppUpdate.APK_SIZE, null)
+								+ "<br>描述：<br>"
+								+ PreferenceUtils.getString(
+										Const.AppUpdate.APK_DESCRIPTION, null))
+						.toString(), "发现新版本", "马上更新", "下次再说",
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						initNotification(mActivity);
+						DownloadNewApkHttpGet downloadNewApkHttpGet = new DownloadNewApkHttpGet();
+						downloadNewApkHttpGet
+								.setAppUpdateCallback(new AppUpdateCallback() {
+
+									@Override
+									public void beforeApkDOwnload(int fileLength) {
+										flieMaxSize = fileLength;
+										Timber.d("flieMaxSize:" + flieMaxSize);
+									}
+
+									@Override
+									public void inApkDownload(
+											int downLoadFileSize) {
+										float percent = (float) downLoadFileSize
+												* 100 / flieMaxSize;
+										Timber.d("percent:" + (int) percent);
+									}
+
+									@Override
+									public void afterApkDownload(int reFlag) {
+										msgNotificationManager.cancel(msgNotificationID);
+									}
+
+									@Override
+									public void FailureApkDownload(int reFlag) {
+										failureUpdateHandler.sendEmptyMessage(0);
+										msgNotificationManager.cancel(msgNotificationID);
+									}
+								});
+						downloadNewApkHttpGet.downloadNewApkFile(mActivity,
+								PreferenceUtils.getString(
+										Const.AppUpdate.APK_DOWNLOAD_URL, null));
+						UpdateManager.getInstance().setUpdate(false);
+					}
+				}, new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						PreferenceUtils.setInt(Const.AppUpdate.APK_UPDATE_FLAG,
+								2);
+						UpdateManager.getInstance().setUpdate(false);
+					}
+
+				});
+	}
+	
+	private Handler failureUpdateHandler=new Handler(){
+
+		@Override
+		public void handleMessage(Message msg) {
+			Toast.makeText(SettingActivity.this,
+					"网络异常，文件下载失败",
+					Toast.LENGTH_SHORT).show();
+		}
+		
+	};
+	
+	private void initNotification(Context context) {
+		msgNotification = new Notification();
+		msgNotification.icon = R.drawable.ic_launcher;
+		//msgNotification.defaults = Notification.DEFAULT_SOUND;
+		msgNotification.flags = Notification.FLAG_NO_CLEAR;
+		msgNotificationManager = (NotificationManager) context
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+		
+		msgIntent = new Intent();// Class.forName("com.oplibs.controll.test.TestMainActivity")
+		msgIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		msgPendingIntent = PendingIntent.getActivity(mActivity, 0, msgIntent,
+				0);
+
+		msgNotification.setLatestEventInfo(mActivity, "连酷","正在下载更新文件", msgPendingIntent);
+
+		msgNotificationManager.notify(msgNotificationID, msgNotification);
+
+	}
 }

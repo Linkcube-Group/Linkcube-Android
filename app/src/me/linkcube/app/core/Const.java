@@ -54,8 +54,19 @@ public class Const {
 	public static class AppUpdate {
 
 		public static String CHECK_VERSION_URL = "http://115.29.175.17/version";
+		
+		public static String APK_UPDATE_FLAG = "apk_update_flag";//"0"表示不需要更新也不需要展示，“1”表示需要提示更新，“2”表示已经提示过，需要在setting页面展示
 
 		public static String APK_NAME = "linkcube.apk";
+		
+		public static String APK_VERSION = "apk_version";
+		
+		public static String APK_SIZE = "apk_size";
+		
+		public static String APK_DESCRIPTION = "apk_description";
+		
+		public static String APK_DOWNLOAD_URL = "apk_download_url";
+		
 	}
 
 	public static class GameInviteMsg {

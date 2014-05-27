@@ -1,6 +1,8 @@
 package me.linkcube.app.core.update;
 
+import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Timber;
+import me.linkcube.app.util.PreferenceUtils;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -43,10 +45,16 @@ public class UpdateManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (isNeedUpdate > 0) {
-			setUpdate(true);
-		} else {
-			setUpdate(false);
+		int addUpdateFlag = PreferenceUtils.getInt(
+				Const.AppUpdate.APK_UPDATE_FLAG, 0);
+		if (addUpdateFlag != 2) {
+			if (isNeedUpdate > 0) {
+				PreferenceUtils.setInt(Const.AppUpdate.APK_UPDATE_FLAG, 1);
+				setUpdate(true);
+			} else {
+				PreferenceUtils.setInt(Const.AppUpdate.APK_UPDATE_FLAG, 0);
+				setUpdate(false);
+			}
 		}
 
 	}

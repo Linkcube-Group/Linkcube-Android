@@ -68,6 +68,7 @@
     <item name="purchase_toy_tv" type="id"/>
     <item name="help_tv" type="id"/>
     <item name="feedback_tv" type="id"/>
+    <item name="checkupdate_tv" type="id"/>
     <item name="login_or_register_btn" type="id"/>
     <item name="about_us_tv" type="id"/>
 

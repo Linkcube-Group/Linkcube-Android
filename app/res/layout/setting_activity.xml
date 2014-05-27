@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:paddingLeft="@dimen/SettingPadding"
         android:paddingRight="@dimen/SettingPadding" >
-        
+
         <TextView
             android:id="@id/connect_toy_tv"
             style="@style/Setting.Item.TextView"
@@ -46,6 +46,29 @@
             android:id="@id/feedback_tv"
             style="@style/Setting.Item.TextView"
             android:text="@string/feedback" />
+
+        <View style="@style/Setting.Item.Divider" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@id/checkupdate_tv"
+                style="@style/Setting.Item.TextView"
+                android:text="@string/check_update" />
+
+            <ImageView
+                android:id="@+id/new_version_tip_iv"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="25dp"
+                android:src="@drawable/pink_dot"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
 
         <View style="@style/Setting.Item.Divider" />
 
