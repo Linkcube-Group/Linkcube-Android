@@ -43,7 +43,7 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 
 	private byte[] checkData = { 0x35, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x35 };
 
-	private int ShakeThreshHold[] = { 0, 500, 800, 1000, 2000, 4000, 5000, 8000 };
+	private int ShakeThreshHold[] = { 5, 10, 15, 20, 25, 30, 35, 40 };//0, 500, 800, 1000, 2000, 4000, 5000, 8000
 
 	private int KShakeToySpeed[] = { 2, 5, 10, 15, 20, 26, 30, 34 };
 

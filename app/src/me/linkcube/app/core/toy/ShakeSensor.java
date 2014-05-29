@@ -33,6 +33,12 @@ public class ShakeSensor implements SensorEventListener {
 
 	private boolean ismultiGame = false;
 
+	private static float MAXVALUE = 200;
+
+	// private Boolean sendSignBoolean = false;
+
+	private MyQueue mQueue = new MyQueue();
+
 	public ShakeSensor(Context context) {
 		sensorManager = (SensorManager) context
 				.getSystemService(Context.SENSOR_SERVICE);
@@ -82,33 +88,53 @@ public class ShakeSensor implements SensorEventListener {
 			float z = event.values[2];
 			speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime
 					* 10000;
-			Timber.d("shake speed = %f", speed);
-			try {
-				// int spd = 0;
-				// while (spd < ShakeThreshHold.length
-				// && speed >= ShakeThreshHold[spd]) {
-				// spd++;
-				// }
-				//
-				// int toyspeed = KShakeSpeed[shakeSensi][spd - 1];
-				//
-				// char spdcode = (char) ('@' + toyspeed);
-				// if ((curTime - lastCacheTime) > 2000) {
-				// shakeListener.onShake();
-				// lastCacheTime = curTime;
-				// cmdBuffer = "";
-				// }
-				// cmdBuffer += spdcode;
-				if (ismultiGame) {
-					iCallBack.responseSuccess((long) speed);
-				} else {
-					LinkcubeApplication.toyServiceCall.cacheShake((long) speed,
-							false);
+			int currentSpeed = 0;
+			ShakeSpeedData tempAvg = mQueue.addElement(x, y, z);
+			
+			if (tempAvg != null) {
+				float length = (int) Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)
+						+ Math.pow(z- last_z, 2)) * 10;
+				// String currentValue = tempAvg.getX() + "," + tempAvg.getY() +
+				// "," + tempAvg.getZ() + "," + length + "," +
+				// getDangWei(length);
+				Timber.d("length:"+length);
+				currentSpeed = getDangWei(length);
+				// 如果当前向量和的长度大于MAXVALUE，则更新MAXVALUE
+				if (length > MAXVALUE) {
+					MAXVALUE = length;
 				}
-
-			} catch (RemoteException e) {
-				e.printStackTrace();
+				Timber.d("currentSpeed:" + currentSpeed);
+				try {
+					if (!ismultiGame) {
+						LinkcubeApplication.toyServiceCall.cacheShake(
+								currentSpeed, false);
+					}
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
 			}
+
+			 Timber.d("shake speed = %f", speed);
+
+			// int spd = 0;
+			// while (spd < ShakeThreshHold.length
+			// && speed >= ShakeThreshHold[spd]) {
+			// spd++;
+			// }
+			//
+			// int toyspeed = KShakeSpeed[shakeSensi][spd - 1];
+			//
+			// char spdcode = (char) ('@' + toyspeed);
+			// if ((curTime - lastCacheTime) > 2000) {
+			// shakeListener.onShake();
+			// lastCacheTime = curTime;
+			// cmdBuffer = "";
+			// }
+			// cmdBuffer += spdcode;
+			if (ismultiGame) {
+				iCallBack.responseSuccess((long) speed);
+			}
+
 			last_x = x;
 			last_y = y;
 			last_z = z;
@@ -117,7 +143,58 @@ public class ShakeSensor implements SensorEventListener {
 
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * 根据输入的float数值，返回对应的档位
+	 * 
+	 * @param input
+	 *            ：获得的加速度和的模
+	 * @return 当前加速度对应的档位
+	 */
+	private int getDangWei(float input) {
+		int result = 0;
+
+		if (input < MAXVALUE * 0.5) {
+			if (input < MAXVALUE * 0.2) {
+				if (input < MAXVALUE * 0.1) {
+					result = 5;
+				} else {
+					result = 10;
+				}
+			} else {
+				if (input < MAXVALUE * 0.3) {
+					result = 15;
+				} else {
+					if (input < MAXVALUE * 0.4) {
+						result = 20;
+					} else {
+						result = 25;
+					}
+				}
+			}
+		} else {
+			if (input < MAXVALUE * 0.7) {
+				if (input < MAXVALUE * 0.6) {
+					result = 25;
+				} else {
+					result = 30;
+				}
+			} else {
+				if (input < MAXVALUE * 0.9) {
+					if (input < MAXVALUE * 0.8) {
+						result = 35;
+					} else {
+						result = 40;
+					}
+				} else if (input < MAXVALUE) {
+					result = 45;
+				} else {
+					result = 50;
+				}
+			}
+		}
+		return result;
 	}
 
 	public ASmackRequestCallBack getiCallBack() {
