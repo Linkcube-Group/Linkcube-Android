@@ -1,6 +1,5 @@
 package me.linkcube.app.ui.main.single;
 
-import me.linkcube.app.LinkcubeApplication;
 import me.linkcube.app.R;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
@@ -9,7 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Message;
-import android.os.RemoteException;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -89,15 +87,17 @@ public class ShakeModeView extends RelativeLayout{
 			case 0:
 				level=4;
 				modeBtn.setBackgroundResource(R.drawable.shake_mode_4);
+				mListener.onShakeMode(level);
 				break;
 			case 4:
 				level = 0;
 				modeBtn.setBackgroundResource(R.drawable.shake_mode_0);
+				mListener.offShakeMode(level);
 				break;
 			default:
 				break;
 			}
-			mListener.onShakeMode(level);
+			
 		}
 	};
 	

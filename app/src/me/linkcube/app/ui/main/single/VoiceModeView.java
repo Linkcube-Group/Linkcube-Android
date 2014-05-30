@@ -89,15 +89,17 @@ public class VoiceModeView extends RelativeLayout{
 			case 0:
 				level=2;
 				modeBtn.setBackgroundResource(R.drawable.voice_mode_4);
+				mListener.onVoiceMode(level);
 				break;
 			case 2:
 				level = 0;
 				modeBtn.setBackgroundResource(R.drawable.voice_mode_0);
+				mListener.offVoiceMode(level);
 				break;
 			default:
 				break;
 			}
-			mListener.onVoiceMode(level);
+			
 		}
 	};
 	

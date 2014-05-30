@@ -14,6 +14,13 @@ public interface ModeSelectedListener {
 	 * @param level
 	 */
 	void onShakeMode(int level);
+	
+	/**
+	 * 关闭摇一摇模式的回调
+	 * 
+	 * @param level
+	 */
+	void offShakeMode(int level);
 
 	/**
 	 * 声控模式的回调
@@ -21,6 +28,13 @@ public interface ModeSelectedListener {
 	 * @param level
 	 */
 	void onVoiceMode(int level);
+	
+	/**
+	 * 关闭声控模式的回调
+	 * 
+	 * @param level
+	 */
+	void offVoiceMode(int level);
 
 	/**
 	 * 姿势选择的回调

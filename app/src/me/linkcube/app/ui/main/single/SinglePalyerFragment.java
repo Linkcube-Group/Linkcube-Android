@@ -182,13 +182,13 @@ public class SinglePalyerFragment extends BaseFragment implements
 
 	@Override
 	public void onShakeMode(int level) {
-		if (mStateMode != STATE_SHAKE) {
+		//if (mStateMode != STATE_SHAKE) {
 			registerShakeSensor();
 			unregisterVoiceSensor();
 			mStateMode = STATE_SHAKE;
 			mActivity.sendBroadcast(new Intent("com.linkcube.resetvoicemodeview"));
 			mActivity.sendBroadcast(new Intent("com.linkcube.resetsexpositionmodeview"));
-		}
+		//}
 		try {
 			LinkcubeApplication.toyServiceCall.setShakeSensitivity(level);
 			Timber.d("摇晃强度=%d", level);
@@ -197,17 +197,33 @@ public class SinglePalyerFragment extends BaseFragment implements
 		}
 
 	}
+	
+	@Override
+	public void offShakeMode(int level) {
+		Timber.d("关闭摇一摇模式--注销传感器");
+		if (mShakeSensor != null) {
+			mShakeSensor.unRegisterListener();
+		}
+	}
 
 	@Override
 	public void onVoiceMode(int level) {
-		if (mStateMode != STATE_VOICE) {
+		//if (mStateMode != STATE_VOICE) {
 			mStateMode = STATE_VOICE;
 			registerVoiceSensor();
 			unregisterShakeSensor();
 			mActivity.sendBroadcast(new Intent("com.linkcube.resetshakemodeview"));
 			mActivity.sendBroadcast(new Intent("com.linkcube.resetsexpositionmodeview"));
-		}
+		//}
 		mVoiceSensor.setVoiceLevel(level);
+	}
+	
+	@Override
+	public void offVoiceMode(int level) {
+		Timber.d("关闭音浪模式--注销声音传感器");
+		if (mVoiceSensor != null) {
+			mVoiceSensor.unregisterVoiceListener();
+		}
 	}
 
 	@Override

@@ -92,7 +92,7 @@ public class ShakeSensor implements SensorEventListener {
 			ShakeSpeedData tempAvg = mQueue.addElement(x, y, z);
 			
 			if (tempAvg != null) {
-				float length = (int) Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)
+				float length = (int) Math.sqrt(Math.pow(x- last_x, 2) + Math.pow(y- last_y, 2)
 						+ Math.pow(z- last_z, 2)) * 10;
 				// String currentValue = tempAvg.getX() + "," + tempAvg.getY() +
 				// "," + tempAvg.getZ() + "," + length + "," +
