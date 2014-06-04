@@ -1,15 +1,21 @@
 package me.linkcube.app.ui.setting;
 
+import java.util.Locale;
+
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -37,7 +43,7 @@ import me.linkcube.app.widget.AlertUtils;
 public class SettingActivity extends DialogActivity implements OnClickListener {
 
 	private TextView connectToyTv, personalInfoTv, purchaseToyTv, helpTv,
-			feedbackTv, aboutUsTv, checkUpdateTv;
+			feedbackTv, aboutUsTv, checkUpdateTv, setLanguageTv;
 
 	private Button loginOrRegisterBtn;
 
@@ -48,10 +54,10 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 	private int flieMaxSize = 0;
 
 	private int addUpdateFlag = -1;
-	
+
 	private Intent msgIntent;
 	private static PendingIntent msgPendingIntent;
-	
+
 	private int msgNotificationID = 1100;
 	private Notification msgNotification;
 	private NotificationManager msgNotificationManager;
@@ -82,6 +88,7 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 		checkUpdateTv = (TextView) findViewById(R.id.checkupdate_tv);
 		loginOrRegisterBtn = (Button) findViewById(R.id.login_or_register_btn);
 		newVertionTipIv = (ImageView) findViewById(R.id.new_version_tip_iv);
+		setLanguageTv=(TextView)findViewById(R.id.set_language_tv);
 		connectToyTv.setOnClickListener(this);
 		personalInfoTv.setOnClickListener(this);
 		purchaseToyTv.setOnClickListener(this);
@@ -90,6 +97,7 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 		aboutUsTv.setOnClickListener(this);
 		loginOrRegisterBtn.setOnClickListener(this);
 		checkUpdateTv.setOnClickListener(this);
+		setLanguageTv.setOnClickListener(this);
 
 		addUpdateFlag = PreferenceUtils.getInt(Const.AppUpdate.APK_UPDATE_FLAG,
 				0);
@@ -148,6 +156,36 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 			if (addUpdateFlag == 2) {
 				showUpdateDialog();
 			}
+			break;
+		case R.id.set_language_tv:
+			
+			new AlertDialog.Builder(this)
+			.setTitle("语言设置")
+			.setSingleChoiceItems(new String[] {"中文简体","english"}, 0, new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Resources resources=getResources();
+					Configuration config=resources.getConfiguration();
+					DisplayMetrics dm= resources.getDisplayMetrics();
+					switch (which) {
+					case 0:
+						config.locale = Locale.SIMPLIFIED_CHINESE;
+						resources.updateConfiguration(config, dm);
+						dialog.dismiss();
+						break;
+					case 1:
+						config.locale = Locale.ENGLISH;
+						resources.updateConfiguration(config, dm);
+						dialog.dismiss();
+						break;
+					default:
+						break;
+					}
+				}
+			})
+			.setNegativeButton("取消", null)
+			.show();
 			break;
 		default:
 			break;
@@ -210,13 +248,16 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 
 									@Override
 									public void afterApkDownload(int reFlag) {
-										msgNotificationManager.cancel(msgNotificationID);
+										msgNotificationManager
+												.cancel(msgNotificationID);
 									}
 
 									@Override
 									public void FailureApkDownload(int reFlag) {
-										failureUpdateHandler.sendEmptyMessage(0);
-										msgNotificationManager.cancel(msgNotificationID);
+										failureUpdateHandler
+												.sendEmptyMessage(0);
+										msgNotificationManager
+												.cancel(msgNotificationID);
 									}
 								});
 						downloadNewApkHttpGet.downloadNewApkFile(mActivity,
@@ -235,32 +276,32 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 
 				});
 	}
-	
-	private Handler failureUpdateHandler=new Handler(){
+
+	private Handler failureUpdateHandler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
-			Toast.makeText(SettingActivity.this,
-					"网络异常，文件下载失败",
+			Toast.makeText(SettingActivity.this, "网络异常，文件下载失败",
 					Toast.LENGTH_SHORT).show();
 		}
-		
+
 	};
-	
+
 	private void initNotification(Context context) {
 		msgNotification = new Notification();
 		msgNotification.icon = R.drawable.ic_launcher;
-		//msgNotification.defaults = Notification.DEFAULT_SOUND;
+		// msgNotification.defaults = Notification.DEFAULT_SOUND;
 		msgNotification.flags = Notification.FLAG_NO_CLEAR;
 		msgNotificationManager = (NotificationManager) context
 				.getSystemService(Context.NOTIFICATION_SERVICE);
-		
+
 		msgIntent = new Intent();// Class.forName("com.oplibs.controll.test.TestMainActivity")
 		msgIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		msgPendingIntent = PendingIntent.getActivity(mActivity, 0, msgIntent,
-				0);
+		msgPendingIntent = PendingIntent
+				.getActivity(mActivity, 0, msgIntent, 0);
 
-		msgNotification.setLatestEventInfo(mActivity, "连酷","正在下载更新文件", msgPendingIntent);
+		msgNotification.setLatestEventInfo(mActivity, "连酷", "正在下载更新文件",
+				msgPendingIntent);
 
 		msgNotificationManager.notify(msgNotificationID, msgNotification);
 

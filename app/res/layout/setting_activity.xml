@@ -73,6 +73,13 @@
         <View style="@style/Setting.Item.Divider" />
 
         <TextView
+            android:id="@id/set_language_tv"
+            style="@style/Setting.Item.TextView"
+            android:text="@string/set_language" />
+
+        <View style="@style/Setting.Item.Divider" />
+        
+        <TextView
             android:id="@id/about_us_tv"
             style="@style/Setting.Item.TextView"
             android:text="@string/about_us" />

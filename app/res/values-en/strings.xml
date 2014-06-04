@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">连酷</string>
+
+    <!-- 登录 注册 -->
+    <string name="login">登录</string>
+    <string name="account">账户</string>
+    <string name="login_account_hint">邮箱登陆</string>
+    <string name="login_password_hint">请输入连酷密码</string>
+    <string name="password">密码</string>
+    <string name="foget_password">忘记密码</string>
+    <string name="security_code">Code</string>
+    <string name="security_code_hint">Code Hint</string>
+    <string name="remeber_me">记住我</string>
+    <string name="register">注册</string>
+    <string name="register_account">注册邮箱</string>
+    <string name="register_account_hint">注册邮箱，注册后不可更改</string>
+    <string name="register_password_hint">请输入密码，6至14位，字母区分大小写</string>
+    <string name="register_confirm_password_hint">请再次输入密码</string>
+    <string name="register_protocol_text">点击下面的“注册”按钮，即表示您同意</string>
+    <string name="init_user_info_nickname_hint">仅支持中英文及下划线</string>
+    <string name="init_user_info_birthday_hint">XXXX-XX-XX</string>
+    <string name="init_user_info_personstate_hint">个性签名~</string>
+
+    <!-- 主页面 -->
+    <string name="avatar_hint">请登录</string>
+    <string name="single_mode">单人模式</string>
+    <string name="multi_mode">多人模式</string>
+
+    <!-- 单人模式 -->
+    <string name="shake_mode">摇摇模式</string>
+    <string name="voice_mode">音浪模式</string>
+    <string name="sex_position_mode">经典七式</string>
+
+    <!-- 多人模式 -->
+    <string name="add_friend">添加</string>
+    <string name="friends">好友</string>
+    <string name="search_user_by_email">邮箱账号</string>
+    <string name="new_messages">消息</string>
+    <string name="friend_list">好友</string>
+
+    <!-- 个人好友信息 -->
+    <string name="detail_info">详细资料</string>
+
+    <!-- 设置 -->
+    <string name="setting">setting</string>
+    <string name="connect_toy">toy connect</string>
+    <string name="personal_info">personal information</string>
+    <string name="purchase_toy">purchase toy</string>
+    <string name="help">help</string>
+    <string name="feedback">feedback</string>
+    <string name="login_or_register">login/register</string>
+    <string name="logout">logout</string>
+    <string name="feedback_email_hint">feedback Email</string>
+    <string name="about_us">about us</string>
+    <string name="set_language">set language</string>
+    <string name="check_update">check update</string>
+    <string name="about_us_company_name">连酷科技</string>
+    <string name="version_name">版本号：2.0.0521</string>
+    <string name="linkcube_weixin">微信：连酷科技</string>
+    <string name="linkcube_weibo">微博：@连酷科技</string>
+    <string name="linkcube_website">官方网站：http://www.linkcube.me</string>
+
+    <!-- 蓝牙设置 -->
+    <string name="search_toy">搜索玩具</string>
+    <string name="searching">正在搜索...</string>
+    <string name="enter_mall">点击进入连酷玩具商城</string>
+    <string name="bluetooth">蓝牙</string>
+    <string name="bluetooth_help">蓝牙帮助</string>
+    <string name="devices_available">可连接玩具</string>
+    <string name="click_and_connect">点击列表即可连接</string>
+    <string name="switch_on_bluetooth_to_search_toy">要搜索连酷玩具，请打开蓝牙功能</string>
+    <string name="switching_on_bluetooth">正在打开蓝牙</string>
+    <string name="switching_off_bluetooth">正在关闭蓝牙</string>
+    <string name="connected">已连接</string>
+    <string name="bonded">已配对未连接</string>
+    <string name="bonding">正在配对</string>
+    <string name="unbond">未配对</string>
+
+    <!-- 修改密码 -->
+    <string name="old_pwd_hint">请输入原有密码</string>
+    <string name="new_pwd_hint">输入新密码</string>
+    <string name="confirm_new_pwd__hint">再次输入新密码</string>
+
+    <!-- 意见反馈 -->
+    <string name="character_exceed">你输入的字数已经超过了限制！</string>
+    <string name="thanks_feed_back">感谢您的反馈意见！</string>
+
+    <!-- actionbar -->
+    <string name="back">返回</string>
+    <string name="user_info">个人信息</string>
+    <string name="update_user_info">更新个人信息</string>
+    <string name="user_agreement_activity">软件协议</string>
+    <string name="new_friend_request">消息</string>
+    <string name="search_user">添加</string>
+    <string name="save_user_info">保存</string>
+    <string name="feedback_send">发送</string>
+    <string name="friend_add_clear">清空</string>
+    <string name="search_friend">搜索</string>
+    <string name="change_pwd">修改密码</string>
+    <string name="confirm">确定</string>
+
+</resources>

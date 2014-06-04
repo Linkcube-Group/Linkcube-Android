@@ -71,6 +71,7 @@
     <item name="checkupdate_tv" type="id"/>
     <item name="login_or_register_btn" type="id"/>
     <item name="about_us_tv" type="id"/>
+    <item name="set_language_tv" type="id"/>
 
     <!-- 菜单 -->
     <item name="menu_register" type="id"/>
