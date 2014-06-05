@@ -40,9 +40,9 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnClickListe
 		changeUserInfoEv.setText(information);
 		
 		if(requestCode==CHANGE_NICKNAME){
-			changeUserInfoShowTv.setText("好名字可以让你的朋友更容易记住你");
+			changeUserInfoShowTv.setText(getResources().getString(R.string.toast_goodname_to_remember));
 		}else if(requestCode==CHANGE_PERSON_STATE){
-			changeUserInfoShowTv.setText("换个状态换个心情");
+			changeUserInfoShowTv.setText(getResources().getString(R.string.toast_change_person_state));
 		}
 	}
 	

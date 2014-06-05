@@ -20,9 +20,7 @@ import me.linkcube.app.core.update.UpdateManager;
 import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.service.ToyServiceConnection;
 import me.linkcube.app.sync.chat.ChatMessageListener;
-import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
-import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.sync.core.ReconnectionCallBack;
 import me.linkcube.app.sync.core.ReconnectionListener;
 import me.linkcube.app.ui.BaseFragment;
@@ -30,7 +28,6 @@ import me.linkcube.app.ui.BaseFragmentActivity;
 import me.linkcube.app.ui.main.TabIndicatorView.OnTabIndicatorClickListener;
 import me.linkcube.app.ui.main.multi.MultiPlayerFragment;
 import me.linkcube.app.ui.main.single.SinglePalyerFragment;
-import me.linkcube.app.ui.setting.SettingActivity;
 import me.linkcube.app.ui.user.LoginActivity;
 import me.linkcube.app.util.PreferenceUtils;
 import me.linkcube.app.widget.AlertUtils;
@@ -128,7 +125,7 @@ public class MainActivity extends BaseFragmentActivity implements
 		@Override
 		public void handleMessage(Message msg) {
 			((SinglePalyerFragment) singleFragment).resetToy();
-			Toast.makeText(MainActivity.this, "玩具已断开，请重新连接", Toast.LENGTH_SHORT)
+			Toast.makeText(MainActivity.this, R.string.toast_toy_disconnect_try_again, Toast.LENGTH_SHORT)
 					.show();
 		}
 
@@ -250,7 +247,7 @@ public class MainActivity extends BaseFragmentActivity implements
 		@Override
 		public void reconnectionSuccessful() {
 			Message msg = new Message();
-			msg.obj = "重新连接成功";
+			msg.obj = getResources().getString(R.string.toast_network_reconnect);
 			handler.sendMessage(msg);
 			ChatMessageListener.getInstance().onMessageListener(mActivity);
 			UserManager.getInstance().setUserStateAvailable();
@@ -418,7 +415,7 @@ public class MainActivity extends BaseFragmentActivity implements
 		@Override
 		public void handleMessage(Message msg) {
 			Toast.makeText(MainActivity.this,
-					"网络异常，文件下载失败",
+					R.string.toast_network_error_download_file_failure,
 					Toast.LENGTH_SHORT).show();
 		}
 		

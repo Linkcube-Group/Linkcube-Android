@@ -49,35 +49,35 @@ public class ChangePwdActivity extends BaseActivity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.actionbar_first_btn:
-			// TODO 对旧密码做出判断
+			
 			String oldPwd = oldPwdEt.getText().toString();
 			String newPwd = newPwdEt.getText().toString();
 			String confirmPwd = confirmPwdEt.getText().toString();
 			if(!oldPwd.equals(PreferenceUtils.getString(Const.Preference.OLD_USER_PWD, ""))){
-				Toast.makeText(ChangePwdActivity.this, "原始密码错误",
+				Toast.makeText(ChangePwdActivity.this, R.string.toast_original_psw_wrong,
 						Toast.LENGTH_SHORT).show();
 			}else if (newPwd.length() < 6) {
-				Toast.makeText(ChangePwdActivity.this, "新密码长度太短",
+				Toast.makeText(ChangePwdActivity.this, R.string.toast_new_psw_too_short,
 						Toast.LENGTH_SHORT).show();
 			} else if (ASmackUtils.containWhiteSpace(newPwd)) {
-				Toast.makeText(ChangePwdActivity.this, "密码中不能包含空格",
+				Toast.makeText(ChangePwdActivity.this, R.string.toast_psw_contain_space,
 						Toast.LENGTH_SHORT).show();
 			} else if (!newPwd.equals(confirmPwd)) {
-				Toast.makeText(ChangePwdActivity.this, "密码不一致，请重新输入",
+				Toast.makeText(ChangePwdActivity.this, R.string.toast_psw_inconsistente_reinput,
 						Toast.LENGTH_SHORT).show();
 			} else {
 				new ChangePassword(newPwd, new ASmackRequestCallBack() {
 
 					@Override
 					public void responseSuccess(Object object) {
-						Toast.makeText(ChangePwdActivity.this, "密码修改成功",
+						Toast.makeText(ChangePwdActivity.this, R.string.toast_change_psw_success,
 								Toast.LENGTH_SHORT).show();
 						finish();
 					}
 
 					@Override
 					public void responseFailure(int reflag) {
-						Toast.makeText(ChangePwdActivity.this, "密码修改失败，请重新尝试",
+						Toast.makeText(ChangePwdActivity.this, R.string.toast_change_psw_failure,
 								Toast.LENGTH_SHORT).show();
 					}
 				});

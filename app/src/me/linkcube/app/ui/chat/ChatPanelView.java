@@ -1,9 +1,6 @@
 package me.linkcube.app.ui.chat;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,9 +19,7 @@ import me.linkcube.app.sync.chat.SingleChat;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import me.linkcube.app.sync.core.GetMessageReceiver;
 import me.linkcube.app.ui.BasePagerAdapter;
-import me.linkcube.app.util.TimeUtils;
 import me.linkcube.app.widget.CirclePageIndicator;
-import android.R.integer;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;

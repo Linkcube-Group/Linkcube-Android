@@ -281,7 +281,7 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 
 		@Override
 		public void handleMessage(Message msg) {
-			Toast.makeText(SettingActivity.this, "网络异常，文件下载失败",
+			Toast.makeText(SettingActivity.this, R.string.toast_network_error_download_file_failure,
 					Toast.LENGTH_SHORT).show();
 		}
 

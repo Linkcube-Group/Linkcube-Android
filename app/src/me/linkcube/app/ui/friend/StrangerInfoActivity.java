@@ -157,86 +157,97 @@ public class StrangerInfoActivity extends DialogActivity implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.accept_stranger_request_btn:
-			/*try {
-				ASmackManager
-						.getInstance()
-						.getXMPPConnection()
-						.getRoster()
-						.createEntry(ASmackUtils.getFriendJid(strangerName),
-								strangerName, null);
-			} catch (XMPPException e1) {
-				e1.printStackTrace();
-			}*/
+			/*
+			 * try { ASmackManager .getInstance() .getXMPPConnection()
+			 * .getRoster() .createEntry(ASmackUtils.getFriendJid(strangerName),
+			 * strangerName, null); } catch (XMPPException e1) {
+			 * e1.printStackTrace(); }
+			 */
 			showProgressDialog("正在添加好友");
-			new AddFriend(strangerName, strangerName, new ASmackRequestCallBack() {
-				
-				@Override
-				public void responseSuccess(Object object) {
-					dismissProgressDialog();
-					PersistableFriend perFriend = new PersistableFriend();
-					List<FriendEntity> friendEntities = new ArrayList<FriendEntity>();
+			new AddFriend(strangerName, strangerName,
+					new ASmackRequestCallBack() {
 
-					try {
-						friendEntities = DataManager.getInstance().query(
-								perFriend,
-								USER_JID + "=? and " + FRIEND_JID + "=? ",
-								new String[] { ASmackUtils.getUserJID(),
-										ASmackUtils.getFriendJid(strangerName) }, null,
-								null, null);
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-					
-					if (friendEntities != null && !friendEntities.isEmpty()) {
-						FriendEntity friendEntity = friendEntities.get(0);
-						friendEntity.setIsFriend("both");
-					} else {
-						// 添加到好友列表
-						VCard vCard = new VCard();
-						try {
-							vCard.load(ASmackManager.getInstance().getXMPPConnection(),
-									ASmackUtils.getFriendJid(strangerName));
-						} catch (XMPPException e) {
-							e.printStackTrace();
+						@Override
+						public void responseSuccess(Object object) {
+							dismissProgressDialog();
+							PersistableFriend perFriend = new PersistableFriend();
+							List<FriendEntity> friendEntities = new ArrayList<FriendEntity>();
+
+							try {
+								friendEntities = DataManager
+										.getInstance()
+										.query(perFriend,
+												USER_JID + "=? and "
+														+ FRIEND_JID + "=? ",
+												new String[] {
+														ASmackUtils
+																.getUserJID(),
+														ASmackUtils
+																.getFriendJid(strangerName) },
+												null, null, null);
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+
+							if (friendEntities != null
+									&& !friendEntities.isEmpty()) {
+								FriendEntity friendEntity = friendEntities
+										.get(0);
+								friendEntity.setIsFriend("both");
+							} else {
+								// 添加到好友列表
+								VCard vCard = new VCard();
+								try {
+									vCard.load(ASmackManager.getInstance()
+											.getXMPPConnection(), ASmackUtils
+											.getFriendJid(strangerName));
+								} catch (XMPPException e) {
+									e.printStackTrace();
+								}
+								FriendEntity friendEntity = new FriendEntity();
+								friendEntity.setUserJid(ASmackUtils
+										.getUserJID());
+								friendEntity.setFriendJid(ASmackUtils
+										.getFriendJid(strangerName));
+								friendEntity.setNickName(vCard.getNickName());
+								friendEntity.setUserAvatar(vCard.getAvatar());
+								friendEntity.setUserGender(vCard
+										.getField(Const.VCard.GENDER));
+								friendEntity.setBirthday(vCard
+										.getField(Const.VCard.BIRTHDAY));
+								friendEntity.setPersonState(vCard
+										.getField(Const.VCard.PERSONSTATE));
+
+								String userAge = ASmackUtils.getUserAge(vCard
+										.getField(Const.VCard.BIRTHDAY));
+								friendEntity.setUserAge(userAge);
+								friendEntity.setIsFriend("both");
+								DataManager.getInstance().insert(perFriend,
+										friendEntity);
+							}
+							// 添加到好友请求列表
+							PersistableFriendRequest perFriendRequest = new PersistableFriendRequest();
+							FriendRequestEntity friendRequestEntity = new FriendRequestEntity();
+							friendRequestEntity.setFriendName(strangerName);
+							friendRequestEntity.setUserName(ASmackUtils
+									.getRosterName());
+							friendRequestEntity.setSubscription("both");
+							DataManager.getInstance().update(perFriendRequest,
+									friendRequestEntity);
+							dismissProgressDialog();
+							Toast.makeText(StrangerInfoActivity.this,
+									"您添加了" + friendNickName + "为好友",
+									Toast.LENGTH_SHORT).show();
+							StrangerInfoActivity.this.finish();
 						}
-						FriendEntity friendEntity = new FriendEntity();
-						friendEntity.setUserJid(ASmackUtils.getUserJID());
-						friendEntity.setFriendJid(ASmackUtils
-								.getFriendJid(strangerName));
-						friendEntity.setNickName(vCard.getNickName());
-						friendEntity.setUserAvatar(vCard.getAvatar());
-						friendEntity.setUserGender(vCard.getField(Const.VCard.GENDER));
-						friendEntity.setBirthday(vCard.getField(Const.VCard.BIRTHDAY));
-						friendEntity.setPersonState(vCard
-								.getField(Const.VCard.PERSONSTATE));
 
-						String userAge = ASmackUtils.getUserAge(vCard
-								.getField(Const.VCard.BIRTHDAY));
-						friendEntity.setUserAge(userAge);
-						friendEntity.setIsFriend("both");
-						DataManager.getInstance().insert(perFriend, friendEntity);
-					}
-					// 添加到好友请求列表
-					PersistableFriendRequest perFriendRequest = new PersistableFriendRequest();
-					FriendRequestEntity friendRequestEntity = new FriendRequestEntity();
-					friendRequestEntity.setFriendName(strangerName);
-					friendRequestEntity.setUserName(ASmackUtils.getRosterName());
-					friendRequestEntity.setSubscription("both");
-					DataManager.getInstance().update(perFriendRequest,
-							friendRequestEntity);
-					dismissProgressDialog();
-					Toast.makeText(StrangerInfoActivity.this,
-							"您添加了" + friendNickName + "为好友", Toast.LENGTH_SHORT).show();
-					StrangerInfoActivity.this.finish();
-				}
-				
-				@Override
-				public void responseFailure(int reflag) {
-					Toast.makeText(StrangerInfoActivity.this,
-							"添加失败，请重试", Toast.LENGTH_SHORT).show();
-					dismissProgressDialog();
-				}
-			});
+						@Override
+						public void responseFailure(int reflag) {
+							Toast.makeText(StrangerInfoActivity.this,
+									R.string.toast_add_friend_failure_try_again, Toast.LENGTH_SHORT).show();
+							dismissProgressDialog();
+						}
+					});
 			/*
 			 * Presence subscribedPresence = new
 			 * Presence(Presence.Type.subscribed);
@@ -272,12 +283,14 @@ public class StrangerInfoActivity extends DialogActivity implements
 						@Override
 						public void responseSuccess(Object object) {
 							Toast.makeText(StrangerInfoActivity.this,
-									"好友请求已发送", Toast.LENGTH_SHORT).show();
+									R.string.toast_friend_request_has_send,
+									Toast.LENGTH_SHORT).show();
 						}
 
 						@Override
 						public void responseFailure(int reflag) {
-							Toast.makeText(StrangerInfoActivity.this, "添加好友失败",
+							Toast.makeText(StrangerInfoActivity.this,
+									R.string.toast_add_friend_failure,
 									Toast.LENGTH_SHORT).show();
 						}
 					});

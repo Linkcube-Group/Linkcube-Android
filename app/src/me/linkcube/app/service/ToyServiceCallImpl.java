@@ -10,7 +10,6 @@ import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.bluetooth.BluetoothUtils;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.service.IToyServiceCall;
-import me.linkcube.app.util.PreferenceUtils;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -19,8 +18,6 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
-import android.widget.Toast;
-import static me.linkcube.app.core.Const.Device.*;
 
 public class ToyServiceCallImpl extends android.os.Binder implements
 		IToyServiceCall {

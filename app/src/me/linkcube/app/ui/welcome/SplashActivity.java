@@ -121,7 +121,7 @@ public class SplashActivity extends DialogActivity {
 							@Override
 							public void responseFailure(int reflag) {
 								dismissProgressDialog();
-								Toast.makeText(SplashActivity.this, "网络异常",
+								Toast.makeText(SplashActivity.this, R.string.toast_network_wrong_try_again,
 										Toast.LENGTH_SHORT).show();
 								startActivity(new Intent(mActivity,
 										MainActivity.class));
@@ -200,28 +200,28 @@ public class SplashActivity extends DialogActivity {
 			@Override
 			public void responseFailure(int reflag) {
 				if (reflag == 1) {
-					Toast.makeText(SplashActivity.this, "已经登录",
+					Toast.makeText(SplashActivity.this, R.string.toast_has_login,
 							Toast.LENGTH_SHORT).show();
 					Intent intent = new Intent(SplashActivity.this,
 							MainActivity.class);
 					startActivity(intent);
 					dismissProgressDialog();
 				} else if (reflag == -1) {
-					Toast.makeText(SplashActivity.this, "网络错误请检查",
+					Toast.makeText(SplashActivity.this, R.string.toast_check_network,
 							Toast.LENGTH_SHORT).show();
 					Intent intent = new Intent(SplashActivity.this,
 							MainActivity.class);
 					startActivity(intent);
 					dismissProgressDialog();
 				} else if (reflag == -2) {
-					Toast.makeText(SplashActivity.this, "用户名或者密码错误",
+					Toast.makeText(SplashActivity.this, R.string.toast_name_psw_wrong,
 							Toast.LENGTH_SHORT).show();
 					Intent intent = new Intent(SplashActivity.this,
 							MainActivity.class);
 					startActivity(intent);
 					dismissProgressDialog();
 				} else {
-					Toast.makeText(SplashActivity.this, "不存在当前用户",
+					Toast.makeText(SplashActivity.this, R.string.toast_not_exist_this_user,
 							Toast.LENGTH_SHORT).show();
 					Intent intent = new Intent(SplashActivity.this,
 							MainActivity.class);

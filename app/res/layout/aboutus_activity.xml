@@ -48,7 +48,8 @@
             android:background="@android:color/transparent"
             android:text="@string/linkcube_weixin"
             android:textColor="@color/grey"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/linkcube_weibo"
@@ -59,7 +60,8 @@
             android:background="@android:color/transparent"
             android:text="@string/linkcube_weibo"
             android:textColor="@color/grey"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/linkcube_website"

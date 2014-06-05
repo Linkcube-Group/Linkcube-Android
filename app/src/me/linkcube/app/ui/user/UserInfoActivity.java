@@ -37,6 +37,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class UserInfoActivity extends DialogActivity implements OnClickListener {
 
@@ -59,7 +60,7 @@ public class UserInfoActivity extends DialogActivity implements OnClickListener 
 	private int CHANGE_NICKNAME = 3;
 	private int CHANGE_PERSON_STATE = 4;
 	private String TAG = "UserInfoActivity";
-	private String[] isMale = new String[] { "女", "男" };
+	private String[] isMale;
 	private VCard vCard;
 	private Calendar calendar;
 	private Dialog dialog;
@@ -107,6 +108,7 @@ public class UserInfoActivity extends DialogActivity implements OnClickListener 
 	}
 
 	private void initData() {
+		isMale = new String[] { getResources().getString(R.string.female), getResources().getString(R.string.male) };
 		calendar = Calendar.getInstance();
 
 		Thread thread = new Thread() {
@@ -164,7 +166,7 @@ public class UserInfoActivity extends DialogActivity implements OnClickListener 
 		case R.id.user_info_gender_ll:
 
 			Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle("性别")
+			builder.setTitle(getResources().getString(R.string.gender))
 					.setSingleChoiceItems(isMale, 0,
 							new DialogInterface.OnClickListener() {
 								@Override
@@ -179,7 +181,7 @@ public class UserInfoActivity extends DialogActivity implements OnClickListener 
 											.setVisibility(View.VISIBLE);
 									if (bitmap == null) {
 										Timber.d(isMale[which]);
-										if (isMale[which].equals("男")) {
+										if (isMale[which].equals(getResources().getString(R.string.male))) {
 											userAvatorIv
 													.setImageResource(R.drawable.avatar_male_default);
 											userAvatorIv.invalidate();

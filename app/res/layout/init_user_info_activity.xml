@@ -45,7 +45,7 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="0"
             android:gravity="center_horizontal"
-            android:text="昵        称"
+            android:text="@string/nickname"
             android:textSize="18sp" />
 
         <me.linkcube.app.widget.CWClearEditText
@@ -75,7 +75,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:layout_weight="0"
-            android:text="性        别"
+            android:text="@string/gender"
             android:textSize="18sp" />
 
         <RadioGroup
@@ -98,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
-                android:text="女"
+                android:text="@string/female"
                 android:textSize="20dp" />
 
             <RadioButton
@@ -112,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
-                android:text="男"
+                android:text="@string/male"
                 android:textSize="20dp" />
         </RadioGroup>
     </LinearLayout>
@@ -130,7 +130,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:layout_weight="0"
-            android:text="出生年月"
+            android:text="@string/birthday"
             android:textSize="18sp" />
 
         <me.linkcube.app.widget.CWClearEditText
@@ -170,7 +170,7 @@
             android:layout_weight="2"
             android:ems="10"
             android:hint="@string/init_user_info_personstate_hint"
-            android:text="" >
+            android:text="@string/person_state" >
         </me.linkcube.app.widget.CWClearEditText>
     </LinearLayout>
 
@@ -180,6 +180,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="保存个人信息" />
+        android:text="@string/save_person_info" />
 
 </LinearLayout>

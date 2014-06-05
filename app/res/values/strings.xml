@@ -86,6 +86,8 @@
     <!-- 意见反馈 -->
     <string name="character_exceed">你输入的字数已经超过了限制！</string>
     <string name="thanks_feed_back">感谢您的反馈意见！</string>
+    <string name="limit_word">字</string>
+    <string name="feedback_email">邮箱</string>
 
     <!-- actionbar -->
     <string name="back">返回</string>
@@ -100,5 +102,58 @@
     <string name="search_friend">搜索</string>
     <string name="change_pwd">修改密码</string>
     <string name="confirm">确定</string>
-
+    
+    <!-- 初始化和用户个人信息 -->
+    <string name="nickname">昵       称</string>
+    <string name="gender">性       别</string>
+    <string name="birthday">出生年月</string>
+    <string name="person_state">个性签名</string>
+    <string name="register_email">注册邮箱</string>
+    <string name="save_person_info">保存个人信息</string>
+    <string name="female">女</string>
+    <string name="male">男</string>
+    
+    <!-- Toast -->
+    <string name="toast_register_success">注册成功</string>
+    <string name="toast_login_and_waiting">正在登陆哦，请稍后...</string>
+    <string name="toast_name_psw_not_null">用户名和密码不能为空</string>
+	<string name="toast_check_network">网络错误，请检查网络</string>
+	<string name="toast_has_login">已经登录</string>
+	<string name="toast_name_psw_wrong">用户名或密码错误</string>
+	<string name="toast_not_exist_this_user">不存在当前用户</string>
+	<string name="toast_goodname_to_remember">好名字可以让你的朋友更容易记住你</string>
+	<string name="toast_change_person_state">换个状态换个心情</string>
+	<string name="linkcube_terms_and_conditions">连酷软件许可及服务协议</string>
+	
+	<string name="toast_server_noresponse">服务器无响应</string>
+	<string name="toast_email_has_used">当前邮箱已被使用</string>
+	<string name="toast_network_wrong_try_again">网络异常，请重试</string>
+	
+	<string name="toast_username_hasbeen_email">用户名必须为邮箱</string>
+	<string name="toast_psw_too_short">密码长度太短</string>
+	<string name="toast_psw_couldnot_contain_space">密码中不能包含空格</string>
+	<string name="toast_psw_not_match">密码不一致，请重新输入</string>
+	
+	<!-- Toast-MainActivity -->
+	<string name="toast_toy_disconnect_try_again">玩具已断开，请重新连接</string>
+	<string name="toast_network_reconnect">重新连接成功</string>
+	<string name="toast_network_error_download_file_failure">网络异常，文件下载失败</string>
+	
+	<!-- Toast-ChatActivity -->
+	<string name="toast_close_game">关闭游戏</string>
+	<string name="toast_not_my_friend_add_again">该用户已经不是您的好友，请重新添加</string>
+	
+	<!-- Toast-陌生好友信息页面 -->
+	<string name="toast_friend_request_has_send">好友请求已发送</string>
+	<string name="toast_add_friend_failure">添加好友失败</string>
+	<string name="toast_add_friend_failure_try_again">添加失败，请重试</string>
+	
+	<!-- Toast-修改密码页面 -->
+	<string name="toast_original_psw_wrong">原始密码错误</string>
+	<string name="toast_new_psw_too_short">新密码长度太短</string>
+	<string name="toast_psw_contain_space">密码中不能包含空格</string>
+	<string name="toast_psw_inconsistente_reinput">密码不一致，请重新输入</string>
+	<string name="toast_change_psw_success">密码修改成功</string>
+	<string name="toast_change_psw_failure">密码修改失败，请重新尝试</string>
+	
 </resources>

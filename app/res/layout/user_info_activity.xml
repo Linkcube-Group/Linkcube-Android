@@ -37,7 +37,7 @@
         <TextView
             android:id="@+id/user_info_nickname_title"
             style="@style/Setting.Item.TextView.Left"
-            android:text="昵称" />
+            android:text="@string/nickname" />
 
         <TextView
             android:id="@+id/user_info_nickname_tv"
@@ -54,7 +54,7 @@
         <TextView
             android:id="@+id/user_info_gender_title"
             style="@style/Setting.Item.TextView.Left"
-            android:text="性别" />
+            android:text="@string/gender" />
 
         <TextView
             android:id="@+id/user_info_gender_tv"
@@ -71,7 +71,7 @@
         <TextView
             android:id="@+id/user_info_birthday_title"
             style="@style/Setting.Item.TextView.Left"
-            android:text="出生年月" />
+            android:text="@string/birthday" />
 
         <TextView
             android:id="@+id/user_info_birthday_tv"
@@ -88,7 +88,7 @@
         <TextView
             android:id="@+id/user_info_person_state_title"
             style="@style/Setting.Item.TextView.Left"
-            android:text="个性签名" />
+            android:text="@string/person_state" />
 
         <TextView
             android:id="@+id/user_info_person_state_tv"
@@ -121,7 +121,7 @@
         <TextView
             android:id="@+id/user_info_email_title"
             style="@style/Setting.Item.TextView.Left"
-            android:text="注册邮箱" />
+            android:text="@string/register_email" />
 
         <TextView
             android:id="@+id/user_info_email_tv"

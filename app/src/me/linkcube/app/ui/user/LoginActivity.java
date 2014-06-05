@@ -69,11 +69,13 @@ public class LoginActivity extends DialogActivity implements OnClickListener {
 		switch (v.getId()) {
 
 		case R.id.login_btn:
-			showProgressDialog("正在登陆哦，请稍后...");
+			showProgressDialog(getResources().getString(
+					R.string.toast_login_and_waiting));
 			if (usernameEt.getText().toString().equals("")
 					|| passwordEt.getText().toString().equals("")) {
-				Toast.makeText(LoginActivity.this, "用户名和密码不能为空",
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(LoginActivity.this,
+						R.string.toast_name_psw_not_null, Toast.LENGTH_SHORT)
+						.show();
 				dismissProgressDialog();
 			} else {
 				if (rememberMeCheckbox.isChecked()) {
@@ -107,8 +109,8 @@ public class LoginActivity extends DialogActivity implements OnClickListener {
 								public void responseFailure(int reflag) {
 									dismissProgressDialog();
 									Toast.makeText(LoginActivity.this,
-											"网络错误，请检查网络", Toast.LENGTH_SHORT)
-											.show();
+											R.string.toast_check_network,
+											Toast.LENGTH_SHORT).show();
 								}
 							});
 				} else {
@@ -216,15 +218,18 @@ public class LoginActivity extends DialogActivity implements OnClickListener {
 					public void responseFailure(int reflag) {
 						if (reflag == 1) {
 							dismissProgressDialog();
-							Toast.makeText(LoginActivity.this, "已经登录",
+							Toast.makeText(LoginActivity.this,
+									R.string.toast_has_login,
 									Toast.LENGTH_SHORT).show();
 						} else if (reflag == -1) {
 							dismissProgressDialog();
-							Toast.makeText(LoginActivity.this, "网络错误请检查",
+							Toast.makeText(LoginActivity.this,
+									R.string.toast_check_network,
 									Toast.LENGTH_SHORT).show();
 						} else if (reflag == -2) {
 							dismissProgressDialog();
-							Toast.makeText(LoginActivity.this, "用户名或密码错误",
+							Toast.makeText(LoginActivity.this,
+									R.string.toast_name_psw_wrong,
 									Toast.LENGTH_SHORT).show();
 						}
 

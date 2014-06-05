@@ -98,7 +98,7 @@ public class SingleStatusBarView extends LinearLayout {
 	public void setUserInfo(UserEntity userEntity) {
 		if (userEntity == null) {
 			avatarBtn.setImageResource(R.drawable.avatar_male_default);
-			userNameTv.setText("请登录");
+			userNameTv.setText(getResources().getString(R.string.avatar_hint));
 			return;
 		} else {
 			Drawable avatar = null;

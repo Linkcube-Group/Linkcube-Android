@@ -293,8 +293,8 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		switch (v.getId()) {
 		case R.id.btn_send:// 发送普通消息
 			if (!isFriend) {
-				Toast.makeText(this, "该用户已经不是您的好友，请重新添加", Toast.LENGTH_SHORT)
-						.show();
+				Toast.makeText(this, R.string.toast_not_my_friend_add_again,
+						Toast.LENGTH_SHORT).show();
 			}
 			String sendMsg = sendMsgEt.getText().toString();
 			if (sendMsg.equals("")) {
@@ -342,7 +342,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 
 	@Override
 	public void updateChatList(ChatMsgEntity entity) {
-		System.out.println("entity.getText():"+entity.getText());
+		System.out.println("entity.getText():" + entity.getText());
 		mDataArrays.add(entity);
 		mAdapter.notifyDataSetChanged();
 		singleChatLv.setSelection(singleChatLv.getCount() - 1);
@@ -411,7 +411,8 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 			isStartGame = false;
 			ischatPopupRlPop = false;
 			supportInvalidateOptionsMenu();
-			Toast.makeText(this, "关闭游戏", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, R.string.toast_close_game, Toast.LENGTH_LONG)
+					.show();
 			break;
 		case android.R.id.home:
 			this.finish();
@@ -436,7 +437,8 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		UserManager.getInstance().setPlayingTarget(null);
 		isStartGame = false;
 		supportInvalidateOptionsMenu();
-		Toast.makeText(this, "关闭游戏", Toast.LENGTH_LONG).show();
+		Toast.makeText(this, R.string.toast_close_game, Toast.LENGTH_LONG)
+				.show();
 	}
 
 	@Override
