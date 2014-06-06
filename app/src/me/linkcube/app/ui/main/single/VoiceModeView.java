@@ -1,8 +1,6 @@
 package me.linkcube.app.ui.main.single;
 
-import me.linkcube.app.LinkcubeApplication;
 import me.linkcube.app.R;
-import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import android.content.Context;
@@ -10,7 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Message;
-import android.os.RemoteException;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;

@@ -90,7 +90,7 @@ public class FeedbackActivity extends BaseActivity implements OnClickListener {
 		public void afterTextChanged(Editable s) {
 			editStart = feedbackContentEt.getSelectionStart();
 			editEnd = feedbackContentEt.getSelectionEnd();
-			edittextMexCountTv.setText(200 - sequence.length());
+			edittextMexCountTv.setText(200 - sequence.length()+"");
 			if (sequence.length() > 200) {
 				Toast.makeText(FeedbackActivity.this, R.string.character_exceed,
 						Toast.LENGTH_SHORT).show();

@@ -13,6 +13,7 @@ import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.ui.DialogActivity;
 import me.linkcube.app.util.FormatUtils;
+import me.linkcube.app.util.PreferenceUtils;
 
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smackx.packet.VCard;
@@ -45,9 +46,9 @@ public class UserInfoActivity extends DialogActivity implements OnClickListener 
 	private LinearLayout userInfoGenderLl;
 	private LinearLayout userInfoBirthdayLl;
 	private LinearLayout userInfoPersonStateLl;
-	
+
 	private Button actionbarFirstBtn;
-	
+
 	private ImageView userAvatorIv;
 	private TextView userInfoNicknameTv;
 	private TextView userInfoGenderTv;
@@ -79,13 +80,13 @@ public class UserInfoActivity extends DialogActivity implements OnClickListener 
 	}
 
 	private void initView() {
-		userInfoNicknameLl=(LinearLayout)findViewById(R.id.user_info_nickname_ll);
+		userInfoNicknameLl = (LinearLayout) findViewById(R.id.user_info_nickname_ll);
 		userInfoNicknameLl.setOnClickListener(this);
-		userInfoBirthdayLl=(LinearLayout)findViewById(R.id.user_info_birthday_ll);
+		userInfoBirthdayLl = (LinearLayout) findViewById(R.id.user_info_birthday_ll);
 		userInfoBirthdayLl.setOnClickListener(this);
-		userInfoGenderLl=(LinearLayout)findViewById(R.id.user_info_gender_ll);
+		userInfoGenderLl = (LinearLayout) findViewById(R.id.user_info_gender_ll);
 		userInfoGenderLl.setOnClickListener(this);
-		userInfoPersonStateLl=(LinearLayout)findViewById(R.id.user_info_person_state_ll);
+		userInfoPersonStateLl = (LinearLayout) findViewById(R.id.user_info_person_state_ll);
 		userInfoPersonStateLl.setOnClickListener(this);
 		userAvatorIv = (ImageView) findViewById(R.id.user_info_avator_iv);
 		// TODO 修改头像部分，已实现，网络问题暂不添加
@@ -98,7 +99,7 @@ public class UserInfoActivity extends DialogActivity implements OnClickListener 
 		userInfoEmailTv = (TextView) findViewById(R.id.user_info_email_tv);
 		updateUserInfoBtn = (Button) findViewById(R.id.update_user_info_btn);
 		updateUserInfoBtn.setOnClickListener(this);
-		
+
 		actionbarFirstBtn = (Button) actionbarView
 				.findViewById(R.id.actionbar_first_btn);
 		actionbarFirstBtn.setVisibility(View.VISIBLE);
@@ -108,7 +109,8 @@ public class UserInfoActivity extends DialogActivity implements OnClickListener 
 	}
 
 	private void initData() {
-		isMale = new String[] { getResources().getString(R.string.female), getResources().getString(R.string.male) };
+		isMale = new String[] { getResources().getString(R.string.female),
+				getResources().getString(R.string.male) };
 		calendar = Calendar.getInstance();
 
 		Thread thread = new Thread() {
@@ -130,7 +132,12 @@ public class UserInfoActivity extends DialogActivity implements OnClickListener 
 
 		Timber.d("userEntity.getNickName:" + userEntity.getNickName());
 		userInfoNicknameTv.setText(userEntity.getNickName());
-		userInfoGenderTv.setText(userEntity.getUserGender());
+		if (userEntity.getUserGender().equals("女")) {
+			userInfoGenderTv.setText(getResources().getString(R.string.female));
+		}else{
+			userInfoGenderTv.setText(getResources().getString(R.string.male));
+		}
+
 		userInfoBirthdayTv.setText(userEntity.getBirthday());
 		userInfoPersonStateTv.setText(userEntity.getPersonState());
 		userInfoEmailTv.setText(ASmackUtils.userNameDecode(ASmackUtils
@@ -150,7 +157,8 @@ public class UserInfoActivity extends DialogActivity implements OnClickListener 
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.actionbar_first_btn:
-			startActivity(new Intent(UserInfoActivity.this,ChangePwdActivity.class));
+			startActivity(new Intent(UserInfoActivity.this,
+					ChangePwdActivity.class));
 			break;
 		case R.id.user_info_avator_iv:
 			getAlbumPicture();
@@ -181,12 +189,13 @@ public class UserInfoActivity extends DialogActivity implements OnClickListener 
 											.setVisibility(View.VISIBLE);
 									if (bitmap == null) {
 										Timber.d(isMale[which]);
-										if (isMale[which].equals(getResources().getString(R.string.male))) {
+										if (isMale[which].equals(getResources()
+												.getString(R.string.male))) {
 											userAvatorIv
 													.setImageResource(R.drawable.avatar_male_default);
 											userAvatorIv.invalidate();
 										} else {
-											
+
 											userAvatorIv
 													.setImageResource(R.drawable.avatar_female_default);
 											userAvatorIv.invalidate();

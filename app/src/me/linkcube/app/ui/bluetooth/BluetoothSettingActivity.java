@@ -120,10 +120,10 @@ public class BluetoothSettingActivity extends DialogActivity implements
 
 	private void bondDevice(BluetoothDevice device, int position) {
 		if (BluetoothUtils.bondDevice(device)) {
-			showProgressDialog("正在绑定玩具...");
+			showProgressDialog(getResources().getString(R.string.dialog_bonding_bluetooth));
 		} else {
 			Timber.d("绑定拉玩具失败");
-			AlertUtils.showToast(mActivity, "绑定拉玩具失败");
+			AlertUtils.showToast(mActivity, getResources().getString(R.string.toast_toy_unbonded));
 		}
 	}
 
@@ -149,7 +149,7 @@ public class BluetoothSettingActivity extends DialogActivity implements
 			if (BluetoothUtils.isBluetoothEnabled()) {
 				startDiscoverBluetoothDevices();
 			} else {
-				AlertUtils.showToast(mActivity, "请打开蓝牙");
+				AlertUtils.showToast(mActivity, getResources().getString(R.string.toast_pls_open_bluetooth));
 			}
 			break;
 		case R.id.bluetooth_help_btn:
@@ -166,7 +166,7 @@ public class BluetoothSettingActivity extends DialogActivity implements
 		Timber.i("正在打开蓝牙");
 		bluetoothTb.setClickable(false);
 		deviceLv.setTip(R.string.switching_on_bluetooth);
-		AlertUtils.showToast(this, "正在打开蓝牙,请稍后");
+		AlertUtils.showToast(this, getResources().getString(R.string.toast_open_bluetooth_wait));
 
 	}
 
@@ -175,14 +175,14 @@ public class BluetoothSettingActivity extends DialogActivity implements
 		Timber.i("正在关闭蓝牙");
 		bluetoothTb.setClickable(false);
 		deviceLv.setTip(R.string.switching_off_bluetooth);
-		AlertUtils.showToast(this, "正在关闭蓝牙，请稍后");
+		AlertUtils.showToast(this, getResources().getString(R.string.toast_close_bluetooth_wait));
 	}
 
 	@Override
 	public void onBluetoothStateOn() {
 		Timber.i("蓝牙已打开");
 		bluetoothTb.setClickable(true);
-		AlertUtils.showToast(this, "蓝牙已打开");
+		AlertUtils.showToast(this, getResources().getString(R.string.toast_bluetooth_open));
 		showBondedDevices();
 		startDiscoverBluetoothDevices();
 	}
@@ -191,7 +191,7 @@ public class BluetoothSettingActivity extends DialogActivity implements
 	public void onBluetoothStateOff() {
 		Timber.i("蓝牙已关闭");
 		bluetoothTb.setClickable(true);
-		AlertUtils.showToast(this, "蓝牙已关闭");
+		AlertUtils.showToast(this, getResources().getString(R.string.toast_bluetooth_closed));
 		clearDeviceList();
 	}
 
@@ -213,9 +213,9 @@ public class BluetoothSettingActivity extends DialogActivity implements
 	public void onBluetoothDeviceDiscoveryFinished() {
 		Timber.d("搜索蓝牙设备完毕！");
 		finishDiscoverBluetoothDevices();
-		AlertUtils.showToast(this, "搜索蓝牙设备完毕！");
+		AlertUtils.showToast(this, getResources().getString(R.string.toast_searching_toy_over));
 		if (deviceList.size() == 0) {
-			deviceLv.setTip("附近没有搜索到设备");
+			deviceLv.setTip(getResources().getString(R.string.toast_no_device_nearby));
 			deviceLv.showTipTextView();
 		}
 	}
@@ -243,7 +243,7 @@ public class BluetoothSettingActivity extends DialogActivity implements
 		protected void onPreExecute() {
 			super.onPreExecute();
 			Timber.d("准备连接设备");
-			showProgressDialog("正在与玩具连接...");
+			showProgressDialog(getResources().getString(R.string.toast_connecting_toy));
 		}
 
 		@Override
@@ -267,13 +267,13 @@ public class BluetoothSettingActivity extends DialogActivity implements
 			dismissProgressDialog();
 			if (success) {
 				DeviceConnectionManager.getInstance().startCheckConnetionTask();
-				AlertUtils.showToast(mActivity, "连接玩具成功！");
+				AlertUtils.showToast(mActivity, getResources().getString(R.string.toast_connect_toy_success));
 				// TODO 保存连接上的设备名和状态
 				PreferenceUtils.setString(DEVICE_NAME, mDevice.getName());
 				PreferenceUtils.setString(DEVICE_ADDRESS, mDevice.getAddress());
 				deviceAdapter.notifyDataSetChanged();
 			} else {
-				AlertUtils.showToast(mActivity, "连接玩具失败，请确认玩具是否打开！");
+				AlertUtils.showToast(mActivity, getResources().getString(R.string.toast_connect_toy_failure));
 			}
 
 		}
@@ -295,7 +295,7 @@ public class BluetoothSettingActivity extends DialogActivity implements
 		Timber.d("onReceive:bluetooth bond state changed -> " + "BONDED");
 		Timber.d("玩具配对成功");
 		dismissProgressDialog();
-		AlertUtils.showToast(mActivity, "玩具配对成功！");
+		AlertUtils.showToast(mActivity, getResources().getString(R.string.toast_bond_toy_success));
 		deviceAdapter.notifyDataSetChanged();
 	}
 

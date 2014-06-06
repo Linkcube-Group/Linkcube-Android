@@ -172,12 +172,24 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 					case 0:
 						config.locale = Locale.SIMPLIFIED_CHINESE;
 						resources.updateConfiguration(config, dm);
+						PreferenceUtils.setInt("app_language", 0);
 						dialog.dismiss();
+						//刷新界面
+						Intent intent = new Intent();
+						intent.setClass(SettingActivity.this,SettingActivity.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						SettingActivity.this.startActivity(intent);
 						break;
 					case 1:
 						config.locale = Locale.ENGLISH;
 						resources.updateConfiguration(config, dm);
+						PreferenceUtils.setInt("app_language", 1);
 						dialog.dismiss();
+						//刷新界面
+						Intent intent2 = new Intent();
+						intent2.setClass(SettingActivity.this,SettingActivity.class);
+						intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						SettingActivity.this.startActivity(intent2);
 						break;
 					default:
 						break;

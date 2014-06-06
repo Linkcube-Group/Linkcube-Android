@@ -3,10 +3,13 @@ package me.linkcube.app.ui.main.single;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.linkcube.app.R;
+
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * 个人设置页面装有三种模式的PagerAdapter
@@ -27,6 +30,8 @@ public class ModeSelectedPagerAdapter extends PagerAdapter {
 	private VoiceModeView voiceView;
 	
 	private SexPositionModeView sexPositionView;
+	
+	private TextView shakeModeTv,voiceModeTv,sexPositionModeTv;
 
 	public ModeSelectedPagerAdapter(Context context,
 			ModeSelectedListener listener) {
@@ -72,5 +77,14 @@ public class ModeSelectedPagerAdapter extends PagerAdapter {
 		shakeView.unRegisterReceiver(mContext);
 		voiceView.unRegisterReceiver(mContext);
 		sexPositionView.unRegisterReceiver(mContext);
+	}
+	
+	public void changeLanguageForTv(){
+		shakeModeTv=(TextView)shakeView.findViewById(R.id.shake_mode_tv);
+		shakeModeTv.setText(mContext.getResources().getString(R.string.shake_mode));
+		voiceModeTv=(TextView)voiceView.findViewById(R.id.voice_mode_tv);
+		voiceModeTv.setText(mContext.getResources().getString(R.string.voice_mode));
+		sexPositionModeTv=(TextView)sexPositionView.findViewById(R.id.sex_position_mode_tv);
+		sexPositionModeTv.setText(mContext.getResources().getString(R.string.sex_position_mode));
 	}
 }

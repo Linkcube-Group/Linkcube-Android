@@ -1,5 +1,7 @@
 package me.linkcube.app.ui.welcome;
 
+import java.util.Locale;
+
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smackx.packet.VCard;
 
@@ -26,8 +28,11 @@ import me.linkcube.app.R;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.view.Window;
 import android.widget.Toast;
 
@@ -54,6 +59,8 @@ public class SplashActivity extends DialogActivity {
 				mActivity.getApplicationContext());
 		Timber.d("键值存储初始化");
 		PreferenceUtils.initDataShare(getApplicationContext());
+		
+		setLanguage();
 
 		MobclickAgent.updateOnlineConfig(mActivity);
 		MobclickAgent.openActivityDurationTrack(false);
@@ -78,7 +85,7 @@ public class SplashActivity extends DialogActivity {
 			showNetworkDialog();
 			return;
 		} else {
-			showProgressDialog("正在连接网络，请稍等...");
+			showProgressDialog(getResources().getString(R.string.toast_connect_network_wait));
 			if (ASmackManager.getInstance().getXMPPConnection() == null
 					|| !ASmackManager.getInstance().getXMPPConnection()
 							.isConnected()) {
@@ -137,6 +144,26 @@ public class SplashActivity extends DialogActivity {
 		}
 
 	}
+	
+	private void setLanguage(){
+		Resources resources=getResources();
+		Configuration config=resources.getConfiguration();
+		DisplayMetrics dm= resources.getDisplayMetrics();
+		
+		switch (PreferenceUtils.getInt("app_language", 0)) {
+		case 0:
+			config.locale = Locale.SIMPLIFIED_CHINESE;
+			break;
+			
+		case 1:
+			config.locale = Locale.ENGLISH;
+			break;
+
+		default:
+			break;
+		}
+		resources.updateConfiguration(config, dm);
+	}
 
 	private void showNetworkDialog() {
 		AlertUtils.showAlert(this, "请确认您可以访问互联网，若有疑问请与客服人员联系。", "提示", "设置",
@@ -168,7 +195,7 @@ public class SplashActivity extends DialogActivity {
 	}
 
 	private void autoLogin() {
-		showProgressDialog("自动登录中，请稍等...");
+		showProgressDialog(getResources().getString(R.string.toast_auto_login_wait));
 		new UserLogin(ASmackUtils.userNameEncode(PreferenceUtils.getString(
 				Const.Preference.USER_NAME, "")), PreferenceUtils.getString(
 				Const.Preference.USER_PWD, ""), new ASmackRequestCallBack() {

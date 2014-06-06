@@ -109,6 +109,7 @@ public class SinglePalyerFragment extends BaseFragment implements
 	@Override
 	public void onResume() {
 		super.onResume();
+		mAdapter.changeLanguageForTv();
 		if (UserManager.getInstance().isAuthenticated()
 				&& UserManager.getInstance().getUserInfo() != null) {
 			Timber.i("nickname:"
@@ -246,7 +247,7 @@ public class SinglePalyerFragment extends BaseFragment implements
 
 	@Override
 	public void showConnectBluetoothTip() {
-		AlertUtils.showToast(mActivity, "玩具未连接，请点击右上角设置");
+		AlertUtils.showToast(mActivity, getResources().getString(R.string.toast_toy_disconnect_pls_set));
 	}
 
 	@Override

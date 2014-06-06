@@ -49,6 +49,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_marginTop="10dp"
-        android:text="邮箱" />
+        android:text="@string/feedback_email" />
 
 </LinearLayout>

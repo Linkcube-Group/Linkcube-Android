@@ -61,7 +61,7 @@ public class RegisterActivity extends DialogActivity implements OnClickListener 
 	private void initData() {
 		registerProtocolTv.setTextColor(Color.GRAY);
 		registerProtocolTv.setText(Html.fromHtml("<u>《"
-				+ R.string.linkcube_terms_and_conditions + "》</u>"));
+				+ getResources().getString(R.string.linkcube_terms_and_conditions) + "》</u>"));
 	}
 
 	@Override

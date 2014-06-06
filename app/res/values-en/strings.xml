@@ -16,7 +16,7 @@
     <string name="register">Register</string>
     <string name="register_account">Email for register</string>
     <string name="register_account_hint">you cannot change email after register</string>
-    <string name="register_password_hint">Password,6~14 Letters,Case Sensitive</string>
+    <string name="register_password_hint">Password,6~14 letters</string>
     <string name="register_confirm_password_hint">Re-enter Password</string>
     <string name="register_protocol_text">By clicking the register button, you agree to LinkcuBe terms and conditions</string>
     <string name="init_user_info_nickname_hint">Only supports English,Chinese and underscores</string>
@@ -63,7 +63,7 @@
     <string name="linkcube_website">Official Website:http://www.linkcube.me</string>
 
     <!-- 蓝牙设置 -->
-    <string name="search_toy">Search Toy</string>
+    <string name="search_toy">Search Toys</string>
     <string name="searching">Searching...</string>
     <string name="enter_mall">Click into linkcube store</string>
     <string name="bluetooth">Bluetooth</string>
@@ -114,6 +114,8 @@
     <string name="male">Male</string>
     
     <!-- Toast -->
+    <string name="toast_connect_network_wait">Network connecting,please wait...</string>
+    <string name="toast_auto_login_wait">Auto login,please wait...</string>
     <string name="toast_register_success">Register success</string>
     <string name="toast_login_and_waiting">Login...</string>
     <string name="toast_name_psw_not_null">Username and password cannot be empty</string>
@@ -155,5 +157,21 @@
 	<string name="toast_psw_inconsistente_reinput">password inconsistente,please re-enter</string>
 	<string name="toast_change_psw_success">Change password success</string>
 	<string name="toast_change_psw_failure">Change password failure,please try again</string>
+	
+	<!-- Toast-蓝牙设置 -->
+	<string name="dialog_bonding_bluetooth">Pairing toy...</string>
+	<string name="toast_toy_unbonded">Pairing toy failed</string>
+	<string name="toast_open_bluetooth_wait">Opening bluetooth,please wait...</string>
+	<string name="toast_close_bluetooth_wait">Closing bluetooth,please wait...</string>
+	<string name="toast_pls_open_bluetooth">Please open bluetooth</string>
+	<string name="toast_bluetooth_open">bluetooth opened</string>
+	<string name="toast_bluetooth_closed">bluetooth closed</string>
+	<string name="toast_searching_toy_over">Searching toys completed!</string>
+	<string name="toast_no_device_nearby">No toys nearby</string>
+	<string name="toast_connecting_toy">Connecting with toys...</string>
+	<string name="toast_connect_toy_success">Toy successful connection!</string>
+	<string name="toast_connect_toy_failure">Failed to connect toys，Make sure the toy is turned on!</string>
+	<string name="toast_bond_toy_success">Toy successful Paired!</string>
+	<string name="toast_toy_disconnect_pls_set">Toys are not connected, click the upper right corner and set</string>
 
 </resources>

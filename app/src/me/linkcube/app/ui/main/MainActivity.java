@@ -125,7 +125,8 @@ public class MainActivity extends BaseFragmentActivity implements
 		@Override
 		public void handleMessage(Message msg) {
 			((SinglePalyerFragment) singleFragment).resetToy();
-			Toast.makeText(MainActivity.this, R.string.toast_toy_disconnect_try_again, Toast.LENGTH_SHORT)
+			Toast.makeText(MainActivity.this,
+					R.string.toast_toy_disconnect_try_again, Toast.LENGTH_SHORT)
 					.show();
 		}
 
@@ -247,7 +248,8 @@ public class MainActivity extends BaseFragmentActivity implements
 		@Override
 		public void reconnectionSuccessful() {
 			Message msg = new Message();
-			msg.obj = getResources().getString(R.string.toast_network_reconnect);
+			msg.obj = getResources()
+					.getString(R.string.toast_network_reconnect);
 			handler.sendMessage(msg);
 			ChatMessageListener.getInstance().onMessageListener(mActivity);
 			UserManager.getInstance().setUserStateAvailable();
@@ -291,16 +293,19 @@ public class MainActivity extends BaseFragmentActivity implements
 		AlertUtils.showAlert(
 				this,
 				Html.fromHtml(
-						"版本号："
+						getResources().getString(R.string.update_version_code)
 								+ PreferenceUtils.getString(
 										Const.AppUpdate.APK_VERSION, null)
-								+ "<br>大小："
+								+ "<br>"+getResources().getString(R.string.update_file_size)
 								+ PreferenceUtils.getString(
 										Const.AppUpdate.APK_SIZE, null)
-								+ "<br>描述：<br>"
+								+ "<br>"+getResources().getString(R.string.update_description)+"<br>"
 								+ PreferenceUtils.getString(
 										Const.AppUpdate.APK_DESCRIPTION, null))
-						.toString(), "发现新版本", "马上更新", "下次再说",
+						.toString(),
+				getResources().getString(R.string.update_find_new_version),
+				getResources().getString(R.string.update_now), getResources()
+						.getString(R.string.update_nexttime),
 				new OnClickListener() {
 
 					@Override
@@ -326,13 +331,16 @@ public class MainActivity extends BaseFragmentActivity implements
 
 									@Override
 									public void afterApkDownload(int reFlag) {
-										msgNotificationManager.cancel(msgNotificationID);
+										msgNotificationManager
+												.cancel(msgNotificationID);
 									}
 
 									@Override
 									public void FailureApkDownload(int reFlag) {
-										failureUpdateHandler.sendEmptyMessage(0);
-										msgNotificationManager.cancel(msgNotificationID);
+										failureUpdateHandler
+												.sendEmptyMessage(0);
+										msgNotificationManager
+												.cancel(msgNotificationID);
 									}
 								});
 						downloadNewApkHttpGet.downloadNewApkFile(mActivity,
@@ -361,7 +369,8 @@ public class MainActivity extends BaseFragmentActivity implements
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						showProgressDialog("正在下载更新文件，请等待");
+						showProgressDialog(getResources().getString(
+								R.string.update_download_flie));
 						DownloadNewApkHttpGet downloadNewApkHttpGet = new DownloadNewApkHttpGet();
 						downloadNewApkHttpGet
 								.setAppUpdateCallback(new AppUpdateCallback() {
@@ -409,8 +418,8 @@ public class MainActivity extends BaseFragmentActivity implements
 
 				});
 	}
-	
-	private Handler failureUpdateHandler=new Handler(){
+
+	private Handler failureUpdateHandler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
@@ -418,23 +427,26 @@ public class MainActivity extends BaseFragmentActivity implements
 					R.string.toast_network_error_download_file_failure,
 					Toast.LENGTH_SHORT).show();
 		}
-		
+
 	};
-	
+
 	private void initNotification(Context context) {
 		msgNotification = new Notification();
 		msgNotification.icon = R.drawable.ic_launcher;
-		//msgNotification.defaults = Notification.DEFAULT_SOUND;
+		// msgNotification.defaults = Notification.DEFAULT_SOUND;
 		msgNotification.flags = Notification.FLAG_NO_CLEAR;
 		msgNotificationManager = (NotificationManager) context
 				.getSystemService(Context.NOTIFICATION_SERVICE);
-		
+
 		msgIntent = new Intent();// Class.forName("com.oplibs.controll.test.TestMainActivity")
 		msgIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		msgPendingIntent = PendingIntent.getActivity(mActivity, 0, msgIntent,
-				0);
+		msgPendingIntent = PendingIntent
+				.getActivity(mActivity, 0, msgIntent, 0);
 
-		msgNotification.setLatestEventInfo(mActivity, "连酷","正在下载更新文件", msgPendingIntent);
+		msgNotification.setLatestEventInfo(mActivity,
+				getResources().getString(R.string.update_title), getResources()
+						.getString(R.string.update_download_flie),
+				msgPendingIntent);
 
 		msgNotificationManager.notify(msgNotificationID, msgNotification);
 
