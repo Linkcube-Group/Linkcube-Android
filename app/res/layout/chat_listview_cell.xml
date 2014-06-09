@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/item_chat_friend_name"
-            android:text="对方向你发出链接玩具请求"
+            android:text=""
             android:textColor="@color/listview_cell_sub_text"
             android:singleLine="true" />
 

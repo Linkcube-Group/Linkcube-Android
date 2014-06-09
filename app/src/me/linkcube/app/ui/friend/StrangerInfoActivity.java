@@ -100,7 +100,7 @@ public class StrangerInfoActivity extends DialogActivity implements
 			solveRequestRl.setVisibility(View.INVISIBLE);
 		}
 
-		showProgressDialog("正在获取中。。。");
+		showProgressDialog(getResources().getString(R.string.pls_wait));
 		new GetFriendVCard(ASmackUtils.getFriendJid(strangerName),
 				new ASmackRequestCallBack() {
 
@@ -163,7 +163,7 @@ public class StrangerInfoActivity extends DialogActivity implements
 			 * strangerName, null); } catch (XMPPException e1) {
 			 * e1.printStackTrace(); }
 			 */
-			showProgressDialog("正在添加好友");
+			showProgressDialog(getResources().getString(R.string.adding_friend));
 			new AddFriend(strangerName, strangerName,
 					new ASmackRequestCallBack() {
 
@@ -235,16 +235,23 @@ public class StrangerInfoActivity extends DialogActivity implements
 							DataManager.getInstance().update(perFriendRequest,
 									friendRequestEntity);
 							dismissProgressDialog();
-							Toast.makeText(StrangerInfoActivity.this,
-									"您添加了" + friendNickName + "为好友",
+							Toast.makeText(
+									StrangerInfoActivity.this,
+									getResources()
+											.getString(R.string.you_added)
+											+ friendNickName
+											+ getResources().getString(
+													R.string.be_your_friend),
 									Toast.LENGTH_SHORT).show();
 							StrangerInfoActivity.this.finish();
 						}
 
 						@Override
 						public void responseFailure(int reflag) {
-							Toast.makeText(StrangerInfoActivity.this,
-									R.string.toast_add_friend_failure_try_again, Toast.LENGTH_SHORT).show();
+							Toast.makeText(
+									StrangerInfoActivity.this,
+									R.string.toast_add_friend_failure_try_again,
+									Toast.LENGTH_SHORT).show();
 							dismissProgressDialog();
 						}
 					});

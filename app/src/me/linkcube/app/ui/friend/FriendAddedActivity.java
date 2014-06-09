@@ -99,7 +99,7 @@ public class FriendAddedActivity extends DialogActivity implements
 
 				if (friendRequestEntities.get(position).getSubscription()
 						.equals("both")) {
-					friendFlagTv.setText("已添加为好友");
+					friendFlagTv.setText(getResources().getString(R.string.has_be_your_friend));
 				}
 
 				return convertView;

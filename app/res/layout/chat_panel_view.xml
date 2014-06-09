@@ -33,7 +33,7 @@
             android:layout_below="@+id/multi_game_connect_iv"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="点击发起游戏" />
+            android:text="@string/click_and_send_game_msg" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -51,7 +51,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
             style="@style/Button.Pink"
-            android:text="同意" />
+            android:text="@string/accept" />
 
         <Button
             android:id="@+id/refuse_connect_btn"
@@ -63,7 +63,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
             style="@style/Button.Pink"
-            android:text="拒绝" />
+            android:text="@string/refuse" />
 
         <TextView
             android:id="@+id/accept_time_second_tv"
@@ -73,7 +73,7 @@
             android:layout_below="@id/refuse_connect_btn"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="3dp"
-            android:text="等待时间30秒" />
+            android:text="@string/pls_wait_thirty_second" />
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager

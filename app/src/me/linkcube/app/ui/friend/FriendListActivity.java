@@ -96,7 +96,7 @@ public class FriendListActivity extends BaseActivity implements
 	public boolean onItemLongClick(AdapterView<?> arg0, final View view,
 			final int position, long id) {
 
-		AlertUtils.showAlert(mActivity, "是否删除此好友", null, new OnClickListener() {
+		AlertUtils.showAlert(mActivity, getResources().getString(R.string.toast_delete_friend), null, new OnClickListener() {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {

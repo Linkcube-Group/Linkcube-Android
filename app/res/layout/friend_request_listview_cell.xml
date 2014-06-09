@@ -24,7 +24,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
-            android:text="请求添加您为好友" />
+            android:text="@string/add_friend_request" />
 
         <TextView
             android:id="@+id/friend_request_lv_friendname_tv"

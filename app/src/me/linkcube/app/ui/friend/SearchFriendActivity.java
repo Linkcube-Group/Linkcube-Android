@@ -28,7 +28,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -192,24 +191,11 @@ public class SearchFriendActivity extends DialogActivity implements
 		});
 	}
 
-	/*
-	 * @Override public boolean onCreateOptionsMenu(Menu menu) { MenuItem
-	 * addItem = menu.add(0, Menu.FIRST + 1, 1, "搜索");
-	 * addItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM); return true; }
-	 * 
-	 * @Override public boolean onOptionsItemSelected(MenuItem item) { switch
-	 * (item.getItemId()) { case Menu.FIRST + 1: showProgressDialog("正在获取中。。");
-	 * userNameList.clear(); searchUser(); break; case android.R.id.home: Intent
-	 * intent = new Intent(this, MainActivity.class);
-	 * intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); this.finish();
-	 * startActivity(intent); break; default: break; } return false; }
-	 */
-
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.actionbar_first_btn:
-			showProgressDialog("正在获取中。。。");
+			showProgressDialog(getResources().getString(R.string.pls_wait));
 			userNameList.clear();
 			searchUser();
 			break;

@@ -26,7 +26,7 @@
             android:layout_toRightOf="@id/stranger_info_avatar_iv"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"
-            android:text="连酷"
+            android:text="@string/app_name"
             android:textSize="22sp" />
 
         <RelativeLayout
@@ -43,7 +43,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:layout_toRightOf="@id/stranger_nickname_tv"
                 android:background="@drawable/ic_male" />
 
             <TextView
@@ -71,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="注册邮箱：" />
+                android:text="@string/register_email" />
 
             <TextView
                 android:id="@+id/stranger_email_tv"
@@ -100,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="个性签名" />
+                android:text="@string/person_state" />
 
             <TextView
                 android:id="@+id/stranger_person_state_tv"
@@ -109,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14dp"
                 android:layout_toRightOf="@id/stranger_person_state_title"
-                android:text="一起游戏吧~" />
+                android:text="@string/person_state_def" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -124,7 +123,7 @@
             android:id="@+id/accept_stranger_request_btn"
             android:layout_width="match_parent"
             style="@style/Button.Pink"
-            android:text="同意" />
+            android:text="@string/accept" />
 
         <Button
             android:id="@+id/refuse_stranger_request_btn"
@@ -132,7 +131,7 @@
             style="@style/Button.Pink"
             android:layout_below="@id/accept_stranger_request_btn"
             android:layout_marginTop="10dp"
-            android:text="拒绝" />
+            android:text="@string/refuse" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -145,7 +144,7 @@
             android:id="@+id/add_stranger_btn"
             android:layout_width="match_parent"
             style="@style/Button.Pink"
-            android:text="加为好友" />
+            android:text="@string/add_as_friend" />
     </RelativeLayout>
 
 </RelativeLayout>

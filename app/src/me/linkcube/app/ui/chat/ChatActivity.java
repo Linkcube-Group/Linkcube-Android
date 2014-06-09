@@ -400,7 +400,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 				e.printStackTrace();
 			}
 			chatPanelView.stopGame();
-			ChatMsgEntity lastEntity = UserUtils.sendToFriendMsg("你结束了本次游戏~",
+			ChatMsgEntity lastEntity = UserUtils.sendToFriendMsg(getResources().getString(R.string.you_stop_this_game),
 					friendName);
 			mDataArrays.add(lastEntity);
 			mAdapter.notifyDataSetChanged();

@@ -103,15 +103,47 @@
     <string name="change_pwd">Change password</string>
     <string name="confirm">Confirm</string>
     
-    <!-- 初始化用户个人信息 -->
+    <!-- 用户个人信息 -->
     <string name="nickname">Nickname</string>
     <string name="gender">Gender</string>
     <string name="birthday">Date of Birth</string>
-    <string name="person_state">Personal Message</string>
+    <string name="person_state">State</string>
     <string name="register_email">Email</string>
     <string name="save_person_info">Save</string>
     <string name="female">Female</string>
     <string name="male">Male</string>
+   <string name="send_message">Send Message</string>
+   <string name="person_state_def">Let us play game~</string>
+   
+   <!-- 多人游戏信息 -->
+    <string name="click_and_send_game_msg">click to send game request</string>
+    <string name="request_has_been_send">Please wait...</string>
+    <string name="second"> s</string>
+    <string name="pls_wait_thirty_second">Please waiting 30 second</string>
+    <string name="wait_time">Please waiting </string>
+    <string name="is_playing">Is playing game with </string>
+    <string name="game_with"></string>
+    <string name="you_send_invitation_to_others">You send invitation to other~</string>
+    <string name="you_accept_others_invitation">You accept others invitation~</string>
+    <string name="you_refused_others_invitation">You refused others invitation~</string>
+    <string name="you_stop_this_game">You stop this game~</string>
+    <string name="others_accept_your_invitation">Others accept your invitation~</string>
+    <string name="others_send_invitation_to_you">Others send invitation to you~</string>
+    <string name="others_refused_your_invitation">Others refused your invitation~</string>
+    <string name="others_stop_this_game">Others stop this game~</string>
+   
+   <!-- 添加好友界面 -->
+   <string name="pls_wait">Please waiting...</string>
+    <string name="accept">accept</string>
+    <string name="refuse">refuse</string>
+    <string name="add_as_friend">Add as Friend</string>
+    <string name="you_added">You has added </string>
+    <string name="be_your_friend">be your friend!</string>
+    
+    <!-- 好友请求处理界面 -->
+    <string name="add_friend_request">Want be your friend</string>
+    <string name="has_be_your_friend">Has be your friend</string>
+    <string name="adding_friend">Adding friend...</string>
     
     <!-- Toast -->
     <string name="toast_connect_network_wait">Network connecting,please wait...</string>
@@ -142,8 +174,12 @@
 	<string name="toast_network_error_download_file_failure">Network error,file download failed</string>
 	
 	<!-- Toast-ChatActivity -->
-	<string name="toast_close_game">Close game</string>
+	<string name="send">Send</string>
+	<string name="toast_close_game">Game Over</string>
 	<string name="toast_not_my_friend_add_again">this user isnot your friend,please re-add</string>
+	
+	<!-- 好友列表界面-->
+	<string name="toast_delete_friend">Do you want to delete this friend?</string>
 	
 	<!-- Toast-陌生好友信息页面 -->
 	<string name="toast_friend_request_has_send">Friend request has been send</string>

@@ -154,8 +154,11 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 			FriendEntity friendEntity = UserManager.getInstance()
 					.getPlayingTarget();
 			if (friendEntity != null) {
-				Toast.makeText(mContext,
-						"正在与" + friendEntity.getNickName() + "进行游戏中",
+				Toast.makeText(
+						mContext,
+						getResources().getString(R.string.is_playing)
+								+ friendEntity.getNickName()
+								+ getResources().getString(R.string.game_with),
 						Toast.LENGTH_SHORT).show();
 			} else {
 				GameManager.getInstance().addGameInviteMsgs(friendName,
@@ -164,9 +167,9 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 				singleChat.sendMsg(friendName, Const.Game.REQUESTCMD
 						+ Const.Game.REQUESTCONNECTCMD);
 				ChatMsgEntity entity = UserUtils.sendToFriendMsg(
-						"你向对方发出了游戏邀请~", friendName);
+						getResources().getString(R.string.you_send_invitation_to_others), friendName);
 				onUpdateChatListListener.updateChatList(entity);
-				acceptSecond=30;
+				acceptSecond = 30;
 				toGameInviteMsg(acceptSecond);
 			}
 
@@ -185,7 +188,7 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 			indicator.setVisibility(View.VISIBLE);
 			multiGameAcceptConnectRl.setVisibility(View.INVISIBLE);
 			ChatMsgEntity acceptEntity = UserUtils.sendToFriendMsg(
-					"你接受了对方的游戏邀请~", friendName);
+					getResources().getString(R.string.you_accept_others_invitation), friendName);
 			onUpdateChatListListener.updateChatList(acceptEntity);
 			onGameListener.gameStart();
 			UserManager.getInstance().setMultiPlaying(true);
@@ -204,36 +207,34 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 			singleChat.sendMsg(friendName, Const.Game.REQUESTCMD
 					+ Const.Game.REFUSECONNECTCMD);
 			ChatMsgEntity refuseEntity = UserUtils.sendToFriendMsg(
-					"你拒绝了对方的游戏邀请~", friendName);
+					getResources().getString(R.string.you_refused_others_invitation), friendName);
 			onUpdateChatListListener.updateChatList(refuseEntity);
 			GameManager.getInstance().delGameInviteMsg(friendName);
 			break;
 		case R.id.multi_speed_mode_iv:// 摇一摇游戏界面，控制档位大小
-			//speedLevel++;
-			//if (speedLevel == 5)
-				//speedLevel = 0;
+			// speedLevel++;
+			// if (speedLevel == 5)
+			// speedLevel = 0;
 			switch (speedLevel) {
-			/*case 0:
-				multiShakeIv.setBackgroundResource(R.drawable.shake_mode_0);
-				break;
-			case 1:
-				multiShakeIv.setBackgroundResource(R.drawable.shake_mode_1);
-				break;
-			case 2:
-				multiShakeIv.setBackgroundResource(R.drawable.shake_mode_2);
-				break;
-			case 3:
-				multiShakeIv.setBackgroundResource(R.drawable.shake_mode_3);
-				break;
-			case 4:
-				multiShakeIv.setBackgroundResource(R.drawable.shake_mode_4);
-				break;*/
+			/*
+			 * case 0:
+			 * multiShakeIv.setBackgroundResource(R.drawable.shake_mode_0);
+			 * break; case 1:
+			 * multiShakeIv.setBackgroundResource(R.drawable.shake_mode_1);
+			 * break; case 2:
+			 * multiShakeIv.setBackgroundResource(R.drawable.shake_mode_2);
+			 * break; case 3:
+			 * multiShakeIv.setBackgroundResource(R.drawable.shake_mode_3);
+			 * break; case 4:
+			 * multiShakeIv.setBackgroundResource(R.drawable.shake_mode_4);
+			 * break;
+			 */
 			case 0:
-				speedLevel=2;
+				speedLevel = 2;
 				multiShakeIv.setBackgroundResource(R.drawable.shake_mode_4);
 				break;
 			case 2:
-				speedLevel=0;
+				speedLevel = 0;
 				multiShakeIv.setBackgroundResource(R.drawable.shake_mode_0);
 				break;
 			default:
@@ -268,7 +269,8 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 		multiShakeIv.setBackgroundResource(R.drawable.shake_mode_0);
 		multiGameConnectIv.clearAnimation();
 		multiGameConnectIv.setImageResource(R.drawable.start_game_circle);
-		multiGameConnectTv.setText("点击发起游戏");
+		multiGameConnectTv.setText(getResources().getString(
+				R.string.click_and_send_game_msg));
 		multiGameConnectIv.setClickable(true);
 		multiGameConnectRl.setVisibility(View.VISIBLE);
 		multiGameAcceptConnectRl.setVisibility(View.INVISIBLE);
@@ -291,11 +293,14 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 
 		@Override
 		public void handleMessage(Message msg) {
-			multiGameConnectTv.setText("请求已发送，请等待..." + acceptSecond + "秒");
+			multiGameConnectTv.setText(getResources().getString(
+					R.string.request_has_been_send)
+					+ acceptSecond + getResources().getString(R.string.second));
 			acceptSecond--;
-			ChatMsgEntity chatMsgEntity=GameManager.getInstance().getGameInviteMsgs(friendName);
-			if(chatMsgEntity!=null){
-				if(chatMsgEntity.getText().equals(GAME_INVITE_BOTH)){
+			ChatMsgEntity chatMsgEntity = GameManager.getInstance()
+					.getGameInviteMsgs(friendName);
+			if (chatMsgEntity != null) {
+				if (chatMsgEntity.getText().equals(GAME_INVITE_BOTH)) {
 					Message gameMsg = new Message();
 					gameMsg.what = 1;
 					handler.sendMessage(gameMsg);
@@ -311,7 +316,8 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 				multiGameConnectIv
 						.setImageResource(R.drawable.start_game_circle);
 				acceptSecond = 30;
-				multiGameConnectTv.setText("点击发起游戏");
+				multiGameConnectTv.setText(getResources().getString(
+						R.string.click_and_send_game_msg));
 				multiGameConnectIv.setClickable(true);
 				GameManager.getInstance().delGameInviteMsg(friendName);
 			}
@@ -324,7 +330,8 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 
 		@Override
 		public void handleMessage(Message msg) {
-			acceptTimeTv.setText("等待时间" + acceptSecond + "秒");
+			acceptTimeTv.setText(getResources().getString(R.string.wait_time)
+					+ acceptSecond + getResources().getString(R.string.second));
 			acceptSecond--;
 			if (acceptSecond < 0) {
 				if (timer != null) {
@@ -334,7 +341,8 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 				multiGameConnectRl.setVisibility(View.VISIBLE);
 				multiGameAcceptConnectRl.setVisibility(View.INVISIBLE);
 				acceptSecond = 30;
-				acceptTimeTv.setText("等待时间30秒");
+				acceptTimeTv.setText(getResources().getString(
+						R.string.pls_wait_thirty_second));
 				GameManager.getInstance().delGameInviteMsg(friendName);
 			}
 		}
@@ -363,7 +371,8 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 				multiGameConnectIv
 						.setImageResource(R.drawable.start_game_circle);
 				acceptSecond = 30;
-				multiGameConnectTv.setText("点击发起游戏");
+				multiGameConnectTv.setText(getResources().getString(
+						R.string.click_and_send_game_msg));
 				multiGameConnectIv.setClickable(true);
 			} else if (msg.what == -2) {
 				mShakeSensor.setIsMultiGame(false);
@@ -406,13 +415,15 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 	}
 
 	public void toGameInviteMsg(int _acceptSecond) {
-		this.acceptSecond=_acceptSecond;
+		this.acceptSecond = _acceptSecond;
 		multiGameConnectIv.setImageResource(R.drawable.waiting_game_circle);
 		Animation rotateCircleAnim = AnimationUtils.loadAnimation(mContext,
 				R.anim.waiting_game_rotate);
 		LinearInterpolator lfn = new LinearInterpolator();
 		rotateCircleAnim.setInterpolator(lfn);
-		multiGameConnectTv.setText("请求已发送，请等待..." + acceptSecond + "秒");
+		multiGameConnectTv.setText(getResources().getString(
+				R.string.request_has_been_send)
+				+ acceptSecond + getResources().getString(R.string.second));
 		multiGameConnectIv.startAnimation(rotateCircleAnim);
 		if (timer != null) {
 			timer.cancel();
@@ -436,7 +447,8 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 			timer = null;
 		}
 		acceptSecond = 30;
-		multiGameConnectTv.setText("点击发起游戏");
+		multiGameConnectTv.setText(getResources().getString(
+				R.string.click_and_send_game_msg));
 		multiGameConnectIv.setClickable(true);
 
 		List<View> viewList = new ArrayList<View>();
@@ -470,8 +482,8 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 					String from = message.getData().getString("from");
 					String body = message.getData().getString("body");
 					String cmdData = message.getData().getString("cmdData");
-					System.out.println("from:" + from + "--body:" + body + "cmdData:"
-							+ cmdData);
+					System.out.println("from:" + from + "--body:" + body
+							+ "cmdData:" + cmdData);
 					Message gameMsg = new Message();
 					if (from.equals(friendName)) {
 						if (cmdData.equals(Const.Game.REQUESTCONNECTCMD)) {// 判断收到的是不是游戏请求消息
@@ -479,7 +491,9 @@ public class ChatPanelView extends RelativeLayout implements OnClickListener {
 							ChatMsgEntity chatMsgEntity = GameManager
 									.getInstance()
 									.getGameInviteMsgs(friendName);
-							if (chatMsgEntity != null&&chatMsgEntity.getText().equals(GAME_INVITE_BOTH)) {
+							if (chatMsgEntity != null
+									&& chatMsgEntity.getText().equals(
+											GAME_INVITE_BOTH)) {
 								gameMsg.what = 1;
 								handler.sendMessage(gameMsg);
 							} else {

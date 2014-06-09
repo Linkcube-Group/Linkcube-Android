@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import me.linkcube.app.LinkcubeApplication;
+import me.linkcube.app.R;
 import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.entity.OffLineMsgEntity;
@@ -137,13 +138,13 @@ public class ChatMessageListener {
 				String[] cmdData = body.split(":");
 				Timber.d(cmdData[1]);
 				if (cmdData[1].equals(Const.Game.REQUESTCONNECTCMD)) {
-					broadMsg(from, "对方向你发出游戏邀请~", cmdData[1]);
+					broadMsg(from,context.getResources().getString(R.string.others_send_invitation_to_you) , cmdData[1]);
 				} else if (cmdData[1].equals(Const.Game.ACCEPTCONNECTCMD)) {
-					broadMsg(from, "对方接收了你的游戏邀请~", cmdData[1]);
+					broadMsg(from, context.getResources().getString(R.string.others_accept_your_invitation), cmdData[1]);
 				} else if (cmdData[1].equals("refuseconnect")) {
-					broadMsg(from, "对方拒绝了你的游戏邀请~", cmdData[1]);
+					broadMsg(from, context.getResources().getString(R.string.others_refused_your_invitation), cmdData[1]);
 				} else if (cmdData[1].equals(Const.Game.DISCONNECTCMD)) {
-					broadMsg(from, "对方结束了本次游戏~", cmdData[1]);
+					broadMsg(from, context.getResources().getString(R.string.others_stop_this_game), cmdData[1]);
 				}
 			} else {// 其他消息
 				broadMsg(from, body, "");

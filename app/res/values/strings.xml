@@ -103,7 +103,7 @@
     <string name="change_pwd">修改密码</string>
     <string name="confirm">确定</string>
     
-    <!-- 初始化和用户个人信息 -->
+    <!-- 用户个人信息 -->
     <string name="nickname">昵       称</string>
     <string name="gender">性       别</string>
     <string name="birthday">出生年月</string>
@@ -112,6 +112,38 @@
     <string name="save_person_info">保存个人信息</string>
     <string name="female">女</string>
     <string name="male">男</string>
+    <string name="send_message">发消息</string>
+    <string name="person_state_def">一起游戏吧~</string>
+    
+    <!-- 多人游戏信息 -->
+    <string name="click_and_send_game_msg">点击发起游戏</string>
+    <string name="request_has_been_send">请求已发送，请等待...</string>
+    <string name="second">秒</string>
+    <string name="pls_wait_thirty_second">等待时间30秒</string>
+    <string name="wait_time">等待时间</string>
+    <string name="is_playing">正在与</string>
+    <string name="game_with">进行游戏中</string>
+    <string name="you_send_invitation_to_others">你向对方发出了游戏邀请~</string>
+    <string name="you_accept_others_invitation">你接受了对方的游戏邀请~</string>
+    <string name="you_refused_others_invitation">你拒绝了对方的游戏邀请~</string>
+    <string name="you_stop_this_game">你结束了本次游戏~</string>
+    <string name="others_accept_your_invitation">对方接收了你的游戏邀请~</string>
+    <string name="others_send_invitation_to_you">对方向你发出游戏邀请~</string>
+    <string name="others_refused_your_invitation">对方拒绝了你的游戏邀请~</string>
+    <string name="others_stop_this_game">对方结束了本次游戏~</string>
+    
+    <!-- 添加好友界面 -->
+    <string name="pls_wait">正在获取中。。。</string>
+    <string name="accept">同意</string>
+    <string name="refuse">拒绝</string>
+    <string name="add_as_friend">加为好友</string>
+    <string name="you_added">您添加了</string>
+    <string name="be_your_friend">为好友</string>
+    
+    <!-- 好友请求处理界面 -->
+    <string name="add_friend_request">请求添加您为好友</string>
+    <string name="has_be_your_friend">已添加为好友</string>
+    <string name="adding_friend">正在添加好友</string>
     
     <!-- Toast -->
     <string name="toast_connect_network_wait">正在连接网络，请稍等...</string>
@@ -142,8 +174,12 @@
 	<string name="toast_network_error_download_file_failure">网络异常，文件下载失败</string>
 	
 	<!-- Toast-ChatActivity -->
+	<string name="send">发送</string>
 	<string name="toast_close_game">关闭游戏</string>
 	<string name="toast_not_my_friend_add_again">该用户已经不是您的好友，请重新添加</string>
+	
+	<!-- 好友列表界面-->
+	<string name="toast_delete_friend">是否删除此好友</string>
 	
 	<!-- Toast-陌生好友信息页面 -->
 	<string name="toast_friend_request_has_send">好友请求已发送</string>
