@@ -80,4 +80,9 @@ public class PersistableUser extends PersistableBase<UserEntity> {
 		return values;
 	}
 
+	@Override
+	public void deleteOne(SQLiteDatabase writableDatabase, UserEntity item) {
+		
+	}
+
 }

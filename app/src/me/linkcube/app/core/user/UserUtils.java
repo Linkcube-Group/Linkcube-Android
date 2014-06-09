@@ -48,13 +48,44 @@ public class UserUtils {
 			ChatEntity chatEntity = new ChatEntity();
 			chatEntity.setUserName(ASmackUtils.getRosterName());
 			chatEntity.setFriendName(friendName);
+			System.out.println("friendName2:"+friendName);
+			System.out.println("Message2:"+body);
 			chatEntity.setFriendNickname(FriendManager.getInstance().getFriendNicknameByFriendName(friendName));
 			chatEntity.setMsgFlag("send");
 			chatEntity.setMessage(body);
 			chatEntity.setMsgTime(TimeUtils.getNowDateAndTime());
-
 			PersistableChat perChat = new PersistableChat();
 			DataManager.getInstance().insert(perChat, chatEntity);
+
+		}
+		return entity;
+	}
+	/**
+	 * 删除阅后即焚消息
+	 * 
+	 * @param body
+	 */
+	public static ChatMsgEntity deleteMsgAfterRead(String body, String friendName, ChatMsgEntity readAfterEntity) {
+		ChatMsgEntity entity = new ChatMsgEntity();
+		if (body.length() > 0) {
+			entity.setDate(TimeUtils.getNowTime());
+			entity.setName(UserManager.getInstance().getUserInfo()
+					.getNickName());
+			entity.setMsgType(readAfterEntity.getMsgType());
+			entity.setText(body);
+
+			// 从数据库中删除
+			ChatEntity chatEntity = new ChatEntity();
+			chatEntity.setUserName(ASmackUtils.getRosterName());
+			chatEntity.setFriendName(friendName);
+			chatEntity.setFriendNickname(FriendManager.getInstance().getFriendNicknameByFriendName(friendName));
+			chatEntity.setMsgFlag("send");
+			chatEntity.setMessage(readAfterEntity.getText());
+			System.out.println("friendName:"+friendName);
+			System.out.println("Message:"+readAfterEntity.getText());
+			chatEntity.setMsgTime(readAfterEntity.getDate());
+			PersistableChat perChat = new PersistableChat();
+			DataManager.getInstance().deleteOne(perChat, chatEntity);
 
 		}
 		return entity;

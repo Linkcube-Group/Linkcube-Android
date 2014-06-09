@@ -174,6 +174,23 @@ public class DBCache {
 			db.endTransaction();
 		}
 	}
+	
+	public <E> void deleteOne(PersistableBase<E> persistableBase, E item) {
+		final SQLiteDatabase db = getWritable();
+		if (db == null) {
+			Timber.d("get writable error");
+			return;
+		}
+		db.beginTransaction();
+		try {
+			persistableBase.delete(db, item);
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			Timber.d("delete specified item error", e);
+		} finally {
+			db.endTransaction();
+		}
+	}
 
 	public <E> void clear(PersistableBase<E> persistableBase) {
 		final SQLiteDatabase db = getWritable();

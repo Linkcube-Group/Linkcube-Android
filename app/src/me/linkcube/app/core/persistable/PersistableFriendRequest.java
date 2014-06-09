@@ -49,4 +49,10 @@ public class PersistableFriendRequest extends PersistableBase<FriendRequestEntit
 		return values;
 	}
 
+	@Override
+	public void deleteOne(SQLiteDatabase writableDatabase,
+			FriendRequestEntity item) {
+		
+	}
+
 }

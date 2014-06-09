@@ -67,4 +67,9 @@ public class PersistableFriend extends PersistableBase<FriendEntity> {
 		return values;
 	}
 
+	@Override
+	public void deleteOne(SQLiteDatabase writableDatabase, FriendEntity item) {
+		
+	}
+
 }

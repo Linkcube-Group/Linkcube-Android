@@ -3,6 +3,8 @@ package me.linkcube.app.core.persistable;
 import java.io.IOException;
 import java.util.List;
 
+import me.linkcube.app.core.entity.ChatEntity;
+
 import android.content.Context;
 
 /**
@@ -69,6 +71,10 @@ public class DataManager {
 	public <E> void delete(PersistableBase<E> persistableBase, E item) {
 		dbCache.delete(persistableBase, item);
 	}
+	
+	public <E> void deleteOne(PersistableBase<E> persistableBase, E item) {
+		dbCache.delete(persistableBase, item);
+	}
 
 	public <E> void clear(PersistableBase<E> persistableBase) {
 		dbCache.clear(persistableBase);
@@ -81,5 +87,6 @@ public class DataManager {
 	private DataManager() {
 
 	}
+
 
 }

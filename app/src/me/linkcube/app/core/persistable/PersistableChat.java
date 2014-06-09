@@ -18,7 +18,8 @@ public class PersistableChat extends PersistableBase<ChatEntity> {
 		chat.setUserName(cursor.getString(cursor.getColumnIndex(USER_NAME)));
 		chat.setMessage(cursor.getString(cursor.getColumnIndex(MESSAGE)));
 		chat.setFriendName(cursor.getString(cursor.getColumnIndex(FRIEND_NAME)));
-		chat.setFriendNickname(cursor.getString(cursor.getColumnIndex(FRIEND_NICKNAME)));
+		chat.setFriendNickname(cursor.getString(cursor
+				.getColumnIndex(FRIEND_NICKNAME)));
 		chat.setMsgTime(cursor.getString(cursor.getColumnIndex(MSG_TIME)));
 		chat.setMsgFlag(cursor.getString(cursor.getColumnIndex(MSG_FLAG)));
 		return chat;
@@ -35,6 +36,14 @@ public class PersistableChat extends PersistableBase<ChatEntity> {
 
 		writableDatabase.delete(getTableName(), FRIEND_NAME + "=?",
 				new String[] { item.getFriendName() });
+
+	}
+
+	@Override
+	public void deleteOne(SQLiteDatabase writableDatabase, ChatEntity item) {
+		writableDatabase.delete(getTableName(), FRIEND_NAME + "=? and "
+				+ MESSAGE + "=?",
+				new String[] { item.getFriendName(), item.getMessage() });
 	}
 
 	@Override

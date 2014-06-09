@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -45,6 +47,8 @@ import me.linkcube.app.widget.ChatPullDownListView.OnRefreshAdapterDataListener;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.RemoteException;
 import android.view.MotionEvent;
 import android.view.View;
@@ -98,6 +102,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 	private MenuItem disconnectItem, onBlueToothItem;
 
 	private boolean isFriend = true;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -243,6 +248,11 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 				}
 				entity.setText(chat.getMessage());
 				dbDataArrays.add(entity);
+				
+				/*Message msg=new Message();
+				msg.what=mDataArrays.size();
+				msg.obj=entity;
+				delAfterReadHandler.sendMessageDelayed(msg, 5000);*/
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -255,6 +265,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 
 		mAdapter.notifyDataSetChanged();
 		singleChatLv.setSelection(singleChatLv.getCount() - 1);
+		
 
 		// 如果最近一条消息是游戏邀请，且时间少于30s，则弹出接受拒绝界面
 		ChatMsgEntity chatMsgEntity = GameManager.getInstance()
@@ -307,8 +318,12 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 				singleChat.sendMsg(friendName, sendMsg);
 				sendMsgEt.setText("");
 				singleChatLv.setSelection(singleChatLv.getCount() - 1);
+				
+				Message msg=new Message();
+				msg.what=mDataArrays.size();
+				msg.obj=entity;
+				delAfterReadHandler.sendMessageDelayed(msg, 5000);
 			}
-
 			break;
 
 		case R.id.img_btn_control_toy:// 点开显示聊天界面游戏层，准备发起游戏
@@ -339,6 +354,21 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		}
 
 	}
+	/**
+	 * 处理阅后即焚消息
+	 */
+	private Handler delAfterReadHandler=new Handler(){
+
+		@Override
+		public void handleMessage(Message msg) {
+				ChatMsgEntity entity=(ChatMsgEntity) msg.obj;
+				ChatMsgEntity afterReadEntity = UserUtils.deleteMsgAfterRead("阅后即焚",friendName,entity);
+				System.out.println("msg.what:"+msg.what);
+				mDataArrays.set(msg.what-1, afterReadEntity);
+				mAdapter.notifyDataSetChanged();
+		}
+		
+	};
 
 	@Override
 	public void updateChatList(ChatMsgEntity entity) {
@@ -346,6 +376,12 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		mDataArrays.add(entity);
 		mAdapter.notifyDataSetChanged();
 		singleChatLv.setSelection(singleChatLv.getCount() - 1);
+		
+		Message msg=new Message();
+		msg.what=mDataArrays.size();
+		msg.obj=entity;
+		delAfterReadHandler.sendMessageDelayed(msg, 5000);
+		
 	}
 
 	@Override

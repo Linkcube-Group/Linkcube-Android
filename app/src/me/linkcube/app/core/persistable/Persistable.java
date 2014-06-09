@@ -72,7 +72,7 @@ public interface Persistable<E> {
 	void update(SQLiteDatabase writableDatabase, E item);
 
 	/**
-	 * 从数据库删除一条数据
+	 * 从数据库删除数据
 	 * 
 	 * @param writableDatabase
 	 * @param selection
@@ -80,6 +80,16 @@ public interface Persistable<E> {
 	 * @param item
 	 */
 	void delete(SQLiteDatabase writableDatabase, E item);
+	
+	/**
+	 * 从数据库删除一条数据
+	 * 
+	 * @param writableDatabase
+	 * @param selection
+	 * @param selectionArgs
+	 * @param item
+	 */
+	void deleteOne(SQLiteDatabase writableDatabase, E item);
 
 	/**
 	 * 向数据库中替换一条数据
