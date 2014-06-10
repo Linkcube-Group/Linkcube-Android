@@ -6,8 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -71,7 +69,6 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		OnUpdateChatListListener, OnGameListener {
 
 	private String friendName;
-	// private String friendNickname;
 
 	private ChatPanelView chatPanelView;
 
@@ -102,7 +99,6 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 	private MenuItem disconnectItem, onBlueToothItem;
 
 	private boolean isFriend = true;
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -206,7 +202,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// 判斷是否正在遊戲中
+		// 判断是否正在游戏中
 		if (UserManager.getInstance().getPlayingTarget() != null) {
 			FriendEntity friendEntity = UserManager.getInstance()
 					.getPlayingTarget();
@@ -233,9 +229,6 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		}
 		for (ChatEntity chat : chats) {
 			try {
-				// Timber.d("JID:" + chat.getUserName() + "--friendName:"+
-				// friendName + "--msgTime:"+
-				// TimeUtils.toNowTime(chat.getMsgTime()));
 				ChatMsgEntity entity = new ChatMsgEntity();
 				entity.setDate(TimeUtils.toNowTime(chat.getMsgTime()));
 				if (chat.getMsgFlag().equals("get")) {
@@ -248,11 +241,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 				}
 				entity.setText(chat.getMessage());
 				dbDataArrays.add(entity);
-				
-				/*Message msg=new Message();
-				msg.what=mDataArrays.size();
-				msg.obj=entity;
-				delAfterReadHandler.sendMessageDelayed(msg, 5000);*/
+				delMsgAfterRead(dbDataArrays.size(),entity);// handler处理阅后即焚消息
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -265,7 +254,6 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 
 		mAdapter.notifyDataSetChanged();
 		singleChatLv.setSelection(singleChatLv.getCount() - 1);
-		
 
 		// 如果最近一条消息是游戏邀请，且时间少于30s，则弹出接受拒绝界面
 		ChatMsgEntity chatMsgEntity = GameManager.getInstance()
@@ -282,10 +270,6 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 				gameInviteTime = simpleFormat.parse(chatMsgEntity.getDate());
 				acceptSecond = (int) (30 - (nowTime.getTime() - gameInviteTime
 						.getTime()) / 1000);
-				Timber.i("nowTime.getTime():" + nowTime.getTime());
-				Timber.i("gameInviteTime.getTime():" + gameInviteTime.getTime());
-				Timber.i("nowTime.getTime()-gameInviteTime.getTime():"
-						+ acceptSecond);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -318,11 +302,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 				singleChat.sendMsg(friendName, sendMsg);
 				sendMsgEt.setText("");
 				singleChatLv.setSelection(singleChatLv.getCount() - 1);
-				
-				Message msg=new Message();
-				msg.what=mDataArrays.size();
-				msg.obj=entity;
-				delAfterReadHandler.sendMessageDelayed(msg, 5000);
+				delMsgAfterRead(mDataArrays.size(),entity);// handler处理阅后即焚消息
 			}
 			break;
 
@@ -350,38 +330,39 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 			singleChatRl.setLayoutParams(new LinearLayout.LayoutParams(
 					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 			break;
-
 		}
-
 	}
+
+	private void delMsgAfterRead(int size,ChatMsgEntity entity) {
+		// handler处理阅后即焚消息
+		Message msg = new Message();
+		msg.what = size;
+		msg.obj = entity;
+		delAfterReadHandler.sendMessageDelayed(msg, 30000);
+	}
+
 	/**
 	 * 处理阅后即焚消息
 	 */
-	private Handler delAfterReadHandler=new Handler(){
+	private Handler delAfterReadHandler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
-				ChatMsgEntity entity=(ChatMsgEntity) msg.obj;
-				ChatMsgEntity afterReadEntity = UserUtils.deleteMsgAfterRead("阅后即焚",friendName,entity);
-				System.out.println("msg.what:"+msg.what);
-				mDataArrays.set(msg.what-1, afterReadEntity);
-				mAdapter.notifyDataSetChanged();
+			ChatMsgEntity entity = (ChatMsgEntity) msg.obj;
+			ChatMsgEntity afterReadEntity = UserUtils.deleteMsgAfterRead(
+					"阅后即焚", friendName, entity);
+			mDataArrays.set(msg.what - 1, afterReadEntity);
+			mAdapter.notifyDataSetChanged();
 		}
-		
+
 	};
 
 	@Override
 	public void updateChatList(ChatMsgEntity entity) {
-		System.out.println("entity.getText():" + entity.getText());
 		mDataArrays.add(entity);
 		mAdapter.notifyDataSetChanged();
 		singleChatLv.setSelection(singleChatLv.getCount() - 1);
-		
-		Message msg=new Message();
-		msg.what=mDataArrays.size();
-		msg.obj=entity;
-		delAfterReadHandler.sendMessageDelayed(msg, 5000);
-		
+		delMsgAfterRead(mDataArrays.size(),entity);// handler处理阅后即焚消息
 	}
 
 	@Override
@@ -436,8 +417,8 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 				e.printStackTrace();
 			}
 			chatPanelView.stopGame();
-			ChatMsgEntity lastEntity = UserUtils.sendToFriendMsg(getResources().getString(R.string.you_stop_this_game),
-					friendName);
+			ChatMsgEntity lastEntity = UserUtils.sendToFriendMsg(getResources()
+					.getString(R.string.you_stop_this_game), friendName);
 			mDataArrays.add(lastEntity);
 			mAdapter.notifyDataSetChanged();
 			singleChatLv.setSelection(singleChatLv.getCount() - 1);
@@ -518,7 +499,6 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		singleChatLv.setOnItemClickListener(mItemClickListener);
 		singleChatLv.setKeepScreenOn(true);
 		singleChatLv.post(new Runnable() {
-
 			@Override
 			public void run() {
 				singleChatLv.setSelection(singleChatLv.getCount());
@@ -540,14 +520,10 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 
 		@Override
 		public void onScrollStateChanged(AbsListView view, int scrollState) {
-			// Log.e(TAG,
-			// "onScrollStateChanged()---scrollState -->"+scrollState);
-
 			if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
 				View topView = singleChatLv.getChildAt(singleChatLv
 						.getFirstVisiblePosition());
 				if ((topView != null) && (topView.getTop() == 0)) {
-					Timber.e("onScrollStateChanged()---topView 显示");
 					mmPullDownView.startTopScroll();
 				}
 			}
@@ -556,12 +532,8 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		@Override
 		public void onScroll(AbsListView view, int firstVisibleItem,
 				int visibleItemCount, int totalItemCount) {
-			// Log.e(TAG, "firstVisibleItem:"+firstVisibleItem
-			// +"  visibleItemCount:"+visibleItemCount
-			// +"  totalItemCount:"+totalItemCount);
 			if (mmPullDownView != null) {
 				if (singleChatLv.getCount() < dataCount) {
-					System.out.println();
 					mmPullDownView.setIsCloseTopAllowRefersh(false);
 				} else {
 					mmPullDownView.setIsCloseTopAllowRefersh(true);
@@ -571,7 +543,6 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 	};
 
 	private OnTouchListener mOnTouchListener = new View.OnTouchListener() {
-
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
 			return false;

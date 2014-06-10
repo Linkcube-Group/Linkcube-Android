@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  */
 public class ASmackUtils {
 
-	private final static String SERVERNAME = "@server1";// 测试ip：@server1
+	private final static String SERVERNAME = "@lcserver";// 测试ip：@server1   正式ip：@lcserver
 
 	public static String ROSTER_NAME = null;
 
