@@ -1,6 +1,5 @@
 package me.linkcube.app.util;
 
-import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.TypedValue;

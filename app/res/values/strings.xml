@@ -177,6 +177,7 @@
 	<string name="send">发送</string>
 	<string name="toast_close_game">关闭游戏</string>
 	<string name="toast_not_my_friend_add_again">该用户已经不是您的好友，请重新添加</string>
+	<string name="del_after_read">阅后即焚</string>
 	
 	<!-- 好友列表界面-->
 	<string name="toast_delete_friend">是否删除此好友</string>

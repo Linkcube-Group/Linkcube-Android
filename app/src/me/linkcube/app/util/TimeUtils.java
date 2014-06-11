@@ -8,8 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import me.linkcube.app.core.Timber;
-
 public class TimeUtils {
 
 	/**
@@ -54,17 +52,21 @@ public class TimeUtils {
 			simFormat.applyPattern("yyyy-MM-dd HH:mm:ss");
 			mDate = simFormat.parse(dateAndTime);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (mDate.getMonth() < Integer.parseInt(addZero(String.valueOf(calendar
 				.get(Calendar.MONTH))))
 				|| mDate.getDate() < Integer.parseInt(addZero(String
 						.valueOf(calendar.get(Calendar.DAY_OF_MONTH))))) {
-			return mDate.getMonth() + 1 + "月" + mDate.getDate() + "日";
+			if (PreferenceUtils.getInt("app_language", 0) == 1) {
+				return mDate.getDate() + "/" + mDate.getMonth() + 1;
+			} else {
+				return mDate.getMonth() + 1 + "月" + mDate.getDate() + "日";
+			}
+
 		} else {
-			String hour = addZero(mDate.getHours()+"");
-			String minus = addZero(mDate.getMinutes()+"");
+			String hour = addZero(mDate.getHours() + "");
+			String minus = addZero(mDate.getMinutes() + "");
 			String nowTime = hour + ":" + minus;
 			return nowTime;
 		}

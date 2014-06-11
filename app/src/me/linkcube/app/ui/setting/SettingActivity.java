@@ -312,7 +312,7 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 		msgPendingIntent = PendingIntent
 				.getActivity(mActivity, 0, msgIntent, 0);
 
-		msgNotification.setLatestEventInfo(mActivity, "连酷", "正在下载更新文件",
+		msgNotification.setLatestEventInfo(mActivity, getResources().getString(R.string.app_name), getResources().getString(R.string.update_download_flie),
 				msgPendingIntent);
 
 		msgNotificationManager.notify(msgNotificationID, msgNotification);

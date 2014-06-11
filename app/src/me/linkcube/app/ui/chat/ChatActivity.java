@@ -350,7 +350,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		public void handleMessage(Message msg) {
 			ChatMsgEntity entity = (ChatMsgEntity) msg.obj;
 			ChatMsgEntity afterReadEntity = UserUtils.deleteMsgAfterRead(
-					"阅后即焚", friendName, entity);
+					getResources().getString(R.string.del_after_read), friendName, entity);
 			mDataArrays.set(msg.what - 1, afterReadEntity);
 			mAdapter.notifyDataSetChanged();
 		}

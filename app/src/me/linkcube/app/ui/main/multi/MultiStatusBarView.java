@@ -6,7 +6,6 @@ import me.linkcube.app.core.entity.UserEntity;
 import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.util.FormatUtils;
 import me.linkcube.app.util.RegexUtils;
-import me.linkcube.app.widget.AlertUtils;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;

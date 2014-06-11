@@ -25,7 +25,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import me.linkcube.app.R;
 import me.linkcube.app.core.Const;

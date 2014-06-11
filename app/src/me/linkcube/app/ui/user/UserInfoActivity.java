@@ -13,7 +13,6 @@ import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.ui.DialogActivity;
 import me.linkcube.app.util.FormatUtils;
-import me.linkcube.app.util.PreferenceUtils;
 
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smackx.packet.VCard;
@@ -38,7 +37,6 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class UserInfoActivity extends DialogActivity implements OnClickListener {
 
