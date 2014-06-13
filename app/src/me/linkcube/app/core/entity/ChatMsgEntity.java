@@ -7,6 +7,8 @@ public class ChatMsgEntity {
 	private String date;
 
 	private String text;
+	
+	private int countDown;
 
 	private boolean isComMeg = true;
 
@@ -52,4 +54,14 @@ public class ChatMsgEntity {
 	public void setMsgType(boolean isComMsg) {
 		isComMeg = isComMsg;
 	}
+
+	public int getCountDown() {
+		return countDown;
+	}
+
+	public void setCountDown(int countDown) {
+		this.countDown = countDown;
+	}
+	
+	
 }

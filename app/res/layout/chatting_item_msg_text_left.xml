@@ -59,6 +59,16 @@
             android:layout_below="@id/chat_friend_avatar_iv"
             android:layout_toLeftOf="@id/tv_chatcontent"
             android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/del_after_read_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_chatcontent"
+            android:paddingLeft="3dp"
+            android:text="30" />
+
     </RelativeLayout>
 
 </LinearLayout>

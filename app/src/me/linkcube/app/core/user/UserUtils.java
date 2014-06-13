@@ -26,6 +26,7 @@ public class UserUtils {
 		entity.setName(nickName);
 		entity.setMsgType(from);
 		entity.setText(body);
+		entity.setCountDown(30);
 		System.out.println("messageresult:" + body);
 		return entity;
 	}
@@ -43,6 +44,7 @@ public class UserUtils {
 					.getNickName());
 			entity.setMsgType(false);
 			entity.setText(body);
+			entity.setCountDown(30);
 
 			// 保存到数据库
 			ChatEntity chatEntity = new ChatEntity();

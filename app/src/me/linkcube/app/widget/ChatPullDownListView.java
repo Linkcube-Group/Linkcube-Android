@@ -131,7 +131,6 @@ public class ChatPullDownListView extends FrameLayout implements
 				this.topView.setVisibility(View.INVISIBLE);
 				this.bottomView.setVisibility(View.INVISIBLE);
 				this.topViewHeight = this.topView.getHeight();
-				Log.e(TAG, "onLayout()--topViewHeight-->" + topViewHeight);
 				this.bottomViewHeight = this.bottomView.getHeight();
 				this.topViewHeightCurrentPotion = this.topViewHeight;
 				if ((!this.isHideTopView) && (this.topViewHeight != 0)) {

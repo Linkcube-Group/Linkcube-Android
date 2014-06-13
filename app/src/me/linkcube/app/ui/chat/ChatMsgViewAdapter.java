@@ -38,6 +38,7 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 
 	private String friendName;
 
+
 	public ChatMsgViewAdapter(Context _context,
 			List<ChatMsgEntity> _collection, String _friendName) {
 		context = _context;
@@ -105,14 +106,18 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 					.findViewById(R.id.tv_chatcontent);
 			viewHolder.isComMsg = isComMsg;
 
+			viewHolder.delAfterReadTimeTv = (TextView) convertView
+					.findViewById(R.id.del_after_read_time_tv);
+
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
-		
+
 		viewHolder.sendTimeTv.setText(entity.getDate());
 		viewHolder.userNameTv.setText(entity.getName());
 		viewHolder.MessageTv.setText(entity.getText());
+		viewHolder.delAfterReadTimeTv.setText(entity.getCountDown() + "");
 		return convertView;
 	}
 
@@ -121,6 +126,7 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 		public TextView sendTimeTv;
 		public TextView userNameTv;
 		public TextView MessageTv;
+		public TextView delAfterReadTimeTv;
 		public boolean isComMsg = true;
 	}
 
@@ -129,11 +135,12 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 		PersistableFriend perFriend = new PersistableFriend();
 		Drawable friendAvtar = null;
 		try {
-			friendEntities = DataManager.getInstance()
-					.query(perFriend,
-							USER_JID + "=? and " + FRIEND_JID + "=?",
-							new String[] { ASmackUtils.getUserJID(),
-							ASmackUtils.getFriendJid(friendName) }, null, null, null);
+			friendEntities = DataManager.getInstance().query(
+					perFriend,
+					USER_JID + "=? and " + FRIEND_JID + "=?",
+					new String[] { ASmackUtils.getUserJID(),
+							ASmackUtils.getFriendJid(friendName) }, null, null,
+					null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -161,5 +168,6 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 		}
 		return userAvatar;
 	}
+
 
 }

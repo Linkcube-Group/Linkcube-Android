@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -63,6 +65,7 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ChatActivity extends DialogActivity implements OnClickListener,
@@ -99,6 +102,8 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 	private MenuItem disconnectItem, onBlueToothItem;
 
 	private boolean isFriend = true;
+
+	private List<Timer> timers = new ArrayList<Timer>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -240,8 +245,9 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 					entity.setMsgType(false);
 				}
 				entity.setText(chat.getMessage());
+				entity.setCountDown(30);
 				dbDataArrays.add(entity);
-				delMsgAfterRead(dbDataArrays.size(),entity);// handler处理阅后即焚消息
+				delMsgAfterRead(dbDataArrays.size(), entity);// handler处理阅后即焚消息
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -302,7 +308,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 				singleChat.sendMsg(friendName, sendMsg);
 				sendMsgEt.setText("");
 				singleChatLv.setSelection(singleChatLv.getCount() - 1);
-				delMsgAfterRead(mDataArrays.size(),entity);// handler处理阅后即焚消息
+				delMsgAfterRead(mDataArrays.size(), entity);// handler处理阅后即焚消息
 			}
 			break;
 
@@ -333,14 +339,46 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		}
 	}
 
-	private void delMsgAfterRead(int size,ChatMsgEntity entity) {
+	private void delMsgAfterRead(final int size, ChatMsgEntity entity) {
 		// handler处理阅后即焚消息
 		Message msg = new Message();
-		msg.what = size;
+		msg.what = size - 1;
 		msg.obj = entity;
 		delAfterReadHandler.sendMessageDelayed(msg, 30000);
-	}
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				Message msg = new Message();
+				msg.what = size - 1;
+				countDownHandler.sendMessage(msg);
+			}
+		}, 0, 1000);
+		timers.add(timer);
+		System.out.println("--timer:" + timer);
 
+	}
+	
+	private Handler countDownHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+
+			int countDown = mDataArrays.get(msg.what).getCountDown();
+			if (countDown == 1) {
+				Timer tempTimer = timers.get(msg.what);
+				if (tempTimer != null) {
+					tempTimer.cancel();
+					tempTimer = null;
+				}
+			}
+			mDataArrays.get(msg.what).setCountDown(countDown - 1);
+			System.out.println("countDown:" + countDown);
+			mAdapter.notifyDataSetChanged();
+
+		}
+
+	};
 	/**
 	 * 处理阅后即焚消息
 	 */
@@ -350,9 +388,11 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		public void handleMessage(Message msg) {
 			ChatMsgEntity entity = (ChatMsgEntity) msg.obj;
 			ChatMsgEntity afterReadEntity = UserUtils.deleteMsgAfterRead(
-					getResources().getString(R.string.del_after_read), friendName, entity);
-			mDataArrays.set(msg.what - 1, afterReadEntity);
+					getResources().getString(R.string.del_after_read),
+					friendName, entity);
+			mDataArrays.set(msg.what, afterReadEntity);
 			mAdapter.notifyDataSetChanged();
+			// DelAfterReadManager.getInstance().startCountDown(msg.what - 1);
 		}
 
 	};
@@ -362,7 +402,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		mDataArrays.add(entity);
 		mAdapter.notifyDataSetChanged();
 		singleChatLv.setSelection(singleChatLv.getCount() - 1);
-		delMsgAfterRead(mDataArrays.size(),entity);// handler处理阅后即焚消息
+		delMsgAfterRead(mDataArrays.size(), entity);// handler处理阅后即焚消息
 	}
 
 	@Override
