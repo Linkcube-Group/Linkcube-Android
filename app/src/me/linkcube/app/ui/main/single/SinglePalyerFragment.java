@@ -110,6 +110,9 @@ public class SinglePalyerFragment extends BaseFragment implements
 	public void onResume() {
 		super.onResume();
 		mAdapter.changeLanguageForTv();
+		mBgPagerAdapter.setLanguage();
+		mBgPagerAdapter.notifyDataSetChanged();
+		mBgViewPager.invalidate();
 		if (UserManager.getInstance().isAuthenticated()
 				&& UserManager.getInstance().getUserInfo() != null) {
 			Timber.i("nickname:"

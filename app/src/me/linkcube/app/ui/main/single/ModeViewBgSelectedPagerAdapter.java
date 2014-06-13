@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.linkcube.app.R;
+import me.linkcube.app.util.PreferenceUtils;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -69,4 +70,32 @@ public class ModeViewBgSelectedPagerAdapter extends PagerAdapter {
 		container.removeView(views.get(position));
 	}
 
+	private int[] modeTipPic = { R.drawable.shake_mode_tip,
+			R.drawable.voice_mode_tip, R.drawable.sex_position_mode_tip };
+	private int[] modeTipPicEn = { R.drawable.shake_mode_tip_en,
+			R.drawable.voice_mode_tip_en, R.drawable.sex_position_mode_tip_en };
+
+	public void setLanguage() {
+		System.out.println("setLanguage");
+		switch (PreferenceUtils.getInt("app_language", 0)) {
+		case 0:
+			for (int i = 0; i < views.size(); i++) {
+				ImageView tipView = (ImageView) views.get(i).findViewById(
+						R.id.mode_tip_iv);
+				tipView.setImageResource(modeTipPic[i]);
+			}
+			break;
+
+		case 1:
+			for (int i = 0; i < views.size(); i++) {
+				ImageView tipView = (ImageView) views.get(i).findViewById(
+						R.id.mode_tip_iv);
+				tipView.setImageResource(modeTipPicEn[i]);
+			}
+			break;
+
+		default:
+			break;
+		}
+	}
 }
