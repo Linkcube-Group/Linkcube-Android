@@ -117,7 +117,12 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 		viewHolder.sendTimeTv.setText(entity.getDate());
 		viewHolder.userNameTv.setText(entity.getName());
 		viewHolder.MessageTv.setText(entity.getText());
-		viewHolder.delAfterReadTimeTv.setText(entity.getCountDown() + "");
+		if(entity.getCountDown()==0){
+			viewHolder.delAfterReadTimeTv.setText("");
+		}else{
+			viewHolder.delAfterReadTimeTv.setText(entity.getCountDown() + "");
+		}
+		
 		return convertView;
 	}
 

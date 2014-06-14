@@ -232,8 +232,9 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		for (ChatEntity chat : chats) {
+		for (int i = 0; i < chats.size(); i++) {
 			try {
+				ChatEntity chat = chats.get(i);
 				ChatMsgEntity entity = new ChatMsgEntity();
 				entity.setDate(TimeUtils.toNowTime(chat.getMsgTime()));
 				if (chat.getMsgFlag().equals("get")) {
@@ -356,15 +357,15 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		}, 0, 1000);
 		timers.add(timer);
 		System.out.println("--timer:" + timer);
-
 	}
-	
+
 	private Handler countDownHandler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
 
 			int countDown = mDataArrays.get(msg.what).getCountDown();
+			mDataArrays.get(msg.what).setCountDown(countDown - 1);
 			if (countDown == 1) {
 				Timer tempTimer = timers.get(msg.what);
 				if (tempTimer != null) {
@@ -372,7 +373,6 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 					tempTimer = null;
 				}
 			}
-			mDataArrays.get(msg.what).setCountDown(countDown - 1);
 			System.out.println("countDown:" + countDown);
 			mAdapter.notifyDataSetChanged();
 
