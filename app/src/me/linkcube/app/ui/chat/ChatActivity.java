@@ -11,6 +11,7 @@ import java.util.TimerTask;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.umeng.analytics.c;
 
 import static me.linkcube.app.core.persistable.DBConst.TABLE_CHAT.*;
 import static me.linkcube.app.core.persistable.DBConst.TABLE_FRIEND.*;
@@ -104,6 +105,8 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 	private boolean isFriend = true;
 
 	private List<Timer> timers = new ArrayList<Timer>();
+	
+	private static List<Integer> countDowmList=new ArrayList<Integer>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -235,8 +238,9 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		for (int i = 0; i < chats.size(); i++) {
 			try {
 				ChatEntity chat = chats.get(i);
+				Timber.d("IsAfterRead:"+chat.getIsAfterRead());
 				ChatMsgEntity entity = new ChatMsgEntity();
-				entity.setDate(TimeUtils.toNowTime(chat.getMsgTime()));
+				entity.setDate(chat.getMsgTime());//TimeUtils.toNowTime()
 				if (chat.getMsgFlag().equals("get")) {
 					entity.setName(chat.getFriendNickname());
 					entity.setMsgType(true);
@@ -245,8 +249,19 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 							.getNickName());
 					entity.setMsgType(false);
 				}
-				entity.setText(chat.getMessage());
-				entity.setCountDown(30);
+				if(i<countDowmList.size()){
+					entity.setCountDown(countDowmList.get(i));
+				}else{
+					entity.setCountDown(30);
+					countDowmList.add(30);
+				}
+				if(chat.getIsAfterRead()==1){
+					entity.setText(getResources().getString(R.string.del_after_read));
+					entity.setCountDown(1);
+					countDowmList.add(1);
+				}else{
+					entity.setText(chat.getMessage());
+				}
 				dbDataArrays.add(entity);
 				delMsgAfterRead(dbDataArrays.size(), entity);// handler处理阅后即焚消息
 			} catch (Exception e) {
@@ -310,6 +325,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 				sendMsgEt.setText("");
 				singleChatLv.setSelection(singleChatLv.getCount() - 1);
 				delMsgAfterRead(mDataArrays.size(), entity);// handler处理阅后即焚消息
+				countDowmList.add(30);
 			}
 			break;
 
@@ -340,23 +356,23 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		}
 	}
 
-	private void delMsgAfterRead(final int size, ChatMsgEntity entity) {
+	private void delMsgAfterRead(final int size, final ChatMsgEntity entity) {
 		// handler处理阅后即焚消息
-		Message msg = new Message();
+		/*Message msg = new Message();
 		msg.what = size - 1;
 		msg.obj = entity;
-		delAfterReadHandler.sendMessageDelayed(msg, 30000);
+		delAfterReadHandler.sendMessageDelayed(msg, 30000);*/
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
 				Message msg = new Message();
 				msg.what = size - 1;
+				msg.obj = entity;
 				countDownHandler.sendMessage(msg);
 			}
 		}, 0, 1000);
 		timers.add(timer);
-		System.out.println("--timer:" + timer);
 	}
 
 	private Handler countDownHandler = new Handler() {
@@ -366,15 +382,23 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 
 			int countDown = mDataArrays.get(msg.what).getCountDown();
 			mDataArrays.get(msg.what).setCountDown(countDown - 1);
+			Timber.d("msg.what:"+msg.what);
+			countDowmList.set(msg.what, countDown);
 			if (countDown == 1) {
 				Timer tempTimer = timers.get(msg.what);
 				if (tempTimer != null) {
 					tempTimer.cancel();
 					tempTimer = null;
 				}
+				Message msg2 = new Message();
+				msg2.what = msg.what;
+				msg2.obj = msg.obj;
+				System.out.println("----deleteMsg-----");
+				delAfterReadHandler.sendMessage(msg2);
 			}
 			System.out.println("countDown:" + countDown);
 			mAdapter.notifyDataSetChanged();
+			
 
 		}
 
@@ -403,6 +427,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		mAdapter.notifyDataSetChanged();
 		singleChatLv.setSelection(singleChatLv.getCount() - 1);
 		delMsgAfterRead(mDataArrays.size(), entity);// handler处理阅后即焚消息
+		countDowmList.add(30);
 	}
 
 	@Override

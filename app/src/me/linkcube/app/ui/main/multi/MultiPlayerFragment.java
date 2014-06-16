@@ -242,8 +242,7 @@ public class MultiPlayerFragment extends BaseFragment implements
 					String friendName = chatEntity.getFriendName();
 					String friendNickname = chatEntity.getFriendNickname();
 					String message = chatEntity.getMessage();
-					String msgTime = TimeUtils.toNowTime(chatEntity
-							.getMsgTime());
+					String msgTime =TimeUtils.toNowTime(chatEntity.getMsgTime()); //
 
 					friendNameTV.setText(RegexUtils.cutUserName(friendNickname));
 					if (message.length() > 13) {

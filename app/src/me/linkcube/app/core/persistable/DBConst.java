@@ -73,17 +73,20 @@ public class DBConst {
 		public static final String USER_NAME = "userName";
 		public static final String FRIEND_NAME= "friendName";
 		public static final String FRIEND_NICKNAME= "friendNickname";
+		public static final String IS_AFTER_READ = "isAfterRead";
 		public static final String MSG_FLAG = "msgFlag";
 		public static final String MESSAGE = "message";
 		public static final String MSG_TIME = "msgTime";
+		
 
 		public static String createSql() {
 			StringBuffer buf = new StringBuffer("CREATE TABLE ");
 			buf.append(TABLE_NAME).append(" (");
-			buf.append(ID).append(" INTEGER[4] PRIMARY KEY, ");
+			buf.append(ID).append(" INTEGER PRIMARY KEY AUTOINCREMENT, ");
 			buf.append(USER_NAME).append(" TEXT,");
 			buf.append(FRIEND_NAME).append(" TEXT,");
 			buf.append(FRIEND_NICKNAME).append(" TEXT,");
+			buf.append(IS_AFTER_READ).append(" INTEGER DEFAULT '0',");
 			buf.append(MSG_FLAG).append(" TEXT,");
 			buf.append(MESSAGE).append(" TEXT,");
 			buf.append(MSG_TIME).append(" TEXT);");

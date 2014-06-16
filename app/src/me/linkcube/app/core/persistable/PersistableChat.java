@@ -15,11 +15,13 @@ public class PersistableChat extends PersistableBase<ChatEntity> {
 	@Override
 	public ChatEntity loadFrom(Cursor cursor) {
 		ChatEntity chat = new ChatEntity();
+		chat.setMsgId(cursor.getInt(cursor.getColumnIndex(ID))+"");
 		chat.setUserName(cursor.getString(cursor.getColumnIndex(USER_NAME)));
 		chat.setMessage(cursor.getString(cursor.getColumnIndex(MESSAGE)));
 		chat.setFriendName(cursor.getString(cursor.getColumnIndex(FRIEND_NAME)));
 		chat.setFriendNickname(cursor.getString(cursor
 				.getColumnIndex(FRIEND_NICKNAME)));
+		chat.setIsAfterRead(cursor.getInt(cursor.getColumnIndex(IS_AFTER_READ)));
 		chat.setMsgTime(cursor.getString(cursor.getColumnIndex(MSG_TIME)));
 		chat.setMsgFlag(cursor.getString(cursor.getColumnIndex(MSG_FLAG)));
 		return chat;
@@ -27,8 +29,9 @@ public class PersistableChat extends PersistableBase<ChatEntity> {
 
 	@Override
 	public void update(SQLiteDatabase writableDatabase, ChatEntity item) {
-		// TODO Auto-generated method stub
-
+		writableDatabase.update(getTableName(),getContentValues(item), FRIEND_NAME + "=? and "
+				+ MESSAGE + "=?",
+				new String[] { item.getFriendName(), item.getMessage() });
 	}
 
 	@Override
@@ -65,6 +68,7 @@ public class PersistableChat extends PersistableBase<ChatEntity> {
 		values.put(MSG_FLAG, item.getMsgFlag());
 		values.put(MESSAGE, item.getMessage());
 		values.put(MSG_TIME, item.getMsgTime());
+		values.put(IS_AFTER_READ, item.getIsAfterRead());
 		return values;
 	}
 

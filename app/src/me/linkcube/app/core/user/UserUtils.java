@@ -1,6 +1,11 @@
 package me.linkcube.app.core.user;
 
 
+import static me.linkcube.app.core.persistable.DBConst.TABLE_CHAT.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.entity.ChatEntity;
 import me.linkcube.app.core.entity.ChatMsgEntity;
@@ -58,7 +63,7 @@ public class UserUtils {
 			chatEntity.setMsgTime(TimeUtils.getNowDateAndTime());
 			PersistableChat perChat = new PersistableChat();
 			DataManager.getInstance().insert(perChat, chatEntity);
-
+			
 		}
 		return entity;
 	}
@@ -76,18 +81,25 @@ public class UserUtils {
 			entity.setMsgType(readAfterEntity.getMsgType());
 			entity.setText(body);
 
-			// 从数据库中删除
+			// 从数据库中更新
 			ChatEntity chatEntity = new ChatEntity();
 			chatEntity.setUserName(ASmackUtils.getRosterName());
 			chatEntity.setFriendName(friendName);
 			chatEntity.setFriendNickname(FriendManager.getInstance().getFriendNicknameByFriendName(friendName));
-			chatEntity.setMsgFlag("send");
+			if(readAfterEntity.getMsgType()==true)
+			chatEntity.setMsgFlag("get");
+			else{
+				chatEntity.setMsgFlag("send");
+			}
 			chatEntity.setMessage(readAfterEntity.getText());
 			System.out.println("friendName:"+friendName);
 			System.out.println("Message:"+readAfterEntity.getText());
+			System.out.println("readAfterEntity.getDate():"+readAfterEntity.getDate());
 			chatEntity.setMsgTime(readAfterEntity.getDate());
+			chatEntity.setIsAfterRead(1);
 			PersistableChat perChat = new PersistableChat();
-			DataManager.getInstance().deleteOne(perChat, chatEntity);
+			
+			DataManager.getInstance().update(perChat, chatEntity);
 
 		}
 		return entity;

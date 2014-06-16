@@ -7,6 +7,8 @@ package me.linkcube.app.core.entity;
  * 
  */
 public class ChatEntity {
+	
+	private String MsgId;
 
 	private String userName;// 当前用户的名字
 
@@ -19,9 +21,19 @@ public class ChatEntity {
 	private String message;// 相互之间的消息
 
 	private String msgTime;// 发送消息的时间
+	
+	private int isAfterRead; //0表示未读，1表示已读
 
 	public ChatEntity() {
 
+	}
+	
+	public String getMsgId() {
+		return MsgId;
+	}
+
+	public void setMsgId(String msgId) {
+		MsgId = msgId;
 	}
 
 	public String getUserName() {
@@ -71,5 +83,16 @@ public class ChatEntity {
 	public void setMsgTime(String msgTime) {
 		this.msgTime = msgTime;
 	}
+
+	public int getIsAfterRead() {
+		return isAfterRead;
+	}
+
+	public void setIsAfterRead(int isAfterRead) {
+		this.isAfterRead = isAfterRead;
+	}
+
+	
+	
 	
 }
