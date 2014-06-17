@@ -15,13 +15,13 @@ public class ChatMsgEntity {
 	public ChatMsgEntity() {
 	}
 
-//	public ChatMsgEntity(String name, String date, String text, boolean isComMsg) {
-//		super();
-//		this.name = name;
-//		this.date = date;
-//		this.text = text;
-//		this.isComMeg = isComMsg;
-//	}
+	public ChatMsgEntity(String name, String date, String text, boolean isComMsg) {
+		super();
+		this.name = name;
+		this.date = date;
+		this.text = text;
+		this.isComMeg = isComMsg;
+	}
 	
 	public String getName() {
 		return name;

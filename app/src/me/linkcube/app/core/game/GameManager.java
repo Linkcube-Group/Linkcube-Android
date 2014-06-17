@@ -84,13 +84,6 @@ public class GameManager {
 	}
 
 	public void delGameInviteMsg(String friendName) {
-		Timber.i(gameInviteMsgs.size() + "---size()");
-		/*
-		 * for (ChatMsgEntity chatMsgEntity : gameInviteMsgs) {
-		 * if(chatMsgEntity.getName().equals(friendName)){
-		 * gameInviteMsgs.remove(chatMsgEntity);
-		 * Timber.i(chatMsgEntity.getName()+"已删除"); } }
-		 */
 		List<Integer> positions = new ArrayList<Integer>();
 		ChatMsgEntity chatMsgEntity = new ChatMsgEntity();
 		for (int i = 0; i < gameInviteMsgs.size(); i++) {
@@ -99,12 +92,12 @@ public class GameManager {
 				positions.add(i);
 			}
 		}
-
 		for (int position : positions) {
 			Timber.i(gameInviteMsgs.get(position).getName() + "已删除");
 			gameInviteMsgs.remove(position);
 		}
-
 		Timber.i(gameInviteMsgs.size() + "---22size()");
 	}
+	
+	
 }

@@ -1,12 +1,6 @@
 package me.linkcube.app.core.user;
 
-
-import static me.linkcube.app.core.persistable.DBConst.TABLE_CHAT.*;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import me.linkcube.app.core.Timber;
+import static me.linkcube.app.core.Const.DeleteAfterRead.COUNT_DOWN;
 import me.linkcube.app.core.entity.ChatEntity;
 import me.linkcube.app.core.entity.ChatMsgEntity;
 import me.linkcube.app.core.persistable.DataManager;
@@ -31,7 +25,7 @@ public class UserUtils {
 		entity.setName(nickName);
 		entity.setMsgType(from);
 		entity.setText(body);
-		entity.setCountDown(30);
+		entity.setCountDown(COUNT_DOWN);
 		System.out.println("messageresult:" + body);
 		return entity;
 	}
@@ -49,7 +43,7 @@ public class UserUtils {
 					.getNickName());
 			entity.setMsgType(false);
 			entity.setText(body);
-			entity.setCountDown(30);
+			entity.setCountDown(COUNT_DOWN);
 
 			// 保存到数据库
 			ChatEntity chatEntity = new ChatEntity();

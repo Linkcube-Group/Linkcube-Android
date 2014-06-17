@@ -84,5 +84,11 @@ public class Const {
 
 		public static String DEVICE_ADDRESS = "device_address";
 	}
+	
+	public static class DeleteAfterRead {
+
+		public static int COUNT_DOWN = 60;
+
+	}
 
 }
