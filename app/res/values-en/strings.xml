@@ -47,6 +47,7 @@
     <string name="setting">Setting</string>
     <string name="connect_toy">Toy Connect</string>
     <string name="personal_info">Personal Information</string>
+    <string name="delete_after_read">Turned On Delete After Read</string>
     <string name="purchase_toy">Purchase Toy</string>
     <string name="help">Help</string>
     <string name="feedback">Your Suggestions</string>

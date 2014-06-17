@@ -42,6 +42,7 @@ import me.linkcube.app.ui.DialogActivity;
 import me.linkcube.app.ui.bluetooth.BluetoothSettingActivity;
 import me.linkcube.app.ui.chat.ChatPanelView.OnGameListener;
 import me.linkcube.app.ui.chat.ChatPanelView.OnUpdateChatListListener;
+import me.linkcube.app.util.PreferenceUtils;
 import me.linkcube.app.util.TimeUtils;
 import me.linkcube.app.widget.ChatPullDownListView;
 import me.linkcube.app.widget.ChatPullDownListView.OnListViewBottomListener;
@@ -348,17 +349,19 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 	}
 
 	private void delMsgAfterRead(final int size, final ChatMsgEntity entity) {
-		Timer timer = new Timer();
-		timer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				Message msg = new Message();
-				msg.what = size - 1;
-				msg.obj = entity;
-				countDownHandler.sendMessage(msg);
-			}
-		}, 0, 1000);
-		timers.add(timer);
+		if(PreferenceUtils.getBoolean("DELETE_AFTER_READ", false)){
+			Timer timer = new Timer();
+			timer.schedule(new TimerTask() {
+				@Override
+				public void run() {
+					Message msg = new Message();
+					msg.what = size - 1;
+					msg.obj = entity;
+					countDownHandler.sendMessage(msg);
+				}
+			}, 0, 1000);
+			timers.add(timer);
+		}
 	}
 
 	private Handler countDownHandler = new Handler() {

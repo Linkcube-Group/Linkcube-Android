@@ -65,6 +65,7 @@
     <!-- 设置页面 -->
     <item name="connect_toy_tv" type="id"/>
     <item name="personal_info_tv" type="id"/>
+    <item name="delete_after_read_tv" type="id"/>
     <item name="purchase_toy_tv" type="id"/>
     <item name="help_tv" type="id"/>
     <item name="feedback_tv" type="id"/>

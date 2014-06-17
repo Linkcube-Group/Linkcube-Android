@@ -47,6 +47,7 @@
     <string name="setting">设置</string>
     <string name="connect_toy">连接玩具</string>
     <string name="personal_info">个人信息</string>
+    <string name="delete_after_read">阅后即焚</string>
     <string name="purchase_toy">购买玩具</string>
     <string name="help">使用说明</string>
     <string name="feedback">您的建议</string>

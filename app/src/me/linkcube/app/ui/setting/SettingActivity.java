@@ -43,7 +43,7 @@ import me.linkcube.app.widget.AlertUtils;
 public class SettingActivity extends DialogActivity implements OnClickListener {
 
 	private TextView connectToyTv, personalInfoTv, purchaseToyTv, helpTv,
-			feedbackTv, aboutUsTv, checkUpdateTv, setLanguageTv;
+			feedbackTv, aboutUsTv, checkUpdateTv, setLanguageTv,deleteAfterReadTv;
 
 	private Button loginOrRegisterBtn;
 
@@ -89,6 +89,7 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 		loginOrRegisterBtn = (Button) findViewById(R.id.login_or_register_btn);
 		newVertionTipIv = (ImageView) findViewById(R.id.new_version_tip_iv);
 		setLanguageTv=(TextView)findViewById(R.id.set_language_tv);
+		deleteAfterReadTv=(TextView)findViewById(R.id.delete_after_read_tv);
 		connectToyTv.setOnClickListener(this);
 		personalInfoTv.setOnClickListener(this);
 		purchaseToyTv.setOnClickListener(this);
@@ -98,6 +99,7 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 		loginOrRegisterBtn.setOnClickListener(this);
 		checkUpdateTv.setOnClickListener(this);
 		setLanguageTv.setOnClickListener(this);
+		deleteAfterReadTv.setOnClickListener(this);
 
 		addUpdateFlag = PreferenceUtils.getInt(Const.AppUpdate.APK_UPDATE_FLAG,
 				0);
@@ -199,6 +201,20 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 			.setNegativeButton("取消", null)
 			.show();
 			break;
+		case R.id.delete_after_read_tv:
+			if(!PreferenceUtils.contains("DELETE_AFTER_READ")){
+				PreferenceUtils.setBoolean("DELETE_AFTER_READ", false);
+			}
+			if(!PreferenceUtils.getBoolean("DELETE_AFTER_READ", false)){
+				PreferenceUtils.setBoolean("DELETE_AFTER_READ", true);
+				Toast.makeText(mActivity,"开启阅后即焚功能", Toast.LENGTH_SHORT).show();
+			}else{
+				PreferenceUtils.setBoolean("DELETE_AFTER_READ", false);
+				Toast.makeText(mActivity,"关闭阅后即焚功能", Toast.LENGTH_SHORT).show();
+			}
+			
+			
+			break;
 		default:
 			break;
 		}
@@ -270,7 +286,7 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 												.sendEmptyMessage(0);
 										msgNotificationManager
 												.cancel(msgNotificationID);
-									}
+										}
 								});
 						downloadNewApkHttpGet.downloadNewApkFile(mActivity,
 								PreferenceUtils.getString(

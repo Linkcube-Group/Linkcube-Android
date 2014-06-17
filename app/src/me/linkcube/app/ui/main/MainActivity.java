@@ -94,6 +94,10 @@ public class MainActivity extends BaseFragmentActivity implements
 		MobclickAgent.onEvent(MainActivity.this, "用户进入应用");
 		ReconnectionListener.getInstance().setReconnectionCallBack(
 				reconnectionCallBack);
+		
+		if(!PreferenceUtils.contains("DELETE_AFTER_READ")){
+			PreferenceUtils.setBoolean("DELETE_AFTER_READ", false);
+		}
 
 	}
 

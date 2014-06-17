@@ -13,6 +13,7 @@ import me.linkcube.app.core.persistable.PersistableFriend;
 import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.util.FormatUtils;
+import me.linkcube.app.util.PreferenceUtils;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -117,11 +118,16 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 		viewHolder.sendTimeTv.setText(entity.getDate());
 		viewHolder.userNameTv.setText(entity.getName());
 		viewHolder.MessageTv.setText(entity.getText());
-		if(entity.getCountDown()==0){
+		if(!PreferenceUtils.getBoolean("DELETE_AFTER_READ", false)){
 			viewHolder.delAfterReadTimeTv.setText("");
 		}else{
-			viewHolder.delAfterReadTimeTv.setText(entity.getCountDown() + "");
+			if(entity.getCountDown()==0){
+				viewHolder.delAfterReadTimeTv.setText("");
+			}else{
+				viewHolder.delAfterReadTimeTv.setText(entity.getCountDown() + "");
+			}
 		}
+		
 		
 		return convertView;
 	}
