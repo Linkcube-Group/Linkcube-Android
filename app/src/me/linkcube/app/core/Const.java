@@ -87,7 +87,7 @@ public class Const {
 	
 	public static class DeleteAfterRead {
 
-		public static int COUNT_DOWN = 60;
+		public static int COUNT_DOWN = 6;
 
 	}
 

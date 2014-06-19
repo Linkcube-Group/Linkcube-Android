@@ -240,6 +240,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 							.getNickName());
 					entity.setMsgType(false);
 				}
+				System.out.println("friendName:"+friendName+"--countDownList.size():"+countDowmList.size());
 				if (i < countDowmList.size()) {
 					entity.setCountDown(countDowmList.get(i));
 				} else {
@@ -359,7 +360,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 					msg.obj = entity;
 					countDownHandler.sendMessage(msg);
 				}
-			}, 0, 1000);
+			}, 0, 60000);
 			timers.add(timer);
 		}
 	}

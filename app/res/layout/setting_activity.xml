@@ -22,13 +22,13 @@
         <TextView
             android:id="@id/personal_info_tv"
             style="@style/Setting.Item.TextView"
-            android:text="@string/personal_info"
-            android:visibility="gone" />
+            android:text="@string/personal_info" />
         
         <TextView
             android:id="@id/delete_after_read_tv"
             style="@style/Setting.Item.TextView"
-            android:text="@string/delete_after_read" />
+            android:text="@string/delete_after_read"
+            android:visibility="gone" />
 
         <View style="@style/Setting.Item.Divider" />
 
