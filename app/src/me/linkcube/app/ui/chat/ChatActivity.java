@@ -96,7 +96,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 	private MenuItem disconnectItem, onBlueToothItem;
 	private boolean isFriend = true;
 	private List<Timer> timers = new ArrayList<Timer>();
-	private static List<Integer> countDowmList = new ArrayList<Integer>();
+	private List<Integer> countDowmList = new ArrayList<Integer>();
 	private static Map<String, List<Integer>> chatForFriendMap=new HashMap<String, List<Integer>>();
 	
 	@Override
@@ -105,7 +105,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		setContentView(R.layout.chat_activity);
 		initView();
 		initData();
-		setupWidget();
+		//setupWidget();设置listview下拉刷新
 		configureActionBar(FriendManager.getInstance()
 				.getFriendNicknameByFriendName(friendName));
 
@@ -225,6 +225,12 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		}
 		if(chatForFriendMap.get(friendName)!=null){
 			countDowmList=chatForFriendMap.get(friendName);
+		}else{
+			chatForFriendMap.put(friendName, countDowmList);
+		}
+		if(chats.size()==0){
+			countDowmList.clear();
+			System.out.println("---countDowmList.clear()---");
 		}
 		for (int i = 0; i < chats.size(); i++) {
 			try {
@@ -251,7 +257,6 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 					entity.setText(getResources().getString(
 							R.string.del_after_read));
 					entity.setCountDown(1);
-					countDowmList.add(1);
 				} else {
 					entity.setText(chat.getMessage());
 				}
@@ -369,26 +374,29 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 
 		@Override
 		public void handleMessage(Message msg) {
-
-			int countDown = mDataArrays.get(msg.what).getCountDown();
-			mDataArrays.get(msg.what).setCountDown(countDown - 1);
-			countDowmList.set(msg.what, countDown);
-			if (countDown == 1) {
-				Timer tempTimer = timers.get(msg.what);
-				if (tempTimer != null) {
-					tempTimer.cancel();
-					tempTimer = null;
+			try {
+				int countDown = mDataArrays.get(msg.what).getCountDown();
+				mDataArrays.get(msg.what).setCountDown(countDown - 1);
+				countDowmList.set(msg.what, countDown);
+				if (countDown == 1) {
+					Timer tempTimer = timers.get(msg.what);
+					if (tempTimer != null) {
+						tempTimer.cancel();
+						tempTimer = null;
+					}
+					System.out.println("----deleteMsg-----");
+					ChatMsgEntity entity = (ChatMsgEntity) msg.obj;
+					ChatMsgEntity afterReadEntity = UserUtils.deleteMsgAfterRead(
+							getResources().getString(R.string.del_after_read),
+							friendName, entity);
+					mDataArrays.set(msg.what, afterReadEntity);
+					mAdapter.notifyDataSetChanged();
 				}
-				System.out.println("----deleteMsg-----");
-				ChatMsgEntity entity = (ChatMsgEntity) msg.obj;
-				ChatMsgEntity afterReadEntity = UserUtils.deleteMsgAfterRead(
-						getResources().getString(R.string.del_after_read),
-						friendName, entity);
-				mDataArrays.set(msg.what, afterReadEntity);
+				Timber.d("countDown:" + countDown);
 				mAdapter.notifyDataSetChanged();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			Timber.d("countDown:" + countDown);
-			mAdapter.notifyDataSetChanged();
 		}
 	};
 
@@ -466,7 +474,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 					.show();
 			break;
 		case android.R.id.home:
-			chatForFriendMap.put(friendName, countDowmList);
+			//chatForFriendMap.put(friendName, countDowmList);
 			this.finish();
 			break;
 		default:
@@ -527,7 +535,7 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 	private int dataCount;
 	private ChatPullDownListView mmPullDownView;
 
-	// 设置listview下拉刷新
+	//TODO 设置listview下拉刷新，为了阅后即焚暂时取消
 	private void setupWidget() {
 		singleChatLv.setOnScrollListener(mOnScrollListener);
 		singleChatLv.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_NORMAL);
@@ -643,7 +651,8 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 	};
 
 	private int addData() {
-		if (refreshCount == 0) {
+		//TODO 下拉刷新聊天listview列表，为了阅后即焚暂时取消
+		/*if (refreshCount == 0) {
 			return 0;
 		} else if (refreshCount - 10 < 0) {
 			for (int i = refreshCount; i > 0; i--) {
@@ -660,7 +669,11 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 			return 10;
 		} else {
 			return 0;
+		}*/
+		for (int i = 0; i < dbDataArrays.size(); i++) {
+			mDataArrays.add(dbDataArrays.get(i));
 		}
+		return 0;
 	}
 
 }

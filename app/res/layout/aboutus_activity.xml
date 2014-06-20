@@ -27,6 +27,18 @@
             android:layout_marginTop="20dp"
             android:text="@string/about_us_company_name"
             android:textSize="28sp" />
+        
+        <TextView
+            android:id="@+id/linkcube_weibo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/SettingMargin"
+            android:paddingLeft="8dp"
+            android:background="@android:color/transparent"
+            android:text="@string/linkcube_weibo"
+            android:textColor="@color/grey"
+            android:textSize="18sp"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/version_name"
@@ -52,18 +64,6 @@
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/linkcube_weibo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/SettingMargin"
-            android:paddingLeft="8dp"
-            android:background="@android:color/transparent"
-            android:text="@string/linkcube_weibo"
-            android:textColor="@color/grey"
-            android:textSize="18sp"
-            android:visibility="gone" />
-
-        <TextView
             android:id="@+id/linkcube_website"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,6 +73,7 @@
             android:text="@string/linkcube_website"
             android:textColor="@color/grey"
             android:textSize="18sp" />
+        
     </LinearLayout>
 
     <Button

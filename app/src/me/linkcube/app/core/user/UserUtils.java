@@ -38,7 +38,7 @@ public class UserUtils {
 	public static ChatMsgEntity sendToFriendMsg(String body, String friendName) {
 		ChatMsgEntity entity = new ChatMsgEntity();
 		if (body.length() > 0) {
-			entity.setDate(TimeUtils.getNowTime());
+			entity.setDate(TimeUtils.getNowDateAndTime());
 			entity.setName(UserManager.getInstance().getUserInfo()
 					.getNickName());
 			entity.setMsgType(false);
@@ -69,7 +69,7 @@ public class UserUtils {
 	public static ChatMsgEntity deleteMsgAfterRead(String body, String friendName, ChatMsgEntity readAfterEntity) {
 		ChatMsgEntity entity = new ChatMsgEntity();
 		if (body.length() > 0) {
-			entity.setDate(TimeUtils.getNowTime());
+			entity.setDate(readAfterEntity.getDate());
 			entity.setName(UserManager.getInstance().getUserInfo()
 					.getNickName());
 			entity.setMsgType(readAfterEntity.getMsgType());
@@ -92,6 +92,7 @@ public class UserUtils {
 			chatEntity.setMsgTime(readAfterEntity.getDate());
 			chatEntity.setIsAfterRead(1);
 			PersistableChat perChat = new PersistableChat();
+			//DataManager.getInstance().deleteOne(perChat, chatEntity);
 			
 			DataManager.getInstance().update(perChat, chatEntity);
 
