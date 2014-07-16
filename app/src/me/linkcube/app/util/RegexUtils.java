@@ -39,7 +39,11 @@ public class RegexUtils {
 		}
 		return false;
 	}
-	
+	/**
+	 * 当用户名超过指定长度时进行截取
+	 * @param userName
+	 * @return
+	 */
 	public static String cutUserName(String userName){
 		String cutUserName;
 		if(isContainChinese(userName)){

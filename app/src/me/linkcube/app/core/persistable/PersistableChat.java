@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.entity.ChatEntity;
+import me.linkcube.app.util.PreferenceUtils;
 
 public class PersistableChat extends PersistableBase<ChatEntity> {
 
@@ -29,7 +30,7 @@ public class PersistableChat extends PersistableBase<ChatEntity> {
 
 	@Override
 	public void update(SQLiteDatabase writableDatabase, ChatEntity item) {
-		writableDatabase.update(getTableName(),getContentValues(item), FRIEND_NAME + "=? and "
+		writableDatabase.update(getTableName(),getDeleteContentValues(item), FRIEND_NAME + "=? and "
 				+ MESSAGE + "=?",
 				new String[] { item.getFriendName(), item.getMessage() });
 	}
@@ -67,6 +68,22 @@ public class PersistableChat extends PersistableBase<ChatEntity> {
 		values.put(FRIEND_NICKNAME, item.getFriendNickname());
 		values.put(MSG_FLAG, item.getMsgFlag());
 		values.put(MESSAGE, item.getMessage());
+		values.put(MSG_TIME, item.getMsgTime());
+		values.put(IS_AFTER_READ, item.getIsAfterRead());
+		return values;
+	}
+	
+	public ContentValues getDeleteContentValues(ChatEntity item) {
+		ContentValues values = new ContentValues();
+		values.put(USER_NAME, item.getUserName());
+		values.put(FRIEND_NAME, item.getFriendName());
+		values.put(FRIEND_NICKNAME, item.getFriendNickname());
+		values.put(MSG_FLAG, item.getMsgFlag());
+		if(PreferenceUtils.getInt("app_language", 0)==1){
+			values.put(MESSAGE, "After Reading Message");
+		}else{
+			values.put(MESSAGE, "阅后即焚消息");
+		}
 		values.put(MSG_TIME, item.getMsgTime());
 		values.put(IS_AFTER_READ, item.getIsAfterRead());
 		return values;

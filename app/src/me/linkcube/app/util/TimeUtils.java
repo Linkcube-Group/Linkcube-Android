@@ -11,7 +11,7 @@ import java.util.Date;
 public class TimeUtils {
 
 	/**
-	 * 获取当前时间
+	 * 获取当前日期和时间
 	 * 
 	 * @return
 	 */
@@ -71,7 +71,10 @@ public class TimeUtils {
 			return nowTime;
 		}
 	}
-
+	/**
+	 * 获取当前小时和分钟
+	 * @return
+	 */
 	public static String getNowTime() {
 		Calendar calendar = Calendar.getInstance();
 		String hour = addZero(String
@@ -81,23 +84,6 @@ public class TimeUtils {
 		sBuffer.append(hour + ":" + mins);
 		return sBuffer.toString();
 
-	}
-
-	/**
-	 * 判断两条消息的间隔时间
-	 * 
-	 * @param oldTime
-	 * @param newTime
-	 * @return
-	 */
-	public boolean compareTime(String oldTime, String newTime) {
-		String[] oldTimes = oldTime.split(":");
-		String[] newTimes = newTime.split(":");
-		if (Integer.parseInt(oldTimes[1]) + 2 < Integer.parseInt(newTimes[1])) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	/**
