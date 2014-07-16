@@ -1,6 +1,8 @@
 package me.linkcube.app.ui.main.single;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -23,6 +25,7 @@ import me.linkcube.app.ui.main.SensorProvider;
 import me.linkcube.app.ui.setting.SettingActivity;
 import me.linkcube.app.ui.user.LoginActivity;
 import me.linkcube.app.ui.user.UserInfoActivity;
+import me.linkcube.app.util.NotificationUtils;
 import me.linkcube.app.util.PreferenceUtils;
 import me.linkcube.app.widget.AlertUtils;
 import me.linkcube.app.widget.CirclePageIndicator;
@@ -286,6 +289,29 @@ public class SinglePalyerFragment extends BaseFragment implements
 	@Override
 	public void showUserInfoActivity() {
 		startActivity(new Intent(mActivity, UserInfoActivity.class));
+	}
+
+	@Override
+	public void showOpenMusicPlayerDialog() {
+		new AlertDialog.Builder(mActivity)
+		.setMessage("打开手机内部音乐或视频，玩具将随着音浪High起来！")
+		.setTitle("提示")
+		.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				Intent intent = new Intent(Intent.ACTION_MAIN);
+		        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);// 注意
+		        intent.addCategory(Intent.CATEGORY_HOME);
+		        mActivity.startActivity(intent);
+		        NotificationUtils.initNotification(mActivity, 1100,"Linkcube");
+			}
+		})
+		.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				
+			}
+		}).show();
 	}
 
 }

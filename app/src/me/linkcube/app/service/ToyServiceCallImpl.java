@@ -40,27 +40,38 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 
 	private byte[] checkData = { 0x35, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x35 };
 
-	private int ShakeThreshHold[] = { 5, 10, 15, 20, 25, 30, 35, 40 };//0, 500, 800, 1000, 2000, 4000, 5000, 8000
+	private int ShakeThreshHold[] = { 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 };// 0,
+																				// 500,
+	// 800,
+	// 1000,
+	// 2000,
+	// 4000,
+	// 5000,
+	// 8000
 
 	private int KShakeToySpeed[] = { 2, 5, 10, 15, 20, 26, 30, 34 };
 
 	private int KShakeSpeed[][] = { { 2, 3, 6, 11, 16, 22, 26, 28 },
 			{ 2, 3, 8, 13, 18, 24, 28, 30 }, { 2, 5, 10, 15, 20, 26, 30, 34 },
-			{ 2, 7, 12, 17, 22, 28, 32, 36 }, { 2, 9, 14, 19, 24, 30, 34, 38 } };
+			{ 2, 7, 12, 17, 22, 28, 32, 36 },
+			{ 2, 9, 14, 19, 24, 30, 34, 38, 42, 44 } };
 
-	private int WaveThreshHold[] = { 0, 320, 510, 700, 890, 980, 1050, 1130 };// 0,700,
-																				// 890,
-																				// 980,
-																				// 1050,
-																				// 1130,
-																				// 1220,
-																				// 1450
+	private int WaveThreshHold[] = { 0, 110, 220, 330, 440, 550, 660, 770, 880,
+			990, 1100, 1220, 1330, 1440, 1550, 1660, 1770, 1880, 1990, 2100 };// 0,700,
+	// 890,
+	// 980,
+	// 1050,
+	// 1130,
+	// 1220,
+	// 1450
 
 	private int KWaveToySpeed[] = { 2, 5, 10, 15, 20, 26, 30, 34 };
 
-	private int KWaveSpeed[][] = { { 2, 3, 7, 11, 15, 20, 22, 25 },
-			{ 2, 4, 8, 13, 18, 24, 28, 30 }, { 2, 5, 10, 15, 20, 25, 30, 35 },
-			{ 6, 10, 15, 20, 25, 30, 34, 37 },
+	private int KWaveSpeed[][] = {
+			{ 2, 3, 7, 11, 15, 20, 22, 25 },
+			{ 2, 4, 8, 13, 18, 24, 28, 30 },
+			{ 2, 3, 4, 6, 8, 10, 12, 14, 16, 19, 22, 25, 28, 31, 34, 37, 40,
+					43, 46, 49 }, { 6, 10, 15, 20, 25, 30, 34, 37 },
 			{ 10, 15, 20, 25, 30, 35, 38, 40 } };
 
 	public int curSpeed = -1;
@@ -184,20 +195,19 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 		} catch (IOException e) {
 			Timber.e(e, "Bluetooth outputstream sockets not created");
 			return Toy_Lost;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			Timber.e(e, "Bluetooth outputstream sockets not created");
 			return Toy_Lost;
 		}
-		
 
 		try {
 			tmpOut.write(data);
 		} catch (IOException e) {
 			Timber.d("device disconnect on sexpostionmode");
-			if(DeviceConnectionManager.getInstance().isSexPositionMode){
+			if (DeviceConnectionManager.getInstance().isSexPositionMode) {
 				DeviceConnectionManager.getInstance().setSexPositionMode(false);
-				DeviceConnectionManager.getInstance().setmIsConnected(false, curDevice);
+				DeviceConnectionManager.getInstance().setmIsConnected(false,
+						curDevice);
 				DeviceConnectionManager.getInstance().stopTimerTask();
 			}
 			e.printStackTrace();

@@ -1,5 +1,7 @@
 package me.linkcube.app.core.toy;
 
+import me.linkcube.app.core.Timber;
+
 /**
  * 音乐频谱识别工具类
  * 
@@ -52,13 +54,18 @@ public class ToyUtils {
 			 */
 			int value;
 			value = (int) fftform[nc];
-			value = Math.abs(value);
+			//value = Math.abs(value);
+			value=(int) Math.hypot(fftform[nc], fftform[nc + 1]);
+			nc++;
 			// waveng+=Math.abs(fftform[nc]);
 			waveng += value;
 			energy += (double) value;
+			
+			
 		}
 		// waveng/=fftform.length;
 		// energy/=(double)fftform.length;
+		Timber.d("fftform.length:" + fftform.length);
 		return waveng;
 
 		/*

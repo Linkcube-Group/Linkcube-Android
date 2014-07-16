@@ -45,5 +45,8 @@ public interface ModeSelectedListener {
 	 * 提示蓝牙没有连接
 	 */
 	void showConnectBluetoothTip();
-
+	/**
+	 * 提示用户打开外部声音
+	 */
+	void showOpenMusicPlayerDialog();
 }
