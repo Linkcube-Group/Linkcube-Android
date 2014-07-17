@@ -1,5 +1,6 @@
 package me.linkcube.app.core.toy;
 
+import android.util.Log;
 import me.linkcube.app.core.Timber;
 
 /**
@@ -48,7 +49,7 @@ public class ToyUtils {
 		long waveng = 0;
 		double energy = 0.f;
 
-		for (int nc = 0; nc < fftform.length; nc++) {
+		for (int nc = 0; nc < 48; nc++) {
 			/*
 			 * int num = nc/64; value[num] += fftform[nc]*fftform[nc];
 			 */
@@ -63,9 +64,9 @@ public class ToyUtils {
 			
 			
 		}
+		Log.d("spl--22-", String.valueOf(10*Math.log10(waveng /48)));  
 		// waveng/=fftform.length;
 		// energy/=(double)fftform.length;
-		Timber.d("fftform.length:" + fftform.length);
 		return waveng;
 
 		/*

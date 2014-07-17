@@ -12,7 +12,7 @@ public class AudioRecorder {
 	private static int SAMPLE_RATE_IN_HZ=8000;
 	private boolean isRun=false;
 	private int readdata;
-	private int level;
+	private int level=1;
 
 	public AudioRecorder(){
 		bs = AudioRecord.getMinBufferSize(SAMPLE_RATE_IN_HZ,
@@ -30,9 +30,15 @@ public class AudioRecorder {
     	System.out.println(buffer);
     	while(isRun){
     		readdata=audioRecord.read(buffer,0, bs);
+    		int v=0;
     		long sound = ToyUtils.computeWaveLevel(buffer) * level;
     		long waveng = ToyUtils.computeFFTLevel(buffer) * level;
     		Log.i("AudioRecorderListener", "sound:"+sound+"--waveng:"+waveng);
+    		for (int i = 0; i < buffer.length; i++) {  
+                // 这里没有做运算的优化，为了更加清晰的展示代码  
+                v += buffer[i] * buffer[i];  
+            } 
+    		Log.d("spl---", String.valueOf(10*Math.log10(v / (float) readdata)));  
     	} 
 	}
 	public void stopAudioRecorder(){

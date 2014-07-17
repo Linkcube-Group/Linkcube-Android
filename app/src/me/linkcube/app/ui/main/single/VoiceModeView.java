@@ -1,7 +1,6 @@
 package me.linkcube.app.ui.main.single;
 
 import me.linkcube.app.R;
-import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import android.content.Context;

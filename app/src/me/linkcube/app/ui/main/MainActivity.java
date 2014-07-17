@@ -10,6 +10,7 @@ import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager.CheckConnectionCallback;
+import me.linkcube.app.core.toy.AudioRecorder;
 import me.linkcube.app.core.toy.ShakeSensor;
 import me.linkcube.app.core.toy.VoiceSensor;
 import me.linkcube.app.core.update.AppManager;
@@ -98,7 +99,7 @@ public class MainActivity extends BaseFragmentActivity implements
 		if(!PreferenceUtils.contains("DELETE_AFTER_READ")){
 			PreferenceUtils.setBoolean("DELETE_AFTER_READ", true);
 		}
-
+		
 	}
 
 	private void CheckDeviceConnect() {
