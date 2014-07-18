@@ -49,6 +49,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 /**
@@ -482,13 +483,22 @@ public class MainActivity extends BaseFragmentActivity implements
 				if (reason != null
 						&& reason.equals(SYSTEM_DIALOG_REASON_HOME_KEY)) {
 					// 自己随意控制程序，关闭...
-					Log.d("sdasd", "自己随意控制程序，关闭..");
 					NotificationUtils.initNotification(mActivity, 1100,
-							"Linkcube");
+							"连酷 Linkcube");
 				}
 			}
 		}
 	};
+	
+	@Override  
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK ) {
+			NotificationUtils.initNotification(mActivity, 1100,
+					"连酷 Linkcube");
+			finish();
+        }
+		return false;
+	}
 
 	@Override
 	protected void onDestroy() {

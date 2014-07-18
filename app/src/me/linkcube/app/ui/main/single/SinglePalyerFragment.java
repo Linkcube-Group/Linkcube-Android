@@ -294,7 +294,7 @@ public class SinglePalyerFragment extends BaseFragment implements
 	@Override
 	public void showOpenMusicPlayerDialog() {
 		new AlertDialog.Builder(mActivity)
-		.setMessage("打开手机内部音乐或视频，玩具将随着音浪High起来！")
+		.setMessage("最小化连酷APP，打开音乐或视频播放器，玩具将随着音浪High起来！")
 		.setTitle("提示")
 		.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 			@Override
