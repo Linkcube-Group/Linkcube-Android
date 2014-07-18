@@ -14,19 +14,19 @@
 
         <TextView
             android:id="@id/connect_toy_tv"
-            style="@style/Setting.Item.TextView"
+            style="@style/Setting.Item.TextView.Click"
             android:text="@string/connect_toy" />
 
         <View style="@style/Setting.Item.Divider" />
 
         <TextView
             android:id="@id/personal_info_tv"
-            style="@style/Setting.Item.TextView"
+            style="@style/Setting.Item.TextView.Click"
             android:text="@string/personal_info" />
         
         <TextView
             android:id="@id/delete_after_read_tv"
-            style="@style/Setting.Item.TextView"
+            style="@style/Setting.Item.TextView.Click"
             android:text="@string/delete_after_read"
             android:visibility="gone" />
 
@@ -34,7 +34,7 @@
 
         <TextView
             android:id="@id/purchase_toy_tv"
-            style="@style/Setting.Item.TextView"
+            style="@style/Setting.Item.TextView.Click"
             android:text="@string/purchase_toy"
             android:visibility="gone" />
 
@@ -42,7 +42,7 @@
 
         <TextView
             android:id="@id/help_tv"
-            style="@style/Setting.Item.TextView"
+            style="@style/Setting.Item.TextView.Click"
             android:text="@string/help"
             android:visibility="gone" />
 
@@ -50,7 +50,7 @@
 
         <TextView
             android:id="@id/feedback_tv"
-            style="@style/Setting.Item.TextView"
+            style="@style/Setting.Item.TextView.Click"
             android:text="@string/feedback" />
 
         <View style="@style/Setting.Item.Divider" />
@@ -61,7 +61,7 @@
 
             <TextView
                 android:id="@id/checkupdate_tv"
-                style="@style/Setting.Item.TextView"
+                style="@style/Setting.Item.TextView.Click"
                 android:text="@string/check_update" />
 
             <ImageView
@@ -80,14 +80,14 @@
 
         <TextView
             android:id="@id/set_language_tv"
-            style="@style/Setting.Item.TextView"
+            style="@style/Setting.Item.TextView.Click"
             android:text="@string/set_language" />
 
         <View style="@style/Setting.Item.Divider" />
         
         <TextView
             android:id="@id/about_us_tv"
-            style="@style/Setting.Item.TextView"
+            style="@style/Setting.Item.TextView.Click"
             android:text="@string/about_us" />
 
         <View style="@style/Setting.Item.Divider" />

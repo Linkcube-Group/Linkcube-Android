@@ -303,7 +303,7 @@ public class SinglePalyerFragment extends BaseFragment implements
 		        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);// 注意
 		        intent.addCategory(Intent.CATEGORY_HOME);
 		        mActivity.startActivity(intent);
-		        NotificationUtils.initNotification(mActivity, 1100,"Linkcube");
+		        //NotificationUtils.initNotification(mActivity, 1100,"Linkcube");
 			}
 		})
 		.setNegativeButton("取消", new DialogInterface.OnClickListener() {

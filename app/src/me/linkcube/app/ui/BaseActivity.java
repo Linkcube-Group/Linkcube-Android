@@ -10,12 +10,17 @@ import com.umeng.analytics.MobclickAgent;
 
 import me.linkcube.app.R;
 import me.linkcube.app.core.Timber;
+import me.linkcube.app.util.NotificationUtils;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -52,6 +57,7 @@ public abstract class BaseActivity extends SherlockActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Timber.d("onCreate");
+		
 	}
 
 	/**
@@ -77,7 +83,8 @@ public abstract class BaseActivity extends SherlockActivity {
 		TextView actionbarTv = (TextView) actionbarView
 				.findViewById(R.id.actionbar_title);
 		actionbarTv.setText(title);
-		final ImageView actionbarBackIv=(ImageView)actionbarView.findViewById(R.id.actionbar_back_arrow_iv);
+		final ImageView actionbarBackIv = (ImageView) actionbarView
+				.findViewById(R.id.actionbar_back_arrow_iv);
 		RelativeLayout actionbarBackRl = (RelativeLayout) actionbarView
 				.findViewById(R.id.actionbar_back_rl);
 		actionbarBackRl.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +99,16 @@ public abstract class BaseActivity extends SherlockActivity {
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		actionBar.setCustomView(actionbarView, layoutParams);
 	}
+
+	/*
+	 * @Override public void onAttachedToWindow() { super.onAttachedToWindow();
+	 * this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD); }
+	 * 
+	 * @Override public boolean onKeyDown(int keyCode, KeyEvent event) { switch
+	 * (keyCode) { case KeyEvent.KEYCODE_HOME:
+	 * NotificationUtils.initNotification(mActivity, 1100,"Linkcube"); } return
+	 * super.onKeyDown(keyCode, event); }
+	 */
 
 	protected void configureActionBar(int resId) {
 		String title = getResources().getString(resId);
@@ -151,4 +168,5 @@ public abstract class BaseActivity extends SherlockActivity {
 		super.onStop();
 		Timber.d("onStop");
 	}
+
 }

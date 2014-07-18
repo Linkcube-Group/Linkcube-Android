@@ -30,21 +30,25 @@ import me.linkcube.app.ui.main.TabIndicatorView.OnTabIndicatorClickListener;
 import me.linkcube.app.ui.main.multi.MultiPlayerFragment;
 import me.linkcube.app.ui.main.single.SinglePalyerFragment;
 import me.linkcube.app.ui.user.LoginActivity;
+import me.linkcube.app.util.NotificationUtils;
 import me.linkcube.app.util.PreferenceUtils;
 import me.linkcube.app.widget.AlertUtils;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
+import android.util.Log;
 import android.widget.Toast;
 
 /**
@@ -91,15 +95,19 @@ public class MainActivity extends BaseFragmentActivity implements
 		checkAppUpdate();
 
 		CheckDeviceConnect();
+
+		final IntentFilter homeFilter = new IntentFilter(
+				Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+		registerReceiver(homePressReceiver, homeFilter);
 		// 友盟统计
 		MobclickAgent.onEvent(MainActivity.this, "用户进入应用");
 		ReconnectionListener.getInstance().setReconnectionCallBack(
 				reconnectionCallBack);
-		//开启阅后即焚功能
-		if(!PreferenceUtils.contains("DELETE_AFTER_READ")){
+		// 开启阅后即焚功能
+		if (!PreferenceUtils.contains("DELETE_AFTER_READ")) {
 			PreferenceUtils.setBoolean("DELETE_AFTER_READ", true);
 		}
-		
+
 	}
 
 	private void CheckDeviceConnect() {
@@ -301,10 +309,15 @@ public class MainActivity extends BaseFragmentActivity implements
 						getResources().getString(R.string.update_version_code)
 								+ PreferenceUtils.getString(
 										Const.AppUpdate.APK_VERSION, null)
-								+ "<br>"+getResources().getString(R.string.update_file_size)
+								+ "<br>"
+								+ getResources().getString(
+										R.string.update_file_size)
 								+ PreferenceUtils.getString(
 										Const.AppUpdate.APK_SIZE, null)
-								+ "<br>"+getResources().getString(R.string.update_description)+"<br>"
+								+ "<br>"
+								+ getResources().getString(
+										R.string.update_description)
+								+ "<br>"
 								+ PreferenceUtils.getString(
 										Const.AppUpdate.APK_DESCRIPTION, null))
 						.toString(),
@@ -455,6 +468,39 @@ public class MainActivity extends BaseFragmentActivity implements
 
 		msgNotificationManager.notify(msgNotificationID, msgNotification);
 
+	}
+
+	private final BroadcastReceiver homePressReceiver = new BroadcastReceiver() {
+		final String SYSTEM_DIALOG_REASON_KEY = "reason";
+		final String SYSTEM_DIALOG_REASON_HOME_KEY = "homekey";
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if (action.equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
+				String reason = intent.getStringExtra(SYSTEM_DIALOG_REASON_KEY);
+				if (reason != null
+						&& reason.equals(SYSTEM_DIALOG_REASON_HOME_KEY)) {
+					// 自己随意控制程序，关闭...
+					Log.d("sdasd", "自己随意控制程序，关闭..");
+					NotificationUtils.initNotification(mActivity, 1100,
+							"Linkcube");
+				}
+			}
+		}
+	};
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (homePressReceiver != null) {
+			try {
+				unregisterReceiver(homePressReceiver);
+			} catch (Exception e) {
+				Timber.d("unregisterReceiver homePressReceiver failure :"
+						+ e.getCause());
+			}
+		}
 	}
 
 }

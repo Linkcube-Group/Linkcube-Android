@@ -180,6 +180,10 @@
         <item name="android:layout_height">@dimen/SettingItemHeight</item>
         <item name="android:textSize">@dimen/SettingItemTextSize</item>
     </style>
+    
+    <style name="Setting.Item.TextView.Click" parent="@style/Setting.Item.TextView">
+        <item name="android:textColor">@color/textview_click</item>
+    </style>
 
     <style name="Setting.Item.Divider">
         <item name="android:layout_width">match_parent</item>
