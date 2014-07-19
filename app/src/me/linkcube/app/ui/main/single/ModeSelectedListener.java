@@ -40,7 +40,7 @@ public interface ModeSelectedListener {
 	 * 姿势选择的回调
 	 */
 	void onSexPositionMode(int level);
-
+	
 	/**
 	 * 提示蓝牙没有连接
 	 */

@@ -8,6 +8,8 @@ import android.os.RemoteException;
 public class OnVoiceCaptureListener implements Visualizer.OnDataCaptureListener {
 
 	public int level;
+	
+	private int count=0;
 
 	@Override
 	public void onWaveFormDataCapture(Visualizer visualizer, byte[] waveform,
@@ -25,6 +27,11 @@ public class OnVoiceCaptureListener implements Visualizer.OnDataCaptureListener 
 	@Override
 	public void onFftDataCapture(Visualizer visualizer, byte[] fft,
 			int samplingRate) {
+		count++;
+		count=count%8;
+		if(count==1){
+			return;
+		}
 		long waveng = ToyUtils.computeFFTLevel(fft) * level;
 		
 		try {
