@@ -31,6 +31,7 @@
     <!-- 单人模式 -->
     <string name="shake_mode">Shake Mode</string>
     <string name="voice_mode">Sound Mode</string>
+    <string name="mic_mode">Mic Mode</string>
     <string name="sex_position_mode">Classic Mode</string>
 
     <!-- 多人模式 -->

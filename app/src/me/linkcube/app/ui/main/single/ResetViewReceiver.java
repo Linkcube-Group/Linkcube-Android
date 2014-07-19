@@ -17,6 +17,8 @@ public class ResetViewReceiver extends BroadcastReceiver {
 	
 	private ASmackRequestCallBack resetPositionViewCallBack;
 	
+	private ASmackRequestCallBack resetMicViewCallBack;
+	
 	private List<ASmackRequestCallBack> viewResetCallBacks=new ArrayList<ASmackRequestCallBack>();
 	
 	@Override
@@ -25,6 +27,8 @@ public class ResetViewReceiver extends BroadcastReceiver {
 		String action=intent.getAction();
 		if (action.equals("com.linkcube.resetvoicemodeview")) {
 			resetVoiceViewCallBack.responseSuccess(0);
+		}else if(action.equals("com.linkcube.resetmicmodeview")){
+			resetMicViewCallBack.responseSuccess(0);
 		}else if(action.equals("com.linkcube.resetshakemodeview")){
 			resetShakeViewCallBack.responseSuccess(0);
 		}else if(action.equals("com.linkcube.resetsexpositionmodeview")){
@@ -49,6 +53,12 @@ public class ResetViewReceiver extends BroadcastReceiver {
 			ASmackRequestCallBack resetVoiceViewCallBack) {
 		this.resetVoiceViewCallBack = resetVoiceViewCallBack;
 		viewResetCallBacks.add(resetVoiceViewCallBack);
+	}
+	
+	public void setResetMicViewCallBack(
+			ASmackRequestCallBack resetMicViewCallBack) {
+		this.resetMicViewCallBack = resetMicViewCallBack;
+		viewResetCallBacks.add(resetMicViewCallBack);
 	}
 
 	public void setResetPositionViewCallBack(

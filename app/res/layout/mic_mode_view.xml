@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ModeBlockHeight"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/mode_view_bg" >
+
+        <Button
+            android:id="@id/mic_mode_btn"
+            style="@style/ModeViewBlock.Button"
+            android:background="@drawable/voice_mode_0" />
+
+        <TextView
+            android:id="@+id/mic_mode_tv"
+            style="@style/ModeViewBlock.TextView"
+            android:layout_below="@id/mic_mode_btn"
+            android:text="@string/mic_mode" />
+
+        <LinearLayout
+            android:id="@+id/mic_sound_llayout"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_above="@id/mic_mode_btn"
+            android:gravity="center"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

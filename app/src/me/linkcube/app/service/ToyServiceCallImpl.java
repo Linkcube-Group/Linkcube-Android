@@ -40,14 +40,7 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 
 	private byte[] checkData = { 0x35, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x35 };
 
-	private int ShakeThreshHold[] = { 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 };// 0,
-																				// 500,
-	// 800,
-	// 1000,
-	// 2000,
-	// 4000,
-	// 5000,
-	// 8000
+	private int ShakeThreshHold[] = { 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 };
 
 	private int KShakeToySpeed[] = { 2, 5, 10, 15, 20, 26, 30, 34 };
 
@@ -56,29 +49,21 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 			{ 2, 7, 12, 17, 22, 28, 32, 36 },
 			{ 2, 9, 14, 19, 24, 30, 34, 38, 42, 44 } };
 
-	//private int WaveThreshHold[] = { 0, 110, 220, 330, 440, 550, 660, 770, 880,
-	//		990, 1100, 1220, 1330, 1440, 1550, 1660, 1770, 1880, 1990, 2100 };
-	
+	// private int WaveThreshHold[] = { 0, 110, 220, 330, 440, 550, 660, 770,
+	// 880,
+	// 990, 1100, 1220, 1330, 1440, 1550, 1660, 1770, 1880, 1990, 2100 };
+
 	private int WaveThreshHold[] = { 0, 110, 220, 330, 440, 550, 660, 770, 880,
-					990, 1100, 1220, 1330, 1440, 1550, 1660, 1770, 1880, 1990, 2100 };
+			990, 1100, 1220, 1330, 1440, 1550, 1660, 1770, 1880, 1990, 2100 };
 
 	private int KWaveToySpeed[] = { 2, 5, 10, 15, 20, 26, 30, 34 };
 
-	/*private int KWaveSpeed[][] = {
-			{ 2, 3, 7, 11, 15, 20, 22, 25 },
-			{ 2, 4, 8, 13, 18, 24, 28, 30 },
-			{ 1, 2, 4, 6, 8, 10, 12, 14, 16, 19, 22, 25, 28, 31, 34, 37, 40,
-					43, 46, 49 }, { 6, 10, 15, 20, 25, 30, 34, 37 },
-			{ 10, 15, 20, 25, 30, 35, 38, 40 } };*/
-	private int KWaveSpeed[][] = {
-			{ 2, 3, 7, 11, 15, 20, 22, 25 },
-			{ 2, 4, 8, 13, 18, 24, 28, 30 },
-			{ 1, 2, 4, 6, 8,
-			15, 17, 19, 21, 24,
-			27, 30, 33, 36, 39,
-			42, 45, 47, 49, 50 },
-			{ 6, 10, 15, 20, 25, 30, 34, 37 },
-			{ 10, 15, 20, 25, 30, 35, 38, 40 } };
+	private int KWaveSpeed[] = { 1, 2, 4, 6, 8, 15, 17, 19, 21, 24, 27, 30, 33,
+			36, 39, 42, 45, 47, 49, 50 };
+
+	private int MicThreshHold[] = { 0, 20, 24, 27, 31, 33, 36, 39, 42, 45 };
+
+	private int MicWaveSpeed[] = { 1, 3, 7, 11, 15, 19, 23, 27, 31, 35 };
 
 	public int curSpeed = -1;
 	public int curMode = -1;
@@ -310,7 +295,18 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 				&& (waveng >= WaveThreshHold[spd]); spd++) {
 
 		}
-		cacheToySpeed(KWaveSpeed[voiceSensi][spd - 1], false);
+		cacheToySpeed(KWaveSpeed[spd - 1], false);
+		return 0;
+	}
+
+	@Override
+	public int setMicWave(int sound) throws RemoteException {
+		int spd;
+		for (spd = 0; (spd < MicThreshHold.length)
+				&& (sound >= MicThreshHold[spd]); spd++) {
+
+		}
+		cacheToySpeed(MicWaveSpeed[spd - 1], false);
 		return 0;
 	}
 
@@ -339,45 +335,6 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 	public void setVoiceSensitivity(int v) throws RemoteException {
 		voiceSensi = v;
 	}
-
-	// @SuppressLint("NewApi")
-	// @Override
-	// public boolean isToyConnected() {
-	// if (curDevice == null || curSocket == null) {
-	// return false;
-	// }
-	// // return curSocket.isConnected();
-	//
-	// boolean isConnected = false;
-	//
-	// if (Build.VERSION.SDK_INT >= 14) {
-	// isConnected = curSocket.isConnected();
-	// } else {
-	// isConnected = ToyServiceCallImpl.this.isConnected;
-	// }
-	//
-	// if (isConnected) {
-	// OutputStream tmpOut = null;
-	// try {
-	// tmpOut = curSocket.getOutputStream();
-	// } catch (IOException e) {
-	// Timber.e(e, "temp sockets not created");
-	// return false;
-	// }
-	//
-	// try {
-	// tmpOut.write(checkData);
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// return false;
-	// }
-	//
-	// Timber.i("Toy is Connected");
-	//
-	// return true;
-	// }
-	// return false;
-	// }
 
 	@SuppressLint("NewApi")
 	@Override
@@ -414,4 +371,5 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 		}
 		return false;
 	}
+
 }

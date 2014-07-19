@@ -26,6 +26,7 @@
     <item name="mode_bg_vp" type="id"/>
     <item name="shake_mode_btn" type="id"/>
     <item name="voice_mode_btn" type="id"/>
+    <item name="mic_mode_btn" type="id"/>
     <item name="sex_position_mode_btn" type="id"/>
     <item name="vp_indicator" type="id"/>
     <item name="mode_tip_iv" type="id"/>

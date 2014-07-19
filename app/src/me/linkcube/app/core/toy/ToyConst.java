@@ -11,5 +11,7 @@ public class ToyConst {
 	public final static int STATE_POSITION = 2;
 
 	public final static int STATE_CALL = 3;
-	
+
+	public final static int STATE_MIC = 4;
+
 }

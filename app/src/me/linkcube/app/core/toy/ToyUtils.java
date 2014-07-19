@@ -64,7 +64,7 @@ public class ToyUtils {
 			
 			
 		}
-		Log.d("spl--22-", String.valueOf(10*Math.log10(waveng /48)));  
+		//Log.d("spl--22-", String.valueOf(10*Math.log10(waveng /48)));  
 		// waveng/=fftform.length;
 		// energy/=(double)fftform.length;
 		return waveng;

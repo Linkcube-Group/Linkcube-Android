@@ -23,6 +23,8 @@ interface IToyServiceCall {
 
 	int setWave(long waveng);
 	
+	int setMicWave(int sound);
+	
 	boolean setWaveMode(int index, int val);
 	
 	boolean setShakeMode(int index, int val);	

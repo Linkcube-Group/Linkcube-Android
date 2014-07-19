@@ -42,6 +42,16 @@ public interface ModeSelectedListener {
 	void onSexPositionMode(int level);
 	
 	/**
+	 * 关闭麦克风回调
+	 */
+	void offMicMode(int level);
+	
+	/**
+	 * 开启麦克风回调
+	 */
+	void onMicMode(int level);
+
+	/**
 	 * 提示蓝牙没有连接
 	 */
 	void showConnectBluetoothTip();

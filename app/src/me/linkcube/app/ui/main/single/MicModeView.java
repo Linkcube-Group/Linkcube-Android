@@ -1,8 +1,8 @@
 package me.linkcube.app.ui.main.single;
 
 import me.linkcube.app.R;
-import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
+import me.linkcube.app.widget.MicSoundView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -12,11 +12,16 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-public class VoiceModeView extends RelativeLayout {
-
+public class MicModeView extends RelativeLayout {
+	
 	private Button modeBtn;
+	
+	private LinearLayout micSoundLlayout;
+	
+	private MicSoundView micSoundView;
 
 	private int level = 0;
 
@@ -24,12 +29,12 @@ public class VoiceModeView extends RelativeLayout {
 
 	private ResetViewReceiver resetViewReceiver;
 
-	public VoiceModeView(Context context) {
+	public MicModeView(Context context) {
 		super(context);
 		init(context);
 	}
 
-	public VoiceModeView(Context context, AttributeSet attrs) {
+	public MicModeView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(context);
 	}
@@ -37,21 +42,24 @@ public class VoiceModeView extends RelativeLayout {
 	private void init(Context context) {
 		LayoutInflater mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = mInflater.inflate(R.layout.voice_mode_view, this, true);
-		modeBtn = (Button) view.findViewById(R.id.voice_mode_btn);
+		View view = mInflater.inflate(R.layout.mic_mode_view, this, true);
+		micSoundLlayout=(LinearLayout)view.findViewById(R.id.mic_sound_llayout);
+		micSoundView=new MicSoundView(context);
+		micSoundLlayout.addView(micSoundView);
+		modeBtn = (Button) view.findViewById(R.id.mic_mode_btn);
 		modeBtn.setOnClickListener(onClickListener);
 		onresetViewReceiver(context);
 	}
-
+	
 	public void setOnModeSelectedListener(ModeSelectedListener listener) {
 		mListener = listener;
 	}
-
+	
 	private OnClickListener onClickListener = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
-			DeviceConnectionManager.getInstance().setSexPositionMode(false);
+			/*DeviceConnectionManager.getInstance().setSexPositionMode(false);
 			try {
 				if (!DeviceConnectionManager.getInstance().isConnected()) {
 					mListener.showConnectBluetoothTip();
@@ -60,17 +68,18 @@ public class VoiceModeView extends RelativeLayout {
 			} catch (Exception e) {
 				e.printStackTrace();
 				return;
-			}
+			}*/
 			switch (level) {
+			// 音乐模式更换成二档位
 			case 0:
 				level = 2;
 				modeBtn.setBackgroundResource(R.drawable.voice_mode_4);
-				mListener.onVoiceMode(level);
+				mListener.onMicMode(level);
 				break;
 			case 2:
 				level = 0;
 				modeBtn.setBackgroundResource(R.drawable.voice_mode_0);
-				mListener.offVoiceMode(level);
+				mListener.offMicMode(level);
 				break;
 			default:
 				break;
@@ -82,7 +91,7 @@ public class VoiceModeView extends RelativeLayout {
 	private void onresetViewReceiver(Context context) {
 		resetViewReceiver = new ResetViewReceiver();
 		resetViewReceiver
-				.setResetVoiceViewCallBack(new ASmackRequestCallBack() {
+				.setResetMicViewCallBack(new ASmackRequestCallBack() {
 
 					@Override
 					public void responseSuccess(Object object) {
@@ -96,7 +105,7 @@ public class VoiceModeView extends RelativeLayout {
 				});
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("com.linkcube.resetview");
-		filter.addAction("com.linkcube.resetvoicemodeview");
+		filter.addAction("com.linkcube.resetmicmodeview");
 		filter.addCategory(Intent.CATEGORY_DEFAULT);
 		context.registerReceiver(resetViewReceiver, filter);
 	}
@@ -114,4 +123,9 @@ public class VoiceModeView extends RelativeLayout {
 	public void unRegisterReceiver(Context context) {
 		context.unregisterReceiver(resetViewReceiver);
 	}
+
+	public MicSoundView getMicSoundView() {
+		return micSoundView;
+	}
+	
 }

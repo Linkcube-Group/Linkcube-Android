@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mic_sound_inner_ll"
+    android:layout_width="match_parent"
+    android:layout_height="25dp" >
+
+    <ImageView
+        android:id="@+id/mic_sound_iv_1"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/btn_grey_normal" />
+
+    <ImageView
+        android:id="@+id/mic_sound_iv_2"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/btn_grey_normal" />
+
+    <ImageView
+        android:id="@+id/mic_sound_iv_3"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/btn_grey_normal" />
+
+    <ImageView
+        android:id="@+id/mic_sound_iv_4"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/btn_grey_normal" />
+
+    <ImageView
+        android:id="@+id/mic_sound_iv_5"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/btn_grey_normal" />
+
+    <ImageView
+        android:id="@+id/mic_sound_iv_6"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/btn_grey_normal" />
+
+    <ImageView
+        android:id="@+id/mic_sound_iv_7"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/btn_grey_normal" />
+
+    <ImageView
+        android:id="@+id/mic_sound_iv_8"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/btn_grey_normal" />
+
+    <ImageView
+        android:id="@+id/mic_sound_iv_9"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/btn_grey_normal" />
+
+    <ImageView
+        android:id="@+id/mic_sound_iv_10"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/btn_grey_normal" />
+
+</LinearLayout>

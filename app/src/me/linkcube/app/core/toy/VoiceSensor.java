@@ -1,6 +1,7 @@
 package me.linkcube.app.core.toy;
 
 
+import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import android.annotation.SuppressLint;
 import android.media.audiofx.Visualizer;
 import android.os.Build;
@@ -34,7 +35,18 @@ public class VoiceSensor {
 		} else {
 			audioRecorder.setLevel(level);
 			if(level>0){
-				audioRecorder.startAudioRecorder();
+				audioRecorder.startAudioRecorder(new ASmackRequestCallBack() {
+					
+					@Override
+					public void responseSuccess(Object object) {
+						
+					}
+					
+					@Override
+					public void responseFailure(int reflag) {
+						
+					}
+				});
 			}else{
 				audioRecorder.stopAudioRecorder();
 			}

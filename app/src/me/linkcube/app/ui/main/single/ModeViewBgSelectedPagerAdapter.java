@@ -34,6 +34,9 @@ public class ModeViewBgSelectedPagerAdapter extends PagerAdapter {
 				R.drawable.shake_mode_tip));
 		views.add(getModeTipBg(R.drawable.voice_mode_bg,
 				R.drawable.voice_mode_tip));
+		//TODO 语音模式
+		views.add(getModeTipBg(R.drawable.voice_mode_bg,
+				R.drawable.voice_mode_tip));
 		views.add(getModeTipBg(R.drawable.sex_position_mode_bg,
 				R.drawable.sex_position_mode_tip));
 	}
@@ -71,9 +74,9 @@ public class ModeViewBgSelectedPagerAdapter extends PagerAdapter {
 	}
 
 	private int[] modeTipPic = { R.drawable.shake_mode_tip,
-			R.drawable.voice_mode_tip, R.drawable.sex_position_mode_tip };
+			R.drawable.voice_mode_tip,R.drawable.voice_mode_tip, R.drawable.sex_position_mode_tip };
 	private int[] modeTipPicEn = { R.drawable.shake_mode_tip_en,
-			R.drawable.voice_mode_tip_en, R.drawable.sex_position_mode_tip_en };
+			R.drawable.voice_mode_tip_en,R.drawable.voice_mode_tip_en, R.drawable.sex_position_mode_tip_en };
 
 	public void setLanguage() {
 		System.out.println("setLanguage");

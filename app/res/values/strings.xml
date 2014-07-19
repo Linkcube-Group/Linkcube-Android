@@ -31,6 +31,7 @@
     <!-- 单人模式 -->
     <string name="shake_mode">摇摇模式</string>
     <string name="voice_mode">音浪模式</string>
+    <string name="mic_mode">语音模式</string>
     <string name="sex_position_mode">经典七式</string>
 
     <!-- 多人模式 -->
