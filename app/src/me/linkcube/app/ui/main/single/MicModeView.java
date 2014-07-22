@@ -1,6 +1,10 @@
 package me.linkcube.app.ui.main.single;
 
+import com.umeng.analytics.MobclickAgent;
+
 import me.linkcube.app.R;
+import me.linkcube.app.core.Const.UmengEvent;
+import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import me.linkcube.app.widget.MicSoundView;
 import android.content.Context;
@@ -17,6 +21,8 @@ import android.widget.RelativeLayout;
 
 public class MicModeView extends RelativeLayout {
 	
+	private Context context;
+	
 	private Button modeBtn;
 	
 	private LinearLayout micSoundLlayout;
@@ -31,15 +37,17 @@ public class MicModeView extends RelativeLayout {
 
 	public MicModeView(Context context) {
 		super(context);
-		init(context);
+		this.context=context;
+		init();
 	}
 
 	public MicModeView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		init(context);
+		this.context=context;
+		init();
 	}
 
-	private void init(Context context) {
+	private void init() {
 		LayoutInflater mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = mInflater.inflate(R.layout.mic_mode_view, this, true);
@@ -59,7 +67,8 @@ public class MicModeView extends RelativeLayout {
 
 		@Override
 		public void onClick(View v) {
-			/*DeviceConnectionManager.getInstance().setSexPositionMode(false);
+			MobclickAgent.onEvent(context,UmengEvent.MIC_MODE_EVENT);
+			DeviceConnectionManager.getInstance().setSexPositionMode(false);
 			try {
 				if (!DeviceConnectionManager.getInstance().isConnected()) {
 					mListener.showConnectBluetoothTip();
@@ -68,7 +77,7 @@ public class MicModeView extends RelativeLayout {
 			} catch (Exception e) {
 				e.printStackTrace();
 				return;
-			}*/
+			}
 			switch (level) {
 			// 音乐模式更换成二档位
 			case 0:

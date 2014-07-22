@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import me.linkcube.app.LinkcubeApplication;
 import me.linkcube.app.R;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
+import me.linkcube.app.core.game.ToyConnectTimeManager;
 import me.linkcube.app.ui.BaseListAdapter;
 
 /**
@@ -39,6 +40,7 @@ public class BluetoothDeviceAdapter extends BaseListAdapter<BluetoothDevice> {
 		if (device.equals(DeviceConnectionManager.getInstance()
 				.getDeviceConnected())) {
 			if (DeviceConnectionManager.getInstance().isConnected()) {
+				ToyConnectTimeManager.getInstance().startTimeStatistics();
 				cell.setDeviceState(R.string.connected);
 			} else {
 				if (device.getBondState() == BluetoothDevice.BOND_BONDED) {

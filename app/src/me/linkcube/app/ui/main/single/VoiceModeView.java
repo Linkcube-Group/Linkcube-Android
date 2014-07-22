@@ -1,6 +1,9 @@
 package me.linkcube.app.ui.main.single;
 
+import com.umeng.analytics.MobclickAgent;
+
 import me.linkcube.app.R;
+import me.linkcube.app.core.Const.UmengEvent;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import android.content.Context;
@@ -15,6 +18,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 public class VoiceModeView extends RelativeLayout {
+	
+	private Context context;
 
 	private Button modeBtn;
 
@@ -26,15 +31,17 @@ public class VoiceModeView extends RelativeLayout {
 
 	public VoiceModeView(Context context) {
 		super(context);
-		init(context);
+		this.context=context;
+		init();
 	}
 
 	public VoiceModeView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		init(context);
+		this.context=context;
+		init();
 	}
 
-	private void init(Context context) {
+	private void init() {
 		LayoutInflater mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = mInflater.inflate(R.layout.voice_mode_view, this, true);
@@ -51,6 +58,7 @@ public class VoiceModeView extends RelativeLayout {
 
 		@Override
 		public void onClick(View v) {
+			MobclickAgent.onEvent(context,UmengEvent.VOICE_MODE_EVENT);
 			DeviceConnectionManager.getInstance().setSexPositionMode(false);
 			try {
 				if (!DeviceConnectionManager.getInstance().isConnected()) {

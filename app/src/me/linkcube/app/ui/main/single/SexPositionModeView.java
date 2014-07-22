@@ -1,6 +1,9 @@
 package me.linkcube.app.ui.main.single;
 
+import com.umeng.analytics.MobclickAgent;
+
 import me.linkcube.app.R;
+import me.linkcube.app.core.Const.UmengEvent;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import android.content.Context;
@@ -21,6 +24,8 @@ import android.widget.RelativeLayout;
  * 
  */
 public class SexPositionModeView extends RelativeLayout {
+	
+	private Context context;
 
 	private Button modeBtn;
 
@@ -32,15 +37,17 @@ public class SexPositionModeView extends RelativeLayout {
 
 	public SexPositionModeView(Context context) {
 		super(context);
-		init(context);
+		this.context=context;
+		init();
 	}
 
 	public SexPositionModeView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		init(context);
+		this.context=context;
+		init();
 	}
 
-	private void init(Context context) {
+	private void init() {
 		LayoutInflater mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = mInflater.inflate(R.layout.sex_position_mode_view, this,
@@ -58,7 +65,7 @@ public class SexPositionModeView extends RelativeLayout {
 
 		@Override
 		public void onClick(View v) {
-			
+			MobclickAgent.onEvent(context,UmengEvent.SEXPOSITION_MODE_EVENT);
 			DeviceConnectionManager.getInstance().setSexPositionMode(true);
 
 			try {

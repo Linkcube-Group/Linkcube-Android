@@ -10,6 +10,7 @@ import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager.CheckConnectionCallback;
+import me.linkcube.app.core.game.ToyConnectTimeManager;
 import me.linkcube.app.core.toy.AudioRecorder;
 import me.linkcube.app.core.toy.ShakeSensor;
 import me.linkcube.app.core.toy.VoiceSensor;
@@ -139,6 +140,10 @@ public class MainActivity extends BaseFragmentActivity implements
 		@Override
 		public void handleMessage(Message msg) {
 			((SinglePalyerFragment) singleFragment).resetToy();
+			ToyConnectTimeManager.getInstance().stopTimeStatistics();
+			Timber.d("ConnectToyDuration:"+ToyConnectTimeManager.getInstance().getDuration());
+			MobclickAgent.onEventDuration(mActivity, Const.UmengEvent.CONNECT_TOY_DURATION,ToyConnectTimeManager.getInstance().getDuration());
+			
 			Toast.makeText(MainActivity.this,
 					R.string.toast_toy_disconnect_try_again, Toast.LENGTH_SHORT)
 					.show();

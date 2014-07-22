@@ -1,5 +1,7 @@
 package me.linkcube.app.ui.main.single;
 
+import com.umeng.analytics.MobclickAgent;
+
 import me.linkcube.app.R;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
@@ -13,8 +15,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import me.linkcube.app.core.Const.UmengEvent;
 
 public class ShakeModeView extends RelativeLayout{
+	
+	private Context context;
 
 	private Button modeBtn;
 
@@ -26,15 +31,17 @@ public class ShakeModeView extends RelativeLayout{
 
 	public ShakeModeView(Context context) {
 		super(context);
-		init(context);
+		this.context=context;
+		init();
 	}
 
 	public ShakeModeView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		init(context);
+		this.context=context;
+		init();
 	}
 
-	private void init(Context context) {
+	private void init() {
 		LayoutInflater mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = mInflater.inflate(R.layout.shake_mode_view, this, true);
@@ -49,10 +56,10 @@ public class ShakeModeView extends RelativeLayout{
 	}
 
 	private OnClickListener onClickListener = new OnClickListener() {
-
+		
 		@Override
 		public void onClick(View v) {
-			
+			MobclickAgent.onEvent(context,UmengEvent.SHACK_MODE_EVENT);
 			DeviceConnectionManager.getInstance().setSexPositionMode(false);
 			try {
 				if (!DeviceConnectionManager.getInstance().isConnected()) {
@@ -64,26 +71,7 @@ public class ShakeModeView extends RelativeLayout{
 				return;
 			}
 			switch (level) {
-			/*case 0:
-				level++;
-				modeBtn.setBackgroundResource(R.drawable.shake_mode_1);
-				break;
-			case 1:
-				level++;
-				modeBtn.setBackgroundResource(R.drawable.shake_mode_2);
-				break;
-			case 2:
-				level++;
-				modeBtn.setBackgroundResource(R.drawable.shake_mode_3);
-				break;
-			case 3:
-				level++;
-				modeBtn.setBackgroundResource(R.drawable.shake_mode_4);
-				break;
-			case 4:
-				level = 0;
-				modeBtn.setBackgroundResource(R.drawable.shake_mode_0);
-				break;*/
+
 			case 0:
 				level=4;
 				modeBtn.setBackgroundResource(R.drawable.shake_mode_4);

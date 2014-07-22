@@ -42,7 +42,7 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 
 	private int ShakeThreshHold[] = { 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 };
 
-	private int KShakeToySpeed[] = { 2, 5, 10, 15, 20, 26, 30, 34 };
+	private int KShakeToySpeed[] = { 2, 7, 14, 21, 28, 35, 42, 49 };
 
 	private int KShakeSpeed[][] = { { 2, 3, 6, 11, 16, 22, 26, 28 },
 			{ 2, 3, 8, 13, 18, 24, 28, 30 }, { 2, 5, 10, 15, 20, 26, 30, 34 },

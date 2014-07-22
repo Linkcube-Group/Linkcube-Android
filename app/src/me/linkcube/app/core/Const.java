@@ -90,5 +90,21 @@ public class Const {
 		public static int COUNT_DOWN = 6;
 
 	}
+	
+	public static class UmengEvent {
+
+		public static String SHACK_MODE_EVENT = "shackmodeevent";
+		
+		public static String VOICE_MODE_EVENT = "voicemodeevent";
+		
+		public static String MIC_MODE_EVENT = "micmodeevent";
+		
+		public static String SEXPOSITION_MODE_EVENT = "sexpositionmodeevent";
+		
+		public static String IS_CONNECT_TOY = "isconnecttoy";
+		
+		public static String CONNECT_TOY_DURATION = "ConnectToyDuration";
+
+	}
 
 }
