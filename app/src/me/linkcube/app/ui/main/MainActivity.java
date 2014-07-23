@@ -50,6 +50,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -144,9 +145,11 @@ public class MainActivity extends BaseFragmentActivity implements
 			((SinglePalyerFragment) singleFragment).resetToy();
 			ToyConnectTimeManager.getInstance().stopTimeStatistics();
 			Timber.d("ConnectToyDuration:"+ToyConnectTimeManager.getInstance().getDuration());
+			TelephonyManager telephonyManager= (TelephonyManager) mActivity.getSystemService(Context.TELEPHONY_SERVICE);
+			String imei=telephonyManager.getDeviceId();
 			HashMap<String,String> m=new HashMap<String, String>();
-			m.put("__ct__", String.valueOf(ToyConnectTimeManager.getInstance().getDuration()));
-			MobclickAgent.onEvent(mActivity, Const.UmengEvent.CONNECT_TOY_DURATION,m);
+			m.put("user_imei", imei);
+			MobclickAgent.onEventEnd(mActivity, Const.UmengEvent.CONNECT_TOY_DURATION,imei);
 			
 			Toast.makeText(MainActivity.this,
 					R.string.toast_toy_disconnect_try_again, Toast.LENGTH_SHORT)

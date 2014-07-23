@@ -1,12 +1,16 @@
 package me.linkcube.app.ui.bluetooth;
 
+import com.umeng.analytics.MobclickAgent;
+
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.os.RemoteException;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.ViewGroup;
 import me.linkcube.app.LinkcubeApplication;
 import me.linkcube.app.R;
+import me.linkcube.app.core.Const;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.core.game.ToyConnectTimeManager;
 import me.linkcube.app.ui.BaseListAdapter;
@@ -41,6 +45,9 @@ public class BluetoothDeviceAdapter extends BaseListAdapter<BluetoothDevice> {
 				.getDeviceConnected())) {
 			if (DeviceConnectionManager.getInstance().isConnected()) {
 				ToyConnectTimeManager.getInstance().startTimeStatistics();
+				TelephonyManager telephonyManager= (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+				String imei=telephonyManager.getDeviceId();
+				MobclickAgent.onEventBegin(mContext, Const.UmengEvent.CONNECT_TOY_DURATION,imei);
 				cell.setDeviceState(R.string.connected);
 			} else {
 				if (device.getBondState() == BluetoothDevice.BOND_BONDED) {

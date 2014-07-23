@@ -1,10 +1,7 @@
 package me.linkcube.app.sync.chat;
 
-import me.linkcube.app.core.Timber;
 import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.sync.core.ASmackManager;
-import me.linkcube.app.util.RegexUtils;
-
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.ChatManager;
 import org.jivesoftware.smack.MessageListener;
@@ -57,12 +54,5 @@ public class SingleChat {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	/**
-	 * 销毁聊天管理器
-	 */
-	public void destroyChat() {
-		chatManager = null;
 	}
 }
