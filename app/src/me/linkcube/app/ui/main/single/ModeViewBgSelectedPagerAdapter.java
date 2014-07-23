@@ -34,8 +34,7 @@ public class ModeViewBgSelectedPagerAdapter extends PagerAdapter {
 				R.drawable.shake_mode_tip));
 		views.add(getModeTipBg(R.drawable.voice_mode_bg,
 				R.drawable.voice_mode_tip));
-		//TODO 语音模式
-		views.add(getModeTipBg(R.drawable.voice_mode_bg,
+		views.add(getModeTipBg(R.drawable.mic_mode_bg,
 				R.drawable.voice_mode_tip));
 		views.add(getModeTipBg(R.drawable.sex_position_mode_bg,
 				R.drawable.sex_position_mode_tip));

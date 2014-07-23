@@ -82,12 +82,12 @@ public class MicModeView extends RelativeLayout {
 			// 音乐模式更换成二档位
 			case 0:
 				level = 2;
-				modeBtn.setBackgroundResource(R.drawable.voice_mode_4);
+				modeBtn.setBackgroundResource(R.drawable.mic_mode_1);
 				mListener.onMicMode(level);
 				break;
 			case 2:
 				level = 0;
-				modeBtn.setBackgroundResource(R.drawable.voice_mode_0);
+				modeBtn.setBackgroundResource(R.drawable.mic_mode_0);
 				mListener.offMicMode(level);
 				break;
 			default:
@@ -124,7 +124,7 @@ public class MicModeView extends RelativeLayout {
 		@Override
 		public void handleMessage(Message msg) {
 			level = 0;
-			modeBtn.setBackgroundResource(R.drawable.voice_mode_0);
+			modeBtn.setBackgroundResource(R.drawable.mic_mode_0);
 		}
 
 	};
