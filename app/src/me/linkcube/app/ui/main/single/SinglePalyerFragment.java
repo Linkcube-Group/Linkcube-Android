@@ -177,6 +177,7 @@ public class SinglePalyerFragment extends BaseFragment implements
 		Timber.d("注销AudioRecorder");
 		if (audioRecorder != null) {
 			audioRecorder.stopAudioRecorder();
+			mAdapter.changeMicSoundIv(1);
 		}
 	}
 
@@ -276,6 +277,12 @@ public class SinglePalyerFragment extends BaseFragment implements
 	@Override
 	public void offMicMode(int level) {
 		Timber.d("关闭语音模式--");
+		mAdapter.changeMicSoundIv(1);
+		try {
+			LinkcubeApplication.toyServiceCall.setMicWave(0);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		audioRecorder.stopAudioRecorder();
 	}
 

@@ -37,7 +37,7 @@ public class ModeSelectedPagerAdapter extends PagerAdapter {
 	
 	private TextView shakeModeTv,voiceModeTv,sexPositionModeTv,micModeTv;
 	
-	private int MicThreshHold[] = { 0, 20, 24, 27, 31, 33, 36, 39, 42, 45 };
+	private int MicThreshHold[] = { 0, 20, 22, 24, 26, 28, 30, 32, 34,38 };
 
 	public ModeSelectedPagerAdapter(Context context,
 			ModeSelectedListener listener) {

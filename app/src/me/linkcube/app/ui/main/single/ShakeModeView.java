@@ -59,7 +59,6 @@ public class ShakeModeView extends RelativeLayout{
 		
 		@Override
 		public void onClick(View v) {
-			MobclickAgent.onEvent(context,UmengEvent.SHACK_MODE_EVENT);
 			DeviceConnectionManager.getInstance().setSexPositionMode(false);
 			try {
 				if (!DeviceConnectionManager.getInstance().isConnected()) {
@@ -74,6 +73,7 @@ public class ShakeModeView extends RelativeLayout{
 
 			case 0:
 				level=4;
+				MobclickAgent.onEvent(context,UmengEvent.SHACK_MODE_EVENT);
 				modeBtn.setBackgroundResource(R.drawable.shake_mode_4);
 				mListener.onShakeMode(level);
 				break;

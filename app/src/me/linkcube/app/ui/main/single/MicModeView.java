@@ -67,7 +67,6 @@ public class MicModeView extends RelativeLayout {
 
 		@Override
 		public void onClick(View v) {
-			MobclickAgent.onEvent(context,UmengEvent.MIC_MODE_EVENT);
 			DeviceConnectionManager.getInstance().setSexPositionMode(false);
 			try {
 				if (!DeviceConnectionManager.getInstance().isConnected()) {
@@ -82,6 +81,7 @@ public class MicModeView extends RelativeLayout {
 			// 音乐模式更换成二档位
 			case 0:
 				level = 2;
+				MobclickAgent.onEvent(context,UmengEvent.MIC_MODE_EVENT);
 				modeBtn.setBackgroundResource(R.drawable.mic_mode_1);
 				mListener.onMicMode(level);
 				break;

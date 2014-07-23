@@ -65,7 +65,6 @@ public class SexPositionModeView extends RelativeLayout {
 
 		@Override
 		public void onClick(View v) {
-			MobclickAgent.onEvent(context,UmengEvent.SEXPOSITION_MODE_EVENT);
 			DeviceConnectionManager.getInstance().setSexPositionMode(true);
 
 			try {
@@ -80,6 +79,7 @@ public class SexPositionModeView extends RelativeLayout {
 
 			switch (level) {
 			case 0:
+				MobclickAgent.onEvent(context,UmengEvent.SEXPOSITION_MODE_EVENT);
 				level++;
 				modeBtn.setBackgroundResource(R.drawable.sex_position_mode_1);
 				break;

@@ -1,5 +1,7 @@
 package me.linkcube.app.ui.main;
 
+import java.util.HashMap;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -142,7 +144,9 @@ public class MainActivity extends BaseFragmentActivity implements
 			((SinglePalyerFragment) singleFragment).resetToy();
 			ToyConnectTimeManager.getInstance().stopTimeStatistics();
 			Timber.d("ConnectToyDuration:"+ToyConnectTimeManager.getInstance().getDuration());
-			MobclickAgent.onEventDuration(mActivity, Const.UmengEvent.CONNECT_TOY_DURATION,ToyConnectTimeManager.getInstance().getDuration());
+			HashMap<String,String> m=new HashMap<String, String>();
+			m.put("__ct__", String.valueOf(ToyConnectTimeManager.getInstance().getDuration()));
+			MobclickAgent.onEvent(mActivity, Const.UmengEvent.CONNECT_TOY_DURATION,m);
 			
 			Toast.makeText(MainActivity.this,
 					R.string.toast_toy_disconnect_try_again, Toast.LENGTH_SHORT)

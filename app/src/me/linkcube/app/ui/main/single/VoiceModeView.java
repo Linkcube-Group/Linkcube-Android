@@ -58,7 +58,6 @@ public class VoiceModeView extends RelativeLayout {
 
 		@Override
 		public void onClick(View v) {
-			MobclickAgent.onEvent(context,UmengEvent.VOICE_MODE_EVENT);
 			DeviceConnectionManager.getInstance().setSexPositionMode(false);
 			try {
 				if (!DeviceConnectionManager.getInstance().isConnected()) {
@@ -72,6 +71,7 @@ public class VoiceModeView extends RelativeLayout {
 			switch (level) {
 			case 0:
 				level = 2;
+				MobclickAgent.onEvent(context,UmengEvent.VOICE_MODE_EVENT);
 				modeBtn.setBackgroundResource(R.drawable.voice_mode_4);
 				mListener.onVoiceMode(level);
 				break;
