@@ -73,9 +73,9 @@ public class ModeViewBgSelectedPagerAdapter extends PagerAdapter {
 	}
 
 	private int[] modeTipPic = { R.drawable.shake_mode_tip,
-			R.drawable.voice_mode_tip,R.drawable.voice_mode_tip, R.drawable.sex_position_mode_tip };
+			R.drawable.voice_mode_tip,R.drawable.mic_mode_tip, R.drawable.sex_position_mode_tip };
 	private int[] modeTipPicEn = { R.drawable.shake_mode_tip_en,
-			R.drawable.voice_mode_tip_en,R.drawable.voice_mode_tip_en, R.drawable.sex_position_mode_tip_en };
+			R.drawable.voice_mode_tip_en,R.drawable.mic_mode_tip_en, R.drawable.sex_position_mode_tip_en };
 
 	public void setLanguage() {
 		System.out.println("setLanguage");
