@@ -30,7 +30,7 @@
 
     <!-- 单人模式 -->
     <string name="shake_mode">摇摇模式</string>
-    <string name="voice_mode">音浪模式</string>
+    <string name="voice_mode">音乐模式</string>
     <string name="mic_mode">语音模式</string>
     <string name="sex_position_mode">经典七式</string>
 
@@ -59,7 +59,7 @@
     <string name="set_language">语言设置</string>
     <string name="check_update">检测更新</string>
     <string name="about_us_company_name">连酷科技</string>
-    <string name="version_name">版本号：2.1.0718</string>
+    <string name="version_name">版本号：2.1.0725</string>
     <string name="linkcube_weixin">微信：连酷科技</string>
     <string name="linkcube_weibo">微博：@连酷科技</string>
     <string name="linkcube_website">官方网站：http://www.linkcube.me</string>
