@@ -1,0 +1,27 @@
+package me.linkcube.toy;
+
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
+
+public class ToyService extends Service{
+	private IBinder binder;
+	
+	@Override
+	public void onCreate() 
+	{		
+		binder = new ToyServiceCallImp(this);
+	}
+
+	@Override
+	public IBinder onBind(Intent intent)
+	{
+		return binder;
+	}
+	
+	@Override
+	public void onDestroy() 
+	{
+		
+	}
+}

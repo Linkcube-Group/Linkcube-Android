@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="220dp"
+    android:gravity="center_horizontal|left"
+    android:background="@drawable/bg_dialog"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="40dp"
+            android:textSize="20sp"
+            android:background="@drawable/btn_style_linkcube_big_pink_button"
+            android:textColor="#fff"
+            android:text="已有账号登录" />
+	    <Button
+	        android:id="@+id/btn_createaccount"
+	        android:layout_width="200dp"
+	        android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:background="@drawable/btn_style_linkcube_big_pink_button"
+            android:textColor="#fff"
+	        android:text="注册 新用户 " />
+	    
+	    <Button
+	        android:id="@+id/btn_cancel"
+	        android:layout_width="200dp"
+	        android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:background="@drawable/btn_style_linkcube_big_gray_button"
+            android:textColor="#fff"
+	        android:text="取消" />
+        
+    </LinearLayout>
+
+    
+</LinearLayout>
