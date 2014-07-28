@@ -33,14 +33,17 @@ public class AudioRecorder {
 	private AudioRecorder(){
 		
 	}
-	
-	public void startAudioRecorder(final ASmackRequestCallBack micSoundSetCallBack){
+	static{
 		bs = AudioRecord.getMinBufferSize(SAMPLE_RATE_IN_HZ,
                 AudioFormat.CHANNEL_CONFIGURATION_MONO,
                 AudioFormat.ENCODING_PCM_16BIT);
     	audioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC, SAMPLE_RATE_IN_HZ,
                 AudioFormat.CHANNEL_CONFIGURATION_MONO,
                 AudioFormat.ENCODING_PCM_16BIT, bs);
+	}
+	
+	public void startAudioRecorder(final ASmackRequestCallBack micSoundSetCallBack){
+		
 		Thread thread=new Thread(){
 			@Override
 			public void run() {
