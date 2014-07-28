@@ -8,24 +8,39 @@ import android.util.Log;
 
 public class AudioRecorder {
 	
-	private AudioRecord audioRecord;
-	private int bs;
+	private static AudioRecorder instance = null;
+	
+	private static AudioRecord audioRecord;
+	private static int bs;
 	private static int SAMPLE_RATE_IN_HZ=8000;
 	private boolean isRun=false;
 	private int readdata;
 	private int level=1;
 	private int count=0;
+	
+	public static AudioRecorder getInstance() {
+		if (instance == null) {
+			synchronized (AudioRecorder.class) {
+				if (instance == null) {
+					instance = new AudioRecorder();
+					return instance;
+				}
+			}
+		}
+		return instance;
+	}
 
-	public AudioRecorder(){
+	private AudioRecorder(){
+		
+	}
+	
+	public void startAudioRecorder(final ASmackRequestCallBack micSoundSetCallBack){
 		bs = AudioRecord.getMinBufferSize(SAMPLE_RATE_IN_HZ,
                 AudioFormat.CHANNEL_CONFIGURATION_MONO,
                 AudioFormat.ENCODING_PCM_16BIT);
     	audioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC, SAMPLE_RATE_IN_HZ,
                 AudioFormat.CHANNEL_CONFIGURATION_MONO,
                 AudioFormat.ENCODING_PCM_16BIT, bs);
-	}
-	
-	public void startAudioRecorder(final ASmackRequestCallBack micSoundSetCallBack){
 		Thread thread=new Thread(){
 			@Override
 			public void run() {
@@ -45,7 +60,7 @@ public class AudioRecorder {
 		            } 
 		    		count++;
 		    		count=count%5;
-		    		if (count==1) {
+		    		if (count==1&&readdata!=0) {
 		    			Log.d("spl---", "spl--"+String.valueOf((v/readdata)/128));
 		    			micSoundSetCallBack.responseSuccess((v/readdata)/128);
 					}

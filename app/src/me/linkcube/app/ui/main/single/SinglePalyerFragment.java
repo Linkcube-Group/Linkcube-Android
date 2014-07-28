@@ -63,8 +63,6 @@ public class SinglePalyerFragment extends BaseFragment implements
 
 	private SensorProvider sensorProvider;
 
-	private AudioRecorder audioRecorder;
-
 	private int mStateMode = STATE_NONE;
 
 	@Override
@@ -175,8 +173,8 @@ public class SinglePalyerFragment extends BaseFragment implements
 
 	private void unregisterAudioRecorder() {
 		Timber.d("注销AudioRecorder");
-		if (audioRecorder != null) {
-			audioRecorder.stopAudioRecorder();
+		if (AudioRecorder.getInstance() != null) {
+			AudioRecorder.getInstance().stopAudioRecorder();
 			mAdapter.changeMicSoundIv(1);
 		}
 	}
@@ -283,7 +281,7 @@ public class SinglePalyerFragment extends BaseFragment implements
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		audioRecorder.stopAudioRecorder();
+		AudioRecorder.getInstance().stopAudioRecorder();
 	}
 
 	@Override
@@ -296,8 +294,7 @@ public class SinglePalyerFragment extends BaseFragment implements
 		mActivity.sendBroadcast(new Intent("com.linkcube.resetvoicemodeview"));
 		mActivity.sendBroadcast(new Intent(
 				"com.linkcube.resetsexpositionmodeview"));
-		audioRecorder = new AudioRecorder();
-		audioRecorder.startAudioRecorder(new ASmackRequestCallBack() {
+		AudioRecorder.getInstance().startAudioRecorder(new ASmackRequestCallBack() {
 			
 			@Override
 			public void responseSuccess(Object object) {

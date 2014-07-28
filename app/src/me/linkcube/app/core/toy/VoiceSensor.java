@@ -11,7 +11,6 @@ public class VoiceSensor {
 
 	private Visualizer mVisualizer = null;
 	private OnVoiceCaptureListener voiceCaptureListener;
-	private AudioRecorder audioRecorder;
 	private int captureRate;
 
 	public VoiceSensor() {
@@ -24,18 +23,16 @@ public class VoiceSensor {
 			mVisualizer.setDataCaptureListener(voiceCaptureListener,
 					captureRate / 2, false, true);
 			mVisualizer.setEnabled(false);
-		} else {
-			audioRecorder=new AudioRecorder();
-		}
+		} 
 	}
 
 	public void setVoiceLevel(int level) {
 		if (Build.VERSION.SDK_INT >= 9) {
 			voiceCaptureListener.setLevel(level);
 		} else {
-			audioRecorder.setLevel(level);
+			AudioRecorder.getInstance().setLevel(level);
 			if(level>0){
-				audioRecorder.startAudioRecorder(new ASmackRequestCallBack() {
+				AudioRecorder.getInstance().startAudioRecorder(new ASmackRequestCallBack() {
 					
 					@Override
 					public void responseSuccess(Object object) {
@@ -48,7 +45,7 @@ public class VoiceSensor {
 					}
 				});
 			}else{
-				audioRecorder.stopAudioRecorder();
+				AudioRecorder.getInstance().stopAudioRecorder();
 			}
 		}
 	}

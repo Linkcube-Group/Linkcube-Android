@@ -35,7 +35,6 @@ public class ToyConnectTimeManager {
 
 				@Override
 				public void run() {
-					System.out.println("--duration:" + duration);
 					duration++;
 				}
 			}, 0, 1000);
