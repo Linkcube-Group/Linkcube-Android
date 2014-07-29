@@ -163,7 +163,7 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 			
 			new AlertDialog.Builder(this)
 			.setTitle("语言设置")
-			.setSingleChoiceItems(new String[] {"中文简体","english"}, 0, new DialogInterface.OnClickListener() {
+			.setSingleChoiceItems(new String[] {"中文简体","English"}, 0, new DialogInterface.OnClickListener() {
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {

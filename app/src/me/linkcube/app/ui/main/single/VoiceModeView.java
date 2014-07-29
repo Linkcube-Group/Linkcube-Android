@@ -71,6 +71,7 @@ public class VoiceModeView extends RelativeLayout {
 			switch (level) {
 			case 0:
 				level = 2;
+				mListener.showOpenMusicPlayerDialog();
 				MobclickAgent.onEvent(context,UmengEvent.VOICE_MODE_EVENT);
 				modeBtn.setBackgroundResource(R.drawable.voice_mode_4);
 				mListener.onVoiceMode(level);

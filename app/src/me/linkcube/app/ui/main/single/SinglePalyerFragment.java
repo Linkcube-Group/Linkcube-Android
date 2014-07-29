@@ -31,6 +31,7 @@ import me.linkcube.app.ui.main.SensorProvider;
 import me.linkcube.app.ui.setting.SettingActivity;
 import me.linkcube.app.ui.user.LoginActivity;
 import me.linkcube.app.ui.user.UserInfoActivity;
+import me.linkcube.app.util.NotificationUtils;
 import me.linkcube.app.util.PreferenceUtils;
 import me.linkcube.app.widget.AlertUtils;
 import me.linkcube.app.widget.CirclePageIndicator;
@@ -381,8 +382,8 @@ public class SinglePalyerFragment extends BaseFragment implements
 						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);// 注意
 						intent.addCategory(Intent.CATEGORY_HOME);
 						mActivity.startActivity(intent);
-						// NotificationUtils.initNotification(mActivity,
-						// 1100,"Linkcube");
+						NotificationUtils.initNotification(mActivity, 1100,
+								"连酷 Linkcube");
 					}
 				})
 				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
