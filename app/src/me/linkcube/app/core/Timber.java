@@ -9,9 +9,13 @@ import java.util.regex.Pattern;
 
 /** Logging for lazy people. */
 public final class Timber {
+	
+	private static boolean OPEN_LOG=true;
   /** Log a debug message with optional format args. */
   public static void d(String message, Object... args) {
-    TREE_OF_SOULS.d(message, args);
+	  if (OPEN_LOG) {
+		  TREE_OF_SOULS.d(message, args);
+	}
   }
 
   /** Log a debug exception and a message with optional format args. */
@@ -21,7 +25,9 @@ public final class Timber {
 
   /** Log an info message with optional format args. */
   public static void i(String message, Object... args) {
-    TREE_OF_SOULS.i(message, args);
+	  if (OPEN_LOG) {
+		  TREE_OF_SOULS.i(message, args);
+	}
   }
 
   /** Log an info exception and a message with optional format args. */
@@ -41,7 +47,9 @@ public final class Timber {
 
   /** Log an error message with optional format args. */
   public static void e(String message, Object... args) {
-    TREE_OF_SOULS.e(message, args);
+	  if (OPEN_LOG) {
+		  TREE_OF_SOULS.e(message, args);
+	}
   }
 
   /** Log an error exception and a message with optional format args. */

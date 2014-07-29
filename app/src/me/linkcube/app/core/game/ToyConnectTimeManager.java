@@ -44,7 +44,6 @@ public class ToyConnectTimeManager {
 
 	public void stopTimeStatistics() {
 		if (statisticsTimer != null) {
-			System.out.println("--stopTimeStatistics--");
 			statisticsTimer.cancel();
 			statisticsTimer = null;
 		}

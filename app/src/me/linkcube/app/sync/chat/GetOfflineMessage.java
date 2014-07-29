@@ -33,9 +33,7 @@ public class GetOfflineMessage {
 	public void getOfflineMsg() {
 		String userName = ASmackUtils.getRosterName();
 		try {
-			// System.out.println(msgManager.supportsFlexibleRetrieval());
 			Log.i(TAG, "msgcount:" + msgManager.getMessageCount());
-			// System.out.println("msgcount:"+msgManager.getMessageCount());
 			Iterator<Message> iterator = msgManager.getMessages();
 			while (iterator.hasNext()) {
 				Message msg = iterator.next();

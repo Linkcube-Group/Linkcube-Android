@@ -2,6 +2,8 @@ package me.linkcube.app.sync.chat;
 
 import java.io.File;
 
+import me.linkcube.app.core.Timber;
+
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smackx.filetransfer.FileTransferListener;
 import org.jivesoftware.smackx.filetransfer.FileTransferRequest;
@@ -15,7 +17,7 @@ public class VoiceMsgTransListener implements FileTransferListener {
 		File file = new File("" + request.getFileName());
 		try {
 			accept.recieveFile(file);
-			System.out.println("FileName:" + request.getFileName());
+			Timber.d("FileName:" + request.getFileName());
 		} catch (XMPPException e) {
 			e.printStackTrace();
 		}

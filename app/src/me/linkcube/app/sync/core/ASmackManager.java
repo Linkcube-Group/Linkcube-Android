@@ -1,6 +1,8 @@
 package me.linkcube.app.sync.core;
 
 
+import me.linkcube.app.core.Timber;
+
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.Roster;
 import org.jivesoftware.smack.SmackConfiguration;
@@ -79,8 +81,7 @@ public class ASmackManager {
 			if(!connection.isConnected()){
 				connection.connect();
 			}
-			System.out.println("connection success!");
-			//ReconnectionListener.getInstance().onReconnectionListener();
+			Timber.d("connection success!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

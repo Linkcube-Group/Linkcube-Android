@@ -26,7 +26,6 @@ public class UserUtils {
 		entity.setMsgType(from);
 		entity.setText(body);
 		entity.setCountDown(COUNT_DOWN);
-		System.out.println("messageresult:" + body);
 		return entity;
 	}
 
@@ -49,8 +48,6 @@ public class UserUtils {
 			ChatEntity chatEntity = new ChatEntity();
 			chatEntity.setUserName(ASmackUtils.getRosterName());
 			chatEntity.setFriendName(friendName);
-			System.out.println("friendName2:"+friendName);
-			System.out.println("Message2:"+body);
 			chatEntity.setFriendNickname(FriendManager.getInstance().getFriendNicknameByFriendName(friendName));
 			chatEntity.setMsgFlag("send");
 			chatEntity.setMessage(body);
@@ -86,9 +83,6 @@ public class UserUtils {
 				chatEntity.setMsgFlag("send");
 			}
 			chatEntity.setMessage(readAfterEntity.getText());
-			System.out.println("friendName:"+friendName);
-			System.out.println("Message:"+readAfterEntity.getText());
-			System.out.println("readAfterEntity.getDate():"+readAfterEntity.getDate());
 			chatEntity.setMsgTime(readAfterEntity.getDate());
 			chatEntity.setIsAfterRead(1);
 			PersistableChat perChat = new PersistableChat();

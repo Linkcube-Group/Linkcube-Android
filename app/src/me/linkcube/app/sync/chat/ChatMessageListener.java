@@ -50,7 +50,6 @@ public class ChatMessageListener {
 		if (chatManager == null) {
 			chatManager = ASmackManager.getInstance().getXMPPConnection()
 					.getChatManager();
-			System.out.println("chatManagerListener1：" + chatManagerListener);
 			chatManager.addChatListener(chatManagerListener);
 		}
 	}
@@ -59,12 +58,10 @@ public class ChatMessageListener {
 		@Override
 		public void chatCreated(Chat chat, boolean arg1) {
 
-			System.out.println("chat：" + chat);
-
 			chat.addMessageListener(new MessageListener() {
 				@Override
 				public void processMessage(Chat arg0, Message message) {
-					System.out.println("listener--from:" + message.getFrom() + "--body:"
+					Timber.d("listener--from:" + message.getFrom() + "--body:"
 							+ message.getBody());
 					if (offLineMsgFlag) {
 						Map<String, String> singleMsgMap = new HashMap<String, String>();
@@ -103,7 +100,7 @@ public class ChatMessageListener {
 		if (body != null) {
 			if (body.startsWith(Const.Game.POSITIONMODECMD)) {// 多人模式七种姿势
 				String[] cmdData = body.split(":");
-				System.out.println("cmddata:" + Integer.parseInt(cmdData[1]));
+				Timber.d("cmddata:" + Integer.parseInt(cmdData[1]));
 				try {
 					LinkcubeApplication.toyServiceCall
 							.cacheSexPositionMode(Integer.parseInt(cmdData[1]));
@@ -136,7 +133,7 @@ public class ChatMessageListener {
 				}
 			} else if (body.startsWith(Const.Game.REQUESTCMD)) {
 				String[] cmdData = body.split(":");
-				Timber.d(cmdData[1]);
+				Timber.d("cmddata:" + Integer.parseInt(cmdData[1]));
 				if (cmdData[1].equals(Const.Game.REQUESTCONNECTCMD)) {
 					broadMsg(from,context.getResources().getString(R.string.others_send_invitation_to_you) , cmdData[1]);
 				} else if (cmdData[1].equals(Const.Game.ACCEPTCONNECTCMD)) {
@@ -166,8 +163,6 @@ public class ChatMessageListener {
 		bundle.putString("cmdData", cmdData);
 		Intent chatMsgIntent = new Intent("com.linkcube.message");// 获取到聊天消息,发送广播
 		chatMsgIntent.putExtras(bundle);
-		System.out.println("broadMsg--from:" + from + "--body:" + body);
-		Timber.d("context:" + context);
 		context.sendBroadcast(chatMsgIntent);
 	}
 

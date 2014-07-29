@@ -230,7 +230,6 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 		}
 		if(chats.size()==0){
 			countDowmList.clear();
-			System.out.println("---countDowmList.clear()---");
 		}
 		for (int i = 0; i < chats.size(); i++) {
 			try {
@@ -246,7 +245,6 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 							.getNickName());
 					entity.setMsgType(false);
 				}
-				System.out.println("friendName:"+friendName+"--countDownList.size():"+countDowmList.size());
 				if (i < countDowmList.size()) {
 					entity.setCountDown(countDowmList.get(i));
 				} else {
@@ -384,7 +382,6 @@ public class ChatActivity extends DialogActivity implements OnClickListener,
 						tempTimer.cancel();
 						tempTimer = null;
 					}
-					System.out.println("----deleteMsg-----");
 					ChatMsgEntity entity = (ChatMsgEntity) msg.obj;
 					ChatMsgEntity afterReadEntity = UserUtils.deleteMsgAfterRead(
 							getResources().getString(R.string.del_after_read),

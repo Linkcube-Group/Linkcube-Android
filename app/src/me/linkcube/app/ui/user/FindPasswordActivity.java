@@ -1,6 +1,7 @@
 package me.linkcube.app.ui.user;
 
 import me.linkcube.app.R;
+import me.linkcube.app.core.Timber;
 import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.user.FindPassword;
 import me.linkcube.app.ui.BaseActivity;
@@ -49,12 +50,12 @@ public class FindPasswordActivity extends BaseActivity {
 					PacketCollector collector = connection.createPacketCollector(filter);
 					connection.sendPacket(find);
 					
-					System.out.println(find.toXML());
+					Timber.d(find.toXML());
 					Packet re =  collector.nextResult(SmackConfiguration.getPacketReplyTimeout());
 					collector.cancel();// 停止请求results（是否成功的结果）
 					
 					//对re进行解析
-					System.out.println(re.toXML());
+					Timber.d(re.toXML());
 					//Timber.i(re.getError().getType().toString());
 					//re.get
 

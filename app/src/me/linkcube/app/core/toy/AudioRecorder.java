@@ -1,5 +1,6 @@
 package me.linkcube.app.core.toy;
 
+import me.linkcube.app.core.Timber;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
@@ -50,7 +51,6 @@ public class AudioRecorder {
 				audioRecord.startRecording();
 		    	byte[] buffer=new byte[bs];
 		    	isRun=true;
-		    	System.out.println(buffer);
 		    	while(isRun){
 		    		readdata=audioRecord.read(buffer,0, bs);
 		    		int v=0;
@@ -64,7 +64,7 @@ public class AudioRecorder {
 		    		count++;
 		    		count=count%5;
 		    		if (count==1&&readdata!=0) {
-		    			Log.d("spl---", "spl--"+String.valueOf((v/readdata)/128));
+		    			Timber.d("mic.speed:"+String.valueOf((v/readdata)/128));
 		    			micSoundSetCallBack.responseSuccess((v/readdata)/128);
 					}
 		    	} 

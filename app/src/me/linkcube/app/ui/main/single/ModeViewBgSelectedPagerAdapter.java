@@ -78,7 +78,6 @@ public class ModeViewBgSelectedPagerAdapter extends PagerAdapter {
 			R.drawable.voice_mode_tip_en,R.drawable.mic_mode_tip_en, R.drawable.sex_position_mode_tip_en };
 
 	public void setLanguage() {
-		System.out.println("setLanguage");
 		switch (PreferenceUtils.getInt("app_language", 0)) {
 		case 0:
 			for (int i = 0; i < views.size(); i++) {

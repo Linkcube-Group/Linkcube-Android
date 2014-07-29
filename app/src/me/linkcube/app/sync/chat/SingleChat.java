@@ -49,7 +49,6 @@ public class SingleChat {
 		} else {
 			try {
 				newchat.sendMessage(sendMsg);
-				System.out.println("sendMsg:"+sendMsg);
 			} catch (XMPPException e) {
 				e.printStackTrace();
 			}

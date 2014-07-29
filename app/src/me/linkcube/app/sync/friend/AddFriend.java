@@ -57,21 +57,6 @@ public class AddFriend {
 					.getXMPPConnection()
 					.getRoster()
 					.createEntry(ASmackUtils.getFriendJid(friendName), nickName, null);
-			
-			Timber.d("AddFriend");
-			//XmppUtils.getInstance().getRoster().removeEntry(XmppUtils.getInstance().getRoster().getEntry(friendName+StringUtils.getServerAddress()));
-			/*RosterPacket.Item item = new RosterPacket.Item(friendName+emailString, nickName);
-			item.setItemType(RosterPacket.ItemType.valueOf("none"));
-			RosterPacket packet = new RosterPacket();
-			packet.addRosterItem(item);
-			packet.setType(IQ.Type.SET);
-			System.out.println(packet.getRosterItems());
-			XmppUtils.getInstance().sendPacket(packet);*/
-			
-			/*Presence localPresence = new Presence(Presence.Type.subscribe);
-		    localPresence.setTo(friendName+emailString);
-		    XmppUtils.getInstance().sendPacket(localPresence);*/
-		    
 			return 0;
 		} catch (Exception e) {
 			e.printStackTrace();
