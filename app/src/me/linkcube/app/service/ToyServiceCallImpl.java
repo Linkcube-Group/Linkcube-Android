@@ -42,12 +42,12 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 
 	private int ShakeThreshHold[] = { 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 };
 
-	private int KShakeToySpeed[] = { 2, 7, 14, 21, 28, 35, 42, 49 };
+	private int KShakeToySpeed[] = { 1, 7, 14, 21, 28, 35, 42, 49 };
 
-	private int KShakeSpeed[][] = { { 2, 3, 6, 11, 16, 22, 26, 28 },
-			{ 2, 3, 8, 13, 18, 24, 28, 30 }, { 2, 5, 10, 15, 20, 26, 30, 34 },
-			{ 2, 7, 12, 17, 22, 28, 32, 36 },
-			{ 2, 9, 14, 19, 24, 30, 34, 38, 42, 44 } };
+	private int KShakeSpeed[][] = { { 1, 3, 6, 11, 16, 22, 26, 28 },
+			{ 1, 3, 8, 13, 18, 24, 28, 30 }, { 1, 5, 10, 15, 20, 26, 30, 34 },
+			{ 1, 7, 12, 17, 22, 28, 32, 36 },
+			{ 1, 9, 14, 19, 24, 30, 34, 38, 42, 44 } };
 
 	// private int WaveThreshHold[] = { 0, 110, 220, 330, 440, 550, 660, 770,
 	// 880,
