@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.linkcube.app"
     android:versionCode="2"
-    android:versionName="2.1.0729" >
+    android:versionName="2.1.0801" >
 
     <uses-sdk
         android:minSdkVersion="8"

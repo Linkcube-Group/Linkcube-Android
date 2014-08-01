@@ -13,7 +13,7 @@
     <color name="text_dark_grey">#A4A4A4</color>
 
     <!-- ListView -->
-    <color name="listview_divider">#BFBFBF</color>
+    <color name="listview_divider">#CFCFCF</color>
     <color name="listview_cell_bg">#FFFFFFFF</color>
     <color name="listview_cell_text">#FF333333</color>
     <color name="listview_cell_sub_text">#A4A4A4</color>

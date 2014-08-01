@@ -42,7 +42,7 @@ import me.linkcube.app.widget.AlertUtils;
 
 public class SettingActivity extends DialogActivity implements OnClickListener {
 
-	private TextView connectToyTv, personalInfoTv, purchaseToyTv, helpTv,
+	private TextView connectToyTv, relevantAppTv, purchaseToyTv, helpTv,
 			feedbackTv, aboutUsTv, checkUpdateTv, setLanguageTv,deleteAfterReadTv;
 
 	private Button loginOrRegisterBtn;
@@ -80,7 +80,7 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 
 	private void initView() {
 		connectToyTv = (TextView) findViewById(R.id.connect_toy_tv);
-		personalInfoTv = (TextView) findViewById(R.id.personal_info_tv);
+		relevantAppTv = (TextView) findViewById(R.id.relevant_app_tv);
 		purchaseToyTv = (TextView) findViewById(R.id.purchase_toy_tv);
 		helpTv = (TextView) findViewById(R.id.help_tv);
 		feedbackTv = (TextView) findViewById(R.id.feedback_tv);
@@ -91,7 +91,7 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 		setLanguageTv=(TextView)findViewById(R.id.set_language_tv);
 		deleteAfterReadTv=(TextView)findViewById(R.id.delete_after_read_tv);
 		connectToyTv.setOnClickListener(this);
-		personalInfoTv.setOnClickListener(this);
+		relevantAppTv.setOnClickListener(this);
 		purchaseToyTv.setOnClickListener(this);
 		helpTv.setOnClickListener(this);
 		feedbackTv.setOnClickListener(this);
@@ -126,12 +126,14 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 		case R.id.connect_toy_tv:
 			startActivity(new Intent(mActivity, BluetoothSettingActivity.class));
 			break;
-		case R.id.personal_info_tv:
+		case R.id.relevant_app_tv:
+			//用户个人信息展示界面更换为相关app
 			if (!UserManager.getInstance().isAuthenticated()) {
 				startActivity(new Intent(mActivity, LoginActivity.class));
 			} else {
 				startActivity(new Intent(mActivity, UserInfoActivity.class));
 			}
+			//startActivity(new Intent(mActivity, RelevantAppActivity.class));
 			break;
 		case R.id.purchase_toy_tv:
 

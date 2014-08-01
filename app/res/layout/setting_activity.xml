@@ -12,18 +12,48 @@
         android:paddingLeft="@dimen/SettingPadding"
         android:paddingRight="@dimen/SettingPadding" >
 
-        <TextView
-            android:id="@id/connect_toy_tv"
-            style="@style/Setting.Item.TextView.Click"
-            android:text="@string/connect_toy" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@id/connect_toy_tv"
+                style="@style/Setting.Item.TextView.Click"
+                android:text="@string/connect_toy" />
+
+            <!-- <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/right_arrow" /> -->
+        </RelativeLayout>
 
         <View style="@style/Setting.Item.Divider" />
 
         <TextView
             android:id="@id/personal_info_tv"
             style="@style/Setting.Item.TextView.Click"
-            android:text="@string/personal_info" />
-        
+            android:text="@string/personal_info"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@id/relevant_app_tv"
+                style="@style/Setting.Item.TextView.Click"
+                android:text="@string/personal_info" />
+
+            <!-- <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/right_arrow" /> -->
+        </RelativeLayout>
+
         <TextView
             android:id="@id/delete_after_read_tv"
             style="@style/Setting.Item.TextView.Click"
@@ -48,10 +78,22 @@
 
         <!-- <View style="@style/Setting.Item.Divider" /> -->
 
-        <TextView
-            android:id="@id/feedback_tv"
-            style="@style/Setting.Item.TextView.Click"
-            android:text="@string/feedback" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@id/feedback_tv"
+                style="@style/Setting.Item.TextView.Click"
+                android:text="@string/feedback" />
+
+            <!-- <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/right_arrow" /> -->
+        </RelativeLayout>
 
         <View style="@style/Setting.Item.Divider" />
 
@@ -73,7 +115,6 @@
                 android:layout_marginRight="25dp"
                 android:src="@drawable/pink_dot"
                 android:visibility="invisible" />
-
         </RelativeLayout>
 
         <View style="@style/Setting.Item.Divider" />
@@ -84,7 +125,7 @@
             android:text="@string/set_language" />
 
         <View style="@style/Setting.Item.Divider" />
-        
+
         <TextView
             android:id="@id/about_us_tv"
             style="@style/Setting.Item.TextView.Click"
