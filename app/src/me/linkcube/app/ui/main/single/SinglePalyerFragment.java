@@ -35,7 +35,7 @@ import me.linkcube.app.util.NotificationUtils;
 import me.linkcube.app.util.PreferenceUtils;
 import me.linkcube.app.widget.AlertUtils;
 import me.linkcube.app.widget.CirclePageIndicator;
-import static me.linkcube.app.core.toy.ToyConst.*;
+import static me.linkcube.app.core.Const.ToyConst.*;
 
 /**
  * 单人模式页面
@@ -382,7 +382,7 @@ public class SinglePalyerFragment extends BaseFragment implements
 						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);// 注意
 						intent.addCategory(Intent.CATEGORY_HOME);
 						mActivity.startActivity(intent);
-						NotificationUtils.initNotification(mActivity, 1100,
+						NotificationUtils.appPauseNotification(mActivity, 1100,
 								"连酷 Linkcube");
 					}
 				})

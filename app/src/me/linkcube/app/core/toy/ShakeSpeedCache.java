@@ -6,16 +6,16 @@ import java.util.concurrent.LinkedBlockingDeque;
 import android.annotation.SuppressLint;
 
 @SuppressLint("NewApi")
-public class MyQueue {
+public class ShakeSpeedCache {
 	Queue<ShakeSpeedData> data;
 	private int SIZE = 10;
 
-	public MyQueue(int size) {
+	public ShakeSpeedCache(int size) {
 		data = new LinkedBlockingDeque<ShakeSpeedData>(size);
 		SIZE = size;
 	}
 
-	public MyQueue() {
+	public ShakeSpeedCache() {
 		data = new LinkedBlockingDeque<ShakeSpeedData>(SIZE);
 	}
 

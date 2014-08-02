@@ -19,7 +19,11 @@ public class Const {
 		/** 原始密码 */
 		public static final String OLD_USER_PWD = "OldUserPwd";
 	}
-
+	/**
+	 * 用户个人信息
+	 * @author Rodriguez-xin
+	 *
+	 */
 	public static class VCard {
 
 		public static final String GENDER = "GENDER";
@@ -29,7 +33,11 @@ public class Const {
 		public static final String PERSONSTATE = "PERSONSTATE";
 
 	}
-
+	/**
+	 * 多人游戏时的控制消息
+	 * @author Rodriguez-xin
+	 *
+	 */
 	public static class Game {
 
 		public static String REQUESTCMD = "c:";
@@ -50,7 +58,11 @@ public class Const {
 
 		public static int ACCEPTTIMECMD = 30;
 	}
-
+	/**
+	 * 软件更新
+	 * @author Rodriguez-xin
+	 *
+	 */
 	public static class AppUpdate {
 
 		public static String CHECK_VERSION_URL = "http://115.29.175.17/version";
@@ -68,7 +80,11 @@ public class Const {
 		public static String APK_DOWNLOAD_URL = "apk_download_url";
 		
 	}
-
+	/**
+	 * 游戏邀请
+	 * @author Rodriguez-xin
+	 *
+	 */
 	public static class GameInviteMsg {
 
 		public static String GAME_INVITE_TO = "game_invite_to";
@@ -84,13 +100,21 @@ public class Const {
 
 		public static String DEVICE_ADDRESS = "device_address";
 	}
-	
+	/**
+	 * 阅后即焚
+	 * @author Rodriguez-xin
+	 *
+	 */
 	public static class DeleteAfterRead {
 
 		public static int COUNT_DOWN = 6;
 
 	}
-	
+	/**
+	 * 有盟统计
+	 * @author Rodriguez-xin
+	 *
+	 */
 	public static class UmengEvent {
 
 		public static String SHACK_MODE_EVENT = "shackmodeevent";
@@ -106,5 +130,24 @@ public class Const {
 		public static String CONNECT_TOY_DURATION = "ConnectToyDuration";
 
 	}
+	/**
+	 * 模式选择
+	 * @author Rodriguez-xin
+	 *
+	 */
+	public static class ToyConst {
 
+		public final static int STATE_NONE = -1;
+
+		public final static int STATE_SHAKE = 0;
+
+		public final static int STATE_VOICE = 1;
+
+		public final static int STATE_POSITION = 2;
+
+		public final static int STATE_CALL = 3;
+
+		public final static int STATE_MIC = 4;
+
+	}
 }

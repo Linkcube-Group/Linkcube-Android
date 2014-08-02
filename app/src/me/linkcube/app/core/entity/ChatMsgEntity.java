@@ -10,7 +10,7 @@ public class ChatMsgEntity {
 	
 	private int countDown;
 
-	private boolean isComMeg = true;
+	private boolean isComMsg = true;
 
 	public ChatMsgEntity() {
 	}
@@ -20,7 +20,7 @@ public class ChatMsgEntity {
 		this.name = name;
 		this.date = date;
 		this.text = text;
-		this.isComMeg = isComMsg;
+		this.isComMsg = isComMsg;
 	}
 	
 	public String getName() {
@@ -48,11 +48,11 @@ public class ChatMsgEntity {
 	}
 
 	public boolean getMsgType() {
-		return isComMeg;
+		return isComMsg;
 	}
 
 	public void setMsgType(boolean isComMsg) {
-		isComMeg = isComMsg;
+		isComMsg = isComMsg;
 	}
 
 	public int getCountDown() {

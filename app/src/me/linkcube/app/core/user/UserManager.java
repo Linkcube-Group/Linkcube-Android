@@ -20,7 +20,7 @@ import me.linkcube.app.core.entity.UserEntity;
 import me.linkcube.app.core.persistable.DataManager;
 import me.linkcube.app.core.persistable.PersistableFriend;
 import me.linkcube.app.core.persistable.PersistableUser;
-import me.linkcube.app.sync.chat.ChatMessageListener;
+import me.linkcube.app.sync.chat.ChatMessageManager;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.sync.core.ASmackManager;
@@ -147,7 +147,7 @@ public class UserManager {
 		 */
 		AddFriendListener.getInstance().addFriendListener(context);
 		// 接收消息的监听
-		ChatMessageListener.getInstance().onMessageListener(context);
+		ChatMessageManager.getInstance().onMessageListener(context);
 		// 获取离线消息
 		/*
 		 * GetOfflineMessage getOfflineMessage=new GetOfflineMessage(this);

@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 import me.linkcube.app.R;
@@ -29,7 +30,7 @@ import me.linkcube.app.core.update.DownloadNewApkHttpGet;
 import me.linkcube.app.core.update.UpdateManager;
 import me.linkcube.app.core.update.DownloadNewApkHttpGet.AppUpdateCallback;
 import me.linkcube.app.core.user.UserManager;
-import me.linkcube.app.sync.chat.ChatMessageListener;
+import me.linkcube.app.sync.chat.ChatMessageManager;
 import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.sync.friend.AddFriendListener;
@@ -43,7 +44,8 @@ import me.linkcube.app.widget.AlertUtils;
 public class SettingActivity extends DialogActivity implements OnClickListener {
 
 	private TextView connectToyTv, relevantAppTv, purchaseToyTv, helpTv,
-			feedbackTv, aboutUsTv, checkUpdateTv, setLanguageTv,deleteAfterReadTv;
+			feedbackTv, aboutUsTv, checkUpdateTv, setLanguageTv,
+			deleteAfterReadTv;
 
 	private Button loginOrRegisterBtn;
 
@@ -58,7 +60,7 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 	private Intent msgIntent;
 	private static PendingIntent msgPendingIntent;
 
-	private int msgNotificationID = 1100;
+	private int updateNotificationID = 1100;
 	private Notification msgNotification;
 	private NotificationManager msgNotificationManager;
 
@@ -88,8 +90,8 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 		checkUpdateTv = (TextView) findViewById(R.id.checkupdate_tv);
 		loginOrRegisterBtn = (Button) findViewById(R.id.login_or_register_btn);
 		newVertionTipIv = (ImageView) findViewById(R.id.new_version_tip_iv);
-		setLanguageTv=(TextView)findViewById(R.id.set_language_tv);
-		deleteAfterReadTv=(TextView)findViewById(R.id.delete_after_read_tv);
+		setLanguageTv = (TextView) findViewById(R.id.set_language_tv);
+		deleteAfterReadTv = (TextView) findViewById(R.id.delete_after_read_tv);
 		connectToyTv.setOnClickListener(this);
 		relevantAppTv.setOnClickListener(this);
 		purchaseToyTv.setOnClickListener(this);
@@ -127,13 +129,13 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 			startActivity(new Intent(mActivity, BluetoothSettingActivity.class));
 			break;
 		case R.id.relevant_app_tv:
-			//用户个人信息展示界面更换为相关app
+			// 用户个人信息展示界面更换为相关app
 			if (!UserManager.getInstance().isAuthenticated()) {
 				startActivity(new Intent(mActivity, LoginActivity.class));
 			} else {
 				startActivity(new Intent(mActivity, UserInfoActivity.class));
 			}
-			//startActivity(new Intent(mActivity, RelevantAppActivity.class));
+			// startActivity(new Intent(mActivity, RelevantAppActivity.class));
 			break;
 		case R.id.purchase_toy_tv:
 
@@ -162,60 +164,71 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 			}
 			break;
 		case R.id.set_language_tv:
-			
+
 			new AlertDialog.Builder(this)
-			.setTitle("语言设置")
-			.setSingleChoiceItems(new String[] {"中文简体","English"}, 0, new DialogInterface.OnClickListener() {
-				
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					Resources resources=getResources();
-					Configuration config=resources.getConfiguration();
-					DisplayMetrics dm= resources.getDisplayMetrics();
-					switch (which) {
-					case 0:
-						config.locale = Locale.SIMPLIFIED_CHINESE;
-						resources.updateConfiguration(config, dm);
-						PreferenceUtils.setInt("app_language", 0);
-						dialog.dismiss();
-						//刷新界面
-						Intent intent = new Intent();
-						intent.setClass(SettingActivity.this,SettingActivity.class);
-						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-						SettingActivity.this.startActivity(intent);
-						break;
-					case 1:
-						config.locale = Locale.ENGLISH;
-						resources.updateConfiguration(config, dm);
-						PreferenceUtils.setInt("app_language", 1);
-						dialog.dismiss();
-						//刷新界面
-						Intent intent2 = new Intent();
-						intent2.setClass(SettingActivity.this,SettingActivity.class);
-						intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-						SettingActivity.this.startActivity(intent2);
-						break;
-					default:
-						break;
-					}
-				}
-			})
-			.setNegativeButton("取消", null)
-			.show();
+					.setTitle("语言设置")
+					.setSingleChoiceItems(new String[] { "中文简体", "English" },
+							0, new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									Resources resources = getResources();
+									Configuration config = resources
+											.getConfiguration();
+									DisplayMetrics dm = resources
+											.getDisplayMetrics();
+									switch (which) {
+									case 0:
+										config.locale = Locale.SIMPLIFIED_CHINESE;
+										resources.updateConfiguration(config,
+												dm);
+										PreferenceUtils.setInt("app_language",
+												0);
+										dialog.dismiss();
+										// 刷新界面
+										Intent intent = new Intent();
+										intent.setClass(SettingActivity.this,
+												SettingActivity.class);
+										intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+										SettingActivity.this
+												.startActivity(intent);
+										break;
+									case 1:
+										config.locale = Locale.ENGLISH;
+										resources.updateConfiguration(config,
+												dm);
+										PreferenceUtils.setInt("app_language",
+												1);
+										dialog.dismiss();
+										// 刷新界面
+										Intent intent2 = new Intent();
+										intent2.setClass(SettingActivity.this,
+												SettingActivity.class);
+										intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+										SettingActivity.this
+												.startActivity(intent2);
+										break;
+									default:
+										break;
+									}
+								}
+							}).setNegativeButton("取消", null).show();
 			break;
 		case R.id.delete_after_read_tv:
-			if(!PreferenceUtils.contains("DELETE_AFTER_READ")){
+			if (!PreferenceUtils.contains("DELETE_AFTER_READ")) {
 				PreferenceUtils.setBoolean("DELETE_AFTER_READ", false);
 			}
-			if(!PreferenceUtils.getBoolean("DELETE_AFTER_READ", false)){
+			if (!PreferenceUtils.getBoolean("DELETE_AFTER_READ", false)) {
 				PreferenceUtils.setBoolean("DELETE_AFTER_READ", true);
-				Toast.makeText(mActivity,"开启阅后即焚功能", Toast.LENGTH_SHORT).show();
-			}else{
+				Toast.makeText(mActivity, "开启阅后即焚功能", Toast.LENGTH_SHORT)
+						.show();
+			} else {
 				PreferenceUtils.setBoolean("DELETE_AFTER_READ", false);
-				Toast.makeText(mActivity,"关闭阅后即焚功能", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mActivity, "关闭阅后即焚功能", Toast.LENGTH_SHORT)
+						.show();
 			}
-			
-			
+
 			break;
 		default:
 			break;
@@ -226,7 +239,7 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 	private void logout() {
 		ASmackManager.getInstance().closeConnection();
 		ASmackUtils.ROSTER_NAME = null;
-		ChatMessageListener.getInstance().setChatManager(null);
+		ChatMessageManager.getInstance().setChatManager(null);
 		AddFriendListener.getInstance().setAddFriendStatus(false);
 		UserManager.getInstance().setFirstLogin(true);
 		setResult(LOGOUT__RESULT);
@@ -257,7 +270,18 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						initNotification(mActivity);
+						msgNotification = new Notification();
+						msgNotification.icon = R.drawable.ic_launcher;
+						msgNotification.flags = Notification.FLAG_NO_CLEAR;
+						msgNotificationManager = (NotificationManager) mActivity
+								.getSystemService(Context.NOTIFICATION_SERVICE);
+						msgIntent = new Intent();
+						msgIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+						msgPendingIntent = PendingIntent
+								.getActivity(mActivity, 0, msgIntent, 0);
+						// 自定义界面
+						final RemoteViews rv = new RemoteViews(mActivity.getPackageName(),
+								R.layout.app_pause_notification);
 						DownloadNewApkHttpGet downloadNewApkHttpGet = new DownloadNewApkHttpGet();
 						downloadNewApkHttpGet
 								.setAppUpdateCallback(new AppUpdateCallback() {
@@ -274,12 +298,19 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 										float percent = (float) downLoadFileSize
 												* 100 / flieMaxSize;
 										Timber.d("percent:" + (int) percent);
+										rv.setImageViewResource(R.id.update_noti_iv, R.drawable.ic_launcher);
+										rv.setTextViewText(R.id.app_pause_name_tv, "正在下载更新文件："+(int) percent+"%");
+										rv.setProgressBar(R.id.update_noti_pb, 100, (int) percent, false);
+										msgNotification.contentView = rv;
+										msgNotification.contentIntent = msgPendingIntent;
+
+										msgNotificationManager.notify(updateNotificationID, msgNotification);
 									}
 
 									@Override
 									public void afterApkDownload(int reFlag) {
 										msgNotificationManager
-												.cancel(msgNotificationID);
+												.cancel(updateNotificationID);
 									}
 
 									@Override
@@ -287,8 +318,8 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 										failureUpdateHandler
 												.sendEmptyMessage(0);
 										msgNotificationManager
-												.cancel(msgNotificationID);
-										}
+												.cancel(updateNotificationID);
+									}
 								});
 						downloadNewApkHttpGet.downloadNewApkFile(mActivity,
 								PreferenceUtils.getString(
@@ -311,29 +342,11 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 
 		@Override
 		public void handleMessage(Message msg) {
-			Toast.makeText(SettingActivity.this, R.string.toast_network_error_download_file_failure,
+			Toast.makeText(SettingActivity.this,
+					R.string.toast_network_error_download_file_failure,
 					Toast.LENGTH_SHORT).show();
 		}
 
 	};
 
-	private void initNotification(Context context) {
-		msgNotification = new Notification();
-		msgNotification.icon = R.drawable.ic_launcher;
-		// msgNotification.defaults = Notification.DEFAULT_SOUND;
-		msgNotification.flags = Notification.FLAG_NO_CLEAR;
-		msgNotificationManager = (NotificationManager) context
-				.getSystemService(Context.NOTIFICATION_SERVICE);
-
-		msgIntent = new Intent();// Class.forName("com.oplibs.controll.test.TestMainActivity")
-		msgIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		msgPendingIntent = PendingIntent
-				.getActivity(mActivity, 0, msgIntent, 0);
-
-		msgNotification.setLatestEventInfo(mActivity, getResources().getString(R.string.app_name), getResources().getString(R.string.update_download_flie),
-				msgPendingIntent);
-
-		msgNotificationManager.notify(msgNotificationID, msgNotification);
-
-	}
 }

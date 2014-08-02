@@ -23,7 +23,7 @@ import me.linkcube.app.core.update.UpdateHttpGet;
 import me.linkcube.app.core.update.UpdateManager;
 import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.service.ToyServiceConnection;
-import me.linkcube.app.sync.chat.ChatMessageListener;
+import me.linkcube.app.sync.chat.ChatMessageManager;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import me.linkcube.app.sync.core.ReconnectionCallBack;
 import me.linkcube.app.sync.core.ReconnectionListener;
@@ -54,6 +54,7 @@ import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 /**
@@ -277,7 +278,7 @@ public class MainActivity extends BaseFragmentActivity implements
 			msg.obj = getResources()
 					.getString(R.string.toast_network_reconnect);
 			handler.sendMessage(msg);
-			ChatMessageListener.getInstance().onMessageListener(mActivity);
+			ChatMessageManager.getInstance().onMessageListener(mActivity);
 			UserManager.getInstance().setUserStateAvailable();
 		}
 
@@ -341,7 +342,18 @@ public class MainActivity extends BaseFragmentActivity implements
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						initNotification(mActivity);
+						msgNotification = new Notification();
+						msgNotification.icon = R.drawable.ic_launcher;
+						msgNotification.flags = Notification.FLAG_NO_CLEAR;
+						msgNotificationManager = (NotificationManager) mActivity
+								.getSystemService(Context.NOTIFICATION_SERVICE);
+						msgIntent = new Intent();
+						msgIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+						msgPendingIntent = PendingIntent
+								.getActivity(mActivity, 0, msgIntent, 0);
+						// 自定义界面
+						final RemoteViews rv = new RemoteViews(mActivity.getPackageName(),
+								R.layout.app_pause_notification);
 						DownloadNewApkHttpGet downloadNewApkHttpGet = new DownloadNewApkHttpGet();
 						downloadNewApkHttpGet
 								.setAppUpdateCallback(new AppUpdateCallback() {
@@ -358,6 +370,13 @@ public class MainActivity extends BaseFragmentActivity implements
 										float percent = (float) downLoadFileSize
 												* 100 / flieMaxSize;
 										Timber.d("percent:" + (int) percent);
+										rv.setImageViewResource(R.id.update_noti_iv, R.drawable.ic_launcher);
+										rv.setTextViewText(R.id.app_pause_name_tv, "正在下载更新文件："+(int) percent+"%");
+										rv.setProgressBar(R.id.update_noti_pb, 100, (int) percent, false);
+										msgNotification.contentView = rv;
+										msgNotification.contentIntent = msgPendingIntent;
+
+										msgNotificationManager.notify(1100, msgNotification);
 									}
 
 									@Override
@@ -461,28 +480,6 @@ public class MainActivity extends BaseFragmentActivity implements
 
 	};
 
-	private void initNotification(Context context) {
-		msgNotification = new Notification();
-		msgNotification.icon = R.drawable.ic_launcher;
-		// msgNotification.defaults = Notification.DEFAULT_SOUND;
-		msgNotification.flags = Notification.FLAG_NO_CLEAR;
-		msgNotificationManager = (NotificationManager) context
-				.getSystemService(Context.NOTIFICATION_SERVICE);
-
-		msgIntent = new Intent();// Class.forName("com.oplibs.controll.test.TestMainActivity")
-		msgIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		msgPendingIntent = PendingIntent
-				.getActivity(mActivity, 0, msgIntent, 0);
-
-		msgNotification.setLatestEventInfo(mActivity,
-				getResources().getString(R.string.update_title), getResources()
-						.getString(R.string.update_download_flie),
-				msgPendingIntent);
-
-		msgNotificationManager.notify(msgNotificationID, msgNotification);
-
-	}
-
 	private final BroadcastReceiver homePressReceiver = new BroadcastReceiver() {
 		final String SYSTEM_DIALOG_REASON_KEY = "reason";
 		final String SYSTEM_DIALOG_REASON_HOME_KEY = "homekey";
@@ -495,7 +492,7 @@ public class MainActivity extends BaseFragmentActivity implements
 				if (reason != null
 						&& reason.equals(SYSTEM_DIALOG_REASON_HOME_KEY)) {
 					// 自己随意控制程序，关闭...
-					NotificationUtils.initNotification(mActivity, 1100,
+					NotificationUtils.appPauseNotification(mActivity, 1100,
 							"连酷 Linkcube");
 				}
 			}
@@ -505,7 +502,7 @@ public class MainActivity extends BaseFragmentActivity implements
 	@Override  
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK ) {
-			NotificationUtils.initNotification(mActivity, 1100,
+			NotificationUtils.appPauseNotification(mActivity, 1100,
 					"连酷 Linkcube");
 			finish();
         }

@@ -9,7 +9,7 @@ import me.linkcube.app.core.Timber;
  * @author Rodriguez-xin
  * 
  */
-public class ToyUtils {
+public class VoiceUtils {
 	private final static int KModeNum = 8;
 
 	/**

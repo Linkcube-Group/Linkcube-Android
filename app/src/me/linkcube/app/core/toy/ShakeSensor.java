@@ -37,7 +37,7 @@ public class ShakeSensor implements SensorEventListener {
 
 	// private Boolean sendSignBoolean = false;
 
-	private MyQueue mQueue = new MyQueue();
+	private ShakeSpeedCache mQueue = new ShakeSpeedCache();
 
 	public ShakeSensor(Context context) {
 		sensorManager = (SensorManager) context

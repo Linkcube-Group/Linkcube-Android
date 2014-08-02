@@ -14,7 +14,7 @@ public class OnVoiceCaptureListener implements Visualizer.OnDataCaptureListener 
 	@Override
 	public void onWaveFormDataCapture(Visualizer visualizer, byte[] waveform,
 			int samplingRate) {
-		long sound = ToyUtils.computeWaveLevel(waveform) * level;
+		long sound = VoiceUtils.computeWaveLevel(waveform) * level;
 		try {
 			LinkcubeApplication.toyServiceCall.setWave(sound);// 根据声音设置玩具速度
 		} catch (RemoteException e) {
@@ -32,7 +32,7 @@ public class OnVoiceCaptureListener implements Visualizer.OnDataCaptureListener 
 		if(count==1){
 			return;
 		}
-		long waveng = ToyUtils.computeFFTLevel(fft) * level;
+		long waveng = VoiceUtils.computeFFTLevel(fft) * level;
 		
 		try {
 			LinkcubeApplication.toyServiceCall.setVoiceSensitivity(level);

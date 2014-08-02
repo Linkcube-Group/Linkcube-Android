@@ -20,7 +20,7 @@ import me.linkcube.app.core.persistable.PersistableChat;
 import me.linkcube.app.core.persistable.PersistableFriend;
 import me.linkcube.app.core.persistable.PersistableFriendRequest;
 import me.linkcube.app.core.user.UserManager;
-import me.linkcube.app.sync.chat.ChatMessageListener;
+import me.linkcube.app.sync.chat.ChatMessageManager;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import me.linkcube.app.sync.core.GetMessageReceiver;
 import me.linkcube.app.sync.core.ASmackUtils;
@@ -287,13 +287,13 @@ public class MultiPlayerFragment extends BaseFragment implements
 			}
 		});
 
-		offLineMsgs = ChatMessageListener.getInstance().getOffLineMsgs();
+		offLineMsgs = ChatMessageManager.getInstance().getOffLineMsgs();
 		for (OffLineMsgEntity offLineMsgEntity : offLineMsgs) {
 			saveMsg(offLineMsgEntity.getFrom(), offLineMsgEntity.getBody());
 			chatListAdapter.notifyDataSetChanged();
 		}
-		ChatMessageListener.getInstance().getOffLineMsgs().clear();
-		ChatMessageListener.getInstance().setOffLineMsgFlag(false);
+		ChatMessageManager.getInstance().getOffLineMsgs().clear();
+		ChatMessageManager.getInstance().setOffLineMsgFlag(false);
 
 	}
 
