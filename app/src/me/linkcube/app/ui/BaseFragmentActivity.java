@@ -33,8 +33,8 @@ public class BaseFragmentActivity extends SherlockFragmentActivity implements
 
 	private ImageView guideImage;
 
-	private int guideResourceId[] = { R.drawable.shake_mode_tip,
-			R.drawable.voice_mode_tip, R.drawable.mic_mode_tip, 0 };
+	private int guideResourceId[] = { R.drawable.help_guide_bg1,
+			R.drawable.help_guide_bg2, R.drawable.help_guide_bg3, 0 };
 	
 	private int guidePosition=0;
 

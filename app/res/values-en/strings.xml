@@ -59,11 +59,13 @@
     <string name="about_us">About Us</string>
     <string name="set_language">Set Language</string>
     <string name="check_update">Check Update</string>
+    <string name="about_slogan">连酷•连爱</string>
+    <string name="about_company_name">Linkcube  连酷科技</string>
     <string name="about_us_company_name">LinkcuBe</string>
     <string name="version_name">Version:2.1.0801</string>
     <string name="linkcube_weixin">微信：连酷科技</string>
     <string name="linkcube_weibo">微博：@连酷科技</string>
-    <string name="linkcube_website">Official Website:http://www.linkcube.me</string>
+    <string name="linkcube_website">http://www.linkcube.me</string>
 
     <!-- 蓝牙设置 -->
     <string name="search_toy">Search Toys</string>
