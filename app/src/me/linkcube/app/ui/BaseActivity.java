@@ -2,28 +2,28 @@ package me.linkcube.app.ui;
 
 import java.io.Serializable;
 
+import me.linkcube.app.R;
+import me.linkcube.app.core.Timber;
+import me.linkcube.app.util.PreferenceUtils;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.LayoutParams;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.umeng.analytics.MobclickAgent;
-
-import me.linkcube.app.R;
-import me.linkcube.app.core.Timber;
-import me.linkcube.app.util.NotificationUtils;
-import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 /**
  * Activity基类，提供了生命周期的日志输出，定义了一些变量
@@ -57,7 +57,6 @@ public abstract class BaseActivity extends SherlockActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Timber.d("onCreate");
-		
 	}
 
 	/**
@@ -168,5 +167,5 @@ public abstract class BaseActivity extends SherlockActivity {
 		super.onStop();
 		Timber.d("onStop");
 	}
-
+	
 }

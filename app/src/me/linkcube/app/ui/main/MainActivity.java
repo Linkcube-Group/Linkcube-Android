@@ -113,7 +113,7 @@ public class MainActivity extends BaseFragmentActivity implements
 		if (!PreferenceUtils.contains("DELETE_AFTER_READ")) {
 			PreferenceUtils.setBoolean("DELETE_AFTER_READ", true);
 		}
-
+		
 	}
 
 	private void CheckDeviceConnect() {

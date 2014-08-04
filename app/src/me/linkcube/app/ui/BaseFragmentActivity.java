@@ -5,11 +5,19 @@ import java.io.Serializable;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.umeng.analytics.MobclickAgent;
 
+import me.linkcube.app.R;
 import me.linkcube.app.core.Timber;
+import me.linkcube.app.util.PreferenceUtils;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 
 /**
  * 
@@ -22,6 +30,13 @@ public class BaseFragmentActivity extends SherlockFragmentActivity implements
 	protected Activity mActivity = this;
 
 	protected ProgressDialog progressDialog = null;
+
+	private ImageView guideImage;
+
+	private int guideResourceId[] = { R.drawable.shake_mode_tip,
+			R.drawable.voice_mode_tip, R.drawable.mic_mode_tip, 0 };
+	
+	private int guidePosition=0;
 
 	/**
 	 * 显示进度框
@@ -82,6 +97,7 @@ public class BaseFragmentActivity extends SherlockFragmentActivity implements
 	@Override
 	protected void onStart() {
 		super.onStart();
+		addHelpGuideImage();// 添加引导页
 		Timber.d("onStart");
 	}
 
@@ -107,4 +123,42 @@ public class BaseFragmentActivity extends SherlockFragmentActivity implements
 		// TODO 返回当前最上层的Fragment
 		return null;
 	}
+
+	/**
+	 * 添加引导图片
+	 */
+	public void addHelpGuideImage() {
+		View view = getWindow().getDecorView().findViewById(R.id.content_view);// 查找通过setContentView上的根布局
+		if (view == null)
+			return;
+		if (PreferenceUtils.getBoolean("isHelpGuide", false)) {
+			// 引导过了
+			return;
+		}
+		ViewParent viewParent = view.getParent();
+		if (viewParent instanceof FrameLayout) {
+			final FrameLayout frameLayout = (FrameLayout) viewParent;
+			guideImage = new ImageView(this);
+			FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+					ViewGroup.LayoutParams.MATCH_PARENT,
+					ViewGroup.LayoutParams.MATCH_PARENT);
+			guideImage.setLayoutParams(params);
+			guideImage.setScaleType(ScaleType.FIT_XY);
+			guideImage.setImageResource(guideResourceId[guidePosition]);
+			guideImage.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					guidePosition++;
+					if(guidePosition==guideResourceId.length){
+						frameLayout.removeView(guideImage);
+						PreferenceUtils.setBoolean("isHelpGuide", true);// 设为已引导
+					}else{
+						guideImage.setImageResource(guideResourceId[guidePosition]);
+					}
+				}
+			});
+			frameLayout.addView(guideImage);// 添加引导图片
+		}
+	}
+
 }
