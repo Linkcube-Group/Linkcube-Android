@@ -44,7 +44,7 @@
             <TextView
                 android:id="@id/relevant_app_tv"
                 style="@style/Setting.Item.TextView.Click"
-                android:text="@string/personal_info" />
+                android:text="@string/relevant_app" />
 
             <!-- <ImageView
                 android:layout_width="20dp"

@@ -130,12 +130,12 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 			break;
 		case R.id.relevant_app_tv:
 			// 用户个人信息展示界面更换为相关app
-			if (!UserManager.getInstance().isAuthenticated()) {
-				startActivity(new Intent(mActivity, LoginActivity.class));
-			} else {
-				startActivity(new Intent(mActivity, UserInfoActivity.class));
-			}
-			// startActivity(new Intent(mActivity, RelevantAppActivity.class));
+			/*
+			 * if (!UserManager.getInstance().isAuthenticated()) {
+			 * startActivity(new Intent(mActivity, LoginActivity.class)); } else
+			 * { startActivity(new Intent(mActivity, UserInfoActivity.class)); }
+			 */
+			startActivity(new Intent(mActivity, RelevantAppActivity.class));
 			break;
 		case R.id.purchase_toy_tv:
 
@@ -277,10 +277,11 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 								.getSystemService(Context.NOTIFICATION_SERVICE);
 						msgIntent = new Intent();
 						msgIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-						msgPendingIntent = PendingIntent
-								.getActivity(mActivity, 0, msgIntent, 0);
+						msgPendingIntent = PendingIntent.getActivity(mActivity,
+								0, msgIntent, 0);
 						// 自定义界面
-						final RemoteViews rv = new RemoteViews(mActivity.getPackageName(),
+						final RemoteViews rv = new RemoteViews(mActivity
+								.getPackageName(),
 								R.layout.app_pause_notification);
 						DownloadNewApkHttpGet downloadNewApkHttpGet = new DownloadNewApkHttpGet();
 						downloadNewApkHttpGet
@@ -298,13 +299,21 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 										float percent = (float) downLoadFileSize
 												* 100 / flieMaxSize;
 										Timber.d("percent:" + (int) percent);
-										rv.setImageViewResource(R.id.update_noti_iv, R.drawable.ic_launcher);
-										rv.setTextViewText(R.id.app_pause_name_tv, "正在下载更新文件："+(int) percent+"%");
-										rv.setProgressBar(R.id.update_noti_pb, 100, (int) percent, false);
+										rv.setImageViewResource(
+												R.id.update_noti_iv,
+												R.drawable.ic_launcher);
+										rv.setTextViewText(
+												R.id.app_pause_name_tv,
+												"正在下载更新文件：" + (int) percent
+														+ "%");
+										rv.setProgressBar(R.id.update_noti_pb,
+												100, (int) percent, false);
 										msgNotification.contentView = rv;
 										msgNotification.contentIntent = msgPendingIntent;
 
-										msgNotificationManager.notify(updateNotificationID, msgNotification);
+										msgNotificationManager.notify(
+												updateNotificationID,
+												msgNotification);
 									}
 
 									@Override
@@ -321,9 +330,11 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 												.cancel(updateNotificationID);
 									}
 								});
-						downloadNewApkHttpGet.downloadNewApkFile(mActivity,
+						downloadNewApkHttpGet.downloadNewApkFile(
+								mActivity,
 								PreferenceUtils.getString(
-										Const.AppUpdate.APK_DOWNLOAD_URL, null));
+										Const.AppUpdate.APK_DOWNLOAD_URL, null),
+								Const.AppUpdate.APK_NAME);
 						UpdateManager.getInstance().setUpdate(false);
 					}
 				}, new DialogInterface.OnClickListener() {

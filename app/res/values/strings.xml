@@ -48,7 +48,7 @@
     <string name="setting">设置</string>
     <string name="connect_toy">连接玩具</string>
     <string name="personal_info">个人信息</string>
-    <string name="relevant_app">相关APP</string>
+    <string name="relevant_app">相关软件</string>
     <string name="delete_after_read">阅后即焚</string>
     <string name="purchase_toy">购买玩具</string>
     <string name="help">使用说明</string>
@@ -61,11 +61,11 @@
     <string name="check_update">检测更新</string>
     <string name="about_slogan">连酷•连爱</string>
     <string name="about_company_name">Linkcube  连酷科技</string>
-    <string name="version_name">版本号：2.1.0801</string>
+    <string name="version_name">版本号：2.1.0806</string>
     <string name="linkcube_weixin">微信：连酷科技</string>
     <string name="linkcube_weibo">微博：@连酷科技</string>
     <string name="linkcube_website">http://www.linkcube.me</string>
-
+	<string name="app_download">下载</string>
     <!-- 蓝牙设置 -->
     <string name="search_toy">搜索玩具</string>
     <string name="searching">正在搜索...</string>

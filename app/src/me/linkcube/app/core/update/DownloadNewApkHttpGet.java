@@ -26,7 +26,7 @@ public class DownloadNewApkHttpGet {
 	}
 
 	public void downloadNewApkFile(final Context context,
-			final String downloadURL) {
+			final String downloadURL,final String apkName) {
 		Thread thread = new Thread() {
 
 			@Override
@@ -50,7 +50,7 @@ public class DownloadNewApkHttpGet {
 						appUpdateCallback.beforeApkDOwnload(fileLength);
 						// 开始下载apk
 						FileOutputStream fos = new FileOutputStream(
-								downloadPath + "/" + Const.AppUpdate.APK_NAME);
+								downloadPath + "/" + apkName);
 						byte[] buffer = new byte[20480];
 						int count = 0, downLoadFileSize = 0;
 						while ((count = iStream.read(buffer)) != -1) {
@@ -63,7 +63,7 @@ public class DownloadNewApkHttpGet {
 						appUpdateCallback.afterApkDownload(0);
 						// 安装apk
 						installApk(context, downloadPath + "/"
-								+ Const.AppUpdate.APK_NAME);
+								+ apkName);
 					} else {
 						appUpdateCallback.FailureApkDownload(-1);
 					}
@@ -86,7 +86,7 @@ public class DownloadNewApkHttpGet {
 	 * 
 	 * @param filename
 	 */
-	private void installApk(Context context, String filename) {
+	public static void installApk(Context context, String filename) {
 		File file = new File(filename);
 		Intent intent = new Intent();
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
