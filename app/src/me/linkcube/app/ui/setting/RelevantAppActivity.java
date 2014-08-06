@@ -28,7 +28,7 @@ public class RelevantAppActivity extends BaseActivity {
 		setContentView(R.layout.relevant_app_activity);
 		configureActionBar(R.string.relevant_app);
 		initData();
-		initUI();
+		initView();
 	}
 
 	private void initData() {
@@ -39,7 +39,8 @@ public class RelevantAppActivity extends BaseActivity {
 			app.size = 100;
 			app.id = i;
 			app.appIcon = null;
-			getBitmap(DownloadAppConst.RELEVANT_APP_ICON[i],i);
+			app.downloadApkName=DownloadAppConst.RELEVANT_SAVE_APK_NAME[i];
+			getBitmap(DownloadAppConst.RELEVANT_APP_ICON[i], i);
 			app.downloadState = DownloadAppConst.DOWNLOAD_STATE_NORMAL;
 			app.downloadSize = 0;
 			appList.put(app.id, app);
@@ -47,7 +48,7 @@ public class RelevantAppActivity extends BaseActivity {
 
 	}
 
-	private void initUI() {
+	private void initView() {
 		listView = (ListView) this.findViewById(R.id.listview);
 		adapter = new RelevantAppListAdapter(this, appList);
 		adapter.setListView(listView);
@@ -60,7 +61,7 @@ public class RelevantAppActivity extends BaseActivity {
 		// DownloadAppManager.getInstance().stopAllDownloadTask();
 	}
 
-	public void getBitmap(final String s,final int position) {
+	public void getBitmap(final String s, final int position) {
 		Thread thread = new Thread() {
 			@Override
 			public void run() {

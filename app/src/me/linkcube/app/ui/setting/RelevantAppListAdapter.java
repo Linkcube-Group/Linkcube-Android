@@ -1,15 +1,12 @@
 package me.linkcube.app.ui.setting;
 
 import me.linkcube.app.R;
-import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Const.DownloadAppConst;
 import me.linkcube.app.core.entity.AppFileEntity;
 import me.linkcube.app.core.entity.DownloadFileEntity;
 import me.linkcube.app.core.update.DownloadAppManager;
 import me.linkcube.app.core.update.DownloadNewApkHttpGet;
-import android.app.DownloadManager;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -81,7 +78,8 @@ public class RelevantAppListAdapter extends BaseAdapter {
 					null);
 			holder.layout = (LinearLayout) convertView
 					.findViewById(R.id.gamelist_item_layout);
-			holder.titleLayout=(LinearLayout)convertView.findViewById(R.id.mode_item_layout);
+			holder.titleLayout = (LinearLayout) convertView
+					.findViewById(R.id.mode_item_layout);
 			holder.icon = (ImageView) convertView.findViewById(R.id.app_icon);
 			holder.name = (TextView) convertView.findViewById(R.id.app_name);
 			holder.mode = (TextView) convertView
@@ -92,56 +90,57 @@ public class RelevantAppListAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		
+
 		final AppFileEntity app = dataList.get(position);
-		
-		if(app.name.equals("1")){
+
+		if (app.name.equals("1")) {
 			holder.layout.setVisibility(View.GONE);
 			holder.titleLayout.setVisibility(View.VISIBLE);
 			holder.mode.setText("音乐模式相关app");
-		}else if(app.name.equals("2")){
+		} else if (app.name.equals("2")) {
 			holder.layout.setVisibility(View.GONE);
 			holder.titleLayout.setVisibility(View.VISIBLE);
 			holder.mode.setText("语音模式相关app");
-		}else{
+		} else {
 			holder.layout.setVisibility(View.VISIBLE);
 			holder.titleLayout.setVisibility(View.GONE);
-		holder.name.setText(app.name);
-		holder.icon.setImageBitmap(dataList.get(position).appIcon);
+			holder.name.setText(app.name);
+			holder.icon.setImageBitmap(dataList.get(position).appIcon);
 
-		switch (app.downloadState) {
-		case DownloadAppConst.DOWNLOAD_STATE_NORMAL:
-			holder.btn.setText("下载");
-			this.changeBtnStyle(holder.btn, true);
-			break;
-		case DownloadAppConst.DOWNLOAD_STATE_DOWNLOADING:
-			holder.btn.setText("下载中");
-			this.changeBtnStyle(holder.btn, false);
-			break;
-		case DownloadAppConst.DOWNLOAD_STATE_FINISH:
-			holder.btn.setText("已下载");
-			this.changeBtnStyle(holder.btn, false);
-			break;
-		case DownloadAppConst.DOWNLOAD_STATE_WAITING:
-			holder.btn.setText("排队中");
-			this.changeBtnStyle(holder.btn, false);
-			break;
-		}
-		holder.btn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				DownloadFileEntity downloadFile = new DownloadFileEntity();
-				downloadFile.downloadID = app.id;
-				downloadFile.downloadUrl = app.downloadUrl;
-				downloadFile.downloadState = DownloadAppConst.DOWNLOAD_STATE_WAITING;
-				app.downloadState = DownloadAppConst.DOWNLOAD_STATE_WAITING;
-				downloadFile.downloadSize = app.downloadSize;
-				downloadFile.totalSize = app.size;
+			switch (app.downloadState) {
+			case DownloadAppConst.DOWNLOAD_STATE_NORMAL:
+				holder.btn.setText("下载");
+				this.changeBtnStyle(holder.btn, true);
+				break;
+			case DownloadAppConst.DOWNLOAD_STATE_DOWNLOADING:
+				holder.btn.setText("下载中");
+				this.changeBtnStyle(holder.btn, false);
+				break;
+			case DownloadAppConst.DOWNLOAD_STATE_FINISH:
+				holder.btn.setText("已下载");
+				this.changeBtnStyle(holder.btn, false);
+				break;
+			case DownloadAppConst.DOWNLOAD_STATE_WAITING:
 				holder.btn.setText("排队中");
-				changeBtnStyle(holder.btn, false);
-				downloadManager.startDownload(downloadFile);
+				this.changeBtnStyle(holder.btn, false);
+				break;
 			}
-		});
+			holder.btn.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					DownloadFileEntity downloadFile = new DownloadFileEntity();
+					downloadFile.downloadID = app.id;
+					downloadFile.downloadUrl = app.downloadUrl;
+					downloadFile.downloadState = DownloadAppConst.DOWNLOAD_STATE_WAITING;
+					app.downloadState = DownloadAppConst.DOWNLOAD_STATE_WAITING;
+					downloadFile.downloadSize = app.downloadSize;
+					downloadFile.totalSize = app.size;
+					downloadFile.downloadApkName=app.downloadApkName;
+					holder.btn.setText("排队中");
+					changeBtnStyle(holder.btn, false);
+					downloadManager.startDownload(downloadFile);
+				}
+			});
 		}
 		return convertView;
 	}
@@ -177,18 +176,12 @@ public class RelevantAppListAdapter extends BaseAdapter {
 	private void updateView(int index) {
 		int visiblePos = listView.getFirstVisiblePosition();
 		int offset = index - visiblePos;
-
-		// Log.e("", "index="+index+"visiblePos="+visiblePos+"offset="+offset);
-
 		// 只有在可见区域才更新
 		if (offset < 0)
 			return;
-
 		View view = listView.getChildAt(offset);
 		final AppFileEntity app = dataList.get(index);
 		ViewHolder holder = (ViewHolder) view.getTag();
-
-		// Log.e("", "id="+app.id+", name="+app.name);
 
 		holder.name.setText(app.name);
 		holder.size.setText((app.downloadSize * 100.0f / app.size) + "%");
@@ -205,7 +198,7 @@ public class RelevantAppListAdapter extends BaseAdapter {
 					.getPath() + "/linkcube";
 			// 安装apk
 			DownloadNewApkHttpGet.installApk(mContext, downloadPath + "/"
-					+ "momo.apk");
+					+ app.downloadApkName);
 			break;
 		}
 

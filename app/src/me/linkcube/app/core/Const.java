@@ -177,6 +177,8 @@ public class Const {
 
 		public static final int DOWNLOAD_STATE_WAITING = 0x04;
 
+		public static final String[] RELEVANT_SAVE_APK_NAME = {"1","cloudmusic.apk","esvideo.apk","papa.apk","changba.apk","2","sixrooms.apk","ishow.apk","uinew.apk"};
+
 		public static String[] RELEVANT_APP_URL = {
 				"1",
 				"http://dd.myapp.com/16891/E7BF7E17F704C110EF5FD42E5CD3514E.apk?fsname=com%2Enetease%2Ecloudmusic%5F2%2E0%2E2%5F31.apk",
