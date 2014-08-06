@@ -178,21 +178,29 @@ public class Const {
 		public static final int DOWNLOAD_STATE_WAITING = 0x04;
 
 		public static String[] RELEVANT_APP_URL = {
+				"1",
 				"http://dd.myapp.com/16891/E7BF7E17F704C110EF5FD42E5CD3514E.apk?fsname=com%2Enetease%2Ecloudmusic%5F2%2E0%2E2%5F31.apk",
-				"http://dd.myapp.com/16891/667D63AFFDFD602B18586542E9F33B85.apk?fsname=com%2Eshoujiduoduo%2Eringtone%5F6%2E7%2E9%2E0%5F6006790.apk",
-				"http://dd.myapp.com/16891/667D63AFFDFD602B18586542E9F33B85.apk?fsname=com%2Eshoujiduoduo%2Eringtone%5F6%2E7%2E9%2E0%5F6006790.apk",
-				"http://dd.myapp.com/16891/667D63AFFDFD602B18586542E9F33B85.apk?fsname=com%2Eshoujiduoduo%2Eringtone%5F6%2E7%2E9%2E0%5F6006790.apk",
-				"http://dd.myapp.com/16891/667D63AFFDFD602B18586542E9F33B85.apk?fsname=com%2Eshoujiduoduo%2Eringtone%5F6%2E7%2E9%2E0%5F6006790.apk" };
+				"http://dd.myapp.com/16891/6720E4F28E999536B96839778A08D5DD.apk?fsname=com%2Eesvideo%5F1%2E19%2E9%5F20.apk",
+				"http://dd.myapp.com/16891/259E405C7F6B3A8E867BD42CD1B2E14D.apk?fsname=me%2Epapa%5F4%2E2%2E2%5F42200.apk",
+				"http://dd.myapp.com/16891/53EADB30F63DCB227185A08C29077446.apk?fsname=com%2Echangba%5F5%2E1%2E1%5F511.apk",
+				"2",
+				"http://dd.myapp.com/16891/7C561367721A31308555ACC15002A10F.apk?fsname=cn%2Ev6%2Esixrooms%5F3%2E0%2E2%5F13.apk",
+				"http://dd.myapp.com/16891/9894BDFC7FE202A1D2650F6A5ADFF7DB.apk?fsname=com%2Ewole56%2Eishow%5F2%2E7%2E0%5F11.apk",
+				"http://dd.myapp.com/16891/0BC5478C49584375325AA9945B3C57B2.apk?fsname=cn%2Edpocket%2Emoplusand%2Euinew%5F3%2E6%2E1%2Dg%5F58.apk" };
 
-		public static String[] RELEVANT_APP_NAME = { "网易云音乐", "默默", "默默", "默默",
-				"默默" };
+		public static String[] RELEVANT_APP_NAME = { "1", "网易云音乐", "看片神器",
+				"啪啪", "唱吧", "2", "六间房秀场", "我秀美女直播", "友加" };
 
 		public static String[] RELEVANT_APP_ICON = {
+				"1",
 				"http://pp.myapp.com/ma_icon/0/icon_1168851_18516085_1405915246/72.png",
-				"http://pp.myapp.com/ma_icon/0/icon_140263_18707556_1406877482/72.png",
-				"http://pp.myapp.com/ma_icon/0/icon_140263_18707556_1406877482/72.png",
-				"http://pp.myapp.com/ma_icon/0/icon_140263_18707556_1406877482/72.png",
-				"http://pp.myapp.com/ma_icon/0/icon_140263_18707556_1406877482/72.png" };
+				"http://pp.myapp.com/ma_icon/0/icon_10309662_18383333_1405656095/72.png",
+				"http://pp.myapp.com/ma_icon/0/icon_1020153_18351646_1405585683/72.png",
+				"http://pp.myapp.com/ma_icon/0/icon_206678_18643905_1406195127/72.png",
+				"2",
+				"http://pp.myapp.com/ma_icon/0/icon_10197845_18679894_1406800515/72.png",
+				"http://pp.myapp.com/ma_icon/0/icon_1141422_18718654_1407204477/72.png",
+				"http://pp.myapp.com/ma_icon/0/icon_243970_18336075_1404810993/72.png" };
 
 	}
 }
