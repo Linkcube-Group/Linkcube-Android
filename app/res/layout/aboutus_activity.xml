@@ -2,47 +2,35 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/about_us_bg" >
+    android:background="@drawable/about_us_bg">
+    <ImageView 
+        android:id="@+id/about_us_text"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/about_us_text"
+        android:paddingTop="100dp"/>
+    <!-- 版本号 -->
 	<TextView 
-        android:id="@+id/about_slogan_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="150dp"
-        android:text="@string/about_slogan"
-        android:textSize="28sp"
-        android:textColor="@color/abs__background_holo_light"
-        android:background="@android:color/transparent"/>
-    <TextView 
-        android:id="@+id/about_company_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/about_slogan_tv"
-        android:text="@string/about_company_name"
-        android:textSize="22sp"
-        android:textColor="@color/abs__background_holo_light"
-        android:background="@android:color/transparent"/>
-    
-    <TextView 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/about_company_name"
-        android:paddingTop="40dp"
-        android:text="@string/version_name"
-        android:textSize="18sp"
-        android:textColor="@color/abs__background_holo_light"
-        android:background="@android:color/transparent"/>
-    
-    <TextView 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:paddingBottom="40dp"
-        android:text="@string/linkcube_website"
-        android:textSize="18sp"
-        android:textColor="@color/abs__background_holo_light"
-        android:background="@android:color/transparent"/>
+	    android:id="@+id/version_tv"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_centerHorizontal="true"
+	    android:layout_below="@id/about_us_text"
+	    android:paddingTop="20dp"
+	    android:text="@string/version_name"
+	    android:textSize="20sp"
+	    android:textColor="@color/abs__background_holo_light"
+	    />
+	<!-- 网址 -->
+	<TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_centerHorizontal="true"
+	    android:layout_alignParentBottom="true"
+	    android:paddingBottom="40dp"
+	    android:text="@string/linkcube_website"
+	    android:textSize="18sp"
+	    android:textColor="@color/abs__background_holo_light"
+	    />
 </RelativeLayout>

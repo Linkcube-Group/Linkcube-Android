@@ -8,13 +8,14 @@
         android:id="@+id/mode_item_layout"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="#e5ee5e"
+        android:background="#FF99CC"
         android:gravity="center_vertical" >
 
         <TextView
             android:id="@+id/relevant_app_mode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
             android:text=""
             android:textSize="14sp" />
     </LinearLayout>

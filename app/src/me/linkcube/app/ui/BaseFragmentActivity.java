@@ -35,8 +35,8 @@ public class BaseFragmentActivity extends SherlockFragmentActivity implements
 
 	private int guideResourceId[] = { R.drawable.help_guide_bg1,
 			R.drawable.help_guide_bg2, R.drawable.help_guide_bg3, 0 };
-	
-	private int guidePosition=0;
+
+	private int guidePosition = 0;
 
 	/**
 	 * 显示进度框
@@ -128,36 +128,43 @@ public class BaseFragmentActivity extends SherlockFragmentActivity implements
 	 * 添加引导图片
 	 */
 	public void addHelpGuideImage() {
-		View view = getWindow().getDecorView().findViewById(R.id.content_view);// 查找通过setContentView上的根布局
-		if (view == null)
-			return;
-		if (PreferenceUtils.getBoolean("isHelpGuide", false)) {
-			// 引导过了
-			return;
-		}
-		ViewParent viewParent = view.getParent();
-		if (viewParent instanceof FrameLayout) {
-			final FrameLayout frameLayout = (FrameLayout) viewParent;
-			guideImage = new ImageView(this);
-			FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-					ViewGroup.LayoutParams.MATCH_PARENT,
-					ViewGroup.LayoutParams.MATCH_PARENT);
-			guideImage.setLayoutParams(params);
-			guideImage.setScaleType(ScaleType.FIT_XY);
-			guideImage.setImageResource(guideResourceId[guidePosition]);
-			guideImage.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					guidePosition++;
-					if(guidePosition==guideResourceId.length){
-						frameLayout.removeView(guideImage);
-						PreferenceUtils.setBoolean("isHelpGuide", true);// 设为已引导
-					}else{
-						guideImage.setImageResource(guideResourceId[guidePosition]);
+		try {
+
+			View view = getWindow().getDecorView().findViewById(
+					R.id.content_view);// 查找通过setContentView上的根布局
+			if (view == null)
+				return;
+			if (PreferenceUtils.getBoolean("isHelpGuide", false)) {
+				// 引导过了
+				return;
+			}
+			ViewParent viewParent = view.getParent();
+			if (viewParent instanceof FrameLayout) {
+				final FrameLayout frameLayout = (FrameLayout) viewParent;
+				guideImage = new ImageView(this);
+				FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+						ViewGroup.LayoutParams.MATCH_PARENT,
+						ViewGroup.LayoutParams.MATCH_PARENT);
+				guideImage.setLayoutParams(params);
+				guideImage.setScaleType(ScaleType.FIT_XY);
+				guideImage.setImageResource(guideResourceId[guidePosition]);
+				guideImage.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						guidePosition++;
+						if (guidePosition == guideResourceId.length - 1) {
+							frameLayout.removeView(guideImage);
+							PreferenceUtils.setBoolean("isHelpGuide", true);// 设为已引导
+						} else {
+							guideImage
+									.setImageResource(guideResourceId[guidePosition]);
+						}
 					}
-				}
-			});
-			frameLayout.addView(guideImage);// 添加引导图片
+				});
+				frameLayout.addView(guideImage);// 添加引导图片
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
