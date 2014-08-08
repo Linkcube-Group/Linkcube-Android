@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/MainPage"
-    android:id="@+id/content_view" >
+    android:id="@+id/content_view"
+    style="@style/MainPage" >
 
     <FrameLayout
         android:id="@id/fragment_content"

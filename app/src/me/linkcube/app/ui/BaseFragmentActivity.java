@@ -1,16 +1,19 @@
 package me.linkcube.app.ui;
 
+import java.io.InputStream;
 import java.io.Serializable;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.umeng.analytics.MobclickAgent;
+import javax.crypto.Mac;
 
 import me.linkcube.app.R;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.util.PreferenceUtils;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +21,9 @@ import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * 
@@ -152,12 +158,12 @@ public class BaseFragmentActivity extends SherlockFragmentActivity implements
 					@Override
 					public void onClick(View v) {
 						guidePosition++;
-						if (guidePosition == guideResourceId.length - 1) {
+						if (guidePosition >= guideResourceId.length - 1) {
 							frameLayout.removeView(guideImage);
 							PreferenceUtils.setBoolean("isHelpGuide", true);// 设为已引导
 						} else {
 							guideImage
-									.setImageResource(guideResourceId[guidePosition]);
+									.setImageBitmap(readBitMap(mActivity,guideResourceId[guidePosition]));
 						}
 					}
 				});
@@ -166,6 +172,16 @@ public class BaseFragmentActivity extends SherlockFragmentActivity implements
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static Bitmap readBitMap(Context context, int resId) {
+		BitmapFactory.Options opt = new BitmapFactory.Options();
+		opt.inPreferredConfig = Bitmap.Config.RGB_565;
+		opt.inPurgeable = true;
+		opt.inInputShareable = true;
+		// 获取资源图片
+		InputStream is = context.getResources().openRawResource(resId);
+		return BitmapFactory.decodeStream(is, null, opt);
 	}
 
 }
