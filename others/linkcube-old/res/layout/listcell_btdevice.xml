@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60px"
+    android:focusable="false"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal" >
+    	<Button
+             android:id="@+id/btn_btdevaction"
+             android:layout_width="wrap_content"
+             android:layout_height="50dp"
+			android:layout_marginTop="5dp"
+             android:layout_alignParentTop="true"
+             android:layout_centerHorizontal="true"
+             android:background="@drawable/btn_style_linkcube_big_pink_button" />
+
+        <TextView
+            android:id="@+id/tv_devname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textSize="25sp"
+            android:textColor="#FFFFFFFF"
+            android:text="设备" />
+
+         <TextView
+             android:id="@+id/tv_devstatus"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="5dp"
+             android:textSize="25sp"
+             android:textColor="#FFFFFFFF"
+             android:text="@string/str_btdev_disconntted" />
+
+</RelativeLayout>

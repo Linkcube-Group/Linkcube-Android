@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainweixin"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#eee" >
+
+       <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/ibtn_return"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+          	android:layout_marginTop="15dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_style_linkcube_return_button" />
+
+    	</RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_devicestatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18dp"
+            android:textColor="#6f6e6e"
+            android:text="联网游戏，请注册马甲" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+		android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="left"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textColor="#6f6e6e"
+            android:text="邮箱：" />
+
+        <EditText
+            android:id="@+id/et_userid"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:background="#ffffff"
+            android:ems="10" >
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="left"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textColor="#6f6e6e"
+            android:text="密码：" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:background="#ffffff"
+            android:ems="10"
+            android:inputType="textPassword" >
+        </EditText>
+
+    </LinearLayout>
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="left"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#6f6e6e"
+            android:layout_marginLeft="20dp"
+            android:text="密码：" />
+
+        <EditText
+            android:id="@+id/et_password_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:background="#ffffff"
+            android:ems="10" 
+            android:inputType="textPassword" >
+        </EditText>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+		android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="left"
+        android:orientation="horizontal" >
+
+    </LinearLayout>
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="left"
+        android:orientation="horizontal" >
+		<RadioGroup 
+			android:id="@+id/radioGroup"
+			android:layout_marginLeft="20dp"
+			android:contentDescription="性别"
+			android:orientation="horizontal"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content">
+		</RadioGroup>
+    </LinearLayout>
+    
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="50dp"
+	    android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+	    android:layout_gravity="center_horizontal"
+	    android:background="@drawable/bg_textbar"
+	    android:gravity="center_horizontal"
+	    android:orientation="vertical" >
+
+		<TextView
+		    android:id="@+id/tv_devicestatus"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="4dp"
+		    android:textColor="#6f6e6e"
+		    android:text="注册即表示您同意" />
+
+		<TextView
+		    android:id="@+id/textView2"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textColor="#6f6e6e"
+		    android:text="连酷用户协议" />
+
+    </LinearLayout>
+
+	<Button
+        android:id="@+id/btn_createaccount"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+	    android:layout_centerHorizontal="true"
+	    android:layout_marginTop="20dp"
+	    android:layout_marginBottom="10dp"
+	    android:layout_marginRight="20dp"
+	    android:layout_marginLeft="20dp"
+	    android:textSize="25dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/btn_style_linkcube_big_pink_button"
+        android:text="注册" />
+
+</LinearLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainweixin"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#eee" >
+
+       <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/ibtn_return"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+          	android:layout_marginTop="15dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_style_linkcube_return_button" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/bg_textbar" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:text="关于连酷" />
+
+    </RelativeLayout>
+	 <ScrollView     
+		android:id="@+id/view1"     
+		android:layout_width="wrap_content"     
+		android:layout_height="fill_parent"     
+		android:padding="8dip"     
+		android:scrollbarStyle="insideOverlay"     
+		android:background="#eee"     
+		android:overScrollMode="never"> 
+    <TextView
+        android:id="@+id/tv_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textColor="#000"
+        android:textSize="16sp"
+        android:background="@drawable/bg_aboutus"
+        android:text="使用说明：\n
+一、蓝牙连接流程：\n
+1. 打开手机系统的蓝牙，点击搜索新设备按钮，搜索Mars/Venus后，与其配对；\n
+2. 打开APP，进入“设置蓝牙”界面，点击设备列表中的Mars/Venus，开始蓝牙连接，蓝牙连接成功后（设备会震动两下），您就可以开始游戏啦~\n\n
+
+二、APP操控方式：\n
+1. 单机状态下：\n
+    您可以在主界面使用“摇一摇”和“手机声音”控制Mars/Venus的震动强度哦，点击灵敏度加减按钮，您还可以调节控制的灵敏度。在主界面左滑的“七星图”界面，可以操控玩具7种振动模式的切换哦~\n
+    需要注意的是“摇一摇”和“手机声音”控制时，手机必须处于APP主界面。（APP的最小化将导致控制中断）\n\n
+
+2. 登录联网状态下：\n
+    联网交互状态下，您可以通过“摇一摇”和七星图界面，远程控制对方玩具的震动哦。\n\n
+
+感谢您的使用和支持，我们会持续更新，给您最爽快的体验！" />
+    </ScrollView>
+
+</LinearLayout>

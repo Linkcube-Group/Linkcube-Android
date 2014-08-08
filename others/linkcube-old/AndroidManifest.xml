@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="me.linkcube.client"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="19" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+	<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <application
+        android:allowBackup="true"
+        android:name="me.linkcube.client.LinkcubeApplication"
+        android:icon="@drawable/ic_launcher"
+        android:label="连酷"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        <activity
+            android:name="SplashActivity" android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="BTSettingActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name="SensitivitySettingActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name="FriendsListActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustPan" android:configChanges="keyboardHidden|orientation"></activity>
+        <activity android:name="MainTabActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name="PersonalInfoEditActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name="AboutUsActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name="TutorialActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name="FriendInfoActivity" android:screenOrientation="portrait"></activity>
+
+        <activity android:name="CreateAccountActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name="SettingActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name="FriendsActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name="PersonalActivity" android:screenOrientation="portrait"></activity>
+              
+        <activity android:name="InfoItemEditActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name="InfoItemEditMLActivity" android:screenOrientation="portrait"></activity>
+        
+        
+       	<activity android:name="LoginActivity" android:screenOrientation="portrait"></activity>
+       	<activity android:theme="@android:style/Theme.Dialog" android:name="ConfirmationDlgActivity" android:screenOrientation="portrait"></activity>
+       	<activity android:theme="@android:style/Theme.Dialog" android:name="DisconnectDlgActivity" android:screenOrientation="portrait"></activity>
+        <activity android:theme="@android:style/Theme.Dialog" android:name="UploadAvatarActivity" android:screenOrientation="portrait"></activity>
+        <activity android:theme="@android:style/Theme.Dialog" android:name="InfoDlgActivity" android:screenOrientation="portrait"></activity>
+        <activity android:theme="@android:style/Theme.Dialog" android:name="LoginOrCreateActivity" android:screenOrientation="portrait"></activity>
+        <activity android:theme="@android:style/Theme.Dialog" android:name="ConnectCodeActivity" android:screenOrientation="portrait"></activity>
+
+        <service android:name="com.oplibs.services.OnChatService">
+            <intent-filter>
+                <action android:name="com.oplibs.services.OnChatService"></action>
+            </intent-filter>
+        </service>
+        
+        <service android:name="me.linkcube.toy.ToyService">
+            <intent-filter>
+                <action android:name="me.linkcube.toy.ToyService"></action>
+            </intent-filter>
+        </service>
+        
+        
+	</application>
+
+</manifest>

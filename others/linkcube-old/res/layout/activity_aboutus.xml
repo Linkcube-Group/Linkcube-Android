@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainweixin"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#eee" >
+
+       <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/ibtn_return"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+          	android:layout_marginTop="15dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_style_linkcube_return_button" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/bg_textbar" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:text="关于连酷" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:background="@drawable/bg_aboutus"
+        android:text="    LinkcuBe Technologies 连酷科技，是全球首家智能情趣玩具公司。不论异地情侣相隔多远，都能通过手机遥控彼此的连酷玩具，远程互动。\n\n
+    连酷团队有来自英国的物理学家、硅谷的材料科学家、本土的超级创客、御姐产品总监、美女设计师团队。\n\n
+联系我们：support@linkcube.me
+微信公共账号：连酷科技
+微博：@连酷科技" />
+
+</LinearLayout>

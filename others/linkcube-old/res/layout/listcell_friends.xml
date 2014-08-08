@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:focusable="false"
+    android:descendantFocusability="blocksDescendants"
+	android:minHeight="?android:attr/listPreferredItemHeight"
+	android:background="#eee"
+    android:gravity="left" >
+
+    <LinearLayout
+        android:id="@+id/ll_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/im_avatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/default_avatar"
+            android:scaleType="centerInside" />
+
+    </LinearLayout>
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="10dp"
+		android:orientation="vertical"
+		android:layout_toRightOf="@+id/ll_avatar" >
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="10dp"
+			android:orientation="vertical"
+			android:layout_toRightOf="@+id/ll_avatar" >
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				android:layout_toRightOf="@+id/ll_avatar" >
+
+				<RelativeLayout
+		        	android:layout_width="60dp"
+		        	android:layout_height="wrap_content"
+		        	android:layout_marginLeft="0dp"
+		        	android:layout_marginTop="15dp" >
+					
+		
+					<ImageView
+					    android:id="@+id/imageView1"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:layout_alignParentLeft="true"
+					    android:layout_centerVertical="true"
+					    android:src="@drawable/bg_gender" />
+					<ImageView
+					    android:id="@+id/imageView2"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:layout_alignParentLeft="true"
+					    android:layout_marginLeft="5dp"
+					    android:layout_centerVertical="true"
+					    android:src="@drawable/bg_male" />
+		
+					<TextView
+					    android:id="@+id/tv_age"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:layout_marginLeft="5dp"
+					    android:layout_alignParentRight="true"
+						android:layout_centerVertical="true"		    
+					    android:layout_toRightOf="@+id/imageView2"
+					    android:text="33" />
+		
+				</RelativeLayout>
+				<TextView
+				    android:id="@+id/tv_nickname"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:textAppearance="?android:attr/textAppearanceLarge"
+				    android:textColor="#000000"
+				    android:textSize="20sp"
+				    android:text="战士"
+				    android:layout_marginTop="15dp" />
+			</LinearLayout>
+					
+			<TextView
+			    android:id="@+id/tv_jid"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:textAppearance="?android:attr/textAppearanceLarge"
+			    android:textColor="#000000"
+			    android:textSize="12sp"
+			    android:text="id"
+			    android:layout_marginTop="10dp" />
+		</LinearLayout>
+		
+
+	</LinearLayout>
+
+	<LinearLayout
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:orientation="vertical" >
+
+		<Button
+		    android:id="@+id/btn_friendcellaction"
+		    android:layout_width="60dp"
+		    android:layout_height="30dp"
+		    android:layout_marginTop="30dp"
+		    android:layout_marginRight="10dp"
+		    android:textColor="#fff"
+		    android:text="删除"
+		    android:background="@drawable/btn_style_linkcube_small_pink_button" />
+
+	</LinearLayout>
+    
+</RelativeLayout>
