@@ -3,7 +3,7 @@ package me.linkcube.app.ui.main.single;
 /**
  * StatusBar实现类
  * 
- * @author orange
+ * @author Ervin
  * 
  */
 public interface OnSingleStatusBarClickListener {

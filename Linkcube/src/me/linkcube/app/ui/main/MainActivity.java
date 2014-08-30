@@ -58,7 +58,7 @@ import android.widget.Toast;
 /**
  * 主页面Activity
  * 
- * @author Orange
+ * @author Ervin
  * 
  */
 public class MainActivity extends BaseFragmentActivity implements

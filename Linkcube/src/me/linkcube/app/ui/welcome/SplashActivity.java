@@ -39,7 +39,7 @@ import android.widget.Toast;
 /**
  * 欢迎页面
  * 
- * @author Orange
+ * @author Ervin
  * 
  */
 public class SplashActivity extends DialogActivity {

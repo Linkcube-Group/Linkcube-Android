@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 /**
  * 底部导航栏
  * 
- * @author orange
+ * @author Ervin
  * 
  */
 public class TabIndicatorView extends LinearLayout {
@@ -129,7 +129,7 @@ public class TabIndicatorView extends LinearLayout {
 	/**
 	 * 底部导航栏实现回调接口
 	 * 
-	 * @author orange
+	 * @author Ervin
 	 * 
 	 */
 

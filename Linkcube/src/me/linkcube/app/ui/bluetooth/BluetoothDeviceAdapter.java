@@ -18,7 +18,7 @@ import me.linkcube.app.ui.BaseListAdapter;
 /**
  * 蓝牙搜索列表适配器
  * 
- * @author orange
+ * @author Ervin
  * 
  */
 public class BluetoothDeviceAdapter extends BaseListAdapter<BluetoothDevice> {

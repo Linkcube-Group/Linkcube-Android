@@ -5,7 +5,7 @@ import android.bluetooth.BluetoothDevice;
 /**
  * 列表中设备被点击后的回调函数
  * 
- * @author orange
+ * @author Ervin
  * 
  */
 public interface OnDeviceItemClickListener {

@@ -14,7 +14,7 @@ import android.view.View.OnFocusChangeListener;
 /**
  * 自定义带有清空按钮的EditText组件
  * 
- * @author Orange
+ * @author Ervin
  * 
  */
 public class CWClearEditText extends EditText implements OnFocusChangeListener,

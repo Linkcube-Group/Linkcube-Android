@@ -3,7 +3,7 @@ package me.linkcube.app.ui.main.single;
 /**
  * 模式选中回调接口
  * 
- * @author orange
+ * @author Ervin
  * 
  */
 public interface ModeSelectedListener {

@@ -12,7 +12,7 @@ import android.content.Intent;
 /**
  * 搜索蓝牙设备广播接收器
  * 
- * @author orange
+ * @author Ervin
  * 
  */
 public class BluetoothDeviceReceiver extends BroadcastReceiver {

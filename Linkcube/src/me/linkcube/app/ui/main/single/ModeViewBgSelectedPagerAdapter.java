@@ -15,7 +15,7 @@ import android.widget.ImageView;
 /**
  * 个人设置页面装有三种模式的PagerAdapter
  * 
- * @author orange
+ * @author Ervin
  * 
  */
 public class ModeViewBgSelectedPagerAdapter extends PagerAdapter {

@@ -10,7 +10,7 @@ import android.content.Context;
 /**
  * 数据库管理类
  * 
- * @author orange
+ * @author Ervin
  */
 public class DataManager {
 

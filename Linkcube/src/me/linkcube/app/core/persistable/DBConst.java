@@ -2,7 +2,7 @@ package me.linkcube.app.core.persistable;
 
 /**
  * 
- * @author Orange
+ * @author Ervin
  */
 public class DBConst {
 

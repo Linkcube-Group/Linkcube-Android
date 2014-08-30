@@ -20,7 +20,7 @@ import android.widget.RelativeLayout;
 /**
  * 七星图模式自定义控件视图
  * 
- * @author orange
+ * @author Ervin
  * 
  */
 public class SexPositionModeView extends RelativeLayout {

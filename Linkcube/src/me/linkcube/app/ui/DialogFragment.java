@@ -8,7 +8,7 @@ import android.app.ProgressDialog;
 /**
  * Base fragment capable of receiving dialog callbacks
  * 
- * @author Orange
+ * @author Ervin
  * 
  */
 public class DialogFragment extends BaseFragment {

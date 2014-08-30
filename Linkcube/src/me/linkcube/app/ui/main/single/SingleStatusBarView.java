@@ -19,7 +19,7 @@ import android.widget.TextView;
 /**
  * 状态栏控件
  * 
- * @author orange
+ * @author Ervin
  * 
  */
 public class SingleStatusBarView extends LinearLayout {

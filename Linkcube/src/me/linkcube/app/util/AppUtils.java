@@ -5,7 +5,7 @@ import static me.linkcube.app.core.Const.Preference.SHOW_GUIDE;
 
 /**
  * 
- * @author Orange
+ * @author Ervin
  * 
  */
 public class AppUtils {

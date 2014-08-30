@@ -20,7 +20,7 @@ import me.linkcube.app.ui.main.MainActivity;
 /**
  * 引导功能页
  * 
- * @author Orange
+ * @author Ervin
  * 
  */
 public class GuideActivity extends DialogActivity  {
