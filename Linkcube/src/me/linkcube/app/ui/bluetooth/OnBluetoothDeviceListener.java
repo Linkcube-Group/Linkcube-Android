@@ -5,7 +5,7 @@ import android.bluetooth.BluetoothDevice;
 /**
  * 搜索蓝牙设备的回调接口
  * 
- * @author orange
+ * @author Ervin
  * 
  */
 public interface OnBluetoothDeviceListener {

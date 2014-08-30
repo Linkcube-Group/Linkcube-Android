@@ -11,7 +11,7 @@ import android.widget.Toast;
 /**
  * AlertDialog的创建类
  * 
- * @author Orange
+ * @author Ervin
  * 
  */
 public final class AlertUtils {

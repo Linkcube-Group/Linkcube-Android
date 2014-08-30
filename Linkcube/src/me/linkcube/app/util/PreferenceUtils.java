@@ -6,7 +6,7 @@ import android.content.SharedPreferences.Editor;
 
 /**
  * 
- * @author Orange
+ * @author Ervin
  */
 public class PreferenceUtils {
 

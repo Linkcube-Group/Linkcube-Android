@@ -40,7 +40,7 @@ import static me.linkcube.app.core.Const.ToyConst.*;
 /**
  * 单人模式页面
  * 
- * @author orange
+ * @author Ervin
  * 
  */
 public class SinglePalyerFragment extends BaseFragment implements

@@ -11,7 +11,7 @@ import android.widget.TextView;
 /**
  * 蓝牙列表中每一个单元视图
  * 
- * @author orange
+ * @author Ervin
  * 
  */
 public class BluetoothDeviceListCell extends LinearLayout {

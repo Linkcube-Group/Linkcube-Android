@@ -9,7 +9,7 @@ import static android.view.View.INVISIBLE;
 /**
  * 显示和隐藏View的帮助类
  * 
- * @author Orange
+ * @author Ervin
  * 
  */
 public class ViewUtils {

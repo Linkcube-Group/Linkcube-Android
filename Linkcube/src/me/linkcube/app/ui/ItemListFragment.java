@@ -12,7 +12,7 @@ import android.widget.ListView;
 
 /**
  * 
- * @author Orange
+ * @author Ervin
  * 
  * @param <E>
  */

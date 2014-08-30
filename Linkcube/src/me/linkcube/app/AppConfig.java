@@ -3,7 +3,7 @@ package me.linkcube.app;
 /**
  * 主配置文件，配置一些公共变量
  * 
- * @author Orange
+ * @author Ervin
  * 
  */
 public class AppConfig {

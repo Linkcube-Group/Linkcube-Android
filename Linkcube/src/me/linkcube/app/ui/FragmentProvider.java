@@ -3,7 +3,7 @@ package me.linkcube.app.ui;
 /**
  * 获取当前Activity持有的Fragment
  * 
- * @author Orange
+ * @author Ervin
  * 
  */
 public interface FragmentProvider {

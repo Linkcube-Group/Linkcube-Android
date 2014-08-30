@@ -28,7 +28,7 @@ import com.umeng.analytics.MobclickAgent;
 /**
  * Activity基类，提供了生命周期的日志输出，定义了一些变量
  * 
- * @author Orange
+ * @author Ervin
  * 
  */
 public abstract class BaseActivity extends SherlockActivity {

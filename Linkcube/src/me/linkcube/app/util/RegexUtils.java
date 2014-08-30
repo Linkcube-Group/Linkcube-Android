@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /**
  * 正在表达式工具类
  * 
- * @author orange
+ * @author Ervin
  * 
  */
 public class RegexUtils {

@@ -16,7 +16,7 @@ import android.widget.TextView;
 /**
  * 蓝牙搜索列表，并带有辅助提示功能
  * 
- * @author orange
+ * @author Ervin
  * 
  */
 

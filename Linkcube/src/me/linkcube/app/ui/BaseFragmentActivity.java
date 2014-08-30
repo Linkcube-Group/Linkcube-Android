@@ -27,7 +27,7 @@ import com.umeng.analytics.MobclickAgent;
 
 /**
  * 
- * @author Orange
+ * @author Ervin
  * 
  */
 public class BaseFragmentActivity extends SherlockFragmentActivity implements
