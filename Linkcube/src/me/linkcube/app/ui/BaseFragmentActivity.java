@@ -133,6 +133,8 @@ public class BaseFragmentActivity extends SherlockFragmentActivity implements
 	/**
 	 * 添加引导图片
 	 */
+	
+	//TODO 引导页这种功能应该再加一层代码结构，不应该在最基类做 @杨鑫
 	public void addHelpGuideImage() {
 		try {
 
