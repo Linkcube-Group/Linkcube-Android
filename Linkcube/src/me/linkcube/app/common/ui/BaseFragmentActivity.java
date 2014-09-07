@@ -1,4 +1,4 @@
-package me.linkcube.app.ui;
+package me.linkcube.app.common.ui;
 
 import java.io.InputStream;
 import java.io.Serializable;
@@ -6,8 +6,8 @@ import java.io.Serializable;
 import javax.crypto.Mac;
 
 import me.linkcube.app.R;
+import me.linkcube.app.common.util.PreferenceUtils;
 import me.linkcube.app.core.Timber;
-import me.linkcube.app.util.PreferenceUtils;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;

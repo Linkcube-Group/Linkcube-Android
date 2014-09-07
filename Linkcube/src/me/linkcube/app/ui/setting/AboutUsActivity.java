@@ -1,8 +1,7 @@
 package me.linkcube.app.ui.setting;
 
 import me.linkcube.app.R;
-import me.linkcube.app.ui.BaseActivity;
-
+import me.linkcube.app.common.ui.BaseActivity;
 import android.os.Bundle;
 
 public class AboutUsActivity extends BaseActivity {

@@ -2,8 +2,8 @@ package me.linkcube.app.ui.user;
 
 
 import me.linkcube.app.R;
+import me.linkcube.app.common.ui.BaseActivity;
 import me.linkcube.app.core.Timber;
-import me.linkcube.app.ui.BaseActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

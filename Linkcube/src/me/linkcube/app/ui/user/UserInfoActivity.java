@@ -5,14 +5,14 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import me.linkcube.app.R;
+import me.linkcube.app.common.ui.DialogActivity;
+import me.linkcube.app.common.util.FormatUtils;
 import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.entity.UserEntity;
 import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.core.ASmackUtils;
-import me.linkcube.app.ui.DialogActivity;
-import me.linkcube.app.util.FormatUtils;
 
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smackx.packet.VCard;

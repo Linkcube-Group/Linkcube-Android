@@ -3,10 +3,10 @@ package me.linkcube.app.ui.friend;
 import java.util.List;
 
 import me.linkcube.app.R;
+import me.linkcube.app.common.util.FormatUtils;
+import me.linkcube.app.common.util.RegexUtils;
 import me.linkcube.app.core.entity.FriendEntity;
 import me.linkcube.app.core.user.UserManager;
-import me.linkcube.app.util.FormatUtils;
-import me.linkcube.app.util.RegexUtils;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;

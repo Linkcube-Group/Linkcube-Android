@@ -1,4 +1,4 @@
-package me.linkcube.app.ui;
+package me.linkcube.app.common.ui;
 
 import java.io.Serializable;
 
@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 
 /**
- * Base fragment capable of receiving dialog callbacks
  * 
  * @author Ervin
  * 

@@ -1,12 +1,12 @@
 package me.linkcube.app.core.user;
 
 import static me.linkcube.app.core.Const.DeleteAfterRead.COUNT_DOWN;
+import me.linkcube.app.common.util.TimeUtils;
 import me.linkcube.app.core.entity.ChatEntity;
 import me.linkcube.app.core.entity.ChatMsgEntity;
 import me.linkcube.app.core.persistable.DataManager;
 import me.linkcube.app.core.persistable.PersistableChat;
 import me.linkcube.app.sync.core.ASmackUtils;
-import me.linkcube.app.util.TimeUtils;
 
 public class UserUtils {
 

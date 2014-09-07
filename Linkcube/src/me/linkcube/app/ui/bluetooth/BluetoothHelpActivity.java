@@ -2,7 +2,7 @@ package me.linkcube.app.ui.bluetooth;
 
 import android.os.Bundle;
 import me.linkcube.app.R;
-import me.linkcube.app.ui.BaseActivity;
+import me.linkcube.app.common.ui.BaseActivity;
 
 public class BluetoothHelpActivity extends BaseActivity {
 

@@ -7,9 +7,9 @@ import java.util.List;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import me.linkcube.app.common.util.PreferenceUtils;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.entity.ChatEntity;
-import me.linkcube.app.util.PreferenceUtils;
 
 public class PersistableChat extends PersistableBase<ChatEntity> {
 

@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import me.linkcube.app.R;
+import me.linkcube.app.common.ui.DialogActivity;
+import me.linkcube.app.common.util.RegexUtils;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
@@ -20,8 +22,6 @@ import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.user.UserLogin;
 import me.linkcube.app.sync.user.UserRegister;
-import me.linkcube.app.ui.DialogActivity;
-import me.linkcube.app.util.RegexUtils;
 import me.linkcube.app.widget.CWClearEditText;
 
 public class RegisterActivity extends DialogActivity implements OnClickListener {

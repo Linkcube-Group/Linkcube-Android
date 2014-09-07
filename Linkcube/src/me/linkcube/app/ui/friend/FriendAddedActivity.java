@@ -7,6 +7,7 @@ import java.util.List;
 import org.jivesoftware.smack.packet.Presence;
 
 import me.linkcube.app.R;
+import me.linkcube.app.common.ui.DialogActivity;
 import me.linkcube.app.core.entity.FriendEntity;
 import me.linkcube.app.core.entity.FriendRequestEntity;
 import me.linkcube.app.core.persistable.DataManager;
@@ -15,7 +16,6 @@ import me.linkcube.app.core.persistable.PersistableFriendRequest;
 import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.core.ASmackUtils;
-import me.linkcube.app.ui.DialogActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package me.linkcube.app.util;
+package me.linkcube.app.common.util;
 
 import android.content.Context;
 import android.content.res.Resources;

@@ -7,6 +7,11 @@ import org.jivesoftware.smackx.packet.VCard;
 
 import com.umeng.analytics.MobclickAgent;
 
+import me.linkcube.app.common.ui.DialogActivity;
+import me.linkcube.app.common.util.AlertUtils;
+import me.linkcube.app.common.util.AppUtils;
+import me.linkcube.app.common.util.NetworkUtils;
+import me.linkcube.app.common.util.PreferenceUtils;
 import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Timber;
 import static me.linkcube.app.core.Const.Preference.AUTO_LOGIN;
@@ -18,12 +23,7 @@ import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.core.ReconnectionListener;
 import me.linkcube.app.sync.user.UserLogin;
-import me.linkcube.app.ui.DialogActivity;
 import me.linkcube.app.ui.main.MainActivity;
-import me.linkcube.app.util.AppUtils;
-import me.linkcube.app.util.NetworkUtils;
-import me.linkcube.app.util.PreferenceUtils;
-import me.linkcube.app.widget.AlertUtils;
 import me.linkcube.app.R;
 import android.content.DialogInterface;
 import android.content.Intent;

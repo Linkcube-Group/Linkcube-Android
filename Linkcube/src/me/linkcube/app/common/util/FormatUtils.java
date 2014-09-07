@@ -1,4 +1,4 @@
-package me.linkcube.app.util;
+package me.linkcube.app.common.util;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;

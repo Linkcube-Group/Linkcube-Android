@@ -1,4 +1,4 @@
-package me.linkcube.app.ui;
+package me.linkcube.app.common.ui;
 
 import java.util.ArrayList;
 import java.util.List;

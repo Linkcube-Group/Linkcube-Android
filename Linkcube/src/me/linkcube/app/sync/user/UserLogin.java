@@ -1,10 +1,10 @@
 package me.linkcube.app.sync.user;
 
+import me.linkcube.app.common.util.PreferenceUtils;
 import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import me.linkcube.app.sync.core.ASmackManager;
-import me.linkcube.app.util.PreferenceUtils;
 
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smackx.packet.VCard;

@@ -13,6 +13,8 @@ import org.jivesoftware.smackx.packet.VCard;
 import com.actionbarsherlock.view.MenuItem;
 
 import me.linkcube.app.R;
+import me.linkcube.app.common.ui.DialogActivity;
+import me.linkcube.app.common.util.FormatUtils;
 import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.entity.FriendEntity;
@@ -25,8 +27,6 @@ import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.friend.AddFriend;
 import me.linkcube.app.sync.friend.GetFriendVCard;
-import me.linkcube.app.ui.DialogActivity;
-import me.linkcube.app.util.FormatUtils;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;

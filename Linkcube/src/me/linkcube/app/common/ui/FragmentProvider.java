@@ -1,4 +1,4 @@
-package me.linkcube.app.ui;
+package me.linkcube.app.common.ui;
 
 /**
  * 获取当前Activity持有的Fragment

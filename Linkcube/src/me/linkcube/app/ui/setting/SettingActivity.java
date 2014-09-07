@@ -24,6 +24,9 @@ import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 import me.linkcube.app.R;
+import me.linkcube.app.common.ui.DialogActivity;
+import me.linkcube.app.common.util.AlertUtils;
+import me.linkcube.app.common.util.PreferenceUtils;
 import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.update.DownloadNewApkHttpGet;
@@ -34,12 +37,9 @@ import me.linkcube.app.sync.chat.ChatMessageManager;
 import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.sync.friend.AddFriendListener;
-import me.linkcube.app.ui.DialogActivity;
 import me.linkcube.app.ui.bluetooth.BluetoothSettingActivity;
 import me.linkcube.app.ui.user.LoginActivity;
 import me.linkcube.app.ui.user.UserInfoActivity;
-import me.linkcube.app.util.PreferenceUtils;
-import me.linkcube.app.widget.AlertUtils;
 
 public class SettingActivity extends DialogActivity implements OnClickListener {
 

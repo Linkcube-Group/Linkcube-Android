@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import me.linkcube.app.R;
+import me.linkcube.app.common.ui.BaseActivity;
 import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.sync.core.ASmackUtils;
-import me.linkcube.app.ui.BaseActivity;
 import me.linkcube.app.widget.CWClearEditText;
 import android.os.Bundle;
 import android.text.Editable;

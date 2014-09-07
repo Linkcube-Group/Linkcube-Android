@@ -1,9 +1,9 @@
-package me.linkcube.app.ui;
+package me.linkcube.app.common.ui;
 
-import me.linkcube.app.widget.AlertUtils;
+import me.linkcube.app.common.util.AlertUtils;
 import android.app.ProgressDialog;
 
-public class DialogActivity extends BaseActivity {
+public class DialogFragmentActivity extends BaseFragmentActivity {
 
 	protected ProgressDialog progressDialog = null;
 
@@ -23,7 +23,7 @@ public class DialogActivity extends BaseActivity {
 	/**
 	 * 隐藏进度框
 	 */
-	protected void dismissProgressDialog() {
+	protected void dissmissProgressDialog() {
 		if (progressDialog != null) {
 			progressDialog.dismiss();
 		}

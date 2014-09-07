@@ -3,10 +3,10 @@ package me.linkcube.app.core.game;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.linkcube.app.common.util.TimeUtils;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.entity.ChatMsgEntity;
 import me.linkcube.app.core.entity.FriendEntity;
-import me.linkcube.app.util.TimeUtils;
 import static me.linkcube.app.core.Const.GameInviteMsg.*;
 
 public class GameManager {

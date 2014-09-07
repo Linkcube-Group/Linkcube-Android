@@ -1,8 +1,8 @@
 package me.linkcube.app.core.update;
 
+import me.linkcube.app.common.util.PreferenceUtils;
 import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Timber;
-import me.linkcube.app.util.PreferenceUtils;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;

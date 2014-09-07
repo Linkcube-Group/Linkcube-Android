@@ -3,9 +3,9 @@ package me.linkcube.app.sync.user;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 
+import me.linkcube.app.common.util.FormatUtils;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import me.linkcube.app.sync.core.ASmackManager;
-import me.linkcube.app.util.FormatUtils;
 
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.util.StringUtils;

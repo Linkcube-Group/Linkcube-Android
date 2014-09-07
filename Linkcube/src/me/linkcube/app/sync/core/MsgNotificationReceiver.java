@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.linkcube.app.R;
+import me.linkcube.app.common.util.ActivityUtils;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.entity.FriendEntity;
 import me.linkcube.app.core.persistable.DataManager;
 import me.linkcube.app.core.persistable.PersistableFriend;
 import me.linkcube.app.ui.main.MainActivity;
-import me.linkcube.app.util.ActivityUtils;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;

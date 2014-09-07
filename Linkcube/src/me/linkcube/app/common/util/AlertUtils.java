@@ -1,4 +1,4 @@
-package me.linkcube.app.widget;
+package me.linkcube.app.common.util;
 
 import android.app.Activity;
 import android.app.AlertDialog;

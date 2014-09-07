@@ -1,10 +1,10 @@
-package me.linkcube.app.ui;
+package me.linkcube.app.common.ui;
 
 import java.io.Serializable;
 
 import me.linkcube.app.R;
+import me.linkcube.app.common.util.PreferenceUtils;
 import me.linkcube.app.core.Timber;
-import me.linkcube.app.util.PreferenceUtils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;

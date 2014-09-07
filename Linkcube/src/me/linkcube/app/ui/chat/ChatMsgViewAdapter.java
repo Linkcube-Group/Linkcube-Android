@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.linkcube.app.R;
+import me.linkcube.app.common.util.FormatUtils;
+import me.linkcube.app.common.util.PreferenceUtils;
 import me.linkcube.app.core.entity.ChatMsgEntity;
 import me.linkcube.app.core.entity.FriendEntity;
 import me.linkcube.app.core.entity.UserEntity;
@@ -12,8 +14,6 @@ import me.linkcube.app.core.persistable.DataManager;
 import me.linkcube.app.core.persistable.PersistableFriend;
 import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.sync.core.ASmackUtils;
-import me.linkcube.app.util.FormatUtils;
-import me.linkcube.app.util.PreferenceUtils;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;

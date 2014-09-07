@@ -1,4 +1,4 @@
-package me.linkcube.app.util;
+package me.linkcube.app.common.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

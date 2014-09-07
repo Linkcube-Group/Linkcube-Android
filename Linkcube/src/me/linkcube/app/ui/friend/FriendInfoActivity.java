@@ -13,15 +13,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import me.linkcube.app.R;
+import me.linkcube.app.common.ui.DialogActivity;
+import me.linkcube.app.common.util.FormatUtils;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.entity.FriendEntity;
 import me.linkcube.app.core.persistable.DataManager;
 import me.linkcube.app.core.persistable.PersistableFriend;
 import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.sync.core.ASmackUtils;
-import me.linkcube.app.ui.DialogActivity;
 import me.linkcube.app.ui.chat.ChatActivity;
-import me.linkcube.app.util.FormatUtils;
 
 public class FriendInfoActivity extends DialogActivity implements
 		OnClickListener {

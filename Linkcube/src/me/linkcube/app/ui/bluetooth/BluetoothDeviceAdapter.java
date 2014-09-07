@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import me.linkcube.app.LinkcubeApplication;
 import me.linkcube.app.R;
+import me.linkcube.app.common.ui.BaseListAdapter;
 import me.linkcube.app.core.Const;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
 import me.linkcube.app.core.game.ToyConnectTimeManager;
-import me.linkcube.app.ui.BaseListAdapter;
 
 /**
  * 蓝牙搜索列表适配器

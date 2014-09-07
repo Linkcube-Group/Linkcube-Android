@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import me.linkcube.app.R;
+import me.linkcube.app.common.ui.DialogActivity;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.entity.FriendEntity;
 import me.linkcube.app.core.persistable.DataManager;
@@ -16,7 +17,6 @@ import me.linkcube.app.core.persistable.PersistableFriend;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import me.linkcube.app.sync.core.ASmackUtils;
 import me.linkcube.app.sync.friend.SearchUser;
-import me.linkcube.app.ui.DialogActivity;
 import me.linkcube.app.widget.CWClearEditText;
 import android.content.Intent;
 import android.os.Bundle;

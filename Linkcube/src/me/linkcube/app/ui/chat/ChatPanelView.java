@@ -6,6 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import me.linkcube.app.R;
+import me.linkcube.app.common.ui.BasePagerAdapter;
 import me.linkcube.app.core.Const;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.entity.ChatMsgEntity;
@@ -18,7 +19,6 @@ import me.linkcube.app.core.user.UserManager;
 import me.linkcube.app.sync.chat.SingleChat;
 import me.linkcube.app.sync.core.ASmackRequestCallBack;
 import me.linkcube.app.sync.core.GetMessageReceiver;
-import me.linkcube.app.ui.BasePagerAdapter;
 import me.linkcube.app.widget.CirclePageIndicator;
 import android.annotation.SuppressLint;
 import android.content.Context;

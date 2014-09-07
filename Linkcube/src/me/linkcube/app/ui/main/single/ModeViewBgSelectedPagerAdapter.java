@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.linkcube.app.R;
-import me.linkcube.app.util.PreferenceUtils;
+import me.linkcube.app.common.util.PreferenceUtils;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;

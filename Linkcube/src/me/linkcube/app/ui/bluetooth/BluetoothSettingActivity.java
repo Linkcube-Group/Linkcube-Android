@@ -16,13 +16,13 @@ import android.widget.ToggleButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import me.linkcube.app.LinkcubeApplication;
 import me.linkcube.app.R;
+import me.linkcube.app.common.ui.DialogActivity;
+import me.linkcube.app.common.util.AlertUtils;
+import me.linkcube.app.common.util.PreferenceUtils;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.core.bluetooth.BluetoothDeviceReceiver;
 import me.linkcube.app.core.bluetooth.BluetoothUtils;
 import me.linkcube.app.core.bluetooth.DeviceConnectionManager;
-import me.linkcube.app.ui.DialogActivity;
-import me.linkcube.app.util.PreferenceUtils;
-import me.linkcube.app.widget.AlertUtils;
 import static me.linkcube.app.core.Const.Device.*;
 
 public class BluetoothSettingActivity extends DialogActivity implements

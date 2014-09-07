@@ -8,7 +8,7 @@ import org.apache.http.util.EncodingUtils;
 import android.os.Bundle;
 import android.widget.TextView;
 import me.linkcube.app.R;
-import me.linkcube.app.ui.BaseActivity;
+import me.linkcube.app.common.ui.BaseActivity;
 
 public class UserAgreementActivity extends BaseActivity {
 	

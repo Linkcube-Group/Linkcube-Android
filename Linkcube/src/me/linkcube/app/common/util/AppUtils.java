@@ -1,4 +1,4 @@
-package me.linkcube.app.util;
+package me.linkcube.app.common.util;
 
 import me.linkcube.app.AppConfig;
 import static me.linkcube.app.core.Const.Preference.SHOW_GUIDE;

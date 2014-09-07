@@ -1,4 +1,4 @@
-package me.linkcube.app.util;
+package me.linkcube.app.common.util;
 
 import me.linkcube.app.R;
 import me.linkcube.app.ui.main.MainActivity;

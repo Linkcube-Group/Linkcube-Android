@@ -13,8 +13,8 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import me.linkcube.app.R;
-import me.linkcube.app.ui.BasePagerAdapter;
-import me.linkcube.app.ui.DialogActivity;
+import me.linkcube.app.common.ui.BasePagerAdapter;
+import me.linkcube.app.common.ui.DialogActivity;
 import me.linkcube.app.ui.main.MainActivity;
 
 /**

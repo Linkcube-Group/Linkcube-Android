@@ -1,10 +1,10 @@
 package me.linkcube.app.ui.user;
 
 import me.linkcube.app.R;
+import me.linkcube.app.common.ui.BaseActivity;
 import me.linkcube.app.core.Timber;
 import me.linkcube.app.sync.core.ASmackManager;
 import me.linkcube.app.sync.user.FindPassword;
-import me.linkcube.app.ui.BaseActivity;
 
 import org.jivesoftware.smack.PacketCollector;
 import org.jivesoftware.smack.SmackConfiguration;

@@ -10,9 +10,9 @@ import android.os.Message;
 import android.util.SparseArray;
 import android.widget.ListView;
 import me.linkcube.app.R;
+import me.linkcube.app.common.ui.BaseActivity;
 import me.linkcube.app.core.Const.DownloadAppConst;
 import me.linkcube.app.core.entity.AppFileEntity;
-import me.linkcube.app.ui.BaseActivity;
 
 public class RelevantAppActivity extends BaseActivity {
 
