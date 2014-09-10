@@ -52,7 +52,7 @@ public class ChatMsgEntity {
 	}
 
 	public void setMsgType(boolean isComMsg) {
-		isComMsg = isComMsg;
+		this.isComMsg = isComMsg;
 	}
 
 	public int getCountDown() {

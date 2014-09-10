@@ -50,6 +50,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -135,7 +136,8 @@ public class MultiPlayerFragment extends BaseFragment implements
 	public void onStop() {
 		super.onStop();
 		Timber.d("ChatListFragment--onStop");
-		// getActivity().unregisterReceiver(msgReceiver);
+		//getActivity().unregisterReceiver(msgReceiver);
+		ChatMessageManager.getInstance().setOffLineMsgFlag(false);
 	}
 
 	@Override
@@ -293,7 +295,7 @@ public class MultiPlayerFragment extends BaseFragment implements
 			chatListAdapter.notifyDataSetChanged();
 		}
 		ChatMessageManager.getInstance().getOffLineMsgs().clear();
-		ChatMessageManager.getInstance().setOffLineMsgFlag(false);
+		//ChatMessageManager.getInstance().setOffLineMsgFlag(false);
 
 	}
 
@@ -314,6 +316,8 @@ public class MultiPlayerFragment extends BaseFragment implements
 						String from = message.getData().getString("from");
 						String body = message.getData().getString("body");
 						String cmdData = message.getData().getString("cmdData");
+						Log.d("handlerMsg","from:" + from + "--body:" + body
+								+ "cmdData:" + cmdData);
 						if (cmdData.equals(Const.Game.REQUESTCONNECTCMD)) {// 判断收到的是不是游戏请求消息
 							GameManager.getInstance().addGameInviteMsgs(from,
 									GAME_INVITE_FROM);

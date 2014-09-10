@@ -152,6 +152,7 @@ public class SettingActivity extends DialogActivity implements OnClickListener {
 			break;
 		case R.id.login_or_register_btn:
 			if (UserManager.getInstance().isAuthenticated()) {
+				ChatMessageManager.getInstance().setOffLineMsgFlag(true);
 				logout();
 			} else {
 				startActivity(new Intent(SettingActivity.this,

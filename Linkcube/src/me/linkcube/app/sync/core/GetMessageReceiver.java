@@ -1,11 +1,11 @@
 package me.linkcube.app.sync.core;
 
-import me.linkcube.app.core.Timber;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 
 public class GetMessageReceiver extends BroadcastReceiver {
 
@@ -19,7 +19,7 @@ public class GetMessageReceiver extends BroadcastReceiver {
 		msg.setData(bundle);
 		String from = msg.getData().getString("from");
 		String body = msg.getData().getString("body");
-		//Timber.d("GetMessageReceiver"+from + "---" + body);
+		Log.d("GetMessageReceiver",from + "---" + body);
 		if (body != null) {
 			getMsgCallBack.responseSuccess(msg);
 		} else {

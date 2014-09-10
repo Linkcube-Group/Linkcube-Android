@@ -38,7 +38,7 @@ public class SingleChat {
 			newchat = chatManager.createChat(friendName, new MessageListener() {
 				@Override
 				public void processMessage(Chat chat, Message message) {
-
+					
 				}
 			});
 			try {

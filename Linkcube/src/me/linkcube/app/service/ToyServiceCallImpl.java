@@ -63,7 +63,7 @@ public class ToyServiceCallImpl extends android.os.Binder implements
 
 	private int MicThreshHold[] = { 0, 20, 22, 24, 26, 28, 30, 32, 34,38 };
 
-	private int MicWaveSpeed[] = { 1, 6, 11, 16, 21, 26, 31, 36, 41, 49 };
+	private int MicWaveSpeed[] = { 1, 11, 16, 21, 26, 31, 36, 41, 45, 49 };
 
 	public int curSpeed = -1;
 	public int curMode = -1;
