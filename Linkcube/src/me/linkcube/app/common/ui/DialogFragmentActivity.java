@@ -3,7 +3,7 @@ package me.linkcube.app.common.ui;
 import me.linkcube.app.common.util.AlertUtils;
 import android.app.ProgressDialog;
 
-public class DialogFragmentActivity extends BaseFragmentActivity {
+public abstract class DialogFragmentActivity extends BaseFragmentActivity {
 
 	protected ProgressDialog progressDialog = null;
 

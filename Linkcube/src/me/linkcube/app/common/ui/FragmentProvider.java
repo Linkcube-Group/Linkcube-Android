@@ -1,5 +1,7 @@
 package me.linkcube.app.common.ui;
 
+import android.support.v4.app.Fragment;
+
 /**
  * 获取当前Activity持有的Fragment
  * 
@@ -13,6 +15,6 @@ public interface FragmentProvider {
 	 * 
 	 * @return fragment
 	 */
-	DialogFragment getFragment();
+	Fragment getFragment();
 
 }

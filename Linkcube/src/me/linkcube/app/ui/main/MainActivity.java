@@ -10,6 +10,7 @@ import com.umeng.analytics.MobclickAgent;
 import me.linkcube.app.R;
 import me.linkcube.app.common.ui.BaseFragment;
 import me.linkcube.app.common.ui.BaseFragmentActivity;
+import me.linkcube.app.common.ui.DialogFragment;
 import me.linkcube.app.common.util.AlertUtils;
 import me.linkcube.app.common.util.NotificationUtils;
 import me.linkcube.app.common.util.PreferenceUtils;
@@ -52,8 +53,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.Toast;
+import android.widget.ImageView.ScaleType;
 
 /**
  * 主页面Activity
@@ -112,6 +119,13 @@ public class MainActivity extends BaseFragmentActivity implements
 			PreferenceUtils.setBoolean("DELETE_AFTER_READ", true);
 		}
 
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		addHelpGuideImage();// 添加引导页
+		Timber.d("onStart");
 	}
 
 	private void CheckDeviceConnect() {
@@ -533,6 +547,64 @@ public class MainActivity extends BaseFragmentActivity implements
 						+ e.getCause());
 			}
 		}
+	}
+
+	/**
+	 * 添加引导图片
+	 */
+
+	private ImageView guideImage;
+
+	private int guideResourceId[] = { R.drawable.help_guide_bg1,
+			R.drawable.help_guide_bg2, R.drawable.help_guide_bg3, 0 };
+
+	private int guidePosition = 0;
+
+	// TODO 引导页这种功能应该再加一层代码结构，不应该在最基类做 @杨鑫
+	public void addHelpGuideImage() {
+		try {
+
+			View view = getWindow().getDecorView().findViewById(
+					R.id.content_view);// 查找通过setContentView上的根布局
+			if (view == null)
+				return;
+			if (PreferenceUtils.getBoolean("isHelpGuide", false)) {
+				// 引导过了
+				return;
+			}
+			ViewParent viewParent = view.getParent();
+			if (viewParent instanceof FrameLayout) {
+				final FrameLayout frameLayout = (FrameLayout) viewParent;
+				guideImage = new ImageView(this);
+				FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+						ViewGroup.LayoutParams.MATCH_PARENT,
+						ViewGroup.LayoutParams.MATCH_PARENT);
+				guideImage.setLayoutParams(params);
+				guideImage.setScaleType(ScaleType.FIT_XY);
+				guideImage.setImageResource(guideResourceId[guidePosition]);
+				guideImage.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						guidePosition++;
+						if (guidePosition >= guideResourceId.length - 1) {
+							frameLayout.removeView(guideImage);
+							PreferenceUtils.setBoolean("isHelpGuide", true);// 设为已引导
+						} else {
+							guideImage.setImageBitmap(readBitMap(mActivity,
+									guideResourceId[guidePosition]));
+						}
+					}
+				});
+				frameLayout.addView(guideImage);// 添加引导图片
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public Fragment getFragment() {
+		return null;
 	}
 
 }

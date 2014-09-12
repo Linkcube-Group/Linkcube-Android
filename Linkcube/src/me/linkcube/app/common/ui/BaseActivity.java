@@ -3,7 +3,6 @@ package me.linkcube.app.common.ui;
 import java.io.Serializable;
 
 import me.linkcube.app.R;
-import me.linkcube.app.common.util.PreferenceUtils;
 import me.linkcube.app.core.Timber;
 import android.app.Activity;
 import android.content.Context;
@@ -11,11 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -56,7 +51,7 @@ public abstract class BaseActivity extends SherlockActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Timber.d("onCreate");
+		Timber.d(this.getClass().getName() + " onCreate");
 	}
 
 	/**
@@ -135,7 +130,7 @@ public abstract class BaseActivity extends SherlockActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		Timber.d("onDestroy");
+		Timber.d(this.getClass().getName() + " onDestroy");
 	}
 
 	@Override
@@ -143,8 +138,7 @@ public abstract class BaseActivity extends SherlockActivity {
 		super.onPause();
 		MobclickAgent.onPageEnd(this.getClass().getName());
 		MobclickAgent.onPause(this);
-		Timber.d(this.getClass().getName());
-		Timber.d("onPause");
+		Timber.d(this.getClass().getName() + " onPause");
 	}
 
 	@Override
@@ -152,20 +146,19 @@ public abstract class BaseActivity extends SherlockActivity {
 		super.onResume();
 		MobclickAgent.onPageStart(this.getClass().getName());
 		MobclickAgent.onResume(this);
-		Timber.d(this.getClass().getName());
-		Timber.d("onResume");
+		Timber.d(this.getClass().getName() + " onResume");
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
-		Timber.d("onStart");
+		Timber.d(this.getClass().getName() + " onStart");
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		Timber.d("onStop");
+		Timber.d(this.getClass().getName() + " onStop");
 	}
-	
+
 }
