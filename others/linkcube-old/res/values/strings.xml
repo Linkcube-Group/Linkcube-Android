@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">连酷</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+	
+	<string name="conn_title">yaxim: %s</string>
+	<string name="conn_connecting">Connecting to server…</string>
+	<string name="conn_online">Online</string>
+	<string name="conn_offline">Offline</string>
+	<string name="conn_empty_roster">No contacts to show!</string>
+	<string name="conn_reconnect">\nReconnect in %d seconds.</string>
+	<string name="conn_disconnected">Connection closed</string>
+	<string name="conn_networkchg">Network changed</string>
+    
+	<string name="str_main_voicecontrol">声音</string>
+    <string name="str_main_shakecontrol">摇一摇</string>
+    <string name="str_main_basic">基本</string>
+		
+	<string name="str_setting_btntitle_settingbt">设置蓝牙</string>
+    <string name="str_setting_btntitle_settingsensitivity">设置敏感度</string>
+    <string name="str_setting_btntitle_pushmessage">设置消息</string>
+    <string name="str_setting_btntitle_aboutus">关于我们</string>
+    <string name="str_setting_btntitle_gotobuy">购买产品</string>
+    <string name="str_setting_btntitle_upgrade">检查更新</string>
+    <string name="str_setting_btntitle_exit">退出当前账户</string>
+    <string name="str_setting_btntitle_login">登录</string>
+
+    <string name="str_setting_btstatus_connectted">连接</string>
+    <string name="str_setting_btstatus_disconnectted">已配对</string>
+    <string name="str_setting_btstatus_unpaired">未配对</string>
+    
+    <string name="str_friends_historyrecord">历史记录</string>
+    
+    <string name="str_btdev_name">设备</string>
+    <string name="str_btdev_disconntted">已配对未连接</string>
+    <string name="str_btdev_conntted">已连接</string>
+    <string name="str_btdev_unpaired">未配对</string>
+    
+    <string name="str_main_toy_close">关闭玩具</string>
+    
+    <string name="str_default_ps">连我，开始游戏哦~</string>
+    
+    <string-array name="hobby">        
+    	<item>男</item>            
+     	<item>女</item>        
+ 	</string-array>
+    
+</resources>
