@@ -16,9 +16,11 @@ public class VoiceSensor {
 	public VoiceSensor() {
 
 		if (Build.VERSION.SDK_INT >= 9) {
-			captureRate = Visualizer.getMaxCaptureRate();
 			mVisualizer = new Visualizer(0);
-			mVisualizer.setCaptureSize(128);
+			captureRate = Visualizer.getMaxCaptureRate();
+			int capSize = Visualizer.getCaptureSizeRange()[1];
+//			mVisualizer.setCaptureSize(128);
+			mVisualizer.setCaptureSize(capSize);
 			voiceCaptureListener = new OnVoiceCaptureListener();
 			mVisualizer.setDataCaptureListener(voiceCaptureListener,
 					captureRate / 2, false, true);

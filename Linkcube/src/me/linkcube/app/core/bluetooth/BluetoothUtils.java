@@ -125,8 +125,10 @@ public class BluetoothUtils {
 	public static TOY_TYPE getDeviceType(String name) {
 		if (name.equals(DEVICE_DEFAULT_NAMES[0])) {
 			return TOY_TYPE.MARS;
-		} else {
+		} else if (name.equals(DEVICE_DEFAULT_NAMES[1])) {
 			return TOY_TYPE.VENUS;
+		} else {
+			return TOY_TYPE.SKEA;
 		}
 	}
 
